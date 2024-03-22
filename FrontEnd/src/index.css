@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@media screen and (max-width: 400px) {
+    nav ul a{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1021px) {
+    nav ul a{
+        display: none;
+    }
+    .Login{
+        display: none;
+        
+    }
+    .started{
+        font-size: 13px;
+    }
+}

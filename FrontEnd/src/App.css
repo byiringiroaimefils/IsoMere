@@ -1,0 +1,7 @@
+.container{
+  width: 20px;
+  height: 20px;
+  background-color: #ccc;
+  padding: 20px;
+  cursor: pointer;
+}
