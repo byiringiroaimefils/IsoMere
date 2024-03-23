@@ -2,8 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { SignInButton, UserButton } from "@clerk/clerk-react";
 // import { HiOutlineBars3BottomRight } from "react-icons/hi2";
-import { FaMoon } from "react-icons/fa6";
-
+import { LuMoonStar } from "react-icons/lu";
 
 export default function Homepge() {
     return (
@@ -25,7 +24,7 @@ export default function Homepge() {
                             Get started
                         </button>
                         <div className='Bar'>
-                            <FaMoon className=' w-10 translate-y-2 ' />
+                            <LuMoonStar className=' w-10 translate-y-2 ' />
                         </div>
                     </div>
                 </div>
@@ -33,7 +32,7 @@ export default function Homepge() {
             <main>
                 <div className='Container'>
                     <div className='mt-40'>
-                        <h2 className='text-base font-bold  text-center text-5xl' >Social entrepreneurship a sustainable approach <br /> to poverty than Traditional Charity</h2> <br />
+                        <h2 className=' font-bold  text-center text-5xl' >Social entrepreneurship a sustainable approach <br /> to poverty than Traditional Charity</h2> <br />
                         <p className='font-light text-gray-600 text-center'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis alias tempore  consectetur<br /> accusantium ut  reiciendis deserunt saepe reprehenderit tempore  consectetur<br /> quas laboriosam obcaecati! reprehenderit</p>
                         <div className='buttton text-center mt-10'>
                             <button className=' bg-blue-500  text-white font-semibold py-1 px-4 rounded-full  mr-4'>
