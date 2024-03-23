@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { SignInButton, UserButton } from "@clerk/clerk-react";
-import { HiOutlineBars3BottomRight } from "react-icons/hi2";
+// import { HiOutlineBars3BottomRight } from "react-icons/hi2";
+import { FaMoon } from "react-icons/fa6";
 
 
 export default function Homepge() {
@@ -24,7 +25,7 @@ export default function Homepge() {
                             Get started
                         </button>
                         <div className='Bar'>
-                            <HiOutlineBars3BottomRight className=' w-10 translate-y-2' />
+                            <FaMoon className=' w-10 translate-y-2 ' />
                         </div>
                     </div>
                 </div>
