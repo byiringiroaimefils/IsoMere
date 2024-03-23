@@ -1,32 +1,44 @@
-import React from 'react'
+import { useState,useEffect } from 'react'
+import axios from 'axios'
+import NavBar from "./NavBar";
+
+
 
 export default function Home() {
-
   const alphArray = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+const[Story,setStory]=useState([]);
+useEffect(()=>{
+  axios.get("http://localhost:8080/Story")
+  .then((data)=>{
+    setStory(data.data);
+  })
+  .catch((error)=>{
+    console.log('error',error)
+  })
+},[])
+console.log(Story)
+
 
   return (
+  <div>
+     <NavBar/>
     <div className='Container flex justify-around mt-6'>
-      <div className='story ml-10 translate-x-20'>
-        <div className='Header '>
-          <h2 className='font-bold  text-base'>Story Teller</h2>
-          <p className='text-sm font-thin text-gray-400'>Loremipsum.</p> <br />
-          <img src="https://learnenglishkids.britishcouncil.org/sites/kids/files/styles/max_1300x1300/public/image/RS7855_ThinkstockPhotos-625123172-hig.jpg?itok=T8SoCelX" alt="" className='w-[600px]' />
-        </div>
+      <div>
 
-        <div className='Description mt-2 w-[600px]'>
-          <p>
-            Sit duis est minim proident non nisi velit non consectetur. Esse
-            adipisicing laboris consectetur enim ipsum reprehenderit eu deserunt
-            Lorem ut aliqua anim do. Duis cupidatat qui irure cupidatat incididunt
-            incididunt enim magna id est qui sunt fugiat. Laboris do duis pariatur
-            fugiat Lorem aute sit ullamco. Qui deserunt non reprehenderit dolore
-            nisi velit exercitation Lorem qui do enim culpa. Aliqua eiusmod in
-            occaecat reprehenderit laborum nostrud fugiat voluptate do Lorem culpa
-            officia sint labore. Tempor consectetur excepteur ut fugiat veniam
-            commodo et labore dolore commodo pariatur.
-          </p>
-          <p className='text-sm font-thin text-gray-400'>20th, March 2024</p> <br />
-        </div>
+      {Story.map( item =>(
+        <div key={item.id} className='story ml-10 translate-x-20'>
+             <div className='Header '>
+               <h2 className='font-bold  text-base'>{item.Title}</h2>
+               <p className='text-sm font-thin text-gray-400'>Loremipsum.</p> <br />
+               <img src={item.image} alt="" className='w-[600px]' />
+             </div>
+             <div className='Description mt-2 w-[600px]'>
+               <p>{item.Decription}</p>
+               <p className='text-sm font-thin text-gray-400'>20th, March 2024</p> <br />
+             </div>
+           </div>
+      ))}    
+
       </div>
       <div className='UpdatedStory mt-5 mr-12'>
         <div className="topstory">
@@ -52,5 +64,6 @@ export default function Home() {
       </div>
     </div>
 
-  )
+
+  </div>  )
 }

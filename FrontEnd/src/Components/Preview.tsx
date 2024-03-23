@@ -2,12 +2,11 @@ import React from 'react'
 import NavBar from "./NavBar";
 
 
-export default function Parent() {
+export default function Preview() {
   return (
     <div>
-      <NavBar />
-
-      Parent
-    </div>
+     <NavBar/>
+     Preview
+      </div>
   )
 }

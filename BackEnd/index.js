@@ -31,16 +31,12 @@ const DBSchema = new Mongoose.Schema(
       type: String,
       required: true,
     },
-    Author: {
+    image: {
       type: String,
       required: true,
     },
     Decription: {
       type: String,
-      required: true,
-    },
-    PublishYear: {
-      type: Number,
       required: true,
     },
   },
@@ -54,9 +50,10 @@ const Book = Mongoose.model("Book", DBSchema, "Book");
 // Here is to Post New book in DB and Also routing it
 App.post("/", (req, resp) => {
   const newBook = {
-    Title: req.body.Title,
-    Decription:req.body.Decription,
-    PublishYear: req.body.PublishYear, 
+    Title:"My Dream",
+    image:"https://learnenglishkids.britishcouncil.org/sites/kids/files/styles/max_1300x1300/public/image/RS7833_ThinkstockPhotos-851359014-hig.jpg?itok=Vz4IWwFu",
+    Decription:"Sit duis est minim proident non nisi velit non consectetur. Esse adipisicing laboris consectetur enim ipsum reprehenderit eu deserunt Lorem ut aliqua anim do. Duis cupidatat qui irure cupidatat incididunt incididunt enim magna id est qui sunt fugiat. Laboris do duis pariatur fugiat Lorem aute sit ullamco. Qui deserunt non reprehenderit dolore nisi velit exercitation Lorem qui do enim culpa. Aliqua eiusmod in occaecat reprehenderit laborum nostrud fugiat voluptate do Lorem culpa officia sint labore. Tempor consectetur excepteur ut fugiat veniam commodo et labore dolore commodo pariatur",
+    // PublishYear: req.body.PublishYear, 
     };
   const book = Book.create(newBook)
     .then((data) => {
@@ -68,52 +65,10 @@ App.post("/", (req, resp) => {
 });
 
 // Here we are going to select all Data From Db
-App.get("/book", (req, resp) => {
+App.get("/Story", (req, resp) => {
   const selectBook = Book.find()
     .then((data) => {
       resp.json(data);
-    })
-    .catch((err) => {
-      console.log("Error", err);
-    });
-});
-
-// Here we are select  Data From Db by using id
-App.get("/book/:id", (req, resp) => {
-  const { id } = req.params;
-  const selectBook = Book.findById(id)
-    .then((data) => {
-      resp.json(data);
-    })
-    .catch((err) => {
-      console.log("Error", err);
-    });
-});
-
-// Router for Update
-App.put("/book/:id", (req, resp) => {
-  const newBook = {
-    Title: req.body.Title,
-    Author: req.body.Author,
-    Decription:req.body.Decription,
-    PublishYear: req.body.PublishYear,
-  };
-  const { id } = req.params;
-  const book = Book.findByIdAndUpdate(id, newBook)
-    .then((data) => {
-      resp.json("Updated");
-    })
-    .catch((err) => {
-      console.log("Error", err);
-    });
-});
-
-// Router for Delete
-App.delete("/book/:id", (req, resp) => {
-  const { id } = req.params;
-  const book = Book.findByIdAndDelete(id)
-    .then((data) => {
-      resp.json("Deleted");
     })
     .catch((err) => {
       console.log("Error", err);

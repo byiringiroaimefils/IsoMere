@@ -1,6 +1,6 @@
 // import React from 'react'
 import { Link } from 'react-router-dom';
-import { SignInButton, UserButton } from "@clerk/clerk-react";
+import { UserButton } from "@clerk/clerk-react";
 import { HiOutlineBars3BottomRight } from "react-icons/hi2";
 
 
@@ -17,7 +17,7 @@ export default function List() {
             <nav className=' backdrop-blur'>
               <ul className='flex ml-2 font-thin  text-gray-400'>
                 <li>
-                  <Link to="/" className='mr-2'>Home</Link>
+                  <Link to="Homepge" className='mr-2'>Home</Link>
 
                 </li>
                 <li>
@@ -34,7 +34,7 @@ export default function List() {
                 </li>
                 <li>
 
-                  <Link to="/Setting" className='mr-2'>
+                  <Link to="/Preview" className='mr-2'>
                     Preview
                   </Link>
                 </li>
@@ -43,25 +43,12 @@ export default function List() {
           </div>
         </div>
         <div className='account mr-8 flex gap-3' >
-          <button className='Login bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-4 rounded-full'>
-            <SignInButton mode='modal' />
-          </button>
-
-
-          <button className='started font-semibold py-1 px-4 rounded-full border'>
-            Get started
-          </button>
-
-
           <div className='userprofile'>
             <UserButton />
           </div>
-
-
           <div className='Bar'>
             <HiOutlineBars3BottomRight className=' w-10 translate-y-2' />
           </div>
-
         </div>
       </div>
     </header>

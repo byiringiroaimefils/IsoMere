@@ -1,7 +1,12 @@
 import React from 'react'
+import NavBar from "./NavBar";
+
 
 export default function Story() {
   return (
-    <div>Story</div>
+    <div>
+     <NavBar/>
+      Story
+      </div>
   )
 }
