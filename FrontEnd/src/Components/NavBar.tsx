@@ -10,7 +10,8 @@ export default function List() {
     <header>
       <div className='Contaoiner  flex justify-between mt-4 p-5 shadow-sm'>
         <div className='flex ml-14 translate-y-1'>
-          <div className='Logo font-black '>
+          <div className='Logo font-black flex'>
+          <img src='BabyStoryLogo.png' alt="" className='w-16 translate-y-[-5px] translate-x-3'/>
             <Link to="Homepge"> <h2>Baby<span className='text-blue-500 font-semibold text-base'>Story</span></h2></Link>
 
           </div>
