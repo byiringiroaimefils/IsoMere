@@ -2,24 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 @media screen and (max-width: 400px) {
-    nav ul a{
+    nav ul {
         display: none;
+        flex-direction: column;
+        margin-top: 80%;
+        text-align: center;
+
     }
+
+    nav ul li {
+        /* display: none; */
+    }
+    .started {
+        display: none;
+    } 
 }
 
 @media screen and (max-width: 1021px) {
-    nav ul a{
+    nav ul li {
+        /* display: none; */
+    }
+    
+    nav ul {
+        display: none;
+        flex-direction: column;
+        margin-top: 80%;
+        /* text-align: center; */
+        width: 50%;
+    }
+    .started {
         display: none;
     }
-    .Login{
-        display: none;
-        
-    }
-    .started{
-        font-size: 13px;
+
+    nav {
+        margin-left: 15%;
     }
 }
 
-/* .ContainerHome{
-    background-image: url('SL-072622-51930-14_prev_ui (1).png');
-} */
+.Dark {
+    background-color: black;
+    color: white;
+}

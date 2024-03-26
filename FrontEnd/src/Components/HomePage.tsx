@@ -1,32 +1,47 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import { Link } from 'react-router-dom';
 import { SignInButton } from "@clerk/clerk-react";
-// import { HiOutlineBars3BottomRight } from "react-icons/hi2";
 import { LuMoonStar } from "react-icons/lu";
 
 
 export default function Homepge() {
+// Background theme changing
+    const [bgcolor, Setbgcolor] = useState("Light");
+    useEffect(() => {
+      if (bgcolor === "Dark") {
+        document.body.classList.add("Dark")
+      }
+      else {
+        document.body.classList.remove("Dark")
+      }
+    }, [bgcolor]);
+  
+    const ThemeSwitch = () => {
+      Setbgcolor(bgcolor === "Dark" ? "Light" : "Dark")
+    }
+
+    
     return (
 
         <div>
 
             <header>
                 <div className='Contaoiner  flex justify-between mt-4 p-5 shadow-sm'>
-                    <div className='flex ml-14 translate-y-1'>
+                    <div className='flex translate-y-1'>
                         <div className='Logo font-black flex '>
                             <img src='BabyStoryLogo.png' alt="" className='w-16 translate-y-[-5px] translate-x-3'/>
                             <Link to="#"> <h2>Baby<span className='text-blue-500 font-semibold text-base '>Story</span></h2></Link>
                         </div>
                     </div>
-                    <div className='account mr-8 flex gap-3' >
+                    <div className='account w-fit flex gap-3' >
                         <button className='Login bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-4 rounded-full'>
                             <SignInButton mode='modal' redirectUrl='/Homepge' />
                         </button>
-                        <button className='started font-semibold py-1 px-4 rounded-full border'>
+                        <button className='started  sm:flex-none md:flex-nonefont-semibold py-1 px-4 rounded-full border'>
                             Get started
                         </button>
                         <div className='Bar'>
-                            <LuMoonStar className=' w-10 translate-y-2 ' />
+                            <LuMoonStar className=' w-10 translate-y-2 '  onClick={ThemeSwitch}/>
                         </div>
                     </div>
                 </div>

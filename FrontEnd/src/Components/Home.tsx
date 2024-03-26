@@ -71,8 +71,6 @@ const Home: FC = () => {
           </div>
         </div>
       </div>
-
-
     </div>)
 }
 
