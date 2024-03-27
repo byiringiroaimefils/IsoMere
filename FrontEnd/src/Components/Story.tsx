@@ -7,7 +7,7 @@ export default function Story() {
     <div>
      <div>
       <NavBar />
-      <div className='text-center mt-[20%]'>
+      <div className='text-center mt-[20%] w-full'>
         <button className=' bg-blue-500  text-white font-semibold py-1 px-4  rounded-sm mr-4'>
           Page Not Found !!!!
         </button>

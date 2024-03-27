@@ -1,41 +1,71 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.Bar{
+    display: none;
+}
+
 @media screen and (max-width: 400px) {
     nav ul {
-        display: none;
+        display:flex;
         flex-direction: column;
         margin-top: 80%;
         text-align: center;
-
+        
     }
 
-    nav ul li {
-        /* display: none; */
-    }
     .started {
         display: none;
     } 
+    .Moon{
+        display: none;
+    }
+    .Bar{
+        display: flex;
+    }
+    .UpdatedStory{
+        display: none;
+    }
+    .story{
+        width: 100%;
+    }
+    nav ul li{
+        display: none;
+     
+    }
 }
 
 @media screen and (max-width: 1021px) {
-    nav ul li {
-        /* display: none; */
-    }
     
     nav ul {
-        display: none;
+        display: flex;
         flex-direction: column;
         margin-top: 80%;
-        /* text-align: center; */
         width: 50%;
+    }
+    nav ul li{
+        display: none;
+     
     }
     .started {
         display: none;
     }
-
+    
     nav {
         margin-left: 15%;
+    }
+    .Moon{
+        display: none;
+    }
+    .Bar{
+        display: flex;
+    }
+    .UpdatedStory{
+        display: none;
+    }
+    
+    .story{
+        width: 100%;
     }
 }
 

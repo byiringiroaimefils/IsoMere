@@ -30,17 +30,17 @@ const Home: FC = () => {
   return (
     <div>
       <NavBar />
-      <div className='Container flex justify-around mt-6'>
+      <div className='Container flex justify-around mt-6 w-full'>
         <div>
 
           {Story.map(({id,Title,image,Decription}) => (
-            <div key={id} className='story ml-10 translate-x-20'>
+            <div key={id} className='story p-4 w-[600px]'>
               <div className='Header '>
-                <h2 className='font-bold  text-base'>{Title}</h2>
+                <h2 className='font-bold  text-base '>{Title}</h2>
                 <p className='text-sm font-thin text-gray-400'>Loremipsum.</p> <br />
-                <img src={image} alt="" className='w-[600px]' />
+                <img src={image} alt="" className='' />
               </div>
-              <div className='Description mt-2 w-[600px]'>
+              <div className='Description mt-2 '>
                 <p>{Decription}</p>
                 <p className='text-sm font-thin text-gray-400'>20th, March 2024</p> <br />
               </div>
