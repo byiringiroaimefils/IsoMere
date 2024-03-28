@@ -44,7 +44,7 @@ export default function Homepge() {
                         <div className='Moon'>
                             <LuMoonStar className=' w-10 translate-y-2  ' onClick={ThemeSwitch} />
                         </div>
-                        <div className='Bar'>
+                        <div className='md:hidden'>
                             <FaBars  className=' w-12 translate-y-2 flex-n'  />
                         </div>
                     </div>

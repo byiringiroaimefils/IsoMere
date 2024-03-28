@@ -1,38 +1,57 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.Bar{
-    display: none;
+
+
+nav ul{
+    display: flex;
+    font-weight: 100;
+    color: rgb(156 163 175 / var(--tw-text-opacity));
+    transition: all .2s ease;
 }
 
 @media screen and (max-width: 400px) {
     nav ul {
-        display:flex;
+        display: flex;
         flex-direction: column;
         margin-top: 80%;
         text-align: center;
-        
+        margin-right: 20%;
+
     }
 
     .started {
         display: none;
-    } 
-    .Moon{
+    }
+
+    .Moon {
         display: none;
     }
-    .Bar{
+
+    .Bar {
         display: flex;
     }
-    .UpdatedStory{
+
+    .UpdatedStory {
         display: none;
     }
-    .story{
+
+    .story {
         width: 100%;
     }
-    nav ul li{
+
+    nav ul {
         display: none;
-     
+
     }
+
+    nav ul.open {
+        display: flex;        
+    }
+    nav ul li a{
+        transition: all .2s ease;
+    }
+
 }
 
 @media screen and (max-width: 1021px) {
@@ -41,12 +60,15 @@
         display: flex;
         flex-direction: column;
         margin-top: 80%;
-        width: 50%;
+        width: 90%;
+        
     }
-    nav ul li{
+    
+    nav ul {
         display: none;
-     
+        
     }
+
     .started {
         display: none;
     }
@@ -54,18 +76,28 @@
     nav {
         margin-left: 15%;
     }
-    .Moon{
-        display: none;
-    }
-    .Bar{
-        display: flex;
-    }
-    .UpdatedStory{
+
+    .Moon {
         display: none;
     }
     
-    .story{
+    .Bar {
+        display: flex;
+    }
+
+    .UpdatedStory {
+        display: none;
+    }
+
+    .story {
         width: 100%;
+    }
+
+    nav ul.open {
+        display: flex;
+    }
+    nav ul li a{
+        transition: all .2s ease;
     }
 }
 
