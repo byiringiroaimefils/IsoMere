@@ -25,18 +25,18 @@ export default function List() {
     Setbgcolor(bgcolor === "Dark" ? "Light" : "Dark")
   }
   return (
-    <header className='mx-auto'>
-      <div className='Container  flex justify-between mt-4 p-5 shadow-sm w-full'>
+    <header className='mx-auto  w-full'>
+      <div className='Container  flex justify-between mt-4 p-5 shadow-sm'>
         <div className='flex m translate-y-1 '>
           <div className='Logo font-black flex'>
 
-            <img src='BabyStoryLogo.png' alt="" className='sm:h-16 sm:translate-y-[-23px] w-16 translate-y-[-5px] translate-x-3 ' />
+            <img src='BabyStoryLogo.png' alt="" className='sm:h-16 sm:translate-y-[-23px] h-10  translate-y-[-5px] translate-x-3 ' />
             <Link to="/Homepge"><h2>Baby<span className='text-blue-500 font-semibold text-base'>Story</span></h2> </Link>
 
           </div>
-          <div className='Nav ml-10'>
-            <nav className=''>
-            <ul className= {`flex ml-2 font-thin text-gray-400 ${openLink ? 'open' : ''}`} >
+          <div className='Nav ml-10 '>
+            <nav className=' '>
+            <ul className= {openLink ? 'open' : ''} >
                 <li>
                   <Link to="/Homepge" className='mr-2'>Home</Link>
 

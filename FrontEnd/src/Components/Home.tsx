@@ -2,18 +2,19 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import NavBar from "./NavBar";
 import { FC } from "react"
+import ReactPlayer from"react-player"
 
-interface Story{
-  id:string,
-  Title:string,
-  image:string,
-  Decription:string
+interface Story {
+  id: string,
+  Title: string,
+  image: string,
+  Decription: string
 
-  
+
 }
 
 const Home: FC = () => {
-  const alphArray = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+  const alphArray = ['Aa', 'Bb', 'Cc', 'Dd', 'Ee', 'Ff', 'Gg', 'Hh', 'Ii', 'Jj', 'Kk', 'Ll', 'Mm', 'Nn', 'Oo', 'Pp', 'Qq', 'Rr', 'Ss', 'Tt', 'Uu', 'Vv', 'Ww', 'Xx', 'Yy', 'Zz']
   const [Story, setStory] = useState<Story[]>([]);
   useEffect(() => {
     axios.get("http://localhost:8080/Story")
@@ -30,14 +31,14 @@ const Home: FC = () => {
   return (
     <div>
       <NavBar />
-      <div className='Container flex justify-around mt-6 w-full'>
+      <div className='Container flex justify-around mt-6 w-full '>
         <div>
 
-          {Story.map(({id,Title,image,Decription}) => (
-            <div key={id} className='story p-4 w-[600px]'>
+          {Story.map(({ id, Title, image, Decription }) => (
+            <div key={id} className='story p-4 w-[650px] md:translate-x-10' >
               <div className='Header '>
                 <h2 className='font-bold  text-base '>{Title}</h2>
-                <p className='text-sm font-thin text-gray-400'>Loremipsum.</p> <br />
+                <p className='text-sm font-thin text-gray-400'>Loremipsums.</p> <br />
                 <img src={image} alt="" className='' />
               </div>
               <div className='Description mt-2 '>
@@ -54,9 +55,9 @@ const Home: FC = () => {
             <p className='text-sm font-thin text-gray-400'>Lorem ipsum dolor sit amet consectetur</p>
 
             <ul>
-              <li className='text-lg cursor-pointer'><span className='text-gray-400 text-2xl  '>1.</span>  Lorem ilisum dolor sit amet,</li>
-              <li className='text-lg cursor-pointer'><span className='text-gray-400 text-2xl'>2.</span>Game of choressit amet,</li>
-              <li className='text-lg cursor-pointer'><span className='text-gray-400 text-2xl'>3.</span>Lorem ilisum dolor sit amet,</li>
+              <li className='text-lg cursor-pointer'><span className='text-gray-400 text-2xl  '>1.</span> <a href="">Lorem ilisum dolor sit amet,</a> </li>
+              <li className='text-lg cursor-pointer'><span className='text-gray-400 text-2xl'>2.</span><a href=""> Game of choressit amet,</a></li>
+              <li className='text-lg cursor-pointer'><span className='text-gray-400 text-2xl'>3.</span> <a href="">Lorem ilisum dolor sit amet,</a> </li>
             </ul>
           </div>
           <div className="Alphabetics mt-20">
@@ -68,6 +69,16 @@ const Home: FC = () => {
               ))}
             </div>
 
+          </div>
+          <div className="Video mt-20">
+            <h4 className='font-extrabold '>Video</h4> 
+            <p className='text-sm font-thin text-gray-400'>Lorem ipsum dolor sit amet consectetur</p> <br />
+            <ReactPlayer
+              className='react-player'
+              url='https://www.youtube.com/watch?v=iDZBeIgcixk'
+              width='120%'
+              height='200%'
+            />
           </div>
         </div>
       </div>
