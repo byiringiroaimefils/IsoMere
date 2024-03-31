@@ -3,10 +3,11 @@ import React from 'react'
 // import NavBar from "./Components/NavBar";
 
 import Home from "./Components/Home";
-import Story from "./Components/Story";
-import Parent from "./Components/Parent";
+import Proverbs from "./Components/Proverbs";
+import Setting from "./Components/Setting";
 import Preview from "./Components/Preview";
 import Homepge from "./Components/HomePage";
+
 
 
 export default function App() {
@@ -17,8 +18,8 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Homepge />} />
             <Route path="Homepge" element={<Home />} />
-            <Route path="Story" element={<Story />} />
-            <Route path="Parent" element={<Parent />} />
+            <Route path="Proverbs" element={<Proverbs />} />
+            <Route path="Setting" element={<Setting />} />
             <Route path="Preview" element={<Preview />} />
           </Routes>
         </main>

@@ -2,12 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.underline {
+    position: relative;
+}
 
-nav ul{
+
+
+nav ul {
     display: flex;
-    font-weight: 100;
-    color: rgb(156 163 175 / var(--tw-text-opacity));
-    transition: all .2s ease;
 }
 
 @media screen and (max-width: 400px) {
@@ -17,6 +19,8 @@ nav ul{
         margin-top: 80%;
         text-align: center;
         margin-right: 20%;
+        padding: 4px;
+
 
     }
 
@@ -46,33 +50,35 @@ nav ul{
     }
 
     nav ul.open {
-        display: flex;        
+        display: flex;
     }
-    nav ul li a{
+
+    nav ul li a {
         transition: all .2s ease;
     }
 
 }
 
 @media screen and (max-width: 1021px) {
-    
+
     nav ul {
         display: flex;
         flex-direction: column;
         margin-top: 80%;
         width: 90%;
-        
+        padding: 4px;
+
     }
-    
+
     nav ul {
         display: none;
-        
+
     }
 
     .started {
         display: none;
     }
-    
+
     nav {
         margin-left: 15%;
     }
@@ -80,7 +86,7 @@ nav ul{
     .Moon {
         display: none;
     }
-    
+
     .Bar {
         display: flex;
     }
@@ -96,12 +102,13 @@ nav ul{
     nav ul.open {
         display: flex;
     }
-    nav ul li a{
+
+    nav ul li a {
         transition: all .2s ease;
     }
 }
 
 .Dark {
-    background-color: black;
+    background-color: #03070c;
     color: white;
 }
