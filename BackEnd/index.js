@@ -54,7 +54,7 @@ const Stories = Mongoose.model("Story", DBSchema, "Story");
 
 
 // Here is to Post New book in DB and Also routing it
-App.post("/", (req, resp) => {
+App.post("/story", (req, resp) => {
   const newStory = {
     Title:"My Dream",
     image:"https://learnenglishkids.britishcouncil.org/sites/kids/files/styles/max_1300x1300/public/image/RS7833_ThinkstockPhotos-851359014-hig.jpg?itok=Vz4IWwFu",
@@ -74,7 +74,7 @@ App.post("/", (req, resp) => {
 
 
 // Here we are going to select all Data From Db
-App.get("/Story", (req, resp) => {
+App.get("/Stories", (req, resp) => {
   const selectStory = Stories.find()
     .then((data) => {
       resp.json(data);
@@ -102,7 +102,7 @@ const proverbs = Mongoose.model("Proverbs", ProverbSchema, "Proverbs");
 
 
 
-App.post("/proverbs", (req, resp) => {
+App.post("/proverb", (req, resp) => {
 
   const newProverb = {
     TitleofProverb:"Rabit is very Genius",
