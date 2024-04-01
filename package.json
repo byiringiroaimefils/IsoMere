@@ -1,12 +1,12 @@
 {
-  "name": "Baby-Story",
+  "name": "Story",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install-server": "cd BackEnd && npm install",
-    "start-server": "cd BackEnd && node index.js",
+    "install-BackEnd": "cd BackEnd && npm install",
+    "start-BackEnd": "cd BackEnd && node index.js",
     "install-client": "cd FrontEnd && npm install",
     "build-client": "cd FrontEnd && npm run build",
     "start-client": "cd FrontEnd && npm run start"
