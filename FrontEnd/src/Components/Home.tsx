@@ -21,7 +21,7 @@ const Home: FC = () => {
 
 
   useEffect(() => {
-    axios.get("http://localhost:8080/Story")
+    axios.get("http://localhost:8080/Stories")
       .then((data) => {
         setStory(data.data);
         setLoading(false)
