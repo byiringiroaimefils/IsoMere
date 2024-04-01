@@ -21,7 +21,7 @@ const Home: FC = () => {
 
 
   useEffect(() => {
-    axios.get("http://localhost:8080/Stories")
+    axios.get("https://babystory-server.onrender.com/stories")
       .then((data) => {
         setStory(data.data);
         setLoading(false)

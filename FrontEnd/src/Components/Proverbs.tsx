@@ -16,7 +16,7 @@ const Story: FC = () => {
   const [Story, setStory] = useState<Story[]>([]);
   const [Loading, setLoading] = useState(false);
   useEffect(() => {
-    axios.get("http://localhost:8080/proverbs")
+    axios.get("https://babystory-server.onrender.com/proverbs")
       .then((data) => {
         setStory(data.data);
         setLoading(false)
