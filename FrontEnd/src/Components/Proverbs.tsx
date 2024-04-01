@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import NavBar from "./NavBar";
+import Load from "./Loading";
 
 interface Story {
   id: string,
@@ -14,7 +15,7 @@ interface Story {
 
 const Story: FC = () => {
   const [Story, setStory] = useState<Story[]>([]);
-  const [Loading, setLoading] = useState(false);
+  const [Loading, setLoading] = useState(true);
   useEffect(() => {
     axios.get("https://babystory-server.onrender.com/proverbs")
       .then((data) => {
@@ -34,8 +35,8 @@ const Story: FC = () => {
         <div>
           {
             Loading ? (
-              <div>
-                <p>Loading.....</p>
+              <div className='flex justify-center text-center mt-56'>
+              <Load/>
               </div>
             ) : (
               <div>

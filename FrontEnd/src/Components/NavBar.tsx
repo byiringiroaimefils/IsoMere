@@ -31,7 +31,7 @@ export default function List() {
           <div className='Logo font-black flex'>
 
             <img src='BabyStoryLogo.png' alt="" className='sm:h-16 sm:translate-y-[-23px] h-9  translate-y-[-5px] translate-x-6 ' />
-            <Link to="/Homepge"><h2>Baby<span className='text-blue-500 font-semibold text-base'>Story</span></h2> </Link>
+            <Link to="/Homepge"><h2>Baby<span className='text-blue-600 font-semibold text-base'>Story</span></h2> </Link>
 
           </div>
           <div className='Nav ml-10 '>

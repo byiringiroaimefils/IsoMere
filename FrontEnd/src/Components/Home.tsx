@@ -3,6 +3,7 @@ import axios from 'axios'
 import NavBar from "./NavBar";
 import { FC } from "react"
 import ReactPlayer from "react-player"
+import Load from "./Loading";
 
 interface Story {
   id: string,
@@ -17,7 +18,7 @@ interface Story {
 const Home: FC = () => {
   const alphArray = ['Aa', 'Bb', 'Cc', 'Dd', 'Ee', 'Ff', 'Gg', 'Hh', 'Ii', 'Jj', 'Kk', 'Ll', 'Mm', 'Nn', 'Oo', 'Pp', 'Qq', 'Rr', 'Ss', 'Tt', 'Uu', 'Vv', 'Ww', 'Xx', 'Yy', 'Zz']
   const [Story, setStory] = useState<Story[]>([]);
-  const [Loading, setLoading] = useState(false);
+  const [Loading, setLoading] = useState(true);
 
 
   useEffect(() => {
@@ -42,9 +43,9 @@ const Home: FC = () => {
       <div>
         {
           Loading ? (
-            <div>
-              <p>Loading.....</p>
-            </div>
+            <div className='flex justify-center text-center mt-56'>
+              <Load/>
+              </div>
           ) : (
             <div className='Container flex justify-around mt-6 w-full '>
               <div>
@@ -60,6 +61,7 @@ const Home: FC = () => {
                       <p>{Decription}</p>
                       <p className='text-sm font-thin text-gray-400'>{createdAt}</p> <br />
                     </div>
+              
                   </div>
                 ))}
 
