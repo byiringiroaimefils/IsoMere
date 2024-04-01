@@ -50,7 +50,7 @@ const DBSchema = new Mongoose.Schema(
 
 
 
-const Stories = Mongoose.model("Book", DBSchema, "Book");
+const Stories = Mongoose.model("Story", DBSchema, "Story");
 
 
 // Here is to Post New book in DB and Also routing it
