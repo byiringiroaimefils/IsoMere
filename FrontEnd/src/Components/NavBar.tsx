@@ -30,7 +30,7 @@ export default function List() {
         <div className='flex m translate-y-1 '>
           <div className='Logo font-black flex'>
 
-            <img src='BabyStoryLogo.png' alt="" className='sm:h-16 sm:translate-y-[-23px] h-9  translate-y-[-5px] translate-x-6 ' />
+            <img src='BabyStoryLogo.png' alt="" className='sm:h-16 sm:translate-y-[-23px] h-5  translate-y-[-5px] translate-x-6 ' />
             <Link to="/Homepge"><h2>Baby<span className='text-blue-600 font-semibold text-base'>Story</span></h2> </Link>
 
           </div>
