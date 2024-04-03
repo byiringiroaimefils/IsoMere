@@ -8,6 +8,9 @@ import Setting from "./Components/Setting";
 import Preview from "./Components/Preview";
 import Homepge from "./Components/HomePage";
 
+import Story from "./Components/Pages/Str";
+import Proverb from "./Components/Pages/Prov";
+
 
 
 export default function App() {
@@ -19,7 +22,10 @@ export default function App() {
             <Route path="/" element={<Homepge />} />
             <Route path="Homepge" element={<Home />} />
             <Route path="Proverbs" element={<Proverbs />} />
-            <Route path="Setting" element={<Setting />} />
+            <Route path="Setting" element={<Setting />}>
+              <Route path="Story" element={<Story />} />
+              <Route path="Proverb" element={<Proverb />} />
+            </Route>
             <Route path="Preview" element={<Preview />} />
           </Routes>
         </main>

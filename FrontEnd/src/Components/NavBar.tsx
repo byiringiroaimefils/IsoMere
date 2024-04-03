@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { UserButton, SignedOut } from "@clerk/clerk-react";
 import { LuMoonStar } from "react-icons/lu";
 import { FaBars } from "react-icons/fa";
-// import { ImCross } from "react-icons/im";
+
 
 
 
@@ -36,7 +36,7 @@ export default function List() {
           </div>
           <div className='Nav ml-10 '>
             <nav className=' '>
-              <ul className={`text-gray-500  md:flex pb-9  ${openLink ? 'open' : ''}`}  >
+              <ul className={`text-gray-500  md:flex pb-9 ${openLink ? 'open' : ''} `}  >
                 <li>
                   <Link to="/Homepge" className='mr-2'>Home</Link>
 
@@ -69,6 +69,10 @@ export default function List() {
           <div className='Moon md:flex md:mr-10'>
             <LuMoonStar className=' w-10 translate-y-2' onClick={ThemeSwitch} />
           </div>
+        <div className={`None md:hidden sm:hidden fixed h-full w-screen  bg-black/50 top-[232px] right-0 ${openLink ? 'open' : ''}`}>
+        </div>
+
+
           <div className='md:hidden'>
             <i><FaBars className=' cursor-pointer w-12 translate-y-2 translate-x-[-12px] flex-n' onClick={() => { SetopenLink(!openLink) }} /></i>
           </div>

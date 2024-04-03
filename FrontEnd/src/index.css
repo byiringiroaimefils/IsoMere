@@ -52,9 +52,15 @@ nav ul {
     nav ul.open {
         display: flex;
     }
+    .None.open {
+        display: flex;
+    }
 
     nav ul li a {
         transition: all .2s ease;
+    }
+    .None{
+        display: none;
     }
 
 }
@@ -99,12 +105,19 @@ nav ul {
         width: 100%;
     }
 
-    nav ul.open {
+    nav ul.open{
         display: flex;
-    }
+    } 
+    .None.open{
+        display: flex;
+    } 
+   
 
     nav ul li a {
         transition: all .2s ease;
+    }
+    .None{
+        display: none;
     }
 }
 
