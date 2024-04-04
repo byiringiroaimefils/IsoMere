@@ -39,13 +39,11 @@ export default function List() {
               <ul className={`text-gray-500  md:flex pb-9 ${openLink ? 'open' : ''} `}  >
                 <li>
                   <Link to="/Homepge" className='mr-2'>Home</Link>
-
                 </li>
                 <li>
                   <Link to="/Proverbs" className='mr-2'>
                     Proverbs
                   </Link>
-
                 </li>
                 <li>
                   <Link to="/Preview" className='mr-2'>

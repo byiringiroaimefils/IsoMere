@@ -1,5 +1,5 @@
 import React from 'react'
-import NavBar from "../NavBar";
+// import NavBar from "../NavBar";
 import Table from "../Flowbit/Table";
 import { Button } from "flowbite-react";
 // import { FaSearch } from 'react-icons/fa';
@@ -10,7 +10,7 @@ import { Button } from "flowbite-react";
 export default function Parent() {
   return (
     <div>
-      <NavBar />
+      {/* <NavBar /> */}
       <div>
         <div className='ml-6 mt-4'>
           <h2 className='text-xl font-bold'>Upload Proverbs</h2>

@@ -4,9 +4,9 @@ import { MdDeleteForever,MdEditSquare } from "react-icons/md";
 
 function component() {
     return (
-        <div className="p-8">
+        <div className="p-10 w-full">
             <Table hoverable>
-                <TableHead className="text-left">
+                <TableHead className="text-left gap-20">
                     <TableHeadCell>NO</TableHeadCell>
                     <TableHeadCell>PRODUCT NAME</TableHeadCell>
                     <TableHeadCell>COLOR</TableHeadCell>
@@ -16,7 +16,7 @@ function component() {
                         ACTION
                     </TableHeadCell>
                 </TableHead>
-                <TableBody className="divide-y">
+                <TableBody className="">
                     <TableRow className=" ">
                         <TableCell className=" font-medium text-gray-600 ">
                             01

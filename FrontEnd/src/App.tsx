@@ -11,6 +11,8 @@ import Homepge from "./Components/HomePage";
 import Story from "./Components/Pages/Str";
 import Proverb from "./Components/Pages/Prov";
 
+import Form from "./Components/Flowbit/Form";
+
 
 
 export default function App() {
@@ -27,6 +29,7 @@ export default function App() {
               <Route path="Proverb" element={<Proverb />} />
             </Route>
             <Route path="Preview" element={<Preview />} />
+            <Route path="Form" element={<Form />} />
           </Routes>
         </main>
       </BrowserRouter >
