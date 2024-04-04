@@ -27,7 +27,7 @@ export default function Parent() {
         </div>
         <hr />
         <div>
-          <div className=''>
+          <div className='b'>
             <Table />
           </div>
         </div>
