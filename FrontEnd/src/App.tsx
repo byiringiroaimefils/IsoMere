@@ -1,17 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React from 'react'
-// import NavBar from "./Components/NavBar";
-
 import Home from "./Components/Home";
 import Proverbs from "./Components/Proverbs";
 import Setting from "./Components/Setting";
 import Preview from "./Components/Preview";
 import Homepge from "./Components/HomePage";
-
 import Story from "./Components/Pages/Str";
 import Proverb from "./Components/Pages/Prov";
-
-import Form from "./Components/Flowbit/Form";
+import FormStory from "./Components/Flowbit/FormStory";
+import FormProverb from "./Components/Flowbit/FormProverb";
 
 
 
@@ -29,7 +26,8 @@ export default function App() {
               <Route path="Proverb" element={<Proverb />} />
             </Route>
             <Route path="Preview" element={<Preview />} />
-            <Route path="Form" element={<Form />} />
+            <Route path="FormStory" element={<FormStory />} />
+            <Route path="FormProverb" element={<FormProverb/>} />
           </Routes>
         </main>
       </BrowserRouter >

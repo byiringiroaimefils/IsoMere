@@ -51,6 +51,7 @@ nav ul {
 
     nav ul.open {
         display: flex;
+        height: 100%;
     }
     .None.open {
         display: flex;
@@ -58,10 +59,7 @@ nav ul {
 
     nav ul li a {
         transition: all .2s ease;
-    }
-    .None{
-        display: none;
-    }
+    }    
 
 }
 
@@ -108,11 +106,8 @@ nav ul {
     nav ul.open{
         display: flex;
     } 
-    .None.open{
-        display: flex;
-    } 
    
-
+   
     nav ul li a {
         transition: all .2s ease;
     }

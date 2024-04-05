@@ -1,8 +1,6 @@
 import React from 'react'
-// import NavBar from "../NavBar";
-import Table from "../Flowbit/Table";
+import Table from "../Flowbit/TableStory";
 import { Button } from "flowbite-react";
-// import { FaSearch } from 'react-icons/fa';
 import { Link } from "react-router-dom";
 
 
@@ -21,7 +19,7 @@ export default function Parent() {
         </div>
         <div className='flex justify-end  mb-3 md:gap-56 sm:gap-20 mt-10 mr-20'>
           <input type="text" className='border outline-none h-7 w-60 rounded-md md:h20 translate-y-1 pl-2 ' placeholder='Search' />
-          <Link to="Form">
+          <Link to="/FormStory">
             <Button color="blue">Upload</Button>
           </Link>
         </div>
