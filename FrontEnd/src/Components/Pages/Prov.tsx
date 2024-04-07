@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 export default function Parent() {
   return (
     <div>
-      {/* <NavBar /> */}
+
       <div>
         <div className='ml-6 mt-4'>
           <h2 className='text-xl font-bold'>Upload Proverbs</h2>

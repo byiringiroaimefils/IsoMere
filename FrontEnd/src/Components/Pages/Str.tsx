@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 export default function Parent() {
   return (
     <div>
-      {/* <NavBar /> */}
       <div className='w-full'>
         <div className='ml-6 mt-4'>
           <h2 className='text-xl font-bold'>Upload Story</h2>
