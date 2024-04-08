@@ -5,12 +5,11 @@ import { Button } from "flowbite-react";
 
 
 
-
 export default function Parent() {
   return (
     <div>
       <NavBar />
-      <div className='flex justify-center text-center mt-5 gap-5'>
+      <div className='flex justify-center text-center mt-12 ml-5 gap-5'>
         <Link to='Story'>
           <Button color="blue">Story</Button>
         </Link>

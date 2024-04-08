@@ -9,9 +9,12 @@ import { FaBars } from "react-icons/fa";
 
 export default function List() {
   const [openLink, SetopenLink] = useState(false);
-
-  // Background theme changing
   const [bgcolor, Setbgcolor] = useState("Light");
+  const ThemeSwitch = () => {
+    Setbgcolor(bgcolor === "Dark" ? "Light" : "Dark")
+  }
+
+
   useEffect(() => {
     if (bgcolor === "Dark") {
       document.body.classList.add("Dark")
@@ -21,21 +24,20 @@ export default function List() {
     }
   }, [bgcolor]);
 
-  const ThemeSwitch = () => {
-    Setbgcolor(bgcolor === "Dark" ? "Light" : "Dark")
-  }
+
+
   return (
-    <header className='mx-auto  w-full'>
-      <div className='Container  flex justify-between mt-6 pt-4 shadow-sm'>
-        <div className='flex m translate-y-1 '>
+    <header className='shadow-sm w-screen translate-y-5'>
+      <div className='Container w-screen flex justify-between  pt-4 '>
+        <div className='flex translate-y-1 '>
+
           <div className='Logo font-black flex'>
-
-            <img src='BabyStoryLogo.png' alt="" className='sm:h-16 sm:translate-y-[-23px] h-5  translate-y-[-5px] translate-x-6 ' />
+            <img src='BabyStoryLogo.png' alt="" className='h-16 translate-y-[-23px]  translate-x-6 ' />
             <Link to="/Homepge"><h2>Baby<span className='text-blue-600 font-semibold text-base'>Story</span></h2> </Link>
-
           </div>
+
           <div className='Nav ml-10 '>
-            <nav className=' '>
+            <nav>
               <ul className={`text-gray-500  md:flex pb-6 ${openLink ? 'open' : ''} `}  >
                 <li>
                   <Link to="/Homepge" className='mr-2'>Home</Link>
@@ -59,18 +61,22 @@ export default function List() {
             </nav>
           </div>
         </div>
+
+
+
         <div className='account flex gap-3' >
-          <div className='userprofile'>
+          <div className='userprofile mr-3 '>
             <UserButton />
             <SignedOut />
           </div>
-          <div className='Moon md:flex md:mr-10'>
+          <div className='Moon md:flex mr-20'>
             <LuMoonStar className=' w-10 translate-y-2' onClick={ThemeSwitch} />
           </div>
-          <div className='md:hidden'>
+          <div className='md:hidden translate-x-[-20px]'>
             <i><FaBars className=' cursor-pointer w-12 translate-y-2 translate-x-[-12px] flex-n' onClick={() => { SetopenLink(!openLink) }} /></i>
           </div>
         </div>
+
       </div>
     </header>
   )

@@ -2,26 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .underline {
     position: relative;
 }
-
-
 
 nav ul {
     display: flex;
 }
 
+
 @media screen and (max-width: 400px) {
     nav ul {
-        display: flex;
-        flex-direction: column;
         margin-top: 80%;
         text-align: center;
         margin-right: 20%;
-        padding: 4px;
+        transform: translateX(-20px);
+    }
 
+    nav {
+        margin-right: 25%;
+    }
 
+    nav ul a {
+        margin-right: 35%;
+        font-size: 60%;
     }
 
     .started {
@@ -53,30 +63,21 @@ nav ul {
         display: flex;
         height: 100%;
     }
-    .None.open {
-        display: flex;
-    }
-
-    nav ul li a {
-        transition: all .2s ease;
-    }    
-
 }
 
 @media screen and (max-width: 1021px) {
-
     nav ul {
-        display: flex;
-        flex-direction: column;
-        margin-top: 80%;
-        width: 90%;
-        padding: 4px;
-
+        margin-top: 20%;
+        text-align: center;
+        transform: translateX(-20px);
     }
 
     nav ul {
         display: none;
+    }
 
+    nav ul a {
+        margin-right: 35%;
     }
 
     .started {
@@ -84,35 +85,22 @@ nav ul {
     }
 
     nav {
-        margin-left: 15%;
+        margin-right: 20%;
     }
-
     .Moon {
         display: none;
     }
-
     .Bar {
         display: flex;
     }
-
     .UpdatedStory {
         display: none;
     }
-
     .story {
         width: 100%;
     }
-
-    nav ul.open{
+    nav ul.open {
         display: flex;
-    } 
-   
-   
-    nav ul li a {
-        transition: all .2s ease;
-    }
-    .None{
-        display: none;
     }
 }
 
