@@ -31,7 +31,7 @@ const Proverb: FC = () => {
     <>
       <NavBar />
       <div className='w-Full mt-5 ' >
-        <div>
+        <div className='my-20'>
           {
             Loading ? (
               <div className='flex justify-center text-center mt-56'>

@@ -1,84 +1,59 @@
-import { useState, useEffect } from 'react'
+import React, { useState } from 'react';
+import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+
 import { UserButton, SignedOut } from "@clerk/clerk-react";
 import { LuMoonStar } from "react-icons/lu";
-import { FaBars } from "react-icons/fa";
 
 
 
-
-export default function List() {
-  const [openLink, SetopenLink] = useState(false);
-  const [bgcolor, Setbgcolor] = useState("Light");
-  const ThemeSwitch = () => {
-    Setbgcolor(bgcolor === "Dark" ? "Light" : "Dark")
-  }
-
-
-  useEffect(() => {
-    if (bgcolor === "Dark") {
-      document.body.classList.add("Dark")
-    }
-    else {
-      document.body.classList.remove("Dark")
-    }
-  }, [bgcolor]);
-
-
+const Header = () => {
+  const Links = [
+    { name: "Home", link: "/Homepge" },
+    { name: "Proverbs", link: "/Proverbs" },
+    { name: "Preview", link: "/Preview" },
+    { name: "Setting", link: "/Setting" },
+  ];
+  const [open, setOpen] = useState(false);
 
   return (
-    <header className='shadow-sm w-screen translate-y-5'>
-      <div className='Container w-screen flex justify-between  pt-4 '>
-        <div className='flex translate-y-1 '>
+    <div className='shadow-sm w-full fixed top-0 left-0'>
+      <div className='md:flex items-center justify-between bg-white py-4 md:px-10 px-7'>
 
-          <div className='Logo font-black flex'>
-            <img src='BabyStoryLogo.png' alt="" className='h-16 translate-y-[-23px]  translate-x-6 ' />
-            <Link to="/Homepge"><h2>Baby<span className='text-blue-600 font-semibold text-base'>Story</span></h2> </Link>
-          </div>
-
-          <div className='Nav ml-10 '>
-            <nav>
-              <ul className={`text-gray-500  md:flex pb-6 ${openLink ? 'open' : ''} `}  >
-                <li>
-                  <Link to="/Homepge" className='mr-2'>Home</Link>
-                </li>
-                <li>
-                  <Link to="/Proverbs" className='mr-2'>
-                    Proverbs
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/Preview" className='mr-2'>
-                    Preview
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/Setting" className='mr-2'>
-                    Setting
-                  </Link>
-                </li>
-              </ul>
-            </nav>
+        <div className='font-bold text-base cursor-pointer flex items-center'>
+          
+            <img src='BabyStoryLogo.png' alt="" className='h-10 translate-x-[-20px]' />
+            <h2 className='mx-[-39px]'><span>Baby</span>Story</h2>
+          
+          <div>
+            <ul className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-white md:z-0  z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-[69px]' : 'top-[-490px]'}`}>
+              {
+                Links.map((link) => (
+                  <li className='md:ml-2  font-medium text-sm text-gray-500'>
+                    <Link to={link.link} className='mr-2'>{link.name}</Link>
+                  </li>))
+              }
+            </ul>
           </div>
         </div>
-
-
-
-        <div className='account flex gap-3' >
-          <div className='userprofile mr-3 '>
+        <div className='flex items-center md:mx-3  gap-6'>
+          <div className='userprofile absolute right-20 top-4'>
             <UserButton />
             <SignedOut />
           </div>
-          <div className='Moon md:flex mr-20'>
-            <LuMoonStar className=' w-10 translate-y-2' onClick={ThemeSwitch} />
+          <div onClick={() => setOpen(!open)} className='absolute right-5 top-7 cursor-pointer md:hidden w-7 h-7'>
+            {
+              open ? <FaTimes /> : <FaBars />
+            }
           </div>
-          <div className='md:hidden translate-x-[-20px]'>
-            <i><FaBars className=' cursor-pointer w-12 translate-y-2 translate-x-[-12px] flex-n' onClick={() => { SetopenLink(!openLink) }} /></i>
+          <div className='Moon md:flex'>
+            <LuMoonStar className='text-base' />
           </div>
         </div>
 
       </div>
-    </header>
-  )
-}
+    </div>
+  );
+};
 
+export default Header;

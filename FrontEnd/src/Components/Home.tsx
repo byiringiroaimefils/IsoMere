@@ -37,8 +37,10 @@ const Home: FC = () => {
 
   return (
     <>
+    <div>
       <NavBar />
-      <div>
+    </div>
+      <div className='my-20'>
         {
           Loading ? (
             <div className='flex justify-center text-center mt-56'>
@@ -53,7 +55,7 @@ const Home: FC = () => {
                     <div className='Header '>
                       <h2 className='font-bold  text-base '>{Title}</h2>
                       <p className='text-sm font-thin text-gray-400'>Parent ( aimefils173@gmail.com ) </p> <br />
-                      <img src={image} alt="" className='' />
+                      <img src={image} alt="" className='w-screen' />
                     </div>
                     <div className='Description mt-4 '>
                       <p>{Decription}</p>
