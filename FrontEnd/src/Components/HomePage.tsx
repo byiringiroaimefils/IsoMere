@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { SignInButton } from "@clerk/clerk-react";
 import { LuMoonStar } from "react-icons/lu";
-import {  FaBars } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 
 
 export default function Homepge() {
@@ -24,7 +24,7 @@ export default function Homepge() {
 
     return (
 
-        <div>
+        <>
 
             <header>
                 <div className='Contaoiner  flex justify-between mt-4 p-5 shadow-sm'>
@@ -45,7 +45,7 @@ export default function Homepge() {
                             <LuMoonStar className=' w-10 translate-y-2  ' onClick={ThemeSwitch} />
                         </div>
                         <div className='md:hidden'>
-                            <FaBars  className=' w-12 translate-y-2 flex-n'  />
+                            <FaBars className=' w-12 translate-y-2 flex-n' />
                         </div>
                     </div>
                 </div>
@@ -67,6 +67,6 @@ export default function Homepge() {
 
                 </div>
             </main>
-        </div>
+        </>
     )
 }

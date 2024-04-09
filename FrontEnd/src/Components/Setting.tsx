@@ -7,7 +7,7 @@ import { Button } from "flowbite-react";
 
 export default function Parent() {
   return (
-    <div>
+    <>
       <NavBar />
       <div className='flex justify-center text-center mt-12 ml-5 gap-5'>
         <Link to='Story'>
@@ -20,6 +20,6 @@ export default function Parent() {
       <div className=' w-screen'>
         <Outlet/>
       </div>
-    </div>
+    </>
   )
 }

@@ -72,7 +72,16 @@ App.post("/story", (req, resp) => {
 });
 
 
-
+App.get("/story/:id", (req, resp) => {
+  const { id } = req.params;
+  const selectStory = Stories.findById(id)
+    .then((data) => {
+      resp.json(data);
+    })
+    .catch((err) => {
+      console.log("Error", err);
+    });
+});
 // Here we are going to select all Data From Db
 App.get("/Stories", (req, resp) => {
   const selectStory = Stories.find()
@@ -119,6 +128,17 @@ App.post("/proverb", (req, resp) => {
     });
 });
 
+
+App.get("/proverb/:id", (req, resp) => {
+  const { id } = req.params;
+  const selectproverb = proverbs.findById(id)
+    .then((data) => {
+      resp.json(data);
+    })
+    .catch((err) => {
+      console.log("Error", err);
+    });
+});
 
 App.get("/proverbs", (req, resp) => {
   const selectProverb = proverbs.find()

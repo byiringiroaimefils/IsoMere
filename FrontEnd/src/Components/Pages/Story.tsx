@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from "react"
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
 import { MdDeleteForever, MdEditSquare } from "react-icons/md";
+import { FaEye } from "react-icons/fa6";
 
 
 
@@ -11,7 +12,7 @@ import Load from "../Loading";
 
 
 interface Story {
-  id: string,
+  _id: string,
   Title: string,
   Author: string,
   createdAt: string
@@ -40,7 +41,7 @@ const Story: FC = () => {
   console.log(story)
 
   return (
-    <div>
+    <>
       {
         Loading ? (
           <div className='flex justify-center text-center mt-56'>
@@ -72,21 +73,23 @@ const Story: FC = () => {
                     <TableHeadCell>
                       ACTION
                     </TableHeadCell>
-                  </TableHead>
-                  <TableBody className="">
-                    {story.map(({ id, Title, Author, createdAt }) => (
-                      <TableRow key={id} className="hover:bg-gray-500/5 pb-2 cursor-pointer">
+                  </TableHead> <br />
+                  <TableBody className="p-2">
+                    {story.map(({ _id, Title, createdAt }) => (
+                      <TableRow key={_id} className=" pb-2 cursor-pointer">
                         <TableCell className=" font-medium text-gray-600 ">01</TableCell>
                         <TableCell className=" font-medium text-gray-600 ">{Title}</TableCell>
                         <TableCell>Parent</TableCell>
                         <TableCell>{createdAt}</TableCell>
-                        <div className="flex gap-7 cursor-pointer text-lg">
+                        <div className="flex gap-2 cursor-pointer text-lg">
                           <MdDeleteForever />
                           <MdEditSquare />
+                          <Link to={`ViewStory/${_id}`}>
+                            <FaEye />
+                          </Link>
                         </div>
                       </TableRow>
                     ))}
-
                   </TableBody>
                 </Table>
               </div>
@@ -94,7 +97,7 @@ const Story: FC = () => {
           </div>
         )
       }
-    </div >
+    </>
   )
 }
 

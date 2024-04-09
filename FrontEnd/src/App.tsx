@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import React from 'react'
 import Home from "./Components/Home";
 import Proverbs from "./Components/Proverbs";
 import Setting from "./Components/Setting";
@@ -9,6 +8,8 @@ import Story from "./Components/Pages/Story";
 import Proverb from "./Components/Pages/Proverbs";
 import FormStory from "./Components/Flowbit/FormStory";
 import FormProverb from "./Components/Flowbit/FormProverb";
+import ViewStory from "./Components/Pages/ViewStory"
+import ViewProverb from "./Components/Pages/ViewProverb"
 
 
 
@@ -28,6 +29,8 @@ export default function App() {
             <Route path="Preview" element={<Preview />} />
             <Route path="FormStory" element={<FormStory />} />
             <Route path="FormProverb" element={<FormProverb/>} />
+            <Route path="ViewStory/:id" element={<ViewStory/>} />
+            <Route path="ViewProverb/:id" element={<ViewProverb/>} />
           </Routes>
         </main>
       </BrowserRouter >

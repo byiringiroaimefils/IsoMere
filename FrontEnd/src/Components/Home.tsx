@@ -11,8 +11,6 @@ interface Story {
   image: string,
   Decription: string
   createdAt: string
-
-
 }
 
 const Home: FC = () => {
@@ -32,20 +30,20 @@ const Home: FC = () => {
         setLoading(false)
       })
   }, []
-  
+
   )
   console.log(Story)
 
 
   return (
-    <div>
+    <>
       <NavBar />
       <div>
         {
           Loading ? (
             <div className='flex justify-center text-center mt-56'>
-              <Load/>
-              </div>
+              <Load />
+            </div>
           ) : (
             <div className='Container flex justify-around mt-6 w-full '>
               <div>
@@ -61,10 +59,9 @@ const Home: FC = () => {
                       <p>{Decription}</p>
                       <p className='text-sm font-thin text-gray-400'>{createdAt}</p> <br />
                     </div>
-              
+
                   </div>
                 ))}
-
               </div>
               <div className='UpdatedStory mt-5 mr-12'>
                 <div className="topstory">
@@ -104,7 +101,7 @@ const Home: FC = () => {
           )
         }
       </div>
-    </div>)
+    </>)
 }
 
 

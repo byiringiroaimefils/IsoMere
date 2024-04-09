@@ -1,8 +1,9 @@
 import React, { FC } from 'react'
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import NavBar from "./NavBar";
-import Load from "./Loading";
+import NavBar from "../NavBar";
+import Load from "../Loading";
 
 interface Proverb {
   id: string,
@@ -16,8 +17,10 @@ interface Proverb {
 const Proverb: FC = () => {
   const [Proverb, setProverb] = useState<Proverb[]>([]);
   const [Loading, setLoading] = useState(true);
+  const { id } = useParams();
+
   useEffect(() => {
-    axios.get("https://babyProverb-server.onrender.com/proverbs")
+    axios.get(`http://localhost:8080/proverb/${id}`)
       .then((data) => {
         setProverb(data.data);
         setLoading(false)

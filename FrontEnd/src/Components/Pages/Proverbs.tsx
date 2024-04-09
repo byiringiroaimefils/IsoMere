@@ -1,5 +1,6 @@
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
 import { MdDeleteForever, MdEditSquare } from "react-icons/md";
+import { FaEye } from "react-icons/fa6";
 import { useState, useEffect } from 'react'
 import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
@@ -10,7 +11,7 @@ import Load from "../Loading";
 
 
 interface Story {
-  id: string,
+  _id: string,
   TitleofProverb: string,
   Proverb: string,
   index: string
@@ -35,9 +36,9 @@ const Pro: FC = () => {
       })
   }, [])
 
-  
+
   return (
-    <div>
+    <>
       {
         Loading ? (
           <div className='flex justify-center text-center mt-56'>
@@ -64,16 +65,19 @@ const Pro: FC = () => {
                     <TableHeadCell>NO</TableHeadCell>
                     <TableHeadCell>TITLE OF PROVERBS</TableHeadCell>
                     <TableHeadCell>ACTION</TableHeadCell>
-                  </TableHead>
+                  </TableHead> <br />
                   <TableBody className="">
-                    {story.map(({ id, TitleofProverb, }) => (
-                      <TableRow key={id} className="hover:bg-gray-500/5 pb-2 cursor-pointer">
+                    {story.map(({ _id, TitleofProverb, }) => (
+                      <TableRow key={_id} className=" pb-2 cursor-pointer">
                         <TableCell className="font-medium text-gray-600">01</TableCell>
                         <TableCell className="font-medium text-gray-600">{TitleofProverb}</TableCell>
                         <TableCell>
-                          <div className="flex gap-7 cursor-pointer text-lg">
+                          <div className="flex gap-3 cursor-pointer text-lg">
                             <MdDeleteForever />
                             <MdEditSquare />
+                            <Link to={`/ViewProverb/${_id}`}>
+                            <FaEye />
+                            </Link>
                           </div>
                         </TableCell>
                       </TableRow>
@@ -85,10 +89,8 @@ const Pro: FC = () => {
           </div>
         )
       }
-    </div>
-
-
+    </>
   )
 }
 
-export default Pro
+export default Pro;
