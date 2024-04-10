@@ -17,7 +17,7 @@ const Proverb: FC = () => {
   const [Proverb, setProverb] = useState<Proverb[]>([]);
   const [Loading, setLoading] = useState(true);
   useEffect(() => {
-    axios.get("https://babyProverb-server.onrender.com/proverbs")
+    axios.get("https://babystory-server.onrender.com/proverbs")
       .then((data) => {
         setProverb(data.data);
         setLoading(false)

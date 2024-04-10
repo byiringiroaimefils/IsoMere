@@ -15,7 +15,8 @@ interface Story {
   _id: string,
   Title: string,
   Author: string,
-  createdAt: string
+  createdAt: string,
+  index: number
 
 }
 
@@ -55,8 +56,8 @@ const Story: FC = () => {
               <p className='text-sm font-thin text-gray-400'>Lorem ipsum dolor sit amet consectetur.</p>
 
             </div>
-            <div className='flex justify-end  mb-3 md:gap-56 sm:gap-20 mt-10 mr-20'>
-              <input type="text" className='border outline-none h-7 w-60 rounded-md md:h20 translate-y-1 pl-2 ' placeholder='Search' />
+            <div className='flex justify-end  mb-3 gap-48 mt-10 mr-20'>
+              <input type="text" className='border outline-none h-7 w-60 rounded-md md:h20 translate-y-1 pl-2 hidden md:flex' placeholder='Search' />
               <Link to="/FormStory">
                 <Button color="blue">Upload</Button>
               </Link>
@@ -74,18 +75,18 @@ const Story: FC = () => {
                       ACTION
                     </TableHeadCell>
                   </TableHead> <br />
-                  <TableBody className="p-2">
-                    {story.map(({ _id, Title, createdAt }) => (
-                      <TableRow key={_id} className=" pb-2 cursor-pointer">
-                        <TableCell className=" font-medium text-gray-600 ">01</TableCell>
+                  <TableBody className="p-1">
+                    {story.map(({ _id, index, Title, createdAt }) => (
+                      <TableRow key={_id} className=" pb-1 cursor-pointer">
+                        <TableCell className=" font-medium text-gray-600 ">{index + 1}</TableCell>
                         <TableCell className=" font-medium text-gray-600 ">{Title}</TableCell>
                         <TableCell>Parent</TableCell>
                         <TableCell>{createdAt}</TableCell>
                         <div className="flex gap-2 cursor-pointer text-lg">
-                          <MdDeleteForever />
+                          <MdDeleteForever className="hover:text-red-700"  />
                           <MdEditSquare />
                           <Link to={`ViewStory/${_id}`}>
-                            <FaEye />
+                            <FaEye className="hover:text-sky-500" />
                           </Link>
                         </div>
                       </TableRow>

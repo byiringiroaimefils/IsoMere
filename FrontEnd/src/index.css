@@ -108,3 +108,9 @@ nav ul {
     background-color: #03070c;
     color: white;
 }
+.Dark .Nav{
+    background: #03070c;
+}
+.Dark .Header{
+    background: #03070c;
+}

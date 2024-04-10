@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { SignInButton } from "@clerk/clerk-react";
 import { LuMoonStar } from "react-icons/lu";
-import { FaBars } from "react-icons/fa";
+import { FaSun } from "react-icons/fa";
+import { FaBarsStaggered } from "react-icons/fa6"
+
 
 
 export default function Homepge() {
@@ -40,12 +42,15 @@ export default function Homepge() {
                         </button>
                         <button className='started  sm:flex-none md:flex-none font-semibold py-1 px-4 rounded-full border'>
                             Get started
+                            {/* <SignInButton mode='modal' redirectUrl='/Homepge' /> */}
                         </button>
-                        <div className='Moon'>
-                            <LuMoonStar className=' w-10 translate-y-2  ' onClick={ThemeSwitch} />
+                        <div className='Moon my-2' onClick={ThemeSwitch}>
+                            {
+                                bgcolor === "Dark" ? <FaSun /> : <LuMoonStar />
+                            }
                         </div>
                         <div className='md:hidden'>
-                            <FaBars className=' w-12 translate-y-2 flex-n' />
+                            <FaBarsStaggered className=' w-12 translate-y-2 flex-n' />
                         </div>
                     </div>
                 </div>

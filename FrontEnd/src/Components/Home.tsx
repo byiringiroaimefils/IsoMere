@@ -65,15 +65,15 @@ const Home: FC = () => {
                   </div>
                 ))}
               </div>
-              <div className='UpdatedStory mt-5 mr-12'>
+              <div className='UpdatedStory mt-5 mr-12 '>
                 <div className="topstory">
                   <h4 className='font-extrabold'>Top Stories</h4>
                   <p className='text-sm font-thin text-gray-400'>Lorem ipsum dolor sit amet consectetur</p>
 
                   <ul>
-                    <li className='text-lg cursor-pointer'><span className='text-gray-400 text-2xl  '>1.</span> <a href="">Lorem ilisum dolor sit amet,</a> </li>
-                    <li className='text-lg cursor-pointer'><span className='text-gray-400 text-2xl'>2.</span><a href=""> Game of choressit amet,</a></li>
-                    <li className='text-lg cursor-pointer'><span className='text-gray-400 text-2xl'>3.</span> <a href="">Lorem ilisum dolor sit amet,</a> </li>
+                    <li className='text-lg cursor-pointer'><span className='text-gray-400 text-xl  '>1.</span> <a href="">Guess How Much I Love You?</a> </li>
+                    <li className='text-lg cursor-pointer'><span className='text-gray-400 text-xl'>2.</span><a href="">The Tale of Peter Rabbit.</a></li>
+                    <li className='text-lg cursor-pointer'><span className='text-gray-400 text-xl'>3.</span> <a href="">Alice's Adventures in Wonderland.</a> </li>
                   </ul>
                 </div>
                 <div className="Video mt-20 ">

@@ -114,8 +114,8 @@ const proverbs = Mongoose.model("Proverbs", ProverbSchema, "Proverbs");
 App.post("/proverb", (req, resp) => {
 
   const newProverb = {
-    TitleofProverb:"Rabit is very Genius",
-    Proverb:" We can conclude the article by stating the moral of the story of rabbit and the dog. The story teaches us that it is important to never boast about the skills and always help others when they are in need. As in the story, the dog knew many tricks but refused to teach them to his friend while boasting them to him The rabbit on the other hand only knew a single trick but he survived the attack of the tiger",
+    TitleofProverb:"Many hands make light work",
+    Proverb:"This is a reminder that things are always easier if we have supportive people around us. We can achieve more and get better results if we work together with others, rather than trying to do everything by ourselves",
     };
 
     
