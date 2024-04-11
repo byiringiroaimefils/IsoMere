@@ -3,11 +3,14 @@ import Home from "./Components/Home";
 import Proverbs from "./Components/Proverbs";
 import Setting from "./Components/Setting";
 import Preview from "./Components/Preview";
+
 import Homepge from "./Components/HomePage";
 import Story from "./Components/Pages/Story";
 import Proverb from "./Components/Pages/Proverbs";
+
 import FormStory from "./Components/Flowbit/FormStory";
 import FormProverb from "./Components/Flowbit/FormProverb";
+
 import ViewStory from "./Components/Pages/ViewStory"
 import ViewProverb from "./Components/Pages/ViewProverb"
 

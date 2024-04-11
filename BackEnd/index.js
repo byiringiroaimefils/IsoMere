@@ -3,14 +3,14 @@ const express = require("express");
 const App = express();
 const Mongoose = require("mongoose");
 const Cors = require("cors");
-// const { default: mongoose } = require("mongoose");
+
 
 require("dotenv").config();
 const Port =process.env.PORT;
 
 
 const corsOptions = {
-  origin: "http://localhost:8000" // frontend URI (ReactJS)
+  origin: "http://localhost:8000" 
 }
 
 
@@ -27,7 +27,7 @@ Mongoose.connect(process.env.MONGODB_URI)
     console.log(err);
   });
 
-// Setting up of Database Schema
+
 const DBSchema = new Mongoose.Schema(
   {
     Title: {
