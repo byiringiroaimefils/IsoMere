@@ -1,25 +1,50 @@
 import React from 'react'
-import { Button, Label, FileInput, Select, Textarea } from "flowbite-react";
+import { Button, Label, Textarea } from "flowbite-react";
+import { useState } from "react";
+import axios from "axios";
 
 function Component() {
-    return ( 
+
+    const [TofStory, setTofStory] = useState({});
+    const [Image, setImage] = useState({});
+    const [Author, setAuthor] = useState({});
+    const [Decription, setDecription] = useState({});
+
+    const HandleFunction = () => {
+        const Data = {
+            TofStory,
+            Author,
+            Image,
+            Decription
+        }
+        axios.post(`http://localhost:8080/story`, Data)
+            .then((respond) => {
+                console.log(respond.data);
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
+
+
+    return (
         <div className='flex justify-center mt-14'>
             <form className="flex p-5 max-w-md flex-col gap-4 border w-full">
                 <h2 className='font-bold'>Upload Story</h2>
                 <div>
                     <div className="mb-2 ">
                         <Label htmlFor="email2" value="Title" />
+                        <input type="text" className='border w-96 outline-none p-2 rounded-sm' placeholder="Title of Story" onChange={(e) => setTofStory(e.target.value)} />
                     </div>
-                    {/* <TextInput id="email2" type="email" placeholder="Title of Story " required shadow /> */}
-                    <input type="text" className='border w-96 outline-none p-2 rounded-sm' placeholder="Title of Story"/>
 
                 </div>
                 <div>
                     <div id="fileUpload" className="max-w-md">
                         <div className="mb-2 block">
                             <Label htmlFor="file" value="Upload file" />
+                            <input type='text' className=' w-96 border p-2' placeholder='Link of your Image' onChange={(e) => setImage(e.target.value)} />
                         </div>
-                        <FileInput id="file" className=' w-96'/>
                     </div>
                 </div>
                 <div>
@@ -27,23 +52,24 @@ function Component() {
                         <div className="mb-2 block">
                             <Label htmlFor="countries" value="Who Author For Story" />
                         </div>
-                        <Select id="countries" required className=' w-96'>
-                            <option>Parents</option>
-                            <option>Others</option>
-                        </Select>
+                        <select className=' w-96 border p-2' onChange={(e) => setAuthor(e.target.value)}>
+                            <option value='Parents'>Parents</option>
+                            <option value='Others'>Others</option>
+                        </select>
+
                     </div>
                 </div>
                 <div>
                     <div className="max-w-md">
                         <div className="mb-2 block">
-                            <Label htmlFor="comment" value="Your Stroy" />
+                            <Label htmlFor="comment" value="Your Story" />
                         </div>
-                        <Textarea id="comment" placeholder="Leave a Story..." required rows={4} className='pl-2 pt-2 w-96' />
+                        <Textarea id="comment" placeholder="Leave a Story..." required rows={4} className='pl-2 pt-2 w-96' onChange={(e) => setDecription(e.target.value)} />
                     </div>
                 </div>
                 <div>
                 </div>
-                <Button color="blue">Uplosde</Button>
+                <Button color="blue" className='w-96' onClick={HandleFunction}>Upload</Button>
             </form>
         </div>
     );

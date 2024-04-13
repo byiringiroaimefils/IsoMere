@@ -9,8 +9,9 @@ interface Story {
   id: string,
   Title: string,
   image: string,
-  Decription: string
-  createdAt: string
+  Decription: string,
+  createdAt: string,
+  Author:string
 }
 
 const Home: FC = () => {
@@ -50,16 +51,16 @@ const Home: FC = () => {
             <div className='Container flex justify-around mt-6 w-full '>
               <div>
 
-                {Story.map(({ id, Title, image, Decription, createdAt }) => (
+                {Story.map(({ id, Title, Author, image, Decription, createdAt }) => (
                   <div key={id} className='story p-4 w-[650px] md:translate-x-10' >
                     <div className='Header '>
                       <h2 className='font-bold  text-base '>{Title}</h2>
-                      <p className='text-sm font-thin text-gray-400'>Parent ( aimefils173@gmail.com ) </p> <br />
+                      <p className='text-sm font-thin text-gray-400'>  Parent</p> <br />
                       <img src={image} alt="" className='w-screen' />
                     </div>
                     <div className='Description mt-4 '>
                       <p>{Decription}</p>
-                      <p className='text-sm font-thin text-gray-400'>{createdAt}</p> <br />
+                      <p className='text-sm font-thin text-gray-400'>{new Date(createdAt).toString()}</p> <br />
                     </div>
 
                   </div>
