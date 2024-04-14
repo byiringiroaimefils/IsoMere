@@ -27,7 +27,7 @@ const Pro: FC = () => {
 
 
   useEffect(() => {
-    axios.get("http://localhost:8080/Proverbs")
+    axios.get("https://babystory-server.onrender.com/Proverbs")
       .then((response) => {
         setStory(response.data);
         setLoading(false);

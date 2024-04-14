@@ -55,7 +55,7 @@ const Home: FC = () => {
                   <div key={id} className='story p-4 w-[650px] md:translate-x-10' >
                     <div className='Header '>
                       <h2 className='font-bold  text-base '>{Title}</h2>
-                      <p className='text-sm font-thin text-gray-400'>  Parent</p> <br />
+                      <p className='text-sm font-thin text-gray-400'>{Author}</p> <br />
                       <img src={image} alt="" className='w-screen' />
                     </div>
                     <div className='Description mt-4 '>

@@ -29,7 +29,7 @@ const Story: FC = () => {
   const [story, setStory] = useState<Story[]>([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/Stories")
+    axios.get("https://babystory-server.onrender.com/Stories")
       .then((response) => {
         setStory(response.data);
         setLoading(false);

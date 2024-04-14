@@ -41,7 +41,7 @@ function Component() {
                 </div>
                 <div>
                 </div>
-                <Button color="blue" className='w-96' onClick={HandleFunction}>Uplosde</Button>
+                <Button color="blue" className='w-96' onClick={HandleFunction}>Uplosd</Button>
             </form>
         </div>
     );
