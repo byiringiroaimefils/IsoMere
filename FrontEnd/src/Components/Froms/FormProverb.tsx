@@ -1,9 +1,13 @@
 // import React from 'react'
 import { Button, Label, Textarea } from "flowbite-react";
+import { useNavigate } from "react-router-dom"
 import { useState } from "react";
 import axios from "axios";
+import{toast}from"react-hot-toast"
+
 
 function Component() {
+    const navigate = useNavigate()
     const [Tofproverb, setTofproverb] = useState({});
     const [Proverb, setProverb] = useState({});
 
@@ -15,9 +19,14 @@ function Component() {
         axios.post(`http://localhost:8080/proverb`, Data)
             .then((respond) => {
                 console.log(respond.data);
+                navigate("/Setting")
+                toast.success("Successful Proverbs Added")
+
             })
             .catch((error) => {
                 console.log(error)
+                toast.error("This didn't work.")
+
             })
     }
 

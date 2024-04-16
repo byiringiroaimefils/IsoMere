@@ -1,4 +1,4 @@
-// Dependencies
+//--Dependencies--
 const express = require("express");
 const App = express();
 const Mongoose = require("mongoose");
@@ -18,7 +18,7 @@ App.use(express.json());
 App.use(Cors());
 
 
-// Connection of Dbs
+// --Connection of Dbs--
 Mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("Db is connected");
@@ -114,6 +114,9 @@ const ProverbSchema = new Mongoose.Schema(
         type:String,
         required:true
      },
+  },
+  {
+    timestamps: true,
   }
 );
 const proverbs = Mongoose.model("Proverbs", ProverbSchema, "Proverbs");

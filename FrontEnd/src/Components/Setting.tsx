@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link ,Outlet} from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import NavBar from "./NavBar";
 import { Button } from "flowbite-react";
+import { Toaster } from "react-hot-toast";
 
 
 
@@ -18,8 +19,12 @@ export default function Parent() {
         </Link>
       </div>
       <div className=' w-screen'>
-        <Outlet/>
+        <Outlet />
       </div>
+      <Toaster
+        position="bottom-right"
+        reverseOrder={true}
+      />
     </>
   )
 }

@@ -1,10 +1,12 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom"
 import { Button, Label, Textarea } from "flowbite-react";
 import { useState } from "react";
 import axios from "axios";
 
+import{toast}from"react-hot-toast"
 function Component() {
-
+    const navigate = useNavigate()
     const [TofStory, setTofStory] = useState({});
     const [Image, setImage] = useState({});
     const [Author, setAuthor] = useState({});
@@ -20,9 +22,12 @@ function Component() {
         axios.post(`http://localhost:8080/story`, Data)
             .then((respond) => {
                 console.log(respond.data);
+                navigate("/Setting");
+                toast.success("Successful Story Added")
             })
             .catch((error) => {
                 console.log(error)
+                toast.error("This didn't work.")
             })
     }
 
@@ -69,6 +74,7 @@ function Component() {
                 </div>
                 <div>
                 </div>
+
                 <Button color="blue" className='w-96' onClick={HandleFunction}>Upload</Button>
             </form>
         </div>
