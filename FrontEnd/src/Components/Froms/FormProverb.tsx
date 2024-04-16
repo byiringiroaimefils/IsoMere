@@ -22,8 +22,8 @@ function Component() {
     }
 
     return (
-        <div className='flex justify-center mt-8'>
-            <form className="flex p-5 max-w-md flex-col gap-4 border w-full">
+        <div className='flex justify-center mt-8 '>
+            <form className="flex p-5 max-w-md flex-col gap-4 border w-full bg-white">
                 <h2 className='font-bold'>Upload Proverbs</h2>
                 <div>
                     <div className="mb-2 ">

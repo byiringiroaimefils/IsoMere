@@ -3,10 +3,12 @@ import { MdDeleteForever, MdEditSquare } from "react-icons/md";
 import { FaEye } from "react-icons/fa6";
 import { useState, useEffect } from 'react'
 import { Button } from "flowbite-react";
-import { Link,} from "react-router-dom";
+import { Link, } from "react-router-dom";
 import { FC } from "react"
 import axios from 'axios'
-import Load from "../Loading";
+import Load from "./Loading";
+import { FaPlus } from "react-icons/fa";
+import FormProverb from "../Froms/FormProverb";
 
 
 
@@ -53,32 +55,39 @@ const Pro: FC = () => {
               <p className='text-sm font-thin text-gray-400'>Lorem ipsum dolor sit amet consectetur.</p>
 
             </div>
-            <div className='flex justify-end items-center mb-3 gap-48 mt-10 mr-20'>
-              <input type="text" className='border outline-none h-7 w-60 rounded-md md:h20 translate-y-1 pl-2 hidden md:flex' placeholder='Search' />
-              <Link to="/FormProverb">
-                <Button color="blue">Upload</Button>
-              </Link>
+            <div className='flex justify-between px-6 py-6items-center'>
+              <div className=" ">
+                <input type="text" className='border outline-none h-7 w-72 rounded-md md:h20 mt-4 pl-2 ' placeholder='Search' />
+              </div>
+              <div className="mr-4">
+                <Link to="/FormProverb">
+                  <Button color="blue"> <span className=" mr-4"> <FaPlus /> </span> ADD NEW</Button>
+                </Link>
+              </div>
             </div>
-            <hr />
+            {/* <hr /> */}
             <div>
-              <div className="p-10 w-full">
+              <div className="w-full mt-10 p-5">
                 <Table hoverable>
-                  <TableHead className="text-left gap-20">
+                  <TableHead className="text-left gap-20 border-b-2 text-black ">
                     <TableHeadCell>NO</TableHeadCell>
                     <TableHeadCell>TITLE OF PROVERBS</TableHeadCell>
+                    <TableHeadCell>DATE</TableHeadCell>
                     <TableHeadCell>ACTION</TableHeadCell>
                   </TableHead> <br />
-                  <TableBody className="">
+                  <TableBody className="p-1">
                     {story.map(({ _id, TitleofProverb, }) => (
-                      <TableRow key={_id} className="  cursor-pointer">
+                      <TableRow key={_id} className="  cursor-pointer border-b">
                         <TableCell className="font-medium text-gray-600">01</TableCell>
                         <TableCell className="font-medium text-gray-600">{TitleofProverb}</TableCell>
+                        <TableCell className="font-medium text-gray-600">20 July 2023</TableCell>
+
                         <TableCell>
-                          <div className="flex gap-3 cursor-pointer text-lg">
+                          <div className="flex gap-3 cursor-pointer text-lg translate-y-1 translate-x-5">
                             <MdDeleteForever className="hover:text-red-700" />
                             <MdEditSquare />
                             <Link to={`/ViewProverb/${_id}`}>
-                              <FaEye  className="hover:text-sky-600" />
+                              <FaEye className="hover:text-sky-600" />
                             </Link>
                           </div>
                         </TableCell>
@@ -87,6 +96,9 @@ const Pro: FC = () => {
                   </TableBody>
                 </Table>
               </div>
+            </div>
+            <div className="w-full  relative bottom-[450px]">
+              <FormProverb />
             </div>
           </div>
         )

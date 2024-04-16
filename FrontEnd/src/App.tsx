@@ -8,8 +8,8 @@ import Homepge from "./Components/HomePage";
 import Story from "./Components/Pages/Story";
 import Proverb from "./Components/Pages/Proverbs";
 
-import FormStory from "./Components/Flowbit/FormStory";
-import FormProverb from "./Components/Flowbit/FormProverb";
+import FormStory from "./Components/Froms/FormStory";
+import FormProverb from "./Components/Froms/FormProverb";
 
 import ViewStory from "./Components/Pages/ViewStory"
 import ViewProverb from "./Components/Pages/ViewProverb"

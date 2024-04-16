@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import NavBar from "./NavBar";
-import Load from "./Loading";
+import Load from "./Pages/Loading";
 
 interface Proverb {
   id: string,

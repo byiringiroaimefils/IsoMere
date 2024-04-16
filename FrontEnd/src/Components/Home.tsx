@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import NavBar from "./NavBar";
 import { FC } from "react"
 import ReactPlayer from "react-player"
-import Load from "./Loading";
+import Load from "./Pages/Loading";
 
 interface Story {
   id: string,
@@ -33,8 +33,7 @@ const Home: FC = () => {
   }, []
 
   )
-  console.log(Story)
-
+  
 
   return (
     <>
