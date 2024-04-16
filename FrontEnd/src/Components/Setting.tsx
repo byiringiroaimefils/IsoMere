@@ -9,7 +9,7 @@ export default function Parent() {
   return (
     <>
       <NavBar />
-      <div className='flex justify-center items-center  ml-5 gap-5 my-24'>
+      <div className='flex justify-center items-center  ml-5 gap-5 my-24 '>
         <Link to='Story'>
           <Button color="blue">Story</Button>
         </Link>

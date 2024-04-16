@@ -17,7 +17,7 @@ interface Story {
   _id: string,
   TitleofProverb: string,
   Proverb: string,
-  index: string
+  createdAt: string,
 }
 
 
@@ -26,6 +26,7 @@ interface Story {
 const Pro: FC = () => {
   const [Loading, setLoading] = useState(true);
   const [story, setStory] = useState<Story[]>([]);
+  const [showForm, setShowForm] = useState(false);
 
 
   useEffect(() => {
@@ -60,9 +61,9 @@ const Pro: FC = () => {
                 <input type="text" className='border outline-none h-7 w-72 rounded-md md:h20 mt-4 pl-2 ' placeholder='Search' />
               </div>
               <div className="mr-4">
-                <Link to="/FormProverb">
-                  <Button color="blue"> <span className=" mr-4"> <FaPlus /> </span> ADD NEW</Button>
-                </Link>
+                {/* <Link to="/FormProverb"> */}
+                <Button color="blue" onClick={() => setShowForm(!showForm)}> <span className=" mr-4"> <FaPlus /> </span> ADD NEW</Button>
+                {/* </Link> */}
               </div>
             </div>
             {/* <hr /> */}
@@ -76,11 +77,11 @@ const Pro: FC = () => {
                     <TableHeadCell>ACTION</TableHeadCell>
                   </TableHead> <br />
                   <TableBody className="p-1">
-                    {story.map(({ _id, TitleofProverb, }) => (
+                    {story.map(({ _id, TitleofProverb, createdAt }) => (
                       <TableRow key={_id} className="  cursor-pointer border-b">
                         <TableCell className="font-medium text-gray-600">01</TableCell>
                         <TableCell className="font-medium text-gray-600">{TitleofProverb}</TableCell>
-                        <TableCell className="font-medium text-gray-600">20 July 2023</TableCell>
+                        <TableCell className="font-medium text-gray-600">{new Date(createdAt).toString()}</TableCell>
 
                         <TableCell>
                           <div className="flex gap-3 cursor-pointer text-lg translate-y-1 translate-x-5">
@@ -97,9 +98,13 @@ const Pro: FC = () => {
                 </Table>
               </div>
             </div>
-            <div className="w-full  relative bottom-[450px]">
-              <FormProverb />
-            </div>
+          </div>
+        )
+      }
+      {
+        showForm && (
+          <div className="fixed inset-0 bg-gray-900 bg-opacity-50 z-50  flex justify-center items-center">
+            <FormProverb />
           </div>
         )
       }

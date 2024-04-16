@@ -30,6 +30,8 @@ interface Story {
 const Story: FC = () => {
   const [Loading, setLoading] = useState(true);
   const [story, setStory] = useState<Story[]>([]);
+  const [showForm, setShowForm] = useState(false);
+
 
   useEffect(() => {
     axios.get("https://babystory-server.onrender.com/Stories")
@@ -64,9 +66,9 @@ const Story: FC = () => {
                 <input type="text" className='border outline-none h-7 w-72 rounded-md md:h20 mt-4 pl-2 ' placeholder='Search' />
               </div>
               <div className="mr-4">
-                <Link to="/FormStory">
-                  <Button color="blue"> <span className=" mr-4"> <FaPlus /> </span> ADD NEW</Button>
-                </Link>
+                {/* <Link to="/FormStory"> */}
+                <Button color="blue" onClick={() => setShowForm(!showForm)}> <span className=" mr-4"> <FaPlus /> </span> ADD NEW</Button>
+                {/* </Link> */}
               </div>
             </div>
             {/* <hr /> */}
@@ -88,7 +90,7 @@ const Story: FC = () => {
                         <TableCell className=" font-medium text-gray-600 ">{index + 1}</TableCell>
                         <TableCell className=" font-medium text-gray-600 ">{Title}</TableCell>
                         <TableCell>Parent</TableCell>
-                        <TableCell>{createdAt}</TableCell>
+                        <TableCell>{new Date(createdAt).toString()}</TableCell>
                         <div className="flex gap-2 cursor-pointer text-lg translate-y-3 translate-x-5">
                           <MdDeleteForever className="hover:text-red-700" />
                           <MdEditSquare />
@@ -102,9 +104,13 @@ const Story: FC = () => {
                 </Table>
               </div>
             </div>
-            <div className="w-full  relative bottom-[540px]">
-              <FormStory />
-            </div>
+          </div>
+        )
+      }
+      {
+        showForm && (
+          <div className="fixed inset-0 bg-gray-900 bg-opacity-50 z-50  flex justify-center items-center">
+            <FormStory />
           </div>
         )
       }
