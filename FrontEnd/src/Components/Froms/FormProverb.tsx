@@ -12,21 +12,21 @@ function Component() {
     const [Proverb, setProverb] = useState({});
 
     const HandleFunction = () => {
+        
         const Data = {
             Tofproverb,
             Proverb
         }
+
         axios.post(`http://localhost:8080/proverb`, Data)
             .then((respond) => {
                 console.log(respond.data);
                 navigate("/Setting")
                 toast.success("Successful Proverbs Added")
-
             })
             .catch((error) => {
                 console.log(error)
-                toast.error("This didn't work.")
-
+                toast.error("This didn't work")
             })
     }
 

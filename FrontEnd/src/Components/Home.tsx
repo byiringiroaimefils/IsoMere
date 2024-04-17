@@ -15,6 +15,7 @@ interface Story {
 }
 
 const Home: FC = () => {
+  
   const alphArray = ['Aa', 'Bb', 'Cc', 'Dd', 'Ee', 'Ff', 'Gg', 'Hh', 'Ii', 'Jj', 'Kk', 'Ll', 'Mm', 'Nn', 'Oo', 'Pp', 'Qq', 'Rr', 'Ss', 'Tt', 'Uu', 'Vv', 'Ww', 'Xx', 'Yy', 'Zz']
   const [Story, setStory] = useState<Story[]>([]);
   const [Loading, setLoading] = useState(true);

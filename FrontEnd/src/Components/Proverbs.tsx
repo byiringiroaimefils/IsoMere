@@ -4,12 +4,11 @@ import axios from 'axios'
 import NavBar from "./NavBar";
 import Load from "./Pages/Loading";
 
+
 interface Proverb {
   id: string,
   TitleofProverb: string,
   Proverb: string
-
-
 }
 
 
@@ -27,6 +26,7 @@ const Proverb: FC = () => {
         setLoading(false)
       })
   }, [])
+  
   return (
     <>
       <NavBar />
@@ -60,4 +60,4 @@ const Proverb: FC = () => {
     </>
   )
 }
-export default Proverb
+export default Proverb;

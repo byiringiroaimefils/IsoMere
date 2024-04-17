@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import Home from "./Components/Home";
 import Proverbs from "./Components/Proverbs";
 import Setting from "./Components/Setting";
@@ -14,6 +15,8 @@ import FormProverb from "./Components/Froms/FormProverb";
 import ViewStory from "./Components/Pages/ViewStory"
 import ViewProverb from "./Components/Pages/ViewProverb"
 
+import Edit from "./Components/Pages/Edit"
+import Delete from "./Components/Pages/Delete"
 
 
 export default function App() {
@@ -21,6 +24,7 @@ export default function App() {
     <div>
       <BrowserRouter>
         <main>
+          
           <Routes>
             <Route path="/" element={<Homepge />} />
             <Route path="Homepge" element={<Home />} />
@@ -34,6 +38,9 @@ export default function App() {
             <Route path="FormProverb" element={<FormProverb/>} />
             <Route path="ViewStory/:id" element={<ViewStory/>} />
             <Route path="ViewProverb/:id" element={<ViewProverb/>} />
+
+            <Route path="Edit" element={<Edit/>} />
+            <Route path="Delete" element={<Delete/>} />
           </Routes>
         </main>
       </BrowserRouter >

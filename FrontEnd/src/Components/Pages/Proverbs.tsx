@@ -85,8 +85,12 @@ const Pro: FC = () => {
 
                         <TableCell>
                           <div className="flex gap-3 cursor-pointer text-lg translate-y-1 translate-x-5">
-                            <MdDeleteForever className="hover:text-red-700" />
-                            <MdEditSquare />
+                            <Link to='/Delete'>
+                              <MdDeleteForever className="hover:text-red-700" />
+                            </Link>
+                            <Link to='/Edit'>
+                              <MdEditSquare />
+                            </Link>
                             <Link to={`/ViewProverb/${_id}`}>
                               <FaEye className="hover:text-sky-600" />
                             </Link>

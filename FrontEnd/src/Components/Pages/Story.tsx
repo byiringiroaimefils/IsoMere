@@ -84,6 +84,7 @@ const Story: FC = () => {
                       ACTION
                     </TableHeadCell>
                   </TableHead> <br />
+
                   <TableBody className="p-1">
                     {story.map(({ _id, index, Title, createdAt }) => (
                       <TableRow key={_id} className=" pb-1 cursor-pointer border-b">
@@ -92,8 +93,12 @@ const Story: FC = () => {
                         <TableCell>Parent</TableCell>
                         <TableCell>{new Date(createdAt).toString()}</TableCell>
                         <div className="flex gap-2 cursor-pointer text-lg translate-y-3 translate-x-5">
-                          <MdDeleteForever className="hover:text-red-700" />
-                          <MdEditSquare />
+                          <Link to='/Delete'>
+                            <MdDeleteForever className="hover:text-red-700" />
+                          </Link>
+                          <Link to='/Edit'>
+                            <MdEditSquare />
+                          </Link>
                           <Link to={`ViewStory/${_id}`}>
                             <FaEye className="hover:text-sky-500" />
                           </Link>
@@ -106,7 +111,7 @@ const Story: FC = () => {
             </div>
           </div>
         )
-      }
+      },
       {
         showForm && (
           <div className="fixed inset-0 bg-gray-900 bg-opacity-50 z-50  flex justify-center items-center">
