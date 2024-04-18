@@ -60,7 +60,7 @@ const Pro: FC = () => {
               <div className=" ">
                 <input type="text" className='border outline-none h-7 w-72 rounded-md md:h20 mt-4 pl-2 ' placeholder='Search' />
               </div>
-              <div className="mr-4">
+              <div className="mr-4 translate-y-1">
                 {/* <Link to="/FormProverb"> */}
                 <Button color="blue" onClick={() => setShowForm(!showForm)}> <span className=" mr-4"> <FaPlus /> </span> ADD NEW</Button>
                 {/* </Link> */}
@@ -84,7 +84,7 @@ const Pro: FC = () => {
                         <TableCell className="font-medium text-gray-600">{new Date(createdAt).toString()}</TableCell>
 
                         <TableCell>
-                          <div className="flex gap-3 cursor-pointer text-lg translate-y-1 translate-x-5">
+                          <div className="flex gap-3 cursor-pointer text-lg translate-y-1 translate-x-[-6px] ">
                             <Link to='/Delete'>
                               <MdDeleteForever className="hover:text-red-700" />
                             </Link>

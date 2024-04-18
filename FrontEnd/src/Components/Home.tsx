@@ -58,7 +58,7 @@ const Home: FC = () => {
                       <p className='text-sm font-thin text-gray-400'>{Author}</p> <br />
                       <img src={image} alt="" className='w-screen' />
                     </div>
-                    <div className='Description mt-4 '>
+                    <div className='Description mt-4 w-screen'>
                       <p>{Decription}</p>
                       <p className='text-sm font-thin text-gray-400'>{new Date(createdAt).toString()}</p> <br />
                     </div>

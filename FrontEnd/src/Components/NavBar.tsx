@@ -3,7 +3,7 @@ import { FaTimes, FaSun } from "react-icons/fa";
 import { FaBarsStaggered } from "react-icons/fa6"
 import { Link } from 'react-router-dom';
 
-import { UserButton, SignedOut } from "@clerk/clerk-react";
+import { UserButton} from "@clerk/clerk-react";
 import { LuMoonStar } from "react-icons/lu";
 
 
@@ -44,10 +44,10 @@ const Header = () => {
           </Link>
             <h2 className='mx-[-39px]'><span>Baby</span>Story</h2>
           <div className='mx-12 '>
-            <ul className={` Nav  md:flex md:items-center md:pb-0 pb-12 absolute md:static  md:z-0  z-50  left-0 w-full md:w-auto md:pl-0 pl-9 bg-white  transition-all duration-500 ease-in ${open ? 'top-[69px]  ' : 'top-[-490px]'}`}>
+            <ul className={` Nav  md:flex md:items-center md:pb-0 pb-12 absolute md:static  md:z-0  z-50  left-0 w-full md:w-auto  md:pl-0 pl-9 bg-white  transition-all duration-200 ease-in ${open ? 'top-[69px]  ' : 'top-[-490px]'}`}>
               {
                 Links.map((link) => (
-                  <li className='md:ml-2  font-medium md:text-sm text-gray-500'>
+                  <li className='md:ml-2 md:hover:text-sky-600 font-medium md:text-sm text-gray-500 pt-5 md:translate-y-[-10px]' >
                     <Link to={link.link} className='mr-2 '>{link.name}</Link>
                   </li>))
               }
@@ -55,9 +55,8 @@ const Header = () => {
           </div>
         </div>
         <div className='flex items-center md:mx-3  gap-6'>
-          <div className='userprofile absolute right-20 top-4'>
+          <div className='userprofile absolute right-20 top-5'>
             <UserButton />
-            <SignedOut />
           </div>
           <div onClick={() => setOpen(!open)} className='absolute right-5 top-7 cursor-pointer md:hidden w-7 h-7'>
             {

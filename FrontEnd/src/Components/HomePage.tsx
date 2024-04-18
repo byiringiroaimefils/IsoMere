@@ -29,7 +29,7 @@ export default function Homepge() {
         <>
 
             <header>
-                <div className='Contaoiner  flex justify-between mt-4 p-5 shadow-sm'>
+                <div className='Contaoiner  flex justify-between mt-4 p-5'>
                     <div className='flex translate-y-1'>
                         <div className='Logo font-black flex '>
                             <img src='BabyStoryLogo.png' alt="" className='w-16 translate-y-[-5px] translate-x-3' />
@@ -40,11 +40,11 @@ export default function Homepge() {
                         <button className='Login bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-4 rounded-full'>
                             <SignInButton mode='modal' redirectUrl='/Homepge' />
                         </button>
-                        <button className='started  sm:flex-none md:flex-none font-semibold py-1 px-4 rounded-full border'>
+                        <button className='started  sm:flex-none md:flex-none font-semibold py-1 px-5 rounded-full border'>
                             Get started
                             {/* <SignInButton mode='modal' redirectUrl='/Homepge' /> */}
                         </button>
-                        <div className='Moon my-2' onClick={ThemeSwitch}>
+                        <div className='Moon my-2 px-5' onClick={ThemeSwitch}>
                             {
                                 bgcolor === "Dark" ? <FaSun /> : <LuMoonStar />
                             }

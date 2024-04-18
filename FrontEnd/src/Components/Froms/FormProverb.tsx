@@ -11,8 +11,8 @@ function Component() {
     const [Tofproverb, setTofproverb] = useState({});
     const [Proverb, setProverb] = useState({});
 
-    const HandleFunction = () => {
-        
+    const HandleFunction = (e) => {
+        e.preventDefault();
         const Data = {
             Tofproverb,
             Proverb

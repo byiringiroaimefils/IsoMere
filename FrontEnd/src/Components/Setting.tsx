@@ -10,15 +10,15 @@ export default function Parent() {
   return (
     <>
       <NavBar />
-      <div className='flex justify-center items-center  ml-5 gap-5 my-24 '>
+      <div className='flex justify-center items-center  ml-5 gap-5 my-28 '>
         <Link to='Story'>
-          <Button color="blue">Story</Button>
+          <Button color="blue">Upload Your Story</Button>
         </Link>
         <Link to='Proverb'>
-          <Button color="blue">Proverbs</Button>
+          <Button color="blue">Upload Your Proverbs</Button>
         </Link>
       </div>
-      <div className=' w-screen'>
+      <div className='w-screen'>
         <Outlet />
       </div>
       <Toaster

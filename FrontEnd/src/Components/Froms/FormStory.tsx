@@ -12,7 +12,8 @@ function Component() {
     const [Author, setAuthor] = useState({});
     const [Decription, setDecription] = useState({});
 
-    const HandleFunction = () => {
+    const HandleFunction = (e) => {
+        e.preventDefault();
         const Data = {
             TofStory,
             Author,
