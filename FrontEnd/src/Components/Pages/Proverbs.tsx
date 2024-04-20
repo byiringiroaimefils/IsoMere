@@ -58,9 +58,9 @@ const Pro: FC = () => {
             </div>
             <div className='flex justify-between px-6 py-6items-center'>
               <div className=" ">
-                <input type="text" className='border outline-none h-7 w-72 rounded-md md:h20 mt-4 pl-2 ' placeholder='Search' />
+                <input type="text" className='border outline-none h-7 w-[900px]  md:h20 mt-4 p-4 ' placeholder='Search' />
               </div>
-              <div className="mr-4 translate-y-1">
+              <div className="mr-4 translate-y-4">
                 {/* <Link to="/FormProverb"> */}
                 <Button color="blue" onClick={() => setShowForm(!showForm)}> <span className=" mr-4"> <FaPlus /> </span> ADD NEW</Button>
                 {/* </Link> */}
@@ -68,7 +68,7 @@ const Pro: FC = () => {
             </div>
             {/* <hr /> */}
             <div>
-              <div className="w-full mt-10 p-5">
+              <div className="w-full mt-10 p-4">
                 <Table hoverable>
                   <TableHead className="text-left gap-20 border-b-2 text-black ">
                     <TableHeadCell>NO</TableHeadCell>

@@ -61,11 +61,11 @@ const Story: FC = () => {
               <p className='text-sm font-thin text-gray-400'>Lorem ipsum dolor sit amet consectetur.</p>
 
             </div>
-            <div className='flex justify-between px-6 py-6items-center'>
+            <div className='flex justify-between px-6 py-6 items-center'>
               <div className=" ">
-                <input type="text" className='border outline-none h-7 w-72 rounded-md md:h20 mt-4 pl-2 ' placeholder='Search' />
+                <input type="text" className='border outline-none h-7 w-[900px] -md md:h20 mt-4 p-4 ' placeholder='Search' />
               </div>
-              <div className="mr-4 translate-y-1">
+              <div className="mr-4 translate-y-4">
                 {/* <Link to="/FormStory"> */}
                 <Button color="blue" onClick={() => setShowForm(!showForm)}> <span className=" mr-4"> <FaPlus /> </span> ADD NEW</Button>
                 {/* </Link> */}
@@ -73,7 +73,7 @@ const Story: FC = () => {
             </div>
             {/* <hr /> */}
             <div>
-              <div className="w-full mt-10 p-5">
+              <div className="w-[960px] mt-10 p-5">
                 <Table>
                   <TableHead className="text-left gap-20 border-b-2 text-black ">
                     <TableHeadCell>NO</TableHeadCell>
@@ -92,7 +92,7 @@ const Story: FC = () => {
                         <TableCell className=" font-medium text-gray-600 ">{Title}</TableCell>
                         <TableCell>Parent</TableCell>
                         <TableCell>{new Date(createdAt).toString()}</TableCell>
-                        <div className="flex gap-2 cursor-pointer text-lg translate-y-3 translate-x-[-6px]">
+                        <div className="flex gap-2 cursor-pointer text-lg translate-y-3 ">
                           <Link to='/Delete'>
                             <MdDeleteForever className="hover:text-red-700" />
                           </Link>

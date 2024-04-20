@@ -29,7 +29,7 @@ export default function Homepge() {
         <>
 
             <header>
-                <div className='Contaoiner  flex justify-between mt-4 p-5'>
+                <div className='Contaoiner shadow-sm flex justify-between mt-4 p-5'>
                     <div className='flex translate-y-1'>
                         <div className='Logo font-black flex '>
                             <img src='BabyStoryLogo.png' alt="" className='w-16 translate-y-[-5px] translate-x-3' />

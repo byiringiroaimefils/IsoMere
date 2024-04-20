@@ -44,7 +44,7 @@ const Header = () => {
           </Link>
             <h2 className='mx-[-39px]'><span>Baby</span>Story</h2>
           <div className='mx-12 '>
-            <ul className={` Nav  md:flex md:items-center md:pb-0 pb-12 absolute md:static  md:z-0  z-50  left-0 w-full md:w-auto  md:pl-0 pl-9 bg-white  transition-all duration-200 ease-in ${open ? 'top-[69px]  ' : 'top-[-490px]'}`}>
+            <ul className={` Nav  md:flex md:items-center md:pb-0 pb-12 absolute md:static  md:z-0  -z-50  left-0 w-full md:w-auto  md:pl-0 pl-9 bg-white  transition-all duration-500 ease-in ${open ? 'top-[69px]' : 'top-[-490px]'}`}>
               {
                 Links.map((link) => (
                   <li className='md:ml-2 md:hover:text-sky-600 font-medium md:text-sm text-gray-500 pt-5 md:translate-y-[-10px]' >
