@@ -12,10 +12,10 @@ export default function Parent() {
       <NavBar />
       <div className='flex justify-center items-center  ml-5 gap-5 my-28 '>
         <Link to='Story'>
-          <Button color="blue">Upload Your Story</Button>
+          <Button color="blue" className='border-none'>Upload Your Story</Button>
         </Link>
         <Link to='Proverb'>
-          <Button color="blue">Upload Your Proverbs</Button>
+          <Button color="blue" className='border-none'>Upload Your Proverbs</Button>
         </Link>
       </div>
       <div className='w-screen'>

@@ -6,6 +6,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .underline {
@@ -113,4 +114,11 @@ nav ul {
 }
 .Dark .Header{
     background: #03070c;
+}
+.Dark .Table{
+    color: white;
+}
+.Dark .Input{
+    background: #03070c;
+    border: 1px solid gray;
 }

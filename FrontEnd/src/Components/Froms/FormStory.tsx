@@ -11,6 +11,7 @@ function Component() {
     const [Image, setImage] = useState({});
     const [Author, setAuthor] = useState({});
     const [Decription, setDecription] = useState({});
+    const [showForm, setShowForm] = useState(false);
 
     const HandleFunction = (e) => {
         e.preventDefault();
@@ -36,7 +37,8 @@ function Component() {
 
     return (
         <div className='flex justify-center mt-14'>
-            <form className="flex p-5 bg-white max-w-md flex-col gap-4 border w-full">
+            <form className= {`flex p-5 bg-white max-w-md flex-col gap-4 border w-full ${showForm ? 'hidden' : 'flex'}`}>
+                <span onClick={() => setShowForm(!showForm)}>Cross</span>
                 <h2 className='font-bold'>Upload Story</h2>
                 <div>
                     <div className="mb-2 ">

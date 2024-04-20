@@ -60,7 +60,7 @@ const Home: FC = () => {
                     </div>
                     <div className='Description mt-4'>
                       <p>{Decription}</p>
-                      <p className='text-sm font-thin text-gray-400'>{new Date(createdAt).toString()}</p> <br />
+                      <p className='text-sm font-thin text-gray-400'>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</p> <br />
                     </div>
 
                   </div>
