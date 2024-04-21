@@ -14,7 +14,7 @@ App.use(express.json());
 App.use(Cors());
 
 
-// --Connection of DataBase--
+// --Connection of DataBases--
 Mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("Db is connected");
