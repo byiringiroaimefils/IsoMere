@@ -6,7 +6,7 @@ const Cors = require("cors");
 require("dotenv").config();
 const Port = process.env.PORT;
 
-// MiddleWare confuguration
+//----MiddleWare confugurations---
 const corsOptions = {
   origin: "http://localhost:8000"
 }
