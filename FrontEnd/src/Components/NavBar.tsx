@@ -56,7 +56,7 @@ const Header = () => {
         </div>
         <div className='flex items-center md:mx-3  gap-6'>
           <div className='userprofile absolute right-20 top-5'>
-            <UserButton />
+            <UserButton  afterSignOutUrl='/'/>
           </div>
           <div onClick={() => setOpen(!open)} className='absolute right-5 top-7 cursor-pointer md:hidden w-7 h-7'>
             {
