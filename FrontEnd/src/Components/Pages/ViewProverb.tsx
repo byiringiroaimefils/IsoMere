@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { useParams } from "react-router-dom";
+import { useParams,Link } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import NavBar from "../NavBar";
@@ -33,7 +33,10 @@ const Proverb: FC = () => {
   return (
     <>
       <NavBar />
-      <div className='w-Full mt-5 ' >
+      <div className='w-Full mt-20 ' >
+        <Link to='/Setting/Proverb'>
+          <button>Back</button>
+        </Link>
         <div>
           {
             Loading ? (
@@ -43,18 +46,19 @@ const Proverb: FC = () => {
             ) : (
               <div>
                 {
-                  Proverb.map(({ id, TitleofProverb, Proverb }) => (
-                    <div key={id} className='ml-20 mr-20'>
-                      <div className='Header '>
-                        <h2 className='font-bold  text-base '>{TitleofProverb}</h2>
-                      </div>
-                      <div className='Description mt-2 '>
-                        <p>{Proverb}</p>
-                        <p className='text-sm font-thin text-gray-400'>20th, March 2024</p> <br />
-                      </div>
+                  <div key={Proverb.id} className='ml-20 mr-20'>
+                    <div className='Header '>
+                      <h2 className='font-bold  text-base '>{Proverb.TitleofProverb}</h2>
                     </div>
-                  ))
-                }
+                    <div className='Description mt-2 '>
+                      <p>{Proverb.Proverb}</p>
+                      <p className='text-sm font-thin text-gray-400'>20th, March 2024</p> <br />
+                    </div>
+                  </div>
+                },
+
+                
+
               </div>
             )
           }

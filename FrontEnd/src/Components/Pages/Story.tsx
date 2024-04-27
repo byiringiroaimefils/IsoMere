@@ -98,13 +98,13 @@ const Story: FC = () => {
                         <TableCell>{Author}</TableCell>
                         <TableCell>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</TableCell>
                         <div className="flex gap-2 cursor-pointer text-lg translate-y-3 translate-x-5">
-                          <Link to='/Delete'>
+                          <Link to={`/deleteStory/${_id}`} >
                             <MdDeleteForever className="hover:text-red-700" />
                           </Link>
                           <Link to='/Edit'>
                             <MdEditSquare />
                           </Link>
-                          <Link to={`ViewStory/${_id}`}>
+                          <Link to={`/story/${_id}`}>
                             <FaEye className="hover:text-sky-500" />
                           </Link>
                         </div>
@@ -125,13 +125,13 @@ const Story: FC = () => {
                         <p>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</p> <br />
                       </div>
                       <div className="display flex justify-between items-center">
-                        <Link to='/Delete'>
+                        <Link to={`/deleteStory/${_id}`}>
                           <MdDeleteForever className="hover:text-red-700 text-lg" />
                         </Link>
                         <Link to='/Edit'>
                           <MdEditSquare className="text-lg" />
                         </Link>
-                        <Link to={`/ViewProverb/${_id}`}>
+                        <Link to={`/story/${_id}`}>
                           <FaEye className="hover:text-sky-600 text-lg" />
                         </Link>
                       </div>

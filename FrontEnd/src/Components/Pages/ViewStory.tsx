@@ -1,9 +1,11 @@
 import React from 'react'
 import axios from 'axios'
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import NavBar from "../NavBar";
 import { FC } from "react"
+import Load from "./Loading";
+
 
 
 interface Story {
@@ -15,7 +17,9 @@ interface Story {
 }
 
 const View: FC = () => {
-  const [Story, setStory] = useState<Story[]>([]);
+  const [story, setStory] = useState<Story[]>([]);
+  const [Loading, setLoading] = useState(true);
+
   const { id } = useParams();
 
 
@@ -23,42 +27,50 @@ const View: FC = () => {
     axios.get(`http://localhost:8080/story/${id}`)
       .then((data) => {
         setStory(data.data);
-        // setLoading(false)
-        
+        setLoading(false)
       })
       .catch((error) => {
         console.log('error', error)
-        // setLoading(false)
+        setLoading(false)
       })
-  }, [id])
-  console.log(Story)
-
-
+  }, [id]);
 
   return (
     <>
-    <NavBar/>
-      <div className='Container flex justify-around mt-6 w-full '>
+      <NavBar />
+      <div className='mt-20'>
+        <Link to='/Setting/Story'>
+          <button>Back</button>
+        </Link>
         <div>
-
-          {Story.map(({ _id, Title, image, Decription, createdAt }) => (
-            <div key={_id} className='story p-4 w-[650px] md:translate-x-10' >
-              <div className='Header '>
-                <h2 className='font-bold  text-base '>{Title}</h2>
-                <p className='text-sm font-thin text-gray-400'>Parent ( aimefils173@gmail.com ) </p> <br />
-                <img src={image} alt="" className='' />
+          {
+            Loading ? (
+              <div className='flex justify-center text-center mt-56'>
+                <Load />
               </div>
-              <div className='Description mt-4 '>
-                <p>{Decription}</p>
-                <p className='text-sm font-thin text-gray-400'>{new Date(createdAt).toString()}</p> <br />
+            ) : (
+              <div>
+                <div className='Container flex justify-around  w-full  '>
+                  <div className=''>
+                    <div key={story._id} className='story p-4 w-[650px] md:translate-x-10' >
+                      <div className='Header '>
+                        <h2 className='font-bold  text-base '>{story.Title}</h2>
+                        <p className='text-sm font-thin text-gray-400'>Parent ( aimefils173@gmail.com ) </p> <br />
+                        <img src={story.image} alt="" className='' />
+                      </div>
+                      <div className='Description mt-4 '>
+                        <p>{story.Decription}</p>
+                        <p className='text-sm font-thin text-gray-400'>{new Date(story.createdAt).toString()}</p> <br />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-
-            </div>
-          ))}
+            )
+          }
         </div>
       </div>
     </>
   )
 }
-
 export default View;

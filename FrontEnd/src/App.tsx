@@ -12,7 +12,8 @@ import FormProverb from "./Components/Froms/FormProverb";
 import ViewStory from "./Components/Pages/ViewStory"
 import ViewProverb from "./Components/Pages/ViewProverb"
 import Edit from "./Components/Pages/Edit"
-import Delete from "./Components/Pages/Delete"
+import DeleteProverb from "./Components/Pages/DeletePro"
+import DeleteStory from "./Components/Pages/DeleteStory"
 
 export default function App() {
   return (
@@ -66,10 +67,11 @@ export default function App() {
           } />
           <Route path="FormStory" element={<FormStory />} />
           <Route path="FormProverb" element={<FormProverb />} />
-          <Route path="ViewStory/:id" element={<ViewStory />} />
-          <Route path="ViewProverb/:id" element={<ViewProverb />} />
+          <Route path="story/:id" element={<ViewStory />} />
+          <Route path="proverb/:id" element={<ViewProverb />} />
           <Route path="Edit" element={<Edit />} />
-          <Route path="Delete" element={<Delete />} />
+          <Route path="deleteProveb/:id" element={<DeleteProverb/>} />
+          <Route path="deleteStory/:id" element={<DeleteStory />} />
         </Routes>
       </BrowserRouter>
     </div>

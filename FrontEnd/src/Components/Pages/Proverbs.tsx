@@ -3,7 +3,7 @@ import { MdDeleteForever, MdEditSquare } from "react-icons/md";
 import { FaEye } from "react-icons/fa6";
 import { useState, useEffect } from 'react'
 import { Button } from "flowbite-react";
-import { Link, } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { FC } from "react"
 import axios from 'axios'
 import Load from "./Loading";
@@ -94,13 +94,13 @@ const Pro: FC = () => {
 
                         <TableCell>
                           <div className="flex gap-3 cursor-pointer text-lg translate-y-1 translate-x-[-6px] ">
-                            <Link to='/Delete'>
+                            <Link to={`/deleteProveb/${_id}`}>
                               <MdDeleteForever className="hover:text-red-700" />
                             </Link>
                             <Link to='/Edit'>
                               <MdEditSquare />
                             </Link>
-                            <Link to={`/ViewProverb/${_id}`}>
+                            <Link to={`/proverb/${_id}`}>
                               <FaEye className="hover:text-sky-600" />
                             </Link>
                           </div>
@@ -120,13 +120,13 @@ const Pro: FC = () => {
                         <p>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</p> <br />
                       </div>
                       <div className="display flex justify-between items-center">
-                        <Link to='/Delete'>
+                        <Link to={`/deleteProveb/${_id}`}>
                           <MdDeleteForever className="hover:text-red-700 text-lg" />
                         </Link>
                         <Link to='/Edit'>
                           <MdEditSquare className="text-lg" />
                         </Link>
-                        <Link to={`/ViewProverb/${_id}`}>
+                        <Link to={`/proverb/${_id}`}>
                           <FaEye className="hover:text-sky-600 text-lg" />
                         </Link>
                       </div>

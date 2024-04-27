@@ -92,7 +92,7 @@ App.get("/Stories", (req, resp) => {
     });
 });
 
-App.delete("/deleteStory:id", (req, resp) => {
+App.delete("/deleteStory/:id", (req, resp) => {
   const { id } = req.params;
   const book = Stories.findByIdAndDelete(id)
     .then((data) => {
@@ -181,7 +181,7 @@ App.get("/proverbs", (req, resp) => {
     });
 });
 
-App.delete("/deleteProverb:id", (req, resp) => {
+App.delete("/deleteProverb/:id", (req, resp) => {
   const { id } = req.params;
   const book = proverbs.findByIdAndDelete(id)
     .then((data) => {
