@@ -20,7 +20,7 @@ const View: FC = () => {
 
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/story/65fedd1a1eea2d81177b4b26`)
+    axios.get(`http://localhost:8080/story/${id}`)
       .then((data) => {
         setStory(data.data);
         // setLoading(false)

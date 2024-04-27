@@ -7,14 +7,14 @@ import { Link, } from "react-router-dom";
 import { FC } from "react"
 import axios from 'axios'
 import Load from "./Loading";
-import { FaPlus } from "react-icons/fa";
+import { IoAddCircle } from "react-icons/io5";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import FormProverb from "../Froms/FormProverb";
 
 
 
 
-interface Story {
+interface Proverb {
   _id: string,
   TitleofProverb: string,
   Proverb: string,
@@ -26,14 +26,16 @@ interface Story {
 
 const Pro: FC = () => {
   const [Loading, setLoading] = useState(true);
-  const [story, setStory] = useState<Story[]>([]);
+  const [Proverb, setProverb] = useState<Proverb[]>([]);
   const [showForm, setShowForm] = useState(false);
+  const [Search, setSearch] = useState(false);
+
 
 
   useEffect(() => {
     axios.get("https://babystory-server.onrender.com/Proverbs")
       .then((response) => {
-        setStory(response.data);
+        setProverb(response.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -57,22 +59,19 @@ const Pro: FC = () => {
               <p className='text-sm font-thin text-gray-400'>Lorem ipsum dolor sit amet consectetur.</p>
 
             </div>
-            <div className='flex justify-between px-6 py-6items-center'>
+            <div className='flex justify-between px-6 py-6items-center gap-2'>
               <div className=" ">
-              <FaMagnifyingGlass className="absolute mt-6 ml-2"/>
-                <input type="text" className='Input border outline-none h-7 md:w-[900px]  md:h20 mt-4 p-4 pl-8' placeholder='Search' />
+                <FaMagnifyingGlass className=" hidden md:block absolute mt-6 ml-2" />
+                <input type="text" className='Input border hidden md:block outline-none h-7 md:w-[900px]  md:h20 mt-4 p-4 pl-8' placeholder='Search'  onChange={(e) => setSearch(e.target.value)}/>
               </div>
               <div className="mr-4 translate-y-4">
-                {/* <Link to="/FormProverb"> */}
-                <Button color="blue" className="border-none font-extrabold pr-2" onClick={() => setShowForm(!showForm)}> <span className=" mr-6 translate-y-0.5 translate-x-3"> <FaPlus /> </span> ADD NEW</Button>
-                {/* </Link> */}
+                <Button color="blue" className="border-none font-extrabold pr-2 md:h-[40px] translate-y-[-2px]  md:w-24" onClick={() => setShowForm(!showForm)}> <span className=" text-3xl translate-x-1"> <IoAddCircle /> </span></Button>
               </div>
             </div>
-            {/* <hr /> */}
             <div>
               {/* <div className="w-full mt-10 p-4"> */}
-              <div className=" w-[1300px] static justify-center  items-center mt-10 ml-6  mr-6">
-                <Table >
+              <div className=" hidden md:block  static justify-center  items-center mt-10 ml-6  mr-6">
+                <Table className="">
                   <TableHead className=" Table text-left gap-20  text-black font-extrabold">
                     <TableHeadCell>#</TableHeadCell>
                     <TableHeadCell>TITLE OF PROVERBS</TableHeadCell>
@@ -80,9 +79,16 @@ const Pro: FC = () => {
                     <TableHeadCell>ACTION</TableHeadCell>
                   </TableHead> <br />
                   <TableBody className="p-1">
-                    {story.map(({ _id, TitleofProverb, createdAt },index) => (
+                    {Proverb.filter(Element=>{
+                     if(Search){
+                      return Element.TitleofProverb.toLowerCase().includes(Search.toLowerCase())
+                    }else{
+                      return Proverb
+                    }
+
+                    }).map(({ _id, TitleofProverb, createdAt }, index) => (
                       <TableRow key={_id} className="  cursor-pointer divide-gray-200  even:bg-gray-200">
-                        <TableCell className="font-medium text-gray-600">{index+1}</TableCell>
+                        <TableCell className="font-medium text-gray-600">{index + 1}</TableCell>
                         <TableCell className="font-medium text-gray-600">{TitleofProverb}</TableCell>
                         <TableCell className="font-medium text-gray-600">{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</TableCell>
 
@@ -103,6 +109,31 @@ const Pro: FC = () => {
                     ))}
                   </TableBody>
                 </Table>
+              </div>
+              <div className="md:hidden">
+                <div className="flex justify-between items-center flex-col">
+                  {Proverb.map(({ _id, TitleofProverb, createdAt }, index) => (
+                    <div key={_id} className="border  shadow-md bg-gray-200/20 p-4 rounded-sm w-[90%] m-16   ">
+                      <div>
+                        <h3 className="bg-sky-600 mb-2 rounded-full text-center w-6 text-white">{index + 1}</h3>
+                        <h2 className="text-base font-bold">Title: {TitleofProverb}</h2>
+                        <p>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</p> <br />
+                      </div>
+                      <div className="display flex justify-between items-center">
+                        <Link to='/Delete'>
+                          <MdDeleteForever className="hover:text-red-700 text-lg" />
+                        </Link>
+                        <Link to='/Edit'>
+                          <MdEditSquare className="text-lg" />
+                        </Link>
+                        <Link to={`/ViewProverb/${_id}`}>
+                          <FaEye className="hover:text-sky-600 text-lg" />
+                        </Link>
+                      </div>
+                    </div>
+
+                  ))}
+                </div>
               </div>
             </div>
           </div>

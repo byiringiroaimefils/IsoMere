@@ -48,15 +48,15 @@ const Home: FC = () => {
               <Load />
             </div>
           ) : (
-            <div className='Container flex justify-around mt-6 w-full '>
+            <div className='Container flex justify-around mt-6 w-screen'>
               <div>
 
                 {Story.map(({ id, Title, Author, image, Decription, createdAt }) => (
-                  <div key={id} className='story p-4 w-[650px] md:translate-x-10' >
+                  <div key={id} className='story p-8 mr-28 md:w-[650px] md:translate-x-10 ' >
                     <div className='Header '>
                       <h2 className='font-bold  text-base '>{Title}</h2>
                       <p className='text-sm font-thin text-gray-400'>{Author}</p> <br />
-                      <img src={image} alt="" className='w-screen' />
+                      <img src={image} alt="" className='w-full  object-cover' />
                     </div>
                     <div className='Description mt-4'>
                       <p>{Decription}</p>

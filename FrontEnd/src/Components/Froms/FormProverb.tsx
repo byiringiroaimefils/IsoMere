@@ -36,21 +36,21 @@ function Component() {
                 <h2 className='font-bold'>Upload Proverbs</h2>
                 <div>
                     <div className="mb-2 ">
-                        <Label htmlFor="email2" value="Title" />
-                        <input type="text" className='border w-96 outline-none p-2' placeholder="Title of Story" onChange={(e) => { setTofproverb(e.target.value) }} />
+                        <Label htmlFor="title" value="Title" />
+                        <input type="text" id="title" className='border md:w-96 w-[99%] outline-none p-2' placeholder="Title of Story" required onChange={(e) => { setTofproverb(e.target.value) }} />
                     </div>
                 </div>
                 <div>
                     <div className="max-w-md">
                         <div className="mb-2 block">
-                            <Label htmlFor="comment" value="Your Stroy" />
+                            <Label htmlFor="Proverb" value="Your Proverb" />
                         </div>
-                        <Textarea id="comment" placeholder="Leave a Story..." required rows={4} className='pl-2 pt-2 w-96' onChange={(e) => { setProverb(e.target.value) }} />
+                        <Textarea id="Proverb" placeholder="Leave a Proverb..." required rows={4} className='pl-2 pt-2 md:w-96 w-[99%]'  onChange={(e) => { setProverb(e.target.value) }} />
                     </div>
                 </div>
                 <div>
                 </div>
-                <Button color="blue" className='w-96' onClick={HandleFunction}>Uplosd</Button>
+                <Button color="blue" className= 'md:w-96 w-[99%]' onClick={HandleFunction}>Upload</Button>
             </form>
         </div>
     );

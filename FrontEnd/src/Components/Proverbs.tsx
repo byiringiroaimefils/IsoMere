@@ -41,7 +41,7 @@ const Proverb: FC = () => {
               <div>
                 {
                   Proverb.map(({ id, TitleofProverb, Proverb }) => (
-                    <div key={id} className='ml-20 mr-20'>
+                    <div key={id} className='ml-10 mr-10'>
                       <div className='Header '>
                         <h2 className='font-bold  text-base '>{TitleofProverb}</h2>
                       </div>
