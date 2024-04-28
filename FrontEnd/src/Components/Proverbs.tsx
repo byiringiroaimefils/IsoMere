@@ -47,7 +47,7 @@ const Proverb: FC = () => {
                       </div>
                       <div className='Description mt-2 '>
                         <p>{Proverb}</p>
-                        <p className='text-sm font-thin text-gray-400'>20th, March 2024</p> <br />
+                        <p className='text-sm font-thin text-gray-400'>20th,March 2024</p> <br />
                       </div>
                     </div>
                   ))
