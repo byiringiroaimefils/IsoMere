@@ -119,7 +119,7 @@ const Story: FC = () => {
                   {story.map(({ _id, Title, Author, createdAt }, index) => (
                     <div key={_id} className="border  shadow-md bg-gray-200/20 p-4 rounded-sm w-[90%] m-10   ">
                       <div>
-                        <h3 className="bg-sky-600 mb-2 rounded-full text-center w-6 text-white">{index + 1}</h3>
+                        <h3 className="bg-[#2563eb] mb-2 rounded-full text-center w-6 text-white">{index + 1}</h3>
                         <h2 className="text-base font-bold">Title: {Title}</h2>
                         <h2 className="text-base font-bold">Athor: {Author}</h2>
                         <p>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</p> <br />

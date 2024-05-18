@@ -6,6 +6,10 @@ const Cors = require("cors");
 require("dotenv").config();
 const Port = process.env.PORT;
 
+const DBSchema=require('./Modules/StorySchema')
+const ProverbSchema=require('./Modules/ProverbSchema')
+
+
 //----MiddleWare confugurations---
 const corsOptions = {
   origin: "http://localhost:8000"
@@ -25,30 +29,7 @@ Mongoose.connect(process.env.MONGODB_URI)
 
 
 
-//-------SERVER FOR STORY-------
-const DBSchema = new Mongoose.Schema(
-  {
-    Title: {
-      type: String,
-      required: true,
-    },
-    Author: {
-      type: String,
-      required: true,
-    },
-    image: {
-      type: String,
-      required: true,
-    },
-    Decription: {
-      type: String,
-      required: true,
-    },
-  },
-  {
-    timestamps: true,
-  }
-);
+//-------SERVER FOR STORY------- 
 const Stories = Mongoose.model("Story", DBSchema, "Story");
 
 
@@ -124,21 +105,6 @@ App.put("/deleteProverb:id", (req, resp) => {
 
 
 // -----SERVER FOR PROVERBS-----
-const ProverbSchema = new Mongoose.Schema(
-  {
-    TitleofProverb: {
-      type: String,
-      required: true
-    },
-    Proverb: {
-      type: String,
-      required: true
-    },
-  },
-  {
-    timestamps: true,
-  }
-);
 const proverbs = Mongoose.model("Proverbs", ProverbSchema, "Proverbs");
 
 App.post("/proverb", (req, resp) => {

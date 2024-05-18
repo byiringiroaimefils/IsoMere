@@ -8,7 +8,8 @@ import Load from "./Pages/Loading";
 interface Proverb {
   id: string,
   TitleofProverb: string,
-  Proverb: string
+  Proverb: string,
+  createdAt: string,
 }
 
 
@@ -40,14 +41,14 @@ const Proverb: FC = () => {
             ) : (
               <div>
                 {
-                  Proverb.map(({ id, TitleofProverb, Proverb }) => (
+                  Proverb.map(({ id, TitleofProverb, Proverb,createdAt }) => (
                     <div key={id} className='ml-10 mr-10'>
                       <div className='Header '>
                         <h2 className='font-bold  text-base '>{TitleofProverb}</h2>
                       </div>
                       <div className='Description mt-2 '>
                         <p>{Proverb}</p>
-                        <p className='text-sm font-thin text-gray-400'>20th,March 2024</p> <br />
+                        <p className='text-sm font-thin text-gray-400'>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</p> <br />
                       </div>
                     </div>
                   ))

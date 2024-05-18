@@ -13,7 +13,7 @@ export default function Preview() {
       <>
         <NavBar />
         <div className='text-center mt-28 w-full'>
-          <button className=' rounded-sm bg-blue-500  text-white font-semibold py-1 px-4   mr-4'>
+          <button className=' rounded-sm bg-[#2563eb]  text-white font-semibold py-1 px-4   mr-4'>
             Page Not Found !!!!
           </button>
           <p className='text-gray-500'>Lorem ipsum dolor sit amet consectetur adipisicing elit. In blanditiis veniam deleniti natus</p>

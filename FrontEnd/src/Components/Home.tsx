@@ -3,7 +3,10 @@ import { useState, useEffect } from 'react'
 import NavBar from "./NavBar";
 import { FC } from "react"
 import ReactPlayer from "react-player"
-import Load from "./Pages/Loading";
+import Load from "./Pages/Loading"; 
+import { MdThumbUp,MdThumbDown } from "react-icons/md";
+
+
 
 interface Story {
   id: string,
@@ -62,7 +65,9 @@ const Home: FC = () => {
                       <p>{Decription}</p>
                       <p className='text-sm font-thin text-gray-400'>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</p> <br />
                     </div>
-
+                    <div className="icons flex gap-2">
+                         <MdThumbUp /><span className='translate-y-[-6px]'>0</span><MdThumbDown/><span className='translate-y-[-6px]'>0</span>  
+                    </div>
                   </div>
                 ))}
               </div>

@@ -30,7 +30,7 @@ const Header = () => {
     { name: "Home", link: "/Homepge" },
     { name: "Proverbs", link: "/Proverbs" },
     { name: "Preview", link: "/Preview" },
-    { name: "Setting", link: "/Setting" },
+    { name: "Parent", link: "/Setting" },
   ];
   const [open, setOpen] = useState(false);
 

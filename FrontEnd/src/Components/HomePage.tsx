@@ -7,6 +7,7 @@ import { FaBarsStaggered } from "react-icons/fa6"
 
 
 
+
 export default function Homepge() {
     // Background theme changing
     const [bgcolor, Setbgcolor] = useState("Light");
@@ -61,9 +62,9 @@ export default function Homepge() {
                         <h2 className=' font-bold  text-center text-5xl ' >Train your children with  <span className='text-blue-600 '>BabyStory </span> <br />by Enhance reading through Stories and Proverbs</h2> <br />
                         <p className='font-light text-gray-600 text-center  w-full'>Our children must be good in reading short stories and Proverbs with their meaning prepaired with Parent <br />by managing what must your child has to read and tell them Special <br />event happened in past.</p>
                         <div className='buttton text-center mt-10'>
-                            <button className=' bg-blue-500  text-white font-semibold py-1 px-4 rounded-full  mr-4'>
-                                Get started
-                            </button>
+                                <button className=' bg-blue-500  text-white font-semibold py-1 px-4 rounded-full  mr-4'>
+                                    Get started
+                                </button>
                             <button className=' font-semibold py-1 px-4 rounded-full border'>
                                 My Favorites
                             </button>

@@ -17,14 +17,14 @@ interface Story {
 }
 
 const View: FC = () => {
-  const [story, setStory] = useState<Story[]>([]);
+  const [story, setStory] = useState<Story>({} as Story);
   const [Loading, setLoading] = useState(true);
 
   const { id } = useParams();
 
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/story/${id}`)
+    axios.get(`https://babystory-server.onrender.com/story/${id}`)
       .then((data) => {
         setStory(data.data);
         setLoading(false)
