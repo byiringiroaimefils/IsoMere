@@ -1,4 +1,5 @@
 //--Dependencies--
+
 const express = require("express");
 const App = express();
 const Mongoose = require("mongoose");
@@ -6,8 +7,11 @@ const Cors = require("cors");
 require("dotenv").config();
 const Port = process.env.PORT;
 
-const DBSchema=require('./Modules/StorySchema')
-const ProverbSchema=require('./Modules/ProverbSchema')
+
+// --- Schema and Middleware for uploads----
+const DBSchema = require('./Modules/StorySchema');
+const ProverbSchema = require('./Modules/ProverbSchema');
+const upload = require('./Modules/Uploads');
 
 
 //----MiddleWare confugurations---
@@ -31,8 +35,6 @@ Mongoose.connect(process.env.MONGODB_URI)
 
 //-------SERVER FOR STORY------- 
 const Stories = Mongoose.model("Story", DBSchema, "Story");
-
-
 App.post("/story", (req, resp) => {
   const newStory = {
     Title: req.body.TofStory,
@@ -106,7 +108,6 @@ App.put("/deleteProverb:id", (req, resp) => {
 
 // -----SERVER FOR PROVERBS-----
 const proverbs = Mongoose.model("Proverbs", ProverbSchema, "Proverbs");
-
 App.post("/proverb", (req, resp) => {
 
   const newProverb = {
@@ -174,6 +175,15 @@ App.put("/EditProverb:id", (req, resp) => {
     });
 });
 
+
+
+//-----SERVER FOR UPLOADS-----
+App.post('/upload', upload.single('file'), (req, res) => {
+  Stories.create({
+    image: req.file.filename
+  }).then((res)=>JSON(res))
+  .catch((err)=>console.log(err));
+});
 
 
 

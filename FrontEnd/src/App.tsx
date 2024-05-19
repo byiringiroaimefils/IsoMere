@@ -14,6 +14,8 @@ import ViewProverb from "./Components/Pages/ViewProverb"
 import Edit from "./Components/Pages/Edit"
 import DeleteProverb from "./Components/Pages/DeletePro"
 import DeleteStory from "./Components/Pages/DeleteStory"
+  
+
 
 export default function App() {
   return (

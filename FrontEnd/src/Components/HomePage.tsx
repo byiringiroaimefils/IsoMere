@@ -10,7 +10,7 @@ import { FaBarsStaggered } from "react-icons/fa6"
 
 export default function Homepge() {
     // Background theme changing
-    const [bgcolor, Setbgcolor] = useState("Light");
+    const [bgcolor, Setbgcolor] = useState("Light"); 
     useEffect(() => {
         if (bgcolor === "Dark") {
             document.body.classList.add("Dark")
@@ -64,9 +64,11 @@ export default function Homepge() {
                         <div className='buttton text-center mt-10'>
                                 <button className=' bg-blue-500  text-white font-semibold py-1 px-4 rounded-full  mr-4'>
                                     Get started
+                            <SignInButton mode='modal' redirectUrl='/Homepge' />
+
                                 </button>
                             <button className=' font-semibold py-1 px-4 rounded-full border'>
-                                My Favorites
+                             Subscription
                             </button>
                         </div>
                     </div>

@@ -43,7 +43,7 @@ function Component() {
                 <div>
                     <div className="mb-2 ">
                         <Label htmlFor='title'  value="Title" /><br />
-                        <input type="text" id='title' className='border w-[99%] outline-none p-2 rounded-sm' placeholder="Title of Story" onChange={(e) => setTofStory(e.target.value)} />
+                        <input type="text" id='title' className='border w-[95%] outline-none p-2 rounded-sm' placeholder="Title of Story" onChange={(e) => setTofStory(e.target.value)} />
                     </div>
 
                 </div>
