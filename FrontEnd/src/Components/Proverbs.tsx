@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import NavBar from "./NavBar";
 import Load from "./Pages/Loading";
+import { MdThumbUp, MdThumbDown } from "react-icons/md";
+
 
 
 interface Proverb {
@@ -50,6 +52,9 @@ const Proverb: FC = () => {
                         <p>{Proverb}</p>
                         <p className='text-sm font-thin text-gray-400'>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</p> <br />
                       </div>
+                      <div className="icons flex gap-2 mb-5">
+                      <MdThumbUp /><span className='translate-y-[-6px]'>0</span><MdThumbDown /><span className='translate-y-[-6px]'>0</span>
+                    </div>
                     </div>
                   ))
                 }
