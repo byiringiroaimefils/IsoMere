@@ -11,7 +11,7 @@ import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
 import axios from 'axios'
 import Load from "./Loading";
-import FormStory from "../Froms/FormStory";
+// import FormStory from "../Froms/FormStory";
 
 
 
@@ -68,7 +68,9 @@ const Story: FC = () => {
                 <input type="text" className='Input border hidden md:block outline-none h-7 w-full  md:h20 mt-4 p-4 pl-8' placeholder='Search.....' onChange={(e) => setSearch(e.target.value)} />
               </div>
               <div className="mr-4 translate-y-4">
+                <Link to={'/FormStory'}>
                 <Button color="blue" className="border-none font-extrabold pr-2 md:h-[43px] translate-y-[-2px] gap-2 md:w-24" onClick={() => setShowForm(!showForm)}> <span className=" text-3xl translate-x-1"> <IoAddCircle /> </span></Button>
+                </Link>
               </div>
             </div>
             <div>
@@ -101,7 +103,7 @@ const Story: FC = () => {
                           <Link to={`/deleteStory/${_id}`} >
                             <MdDeleteForever className="hover:text-red-700" />
                           </Link>
-                          <Link to='/Edit'>
+                          <Link to='/EditStory'>
                             <MdEditSquare />
                           </Link>
                           <Link to={`/story/${_id}`}>
@@ -145,14 +147,14 @@ const Story: FC = () => {
 
 
         )
-      },
-      {
+      }
+      {/* {
         showForm && (
           <div className=" fixed inset-0  bg-gray-900 bg-opacity-50 z-50 flex justify-center items-center ">
             <FormStory />
           </div>
         )
-      }
+      } */}
     </>
   )
 }

@@ -11,7 +11,8 @@ import FormStory from "./Components/Froms/FormStory";
 import FormProverb from "./Components/Froms/FormProverb";
 import ViewStory from "./Components/Pages/ViewStory"
 import ViewProverb from "./Components/Pages/ViewProverb"
-import Edit from "./Components/Pages/Edit"
+import EditStory from "./Components/Froms/EditStory"
+import EditProverb from "./Components/Froms/EditProverb"
 import DeleteProverb from "./Components/Pages/DeletePro"
 import DeleteStory from "./Components/Pages/DeleteStory"
   
@@ -71,7 +72,8 @@ export default function App() {
           <Route path="FormProverb" element={<FormProverb />} />
           <Route path="story/:id" element={<ViewStory />} />
           <Route path="proverb/:id" element={<ViewProverb />} />
-          <Route path="Edit" element={<Edit />} />
+          <Route path="EditStory" element={<EditStory />} />
+          <Route path="EditProverb" element={<EditProverb/>} />
           <Route path="deleteProveb/:id" element={<DeleteProverb/>} />
           <Route path="deleteStory/:id" element={<DeleteStory />} />
         </Routes>

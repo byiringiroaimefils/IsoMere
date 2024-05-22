@@ -9,7 +9,7 @@ import axios from 'axios'
 import Load from "./Loading";
 import { IoAddCircle } from "react-icons/io5";
 import { FaMagnifyingGlass } from "react-icons/fa6";
-import FormProverb from "../Froms/FormProverb";
+// import FormProverb from "../Froms/FormProverb";
 
 
 
@@ -65,7 +65,9 @@ const Pro: FC = () => {
                 <input type="text" className='Input border hidden md:block outline-none h-7 md:w-[900px]  md:h20 mt-4 p-4 pl-8' placeholder='Search'  onChange={(e) => setSearch(e.target.value)}/>
               </div>
               <div className="mr-4 translate-y-4">
+                <Link to={'/FormProverb'}>
                 <Button color="blue" className="border-none font-extrabold pr-2 md:h-[40px] translate-y-[-2px]  md:w-24" onClick={() => setShowForm(!showForm)}> <span className=" text-3xl translate-x-1"> <IoAddCircle /> </span></Button>
+                </Link>
               </div>
             </div>
             <div>
@@ -123,7 +125,7 @@ const Pro: FC = () => {
                         <Link to={`/deleteProveb/${_id}`}>
                           <MdDeleteForever className="hover:text-red-700 text-lg" />
                         </Link>
-                        <Link to='/Edit'>
+                        <Link to='/EditProverb'>
                           <MdEditSquare className="text-lg" />
                         </Link>
                         <Link to={`/proverb/${_id}`}>
@@ -139,13 +141,13 @@ const Pro: FC = () => {
           </div>
         )
       }
-      {
+      {/* {
         showForm && (
           <div className="fixed inset-0 bg-gray-900 bg-opacity-50 z-50  flex justify-center items-center">
             <FormProverb />
           </div>
         )
-      }
+      } */}
     </>
   )
 }
