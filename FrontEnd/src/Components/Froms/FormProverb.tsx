@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom"
 import { useState } from "react";
 import axios from "axios";
 import{toast}from"react-hot-toast"
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import htmlreactparser from 'html-react-parser'
 
 
 function Component() {
@@ -13,9 +16,10 @@ function Component() {
 
     const HandleFunction = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        console.log(htmlreactparser(Proverb))
         const Data = {
             Tofproverb,
-            Proverb
+            Proverb:htmlreactparser(Proverb)
         }
 
         axios.post(`http://localhost:8080/proverb`, Data)
@@ -37,7 +41,7 @@ function Component() {
                 <div>
                     <div className="mb-2 ">
                         <Label htmlFor="title" value="Title" />
-                        <input type="text" id="title" className='border md:w-96 w-[99%] outline-none p-2' placeholder="Title of Story" required onChange={(e) => { setTofproverb(e.target.value) }} />
+                        <input type="text" id="title" className='border md:w-[99%] w-[99%] outline-none p-2' placeholder="Title of Story" required onChange={(e) => { setTofproverb(e.target.value) }} />
                     </div>
                 </div>
                 <div>
@@ -45,12 +49,20 @@ function Component() {
                         <div className="mb-2 block">
                             <Label htmlFor="Proverb" value="Your Proverb" />
                         </div>
-                        <Textarea id="Proverb" placeholder="Leave a Proverb..." required rows={4} className='pl-2 pt-2 md:w-96 w-[99%]'  onChange={(e) => { setProverb(e.target.value) }} />
+                        <div>
+                            <CKEditor
+                                editor={ClassicEditor}
+                                data={Proverb}
+                                onChange={(event,editor) => {
+                                    setProverb(editor.getData());
+                                }}  />
+                        </div>
+                        {/* <Textarea id="Proverb" placeholder="Leave a Proverb..." required rows={4} className='pl-2 pt-2 md:w-96 w-[99%]'  onChange={(e) => { setProverb(e.target.value) }} /> */}
                     </div>
                 </div>
                 <div>
                 </div>
-                <Button color="blue" className= 'md:w-96 w-[99%]' onClick={HandleFunction}>Upload</Button>
+                <Button color="blue" className= 'md:w-[99%] w-[99%]' onClick={HandleFunction}>Upload</Button>
             </form>
         </div>
     );
