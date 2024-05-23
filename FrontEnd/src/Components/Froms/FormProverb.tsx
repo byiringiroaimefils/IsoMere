@@ -30,7 +30,7 @@ function Component() {
             })
             .catch((error) => {
                 console.log(error)
-                toast.error("This didn't work")
+                toast.error("This didn't  work!!!!")
             })
     }
 
