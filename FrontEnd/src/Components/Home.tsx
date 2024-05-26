@@ -77,6 +77,7 @@ const Home: FC = () => {
                       <p className='text-sm font-thin text-gray-400'>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</p> <br />
                     </div>
                     <div className="icons flex gap-2">
+                      {/* <p>Is this page helpful?</p> */}
                       <MdThumbUp /><span className='translate-y-[-6px]'>0</span><MdThumbDown /><span className='translate-y-[-6px]'>0</span>
                     </div>
                   </div>

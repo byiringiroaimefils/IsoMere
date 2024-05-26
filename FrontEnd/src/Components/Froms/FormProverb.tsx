@@ -1,5 +1,5 @@
 // import React from 'react'
-import { Button, Label, Textarea } from "flowbite-react";
+import { Button, Label} from "flowbite-react";
 import { useNavigate } from "react-router-dom"
 import { useState } from "react";
 import axios from "axios";
@@ -7,6 +7,7 @@ import{toast}from"react-hot-toast"
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import htmlreactparser from 'html-react-parser'
+import { Link } from 'react-router-dom';
 
 
 function Component() {
@@ -19,14 +20,14 @@ function Component() {
         console.log(htmlreactparser(Proverb))
         const Data = {
             Tofproverb,
-            Proverb:htmlreactparser(Proverb)
+            Proverb: Proverb
         }
 
         axios.post(`http://localhost:8080/proverb`, Data)
             .then((respond) => {
                 console.log(respond.data);
-                navigate("/Setting")
                 toast.success("Successful Proverbs Added")
+                navigate("/Setting")
             })
             .catch((error) => {
                 console.log(error)
@@ -37,6 +38,10 @@ function Component() {
     return (
         <div className='flex justify-center mt-8 '>
             <form className="flex p-5 max-w-md flex-col gap-4   w-full bg-white">
+            <div className='Logo font-black flex align-middle translate-x-[-25px]'>
+              <img src='BabyStoryLogo.png' alt="" className='w-16 translate-y-[-5px] translate-x-3' />
+              <Link to="#"> <h2>Baby<span className='text-blue-500 font-semibold text-base '>Story</span></h2></Link>
+            </div>
                 <h2 className='font-bold'>Upload Proverbs</h2>
                 <div>
                     <div className="mb-2 ">

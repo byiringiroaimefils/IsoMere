@@ -7,6 +7,8 @@ import axios from "axios";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import htmlreactparser from 'html-react-parser'
+import { Link } from 'react-router-dom';
+
 
 
 import { toast } from "react-hot-toast"
@@ -54,6 +56,10 @@ function Component() {
     return (
         <div className='flex justify-center mt-14'>
             <form action="" method="POST" encType="multipart/form-data" className={`flex p-5 bg-white max-w-md flex-col gap-4  w-ful `} >
+                <div className='Logo font-black flex align-middle translate-x-[-25px]'>
+                    <img src='BabyStoryLogo.png' alt="" className='w-16 translate-y-[-5px] translate-x-3' />
+                    <Link to="#"> <h2>Baby<span className='text-blue-500 font-semibold text-base '>Story</span></h2></Link>
+                </div>
                 <h2 className='font-bold'>Upload Story</h2>
                 <div>
                     <div className="mb-2 ">
@@ -99,9 +105,9 @@ function Component() {
                             <CKEditor
                                 editor={ClassicEditor}
                                 data={Decription}
-                                onChange={(event,editor) => {
+                                onChange={(event, editor) => {
                                     setDecription(editor.getData());
-                                }}  />
+                                }} />
                         </div>
                     </div>
                 </div>

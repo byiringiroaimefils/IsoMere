@@ -29,7 +29,7 @@ const Header = () => {
   const Links = [
     { name: "Home", link: "/Homepge" },
     { name: "Proverbs", link: "/Proverbs" },
-    { name: "Preview", link: "/Preview" },
+    { name: "Bible's Story", link: "/Preview" },
     { name: "Setting", link: "/Setting" },
   ];
   const [open, setOpen] = useState(false);

@@ -2,6 +2,8 @@ import React from 'react'
 import NavBar from "./NavBar";
 import { useUser } from '@clerk/clerk-react';
 import { Link } from 'react-router-dom';
+import { MdThumbUp, MdThumbDown } from "react-icons/md";
+
 
 
 
@@ -12,11 +14,19 @@ export default function Preview() {
     isAdmin ?
       <>
         <NavBar />
-        <div className='text-center mt-28 w-full'>
-          <button className=' rounded-sm bg-[#2563eb]  text-white font-semibold py-1 px-4   mr-4'>
-            Page Not Found !!!!
-          </button>
-          <p className='text-gray-500'>Lorem ipsum dolor sit amet consectetur adipisicing elit. In blanditiis veniam deleniti natus</p>
+        <div className='m-28'>
+          <h2 className='font-bold'>The Story of the World’s Creation</h2>
+          <p className=''>
+            <span className='font-semibold'>Day 1 </span><br />
+            Light was the first thing that God created because before day 1, the earth was completely dark.
+            All throughout the creation saga, God employed this same method.He didn't achieve this by stirring a liquid,
+            making a fancy gesture, or using his hands in any way.  Instead, according to the Bible, light was created when God simply spoke.
+            God creates light and darkness. He separates them, putting the light in the sky and the darkness on the earth. He names the light "day" and the darkness
+            "night." He also establishes the cycle of day and night.
+          </p> <br />
+          <div className="icons flex gap-2">   
+            <MdThumbUp /><span className='translate-y-[-6px]'>0</span><MdThumbDown /><span className='translate-y-[-6px]'>0</span>
+          </div>
         </div>
       </>
       : <>
