@@ -21,7 +21,7 @@ const Home: FC = () => {
   const [Story, setStory] = useState<Story[]>([]);
   const [Loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  // useEffect(() => {
 
     const button = document.querySelectorAll(".buttons")
     button.forEach((button) => {
@@ -33,7 +33,7 @@ const Home: FC = () => {
         window.speechSynthesis.speak(speech)
       })
     })
-  }, [])
+  // }, [])
 
   useEffect(() => {
     axios.get("https://babystory-server.onrender.com/stories")

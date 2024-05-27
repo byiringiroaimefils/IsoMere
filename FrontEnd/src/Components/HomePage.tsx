@@ -42,8 +42,8 @@ export default function Homepge() {
             <button className='Login bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-4 rounded-full'>
               <SignInButton mode='modal' redirectUrl='/Homepge' />
             </button>
-            <button className='started  sm:flex-none md:flex-none font-semibold py-1 px-5 rounded-full border'>
-              Get started
+            <button className=' started  sm:flex-none md:flex-none font-bold py-1 px-5 rounded-full border'>
+             Join us
               {/* <SignInButton mode='modal' redirectUrl='/Homepge' /> */}
             </button>
             <div className='Moon my-2 px-5' onClick={ThemeSwitch}>
@@ -63,9 +63,11 @@ export default function Homepge() {
             <h2 className=' font-bold  text-center text-5xl ' >Train your children with  <span className='text-blue-600 '>BabyStory </span> <br />by Enhance reading through Stories and Proverbs</h2> <br />
             <p className='font-light text-gray-600 text-center  w-full'>Our children must be good in reading short stories and Proverbs with their meaning prepaired with Parent <br />by managing what must your child has to read and tell them Special <br />event happened in past.</p>
             <div className='buttton text-center mt-10'>
-              <button className=' bg-blue-500  text-white font-semibold py-1 px-4 rounded-full  mr-4'>
+            <SignInButton mode='modal' redirectUrl='/Homepge' >
+              <span className=' cursor-pointer bg-blue-500  text-white font-semibold py-1 px-4 rounded-full  mr-4'>
                 Get started
-              </button>
+              </span>
+            </SignInButton>
               <button className=' font-semibold py-1 px-4 rounded-full border'>
                 Subscription
               </button>

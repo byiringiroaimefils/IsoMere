@@ -37,4 +37,4 @@
    Deployment,.
    1.Frontend Development hosted on Vercel free hosting.
    2.Backend Devlopment hosted on Render is freeHosting
-     --------End of smalle Documentation
+     --------End of smalle Documentation------
