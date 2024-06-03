@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import NavBar from "./NavBar";
@@ -29,7 +29,7 @@ const Proverb: FC = () => {
         setLoading(false)
       })
   }, [])
-  
+
   return (
     <>
       <NavBar />
@@ -43,7 +43,7 @@ const Proverb: FC = () => {
             ) : (
               <div>
                 {
-                  Proverb.map(({ id, TitleofProverb, Proverb,createdAt }) => (
+                  Proverb.map(({ id, TitleofProverb, Proverb, createdAt }) => (
                     <div key={id} className='ml-10 mr-10'>
                       <div className='Header '>
                         <h2 className='font-bold  text-base '>{TitleofProverb}</h2>
@@ -53,8 +53,8 @@ const Proverb: FC = () => {
                         <p className='text-sm font-thin text-gray-400'>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</p> <br />
                       </div>
                       <div className="icons flex gap-2 mb-5">
-                      <MdThumbUp /><span className='translate-y-[-6px]'>0</span><MdThumbDown /><span className='translate-y-[-6px]'>0</span>
-                    </div>
+                        <MdThumbUp /><span className='translate-y-[-6px]'>0</span><MdThumbDown /><span className='translate-y-[-6px]'>0</span>
+                      </div>
                     </div>
                   ))
                 }

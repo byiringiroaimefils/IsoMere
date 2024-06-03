@@ -14,7 +14,12 @@ if (!PUBLISHABLE_KEY) {
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ErrorBoundary fallback={<div>Something went wrong</div>}>
+    <ErrorBoundary fallback={
+      <div className='flex top-[50%] left-[50%]'>
+        <h2>Something Went Wrong !!!</h2>
+        <p>Please reload </p>
+      </div>
+    }>
       <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
         <App />
       </ClerkProvider>

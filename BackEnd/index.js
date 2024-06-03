@@ -35,7 +35,7 @@ Mongoose.connect(process.env.MONGODB_URI)
 
 //-------SERVER FOR STORY------- 
 const Stories = Mongoose.model("Story", DBSchema, "Story");
-App.post("/story", (req, resp) => {
+App.post("/story",(req, resp) => {
   const newStory = {
     Title: req.body.TofStory,
     Author: req.body.Author,
@@ -51,6 +51,8 @@ App.post("/story", (req, resp) => {
     .catch((err) => {
       console.log("Error", err);
     });
+
+
 });
 
 
@@ -86,7 +88,7 @@ App.delete("/deleteStory/:id", (req, resp) => {
     });
 });
 
-App.put("/deleteProverb:id", (req, resp) => {
+App.put("/EditProverb:id", (req, resp) => {
   const newStory = {
     Title: req.body.TofStory,
     Author: req.body.Author,
@@ -178,12 +180,9 @@ App.put("/EditProverb:id", (req, resp) => {
 
 
 //-----SERVER FOR UPLOADS-----
-App.post('/upload', upload.single('file'), (req, res) => {
-  Stories.create({
-    image: req.file.filename
-  }).then((res)=>JSON(res))
-  .catch((err)=>console.log(err));
-});
+// App.post('/upload', upload.single('file'), (req, res) => {
+
+// });
 
 
 

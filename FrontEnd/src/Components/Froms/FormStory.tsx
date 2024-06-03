@@ -8,10 +8,10 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import htmlreactparser from 'html-react-parser'
 import { Link } from 'react-router-dom';
-
-
-
 import { toast } from "react-hot-toast"
+
+
+
 function Component() {
     const navigate = useNavigate()
     const [TofStory, setTofStory] = useState('');
@@ -19,13 +19,14 @@ function Component() {
     const [Author, setAuthor] = useState('');
     const [Decription, setDecription] = useState('');
 
-    const HandleFunction = (e: React.FormEvent<HTMLFormElement>, Decription: string) => {
+    const HandleFunction = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log(htmlreactparser(Decription))
         const Data = {
             TofStory,
             Author,
-            Description: htmlreactparser(Decription)
+            Image,
+            Decription
         }
         axios.post(`http://localhost:8080/story`, Data)
             .then((respond) => {
@@ -36,18 +37,6 @@ function Component() {
             .catch((error) => {
                 console.log(error)
                 toast.error("This didn't work")
-            })
-
-        const formData = new FormData();
-        if (Image) {
-            formData.append("file", Image);
-        }
-        axios.post(`http://localhost:8080/upload`, formData)
-            .then((respond) => {
-                console.log(respond.data);
-            })
-            .catch((error) => {
-                console.log(error)
             })
     }
 
@@ -72,14 +61,10 @@ function Component() {
                         <div className="mb-2 block">
                             <Label htmlFor='file-upload' value="Image" />
                             <input
-                                type='file'
+                                type='text'
                                 className='md:w-[99%] w-[99%] border p-2'
                                 placeholder='Link of your Image'
-                                onChange={(e) => {
-                                    if (e.target.files) {
-                                        setImage(e.target.files[0]);
-                                    }
-                                }}
+                                onChange={(e) => setImage(e.target.value)}
                             />
                         </div>
                     </div>

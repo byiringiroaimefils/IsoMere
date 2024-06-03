@@ -72,8 +72,8 @@ export default function App() {
           <Route path="FormProverb" element={<FormProverb />} />
           <Route path="story/:id" element={<ViewStory />} />
           <Route path="proverb/:id" element={<ViewProverb />} />
-          <Route path="EditStory" element={<EditStory />} />
-          <Route path="EditProverb" element={<EditProverb/>} />
+          <Route path="EditStory/:id" element={<EditStory />} />
+          <Route path="EditProverb/:id" element={<EditProverb/>} />
           <Route path="deleteProveb/:id" element={<DeleteProverb/>} />
           <Route path="deleteStory/:id" element={<DeleteStory />} />
         </Routes>

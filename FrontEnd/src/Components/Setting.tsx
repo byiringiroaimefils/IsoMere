@@ -22,6 +22,9 @@ export default function Parent() {
           <Link to='Proverb'>
             <Button color="blue" className='border-none'>Upload Your Proverbs</Button>
           </Link>
+          <Link to=''>
+            <Button color="blue" className='border-none'>Upload Your Biblical Story</Button>
+          </Link>
         </div>
         <div className='w-screen'>
           <Outlet />

@@ -69,7 +69,7 @@ export default function Homepge() {
               </span>
             </SignInButton>
               <button className=' font-semibold py-1 px-4 rounded-full border'>
-                Subscription
+               SUBSCRIPTION
               </button>
             </div>
           </div>

@@ -1,31 +1,49 @@
 
-import React from 'react'
-import { useNavigate } from "react-router-dom"
-import { Button, Label, Textarea } from "flowbite-react";
-import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom"
+import { Button, Label } from "flowbite-react";
+import { useState, useEffect } from "react";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import { toast } from "react-hot-toast"
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import axios from "axios";
 
-import { toast } from "react-hot-toast"
+
+
+
 function Component() {
-
-
     const navigate = useNavigate()
     const [TofStory, setTofStory] = useState({});
     const [Image, setImage] = useState();
     const [Author, setAuthor] = useState({});
     const [Decription, setDecription] = useState({});
-    const [showForm, setShowForm] = useState(false);
+    const { id } = useParams()
 
-    const HandleFunction = (e) => {
+
+    useEffect(() => {
+        axios.get(`http://localhost:8080/story/${id}`)
+            .then((respond) => {
+                setTofStory(respond.data.title)
+                setAuthor(respond.data.Author)
+                setDecription(respond.data.Decription)
+                console.log(respond.data);
+
+            })
+            .catch((error) => {
+                console.log(error)
+                toast.error("This didn't work")
+            })
+    }, [])
+
+
+    const HandleFunction = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-
         const Data = {
             TofStory,
             Author,
+            Image,
             Decription
         }
-        axios.post(`http://localhost:8080/story`, Data)
+        axios.post(`http://localhost:8080/EditProverb${id}`, Data)
             .then((respond) => {
                 console.log(respond.data);
                 navigate("/Setting");
@@ -35,28 +53,16 @@ function Component() {
                 console.log(error)
                 toast.error("This didn't work")
             })
-
-
-
-        const formData = new FormData();
-        if (Image) {
-            formData.append("file", Image);
-        }
-        axios.post(`http://localhost:8080/upload`, formData)
-            .then((respond) => {
-                console.log(respond.data);
-            })
-            .catch((error) => {
-                console.log(error)
-            })
     }
+
+
+
 
 
 
     return (
         <div className='flex justify-center mt-14'>
-            <form action="" method="POST" encType="multipart/form-data" className={`flex p-5 bg-white max-w-md flex-col gap-4  w-ful ${showForm ? 'hidden' : 'flex'}`} >
-                {/* <span onClick={() => setShowForm(!showForm)}>Cross</span> */}
+            <form action="" method="POST" encType="multipart/form-data" className={`flex p-5 bg-white max-w-md flex-col gap-4  w-ful`} >
                 <h2 className='font-bold'>Upload Story</h2>
                 <div>
                     <div className="mb-2 ">
@@ -70,14 +76,11 @@ function Component() {
                         <div className="mb-2 block">
                             <Label htmlFor='file-upload' value="Image" />
                             <input
-                                type='file'
+                                type='text'
                                 className='md:w-96 w-[99%] border p-2'
                                 placeholder='Link of your Image'
-                                onChange={(e) => {
-                                    if (e.target.files) {
-                                        setImage(e.target.files[0]);
-                                    }
-                                }}
+                                onChange={(e) => setImage(e.target.value)}
+                             
                             />
 
                         </div>
@@ -101,7 +104,14 @@ function Component() {
                         <div className="mb-2 block">
                             <Label htmlFor="comment" value="Your Story" />
                         </div>
-                        <Textarea id="comment" placeholder="Leave a Story..." required rows={4} className='pl-2 pt-2 md:w-96 w-[99%]' onChange={(e) => setDecription(e.target.value)} />
+                        <div>
+                            <CKEditor
+                                editor={ClassicEditor}
+                                data={Decription}
+                                onChange={(event, editor) => {
+                                    setDecription(editor.getData());
+                                }} />
+                        </div>
                     </div>
                 </div>
                 <div>

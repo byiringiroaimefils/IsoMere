@@ -62,7 +62,7 @@ function Component() {
                                     setProverb(editor.getData());
                                 }}  />
                         </div>
-                        {/* <Textarea id="Proverb" placeholder="Leave a Proverb..." required rows={4} className='pl-2 pt-2 md:w-96 w-[99%]'  onChange={(e) => { setProverb(e.target.value) }} /> */}
+                       
                     </div>
                 </div>
                 <div>

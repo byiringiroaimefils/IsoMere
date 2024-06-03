@@ -20,19 +20,47 @@ interface Story {
 const Home: FC = () => {
   const [Story, setStory] = useState<Story[]>([]);
   const [Loading, setLoading] = useState(true);
+  const [count, setCount] = useState(0);
+  const [counter, setCounter] = useState(0);
+  const increment = () => {
+    setCount(count + 1)
+    if (counter > 0) {
+      setCounter(counter - 1)
+
+    } else {
+      console.log('rejected')
+    }
+
+
+  }
+  const decrement = () => {
+    setCounter(counter + 1)
+    if (count > 0) {
+      setCount(count - 1)
+
+
+    } else {
+      console.log('rejected')
+    }
+
+  }
+
+
+
+
 
   // useEffect(() => {
 
-    const button = document.querySelectorAll(".buttons")
-    button.forEach((button) => {
-      button.addEventListener('click', (e) => {
-        const buttonValue = e.target.value
-        const speech = new SpeechSynthesisUtterance();
-        speech.text = buttonValue
+  const button = document.querySelectorAll(".buttons")
+  button.forEach((button) => {
+    button.addEventListener('click', (e) => {
+      const buttonValue = e.target.value
+      const speech = new SpeechSynthesisUtterance();
+      speech.text = buttonValue
       console.log(buttonValue)
-        window.speechSynthesis.speak(speech)
-      })
+      window.speechSynthesis.speak(speech)
     })
+  })
   // }, [])
 
   useEffect(() => {
@@ -78,7 +106,7 @@ const Home: FC = () => {
                     </div>
                     <div className="icons flex gap-2">
                       {/* <p>Is this page helpful?</p> */}
-                      <MdThumbUp /><span className='translate-y-[-6px]'>0</span><MdThumbDown /><span className='translate-y-[-6px]'>0</span>
+                      <MdThumbUp  onClick={increment} /><span className='translate-y-[-6px]'>{count}</span><MdThumbDown onClick={decrement} /><span className='translate-y-[-6px]'>{counter}</span>
                     </div>
                   </div>
                 ))}
@@ -109,32 +137,32 @@ const Home: FC = () => {
                   <h4 className='font-extrabold '>Alphabetics</h4>
                   <p className='text-sm font-thin text-gray-400'>Click to any Alphabetic then listen how to read!!   </p>
                   <div className='buttons grid grid-cols-6 gap-2 mt-4 '>
-                      <button value='A' className='border p-2 font-base hover:text-blue-500'>Aa</button>
-                      <button value='B' className='border p-2 font-base hover:text-blue-500'>Bb</button>
-                      <button value='C' className='border p-2 font-base hover:text-blue-500'>Cc</button>
-                      <button value='D' className='border p-2 font-base hover:text-blue-500'>Dd</button>
-                      <button value='E' className='border p-2 font-base hover:text-blue-500'>Ee</button>
-                      <button value='F' className='border p-2 font-base hover:text-blue-500'>Ff</button>
-                      <button value='G' className='border p-2 font-base hover:text-blue-500'>Gg</button>
-                      <button value='H' className='border p-2 font-base hover:text-blue-500'>Hh</button>
-                      <button value='I' className='border p-2 font-base hover:text-blue-500'>Ii</button>
-                      <button value='J' className='border p-2 font-base hover:text-blue-500'>Jj</button>
-                      <button value='K' className='border p-2 font-base hover:text-blue-500'>Kk</button>
-                      <button value='L' className='border p-2 font-base hover:text-blue-500'>Ll</button>
-                      <button value='M' className='border p-2 font-base hover:text-blue-500'>Mm</button>
-                      <button value='N' className='border p-2 font-base hover:text-blue-500'>Nn</button>
-                      <button value='O' className='border p-2 font-base hover:text-blue-500'>Oo</button>
-                      <button value='P' className='border p-2 font-base hover:text-blue-500'>Pp</button>
-                      <button value='Q' className='border p-2 font-base hover:text-blue-500'>Qq</button>
-                      <button value='R' className='border p-2 font-base hover:text-blue-500'>Rr</button>
-                      <button value='S' className='border p-2 font-base hover:text-blue-500'>Ss</button>
-                      <button value='T' className='border p-2 font-base hover:text-blue-500'>Tt</button>
-                      <button value='U' className='border p-2 font-base hover:text-blue-500'>Uu</button>
-                      <button value='V' className='border p-2 font-base hover:text-blue-500'>Vv</button>
-                      <button value='W' className='border p-2 font-base hover:text-blue-500'>Ww</button>
-                      <button value='X' className='border p-2 font-base hover:text-blue-500'>Xx</button>
-                      <button value='Y' className='border p-2 font-base hover:text-blue-500'>Yy</button>
-                      <button value='Z' className='border p-2 font-base hover:text-blue-500'>Zz</button>
+                    <button value='A' className='border p-2 font-base hover:text-blue-500'>Aa</button>
+                    <button value='B' className='border p-2 font-base hover:text-blue-500'>Bb</button>
+                    <button value='C' className='border p-2 font-base hover:text-blue-500'>Cc</button>
+                    <button value='D' className='border p-2 font-base hover:text-blue-500'>Dd</button>
+                    <button value='E' className='border p-2 font-base hover:text-blue-500'>Ee</button>
+                    <button value='F' className='border p-2 font-base hover:text-blue-500'>Ff</button>
+                    <button value='G' className='border p-2 font-base hover:text-blue-500'>Gg</button>
+                    <button value='H' className='border p-2 font-base hover:text-blue-500'>Hh</button>
+                    <button value='I' className='border p-2 font-base hover:text-blue-500'>Ii</button>
+                    <button value='J' className='border p-2 font-base hover:text-blue-500'>Jj</button>
+                    <button value='K' className='border p-2 font-base hover:text-blue-500'>Kk</button>
+                    <button value='L' className='border p-2 font-base hover:text-blue-500'>Ll</button>
+                    <button value='M' className='border p-2 font-base hover:text-blue-500'>Mm</button>
+                    <button value='N' className='border p-2 font-base hover:text-blue-500'>Nn</button>
+                    <button value='O' className='border p-2 font-base hover:text-blue-500'>Oo</button>
+                    <button value='P' className='border p-2 font-base hover:text-blue-500'>Pp</button>
+                    <button value='Q' className='border p-2 font-base hover:text-blue-500'>Qq</button>
+                    <button value='R' className='border p-2 font-base hover:text-blue-500'>Rr</button>
+                    <button value='S' className='border p-2 font-base hover:text-blue-500'>Ss</button>
+                    <button value='T' className='border p-2 font-base hover:text-blue-500'>Tt</button>
+                    <button value='U' className='border p-2 font-base hover:text-blue-500'>Uu</button>
+                    <button value='V' className='border p-2 font-base hover:text-blue-500'>Vv</button>
+                    <button value='W' className='border p-2 font-base hover:text-blue-500'>Ww</button>
+                    <button value='X' className='border p-2 font-base hover:text-blue-500'>Xx</button>
+                    <button value='Y' className='border p-2 font-base hover:text-blue-500'>Yy</button>
+                    <button value='Z' className='border p-2 font-base hover:text-blue-500'>Zz</button>
                   </div>
 
                 </div>
