@@ -88,7 +88,7 @@ App.delete("/deleteStory/:id", (req, resp) => {
     });
 });
 
-App.put("/EditProverb:id", (req, resp) => {
+App.put("/EditStory/:id", (req, resp) => {
   const newStory = {
     Title: req.body.TofStory,
     Author: req.body.Author,
@@ -161,7 +161,7 @@ App.delete("/deleteProverb/:id", (req, resp) => {
     });
 });
 
-App.put("/EditProverb:id", (req, resp) => {
+App.put("/EditProverb/:id", (req, resp) => {
 
   const newProverb = {
     TitleofProverb: req.body.Tofproverb,

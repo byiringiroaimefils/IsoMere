@@ -99,7 +99,7 @@ const Pro: FC = () => {
                             <Link to={`/deleteProveb/${_id}`}>
                               <MdDeleteForever className="hover:text-red-700" />
                             </Link>
-                            <Link to='/Edit'>
+                            <Link to={`/editP/${_id}`}>
                               <MdEditSquare />
                             </Link>
                             <Link to={`/proverb/${_id}`}>

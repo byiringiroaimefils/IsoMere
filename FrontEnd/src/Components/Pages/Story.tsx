@@ -103,7 +103,7 @@ const Story: FC = () => {
                           <Link to={`/deleteStory/${_id}`} >
                             <MdDeleteForever className="hover:text-red-700" />
                           </Link>
-                          <Link to='/EditStory'>
+                          <Link to={`/editS/${_id}`}>
                             <MdEditSquare />
                           </Link>
                           <Link to={`/story/${_id}`}>
@@ -130,7 +130,7 @@ const Story: FC = () => {
                         <Link to={`/deleteStory/${_id}`}>
                           <MdDeleteForever className="hover:text-red-700 text-lg" />
                         </Link>
-                        <Link to='/Edit'>
+                        <Link to={`/editS/${_id}`}>
                           <MdEditSquare className="text-lg" />
                         </Link>
                         <Link to={`/story/${_id}`}>

@@ -1,6 +1,6 @@
 // import React from 'react'
 import { Button, Label } from "flowbite-react";
-import { useParams } from "react-router-dom"
+import { useParams ,Link} from "react-router-dom"
 import { useState, useEffect } from "react";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -16,8 +16,8 @@ function Component() {
 
         axios.get(`http://localhost:8080/proverb/${id}`)
             .then((respond) => {
-                setTofproverb(respond.data.title)
-                setProverb(respond.data.proverb)
+                setTofproverb(respond.data.TitleofProverb)
+                setProverb(respond.data.Proverb)
                 console.log(respond.data);
             })
             .catch((error) => {
@@ -34,7 +34,7 @@ function Component() {
             Proverb
         }
 
-        axios.post(`http://localhost:8080/EditProverb${id}`, Data)
+        axios.put(`http://localhost:8080/EditProverb/${id}`, Data)
             .then((respond) => {
                 console.log(respond.data);
                 toast.success("Successful Proverbs Added")
@@ -47,12 +47,16 @@ function Component() {
     
     return (
         <div className='flex justify-center mt-8 '>
-            <form className="flex p-5 max-w-md flex-col gap-4   w-full bg-white">
+            <form className="flex p-5 max-w-md flex-col gap-4 w-full bg-white">
+            <div className='Logo font-black flex align-middle translate-x-[-25px]'>
+              <img src='BabyStoryLogo.png' alt="" className='w-16 translate-y-[-5px] translate-x-3' />
+              <Link to="#"> <h2>Baby<span className='text-blue-500 font-semibold text-base '>Story</span></h2></Link>
+            </div>
                 <h2 className='font-bold'>Upload Proverbs</h2>
                 <div>
                     <div className="mb-2 ">
                         <Label htmlFor="title" value="Title" />
-                        <input type="text" id="title" className='border md:w-96 w-[99%] outline-none p-2'  placeholder="Title of Story" required  onChange={(e) => { setTofproverb(e.target.value) }} />
+                        <input type="text" id="title" className='border md:w-96 w-[99%] outline-none p-2'  placeholder="Title of Story" required value={Tofproverb}  onChange={(e) => { setTofproverb(e.target.value) }} />
                     </div>
                 </div>
                 <div>
@@ -64,6 +68,7 @@ function Component() {
                             <CKEditor
                                 editor={ClassicEditor}
                                 data={Proverb}
+                                value={Proverb}
                                 onChange={(event, editor) => {
                                     setProverb(editor.getData());
                                 }} />

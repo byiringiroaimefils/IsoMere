@@ -1,5 +1,5 @@
 
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams ,Link} from "react-router-dom"
 import { Button, Label } from "flowbite-react";
 import { useState, useEffect } from "react";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -18,11 +18,11 @@ function Component() {
     const [Decription, setDecription] = useState({});
     const { id } = useParams()
 
-
     useEffect(() => {
         axios.get(`http://localhost:8080/story/${id}`)
             .then((respond) => {
-                setTofStory(respond.data.title)
+                setTofStory(respond.data.Title)
+                setImage(respond.data.image)
                 setAuthor(respond.data.Author)
                 setDecription(respond.data.Decription)
                 console.log(respond.data);
@@ -63,11 +63,15 @@ function Component() {
     return (
         <div className='flex justify-center mt-14'>
             <form action="" method="POST" encType="multipart/form-data" className={`flex p-5 bg-white max-w-md flex-col gap-4  w-ful`} >
+                <div className='Logo font-black flex align-middle translate-x-[-25px]'>
+                    <img src='BabyStoryLogo.png' alt="" className='w-16 translate-y-[-5px] translate-x-3' />
+                    <Link to="#"> <h2>Baby<span className='text-blue-500 font-semibold text-base '>Story</span></h2></Link>
+                </div>
                 <h2 className='font-bold'>Upload Story</h2>
                 <div>
                     <div className="mb-2 ">
                         <Label htmlFor='title' value="Title" /><br />
-                        <input type="text" id='title' className='border w-[95%] outline-none p-2 rounded-sm' placeholder="Title of Story" onChange={(e) => setTofStory(e.target.value)} />
+                        <input type="text" id='title' className='border w-[95%] outline-none p-2 rounded-sm' placeholder="Title of Story" value={TofStory} onChange={(e) => setTofStory(e.target.value)} />
                     </div>
 
                 </div>
@@ -79,8 +83,9 @@ function Component() {
                                 type='text'
                                 className='md:w-96 w-[99%] border p-2'
                                 placeholder='Link of your Image'
+                                value={Image}
                                 onChange={(e) => setImage(e.target.value)}
-                             
+
                             />
 
                         </div>
@@ -108,6 +113,7 @@ function Component() {
                             <CKEditor
                                 editor={ClassicEditor}
                                 data={Decription}
+                                value={Decription}
                                 onChange={(event, editor) => {
                                     setDecription(editor.getData());
                                 }} />

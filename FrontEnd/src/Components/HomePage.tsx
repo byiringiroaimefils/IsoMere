@@ -31,7 +31,7 @@ export default function Homepge() {
     <>
 
       <header>
-        <div className='Contaoiner shadow-sm flex justify-between mt-4 p-5'>
+        <div className='Contaoiner shadow-sm flex justify-between mt-4 p-5 '>
           <div className='flex translate-y-1'>
             <div className='Logo font-black flex '>
               <img src='BabyStoryLogo.png' alt="" className='w-16 translate-y-[-5px] translate-x-3' />
@@ -43,7 +43,7 @@ export default function Homepge() {
               <SignInButton mode='modal' redirectUrl='/Homepge' />
             </button>
             <button className=' started  sm:flex-none md:flex-none font-bold py-1 px-5 rounded-full border'>
-             Join us
+              Join us
               {/* <SignInButton mode='modal' redirectUrl='/Homepge' /> */}
             </button>
             <div className='Moon my-2 px-5' onClick={ThemeSwitch}>
@@ -58,22 +58,25 @@ export default function Homepge() {
         </div>
       </header>
       <main>
-        <div className='ContainerHome'>
-          <div className='mt-40 w-full pb-10'>
-            <h2 className=' font-bold  text-center text-5xl ' >Train your children with  <span className='text-blue-600 '>BabyStory </span> <br />by Enhance reading through Stories and Proverbs</h2> <br />
-            <p className='font-light text-gray-600 text-center  w-full'>Our children must be good in reading short stories and Proverbs with their meaning prepaired with Parent <br />by managing what must your child has to read and tell them Special <br />event happened in past.</p>
-            <div className='buttton text-center mt-10'>
-            <SignInButton mode='modal' redirectUrl='/Homepge' >
-              <span className=' cursor-pointer bg-blue-500  text-white font-semibold py-1 px-4 rounded-full  mr-4'>
-                Get started
-              </span>
-            </SignInButton>
-              <button className=' font-semibold py-1 px-4 rounded-full border'>
-               SUBSCRIPTION
-              </button>
+        <div className="h-[40rem] w-full Dark:bg-black bg-white  dark:bg-grid-white/[0.1] bg-grid-black/[.05] relative flex items-center justify-center">
+          <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+          <div className='ContainerHome translate-y-[-9%]  bg-white/5 backdrop-filter '>
+            <div className='mt-40 w-full pb-10'>
+              <h2 className=' font-bold  text-center text-5xl ' >Train your children with  <span className='text-blue-600 '>BabyStory </span> <br />by Enhance reading through Stories and Proverbs</h2> <br />
+              <p className='font-light text-gray-600 text-center  w-full'>Our children must be good in reading short stories and Proverbs with their meaning prepaired with Parent <br />by managing what must your child has to read and tell them Special <br />event happened in past.</p>
+              <div className='buttton text-center mt-10'>
+                <SignInButton mode='modal' redirectUrl='/Homepge' >
+                  <span className=' cursor-pointer bg-blue-500  text-white font-semibold py-1 px-4 rounded-full  mr-4'>
+                    Get started
+                  </span>
+                </SignInButton>
+                <button className=' font-semibold py-1 px-4 rounded-full border'>
+                  SUBSCRIPTION
+                </button>
+              </div>
             </div>
-          </div>
 
+          </div>
         </div>
       </main>
     </>
