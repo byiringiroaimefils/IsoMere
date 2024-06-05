@@ -43,7 +43,7 @@ function Component() {
             Image,
             Decription
         }
-        axios.post(`http://localhost:8080/EditProverb${id}`, Data)
+        axios.put(`http://localhost:8080/EditProverb/${id}`, Data)
             .then((respond) => {
                 console.log(respond.data);
                 navigate("/Setting");

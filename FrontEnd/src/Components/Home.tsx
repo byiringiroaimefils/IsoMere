@@ -101,7 +101,7 @@ const Home: FC = () => {
                       <img src={image} alt="" className='w-full  object-cover' />
                     </div>
                     <div className='Description mt-4'>
-                      <p>{Decription}</p>
+                      <p dangerouslySetInnerHTML={{ __html:Decription }}/>
                       <p className='text-sm font-thin text-gray-400'>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</p> <br />
                     </div>
                     <div className="icons flex gap-2">

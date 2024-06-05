@@ -49,7 +49,7 @@ const Proverb: FC = () => {
                         <h2 className='font-bold  text-base '>{TitleofProverb}</h2>
                       </div>
                       <div className='Description mt-2 '>
-                        <p>{Proverb}</p>
+                        <p dangerouslySetInnerHTML={{ __html:Proverb }}/>
                         <p className='text-sm font-thin text-gray-400'>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</p> <br />
                       </div>
                       <div className="icons flex gap-2 mb-5">
