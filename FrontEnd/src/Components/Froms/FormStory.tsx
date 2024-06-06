@@ -76,7 +76,7 @@ function Component() {
                         </div>
                         <select id='Author' className='md:w-[99%] w-[99%] border p-2' onChange={(e) => setAuthor(e.target.value)}>
                             <option value='Parents' >Select</option>
-                            <option value='Parents'>Parents</option>
+                            <option value='Author ( aimefils173@gmail.com )'>Author ( aimefils173@gmail.com )</option>
                             <option value='Others'>Others</option>
                         </select>
                     </div>

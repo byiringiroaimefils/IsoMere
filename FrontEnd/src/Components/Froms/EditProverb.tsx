@@ -9,8 +9,8 @@ import { toast } from "react-hot-toast"
 
 
 function Component() {
-    const [Tofproverb, setTofproverb] = useState({});
-    const [Proverb, setProverb] = useState({});
+    const [Tofproverb, setTofproverb] = useState('');
+    const [Proverb, setProverb] = useState('');
     const { id } = useParams();
     useEffect(() => {
 
@@ -44,19 +44,19 @@ function Component() {
                 toast.error("This didn't work")
             })
     }
-    
+
     return (
         <div className='flex justify-center mt-8 '>
-            <form className="flex p-5 max-w-md flex-col gap-4 w-full bg-white">
-            <div className='Logo font-black flex align-middle translate-x-[-25px]'>
-              <img src='BabyStoryLogo.png' alt="" className='w-16 translate-y-[-5px] translate-x-3' />
-              <Link to="#"> <h2>Baby<span className='text-blue-500 font-semibold text-base '>Story</span></h2></Link>
-            </div>
+            <form className="flex p-5 max-w-md flex-col gap-4 w-full bg-white" onSubmit={HandleFunction}>
+                <div className='Logo font-black flex align-middle translate-x-[-25px]'>
+                    <img src='BabyStoryLogo.png' alt="" className='w-16 translate-y-[-5px] translate-x-3' />
+                    <Link to="#"> <h2>Baby<span className='text-blue-500 font-semibold text-base '>Story</span></h2></Link>
+                </div>
                 <h2 className='font-bold'>Upload Proverbs</h2>
                 <div>
                     <div className="mb-2 ">
                         <Label htmlFor="title" value="Title" />
-                        <input type="text" id="title" className='border md:w-96 w-[99%] outline-none p-2'  placeholder="Title of Story" required value={Tofproverb}  onChange={(e) => { setTofproverb(e.target.value) }} />
+                        <input type="text" id="title" className='border md:w-96 w-[99%] outline-none p-2' placeholder="Title of Story" required value={Tofproverb} onChange={(e) => { setTofproverb(e.target.value) }} />
                     </div>
                 </div>
                 <div>
@@ -68,7 +68,6 @@ function Component() {
                             <CKEditor
                                 editor={ClassicEditor}
                                 data={Proverb}
-                                value={Proverb}
                                 onChange={(event, editor) => {
                                     setProverb(editor.getData());
                                 }} />
@@ -78,7 +77,7 @@ function Component() {
                 </div>
                 <div>
                 </div>
-                <Button color="blue" className='md:w-96 w-[99%]' onClick={HandleFunction}>Upload</Button>
+                <Button color="blue" className='md:w-96 w-[99%]' onClick="submit">Upload</Button>
             </form>
         </div>
     );
