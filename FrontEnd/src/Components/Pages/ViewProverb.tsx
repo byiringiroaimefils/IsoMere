@@ -20,7 +20,7 @@ const Proverb: FC = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/proverb/${id}`)
+    axios.get(`https://babystory-server.onrender.com/proverb/${id}`)
       .then((data) => {
         setProverb(data.data);
         setLoading(false)

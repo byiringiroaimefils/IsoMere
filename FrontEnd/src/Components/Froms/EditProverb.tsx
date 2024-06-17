@@ -37,7 +37,7 @@ function Component() {
         axios.put(`http://localhost:8080/EditProverb/${id}`, Data)
             .then((respond) => {
                 console.log(respond.data);
-                toast.success("Successful Proverbs Added")
+                toast.success("Successful Proverbs updated")
             })
             .catch((error) => {
                 console.log(error)
@@ -77,7 +77,7 @@ function Component() {
                 </div>
                 <div>
                 </div>
-                <Button color="blue" className='md:w-96 w-[99%]' onClick="submit">Upload</Button>
+                <Button color="blue" className='md:w-96 w-[99%]' type="submit">Upload</Button>
             </form>
         </div>
     );

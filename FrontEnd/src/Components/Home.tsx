@@ -5,6 +5,7 @@ import { FC } from "react"
 import ReactPlayer from "react-player"
 import Load from "./Pages/Loading";
 import { MdThumbUp, MdThumbDown } from "react-icons/md";
+import story from"../assets/Guess_How_Much_I_Love_You.pdf"
 
 
 
@@ -49,7 +50,7 @@ const Home: FC = () => {
 
 
 
-  // useEffect(() => {
+  useEffect(() => {
 
   const button = document.querySelectorAll(".buttons")
   button.forEach((button) => {
@@ -61,7 +62,7 @@ const Home: FC = () => {
       window.speechSynthesis.speak(speech)
     })
   })
-  // }, [])
+  }, [])
 
   useEffect(() => {
     axios.get("https://babystory-server.onrender.com/stories")
@@ -114,17 +115,17 @@ const Home: FC = () => {
               <div className='UpdatedStory mt-5 mr-12 '>
                 <div className="topstory">
                   <h4 className='font-extrabold'>Top Stories</h4>
-                  <p className='text-sm font-thin text-gray-400'>Lorem ipsum dolor sit amet consectetur</p>
+                  <p className='text-sm font-thin text-gray-400'>Here you can download topest Story</p>
 
                   <ul>
-                    <li className='text-lg cursor-pointer'><span className='text-gray-400 text-xl  '>1.</span> <a href="">Guess How Much I Love You?</a> </li>
-                    <li className='text-lg cursor-pointer'><span className='text-gray-400 text-xl'>2.</span><a href="">The Tale of Peter Rabbit.</a></li>
-                    <li className='text-lg cursor-pointer'><span className='text-gray-400 text-xl'>3.</span> <a href="">Alice's Adventures in Wonderland.</a> </li>
+                    <li className='text-lg cursor-pointer'><span className='text-gray-400 text-xl  '>1.</span> <a href="" download={story}>Guess How Much I Love You?</a> </li>
+                    <li className='text-lg cursor-pointer'><span className='text-gray-400 text-xl'>2.</span><a href="" download={story}>The Tale of Peter Rabbit.</a></li>
+                    <li className='text-lg cursor-pointer'><span className='text-gray-400 text-xl'>3.</span> <a href="" download={story}>Alice's Adventures in Wonderland.</a> </li>
                   </ul>
                 </div>
                 <div className="Video mt-20 ">
                   <h4 className='font-extrabold'>Video</h4>
-                  <p className='text-sm font-thin text-gray-400'>Lorem ipsum dolor sit amet consectetur</p> <br />
+                  <p className='text-sm font-thin text-gray-400'>Open beatful cartoon</p> <br />
                   <ReactPlayer
                     className='react-player'
                     controls

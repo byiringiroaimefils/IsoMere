@@ -47,7 +47,7 @@ function Component() {
             .then((respond) => {
                 console.log(respond.data);
                 navigate("/Setting");
-                toast.success("Successful Story Added")
+                toast.success("Successful Story Updated")
             })
             .catch((error) => {
                 console.log(error)
@@ -62,7 +62,7 @@ function Component() {
 
     return (
         <div className='flex justify-center mt-14'>
-            <form action="" method="POST" encType="multipart/form-data" className={`flex p-5 bg-white max-w-md flex-col gap-4  w-ful`} >
+            <form action="" onSubmit={HandleFunction} method="POST" encType="multipart/form-data" className={`flex p-5 bg-white max-w-md flex-col gap-4  w-ful`} >
                 <div className='Logo font-black flex align-middle translate-x-[-25px]'>
                     <img src='BabyStoryLogo.png' alt="" className='w-16 translate-y-[-5px] translate-x-3' />
                     <Link to="#"> <h2>Baby<span className='text-blue-500 font-semibold text-base '>Story</span></h2></Link>
@@ -123,7 +123,7 @@ function Component() {
                 <div>
                 </div>
 
-                <Button color="blue" className='md:w-96 w-[99%]' onClick={HandleFunction}>Upload</Button>
+                <Button color="blue" className='md:w-96 w-[99%]' type="submit">Upload</Button>
             </form>
         </div>
     );

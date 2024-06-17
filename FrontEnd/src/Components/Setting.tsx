@@ -10,7 +10,7 @@ import { useUser } from '@clerk/clerk-react';
 
 export default function Parent() {
   const { user } = useUser();
-  const isAdim = user?.publicMetadata.role === "Admin";
+  const isAdim = user?.publicMetadata.User === "Admin";
   return (
     isAdim ?
       <>
@@ -38,6 +38,7 @@ export default function Parent() {
         <NavBar />
         <div className='flex justify-center  flex-col items-center my-52'>
           <h1 className='text-6xl font-extrabold'>404</h1>
+          {/* <p>Role: {user.publicMetadata.role}</p> */}
           <h2>Oops !!, You are not Authorized For This Page.</h2>
           <button className='bg-[#2563eb] p-2 my-3 text-white font-semibold'> <Link to='/Homepge'> Go to Homepage</Link></button>
         </div>

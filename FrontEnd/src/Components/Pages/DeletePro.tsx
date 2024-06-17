@@ -15,14 +15,14 @@ export default function DeleteBook() {
   Swal.fire({
     title: "Are you sure?",
     text: "You won't be able to revert this!",
-    icon: "warning",
+    // icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
     confirmButtonText: "Yes, delete it!"
   }).then((result) => {
     if (result.isConfirmed) {
-  axios.delete(`http://localhost:8080/deleteProverb/${id}`)
+  axios.delete(`https://babystory-server.onrender.com/deleteProverb/${id}`)
       navigate("/Setting/Proverb")
       Swal.fire({
         title: "Deleted!",

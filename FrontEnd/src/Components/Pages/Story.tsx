@@ -142,9 +142,9 @@ const Story: FC = () => {
                   ))}
                 </div>
               </div>
+              {/* <p className="text-sm-gray-400 text-center mt-2 ">@BabyStory</p> */}
             </div>
           </div>
-
 
         )
       }

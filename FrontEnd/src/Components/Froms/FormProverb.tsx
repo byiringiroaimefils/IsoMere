@@ -26,7 +26,7 @@ function Component() {
         axios.post(`http://localhost:8080/proverb`, Data)
             .then((respond) => {
                 console.log(respond.data);
-                toast.success("Successful Proverbs Added")
+                toast.success("Successful Proverb Added")
                 navigate("/Setting")
             })
             .catch((error) => {
@@ -37,7 +37,7 @@ function Component() {
 
     return (
         <div className='flex justify-center mt-8 '>
-            <form className="flex p-5 max-w-md flex-col gap-4   w-full bg-white">
+            <form onSubmit={HandleFunction} className="flex p-5 max-w-md flex-col gap-4   w-full bg-white">
             <div className='Logo font-black flex align-middle translate-x-[-25px]'>
               <img src='BabyStoryLogo.png' alt="" className='w-16 translate-y-[-5px] translate-x-3' />
               <Link to="#"> <h2>Baby<span className='text-blue-500 font-semibold text-base '>Story</span></h2></Link>
@@ -67,7 +67,7 @@ function Component() {
                 </div>
                 <div>
                 </div>
-                <Button color="blue" className= 'md:w-[99%] w-[99%]' onClick={HandleFunction}>Upload</Button>
+                <Button color="blue" className= 'md:w-[99%] w-[99%]' type='submit'>Upload</Button>
             </form>
         </div>
     );
