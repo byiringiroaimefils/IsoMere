@@ -66,7 +66,7 @@ export default function Homepge() {
               <p className='font-light text-gray-600 text-center  w-full'>Our children must be good in reading short stories ,Proverbs and growing in holy spirit through story<br /> and also calling them to be desciple of jesus   child has to read and know Special <br />event happened in long time ago.</p>
               <div className='buttton text-center mt-10'>
                 <SignInButton mode='modal' redirectUrl='/Homepge' >
-                  <span className=' cursor-pointer bg-blue-500  text-white font-semibold py-1 px-4 rounded-full  mr-4'>
+                  <span className=' cursor-pointer bg-blue-500  text-white font-semibold py-1.5 px-4 rounded-full  mr-4'>
                     Get started
                   </span>
                 </SignInButton>
