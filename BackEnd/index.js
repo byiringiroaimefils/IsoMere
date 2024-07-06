@@ -1,5 +1,4 @@
 //--Dependencies--
-
 const express = require("express");
 const App = express();
 const Mongoose = require("mongoose");
@@ -12,6 +11,7 @@ const Port = process.env.PORT;
 const DBSchema = require('./Modules/StorySchema');
 const ProverbSchema = require('./Modules/ProverbSchema');
 const upload = require('./Modules/Uploads');
+const Db = require('./DB');
 
 
 //----MiddleWare confugurations---
