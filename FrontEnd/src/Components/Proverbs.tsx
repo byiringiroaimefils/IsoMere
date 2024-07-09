@@ -17,7 +17,7 @@ interface Proverb {
 
 const Proverb: FC = () => {
   const [Proverb, setProverb] = useState<Proverb[]>([]);
-  const [Loading, setLoading] = useState(true);
+  const [Loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     axios.get("https://babystory-server.onrender.com/proverbs")
       .then((data) => {

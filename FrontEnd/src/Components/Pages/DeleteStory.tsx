@@ -1,4 +1,4 @@
-// Dependencies could be used.
+
 import axios from "axios"
 import { useNavigate, useParams,Link } from "react-router-dom"
 // import { toast } from "react-hot-toast";
@@ -38,11 +38,8 @@ export default function DeleteBook() {
   return (
     <div>
       <Link to={'/Setting/Story'}>
-      
       <button className="m-10 bg-sky-600 p-5 text-white">Back</button>
       </Link>
-
-
     </div>
   )
 }

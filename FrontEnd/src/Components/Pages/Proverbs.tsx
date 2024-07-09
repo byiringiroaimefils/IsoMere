@@ -28,7 +28,7 @@ const Pro: FC = () => {
   const [Loading, setLoading] = useState(true);
   const [Proverb, setProverb] = useState<Proverb[]>([]);
   const [showForm, setShowForm] = useState(false);
-  const [Search, setSearch] = useState(false);
+  const [Search, setSearch] = useState<string>('');
 
 
 
@@ -62,7 +62,7 @@ const Pro: FC = () => {
             <div className='flex justify-between px-6 py-6items-center gap-2'>
               <div className=" ">
                 <FaMagnifyingGlass className=" hidden md:block absolute mt-6 ml-2" />
-                <input type="text" className='Input border hidden md:block outline-none h-7 w-[450px]  md:h20 mt-4 p-4 pl-8 rounded-lg' placeholder='Search'  onChange={(e) => setSearch(e.target.value)}/>
+                <input type="text" className='Input border hidden md:block outline-none h-7 w-[450px]  md:h20 mt-4 p-4 pl-8 rounded-lg' placeholder='Search'  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}/>
               </div>
               <div className="mr-4 translate-y-4">
                 <Link to={'/FormProverb'}>

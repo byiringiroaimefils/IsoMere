@@ -4,9 +4,6 @@ import { MdDeleteForever, MdEditSquare } from "react-icons/md";
 import { FaEye, FaMagnifyingGlass } from "react-icons/fa6";
 import { IoAddCircle } from "react-icons/io5";
 
-
-
-
 import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
 import axios from 'axios'
@@ -20,19 +17,17 @@ interface Story {
   Title: string,
   Author: string,
   createdAt: string,
-  index: number
+  index: number,
+  Search: string
 
 }
 
 
-
-
-
 const Story: FC = () => {
-  const [Loading, setLoading] = useState(true);
+  const [Loading, setLoading] = useState<boolean>(true);
   const [story, setStory] = useState<Story[]>([]);
-  const [showForm, setShowForm] = useState(false);
-  const [Search, setSearch] = useState(false);
+  const [showForm, setShowForm] = useState<boolean>(false);
+  const [Search, setSearch] = useState<string>('');
 
 
   useEffect(() => {
@@ -65,7 +60,7 @@ const Story: FC = () => {
             <div className='flex justify-between px-6 py-6items-center gap-2'>
               <div className=" ">
                 <FaMagnifyingGlass className=" hidden md:block absolute mt-6 ml-2" />
-                <input type="text" className='Input border hidden md:block outline-none h-7 w-[450px]  md:h20 mt-4 p-4 pl-8 rounded-lg' placeholder='Search.....' onChange={(e) => setSearch(e.target.value)} />
+                <input type="text" className='Input border hidden md:block outline-none h-7 w-[450px]  md:h20 mt-4 p-4 pl-8 rounded-lg' placeholder='Search.....' onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)} />
               </div>
               <div className="mr-4 translate-y-4">
                 <Link to={'/FormStory'}>

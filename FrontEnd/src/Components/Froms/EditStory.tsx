@@ -13,7 +13,7 @@ import axios from "axios";
 function Component() {
     const navigate = useNavigate()
     const [TofStory, setTofStory] = useState({});
-    const [Image, setImage] = useState();
+    const [Image, setImage] = useState<string>('');
     const [Author, setAuthor] = useState({});
     const [Decription, setDecription] = useState({});
     const { id } = useParams()
@@ -84,7 +84,7 @@ function Component() {
                                 className='md:w-96 w-[99%] border p-2'
                                 placeholder='Link of your Image'
                                 value={Image}
-                                onChange={(e) => setImage(e.target.value)}
+                                onChange={(e:React.ChangeEvent<HTMLInputElement>) => setImage(e.target.value)}
 
                             />
 

@@ -6,7 +6,7 @@ import axios from "axios";
 import{toast}from"react-hot-toast"
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import htmlreactparser from 'html-react-parser'
+// import htmlreactparser from 'html-react-parser'
 import { Link } from 'react-router-dom';
 
 
@@ -17,7 +17,6 @@ function Component() {
 
     const HandleFunction = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(htmlreactparser(Proverb))
         const Data = {
             Tofproverb,
             Proverb: Proverb

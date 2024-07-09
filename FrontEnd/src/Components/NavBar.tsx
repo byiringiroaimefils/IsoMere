@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FaTimes, FaSun } from "react-icons/fa";
 import { FaBarsStaggered } from "react-icons/fa6"
 import { Link } from 'react-router-dom';

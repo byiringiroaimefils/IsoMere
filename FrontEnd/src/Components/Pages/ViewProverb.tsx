@@ -8,7 +8,12 @@ import Load from "./Loading";
 interface Proverb {
   id: string,
   TitleofProverb: string,
-  Proverb: string
+  Proverb: {
+    id:string,
+    TitleofProverb:string,
+    Proverb:string,
+
+  }
 
 
 }

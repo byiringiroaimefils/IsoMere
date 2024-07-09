@@ -1,4 +1,4 @@
-// Dependencies could be used.
+
 import axios from "axios"
 import { useNavigate, useParams, Link } from "react-router-dom"
 import Swal from "sweetalert2";
@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 
 
 
-export default function DeleteBook() {
+export default function DeleteBook(){
 
   const { id } = useParams()
   const navigate = useNavigate()

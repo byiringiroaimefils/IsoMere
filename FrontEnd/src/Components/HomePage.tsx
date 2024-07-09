@@ -44,7 +44,6 @@ export default function Homepge() {
             </button>
             <button className=' started  sm:flex-none md:flex-none font-bold py-1 px-5 rounded-full border'>
               Join us
-              {/* <SignInButton mode='modal' redirectUrl='/Homepge' /> */}
             </button>
             <div className='Moon my-2 px-5' onClick={ThemeSwitch}>
               {
@@ -71,7 +70,7 @@ export default function Homepge() {
                   </span>
                 </SignInButton>
                 <button className=' font-semibold py-1 px-4 rounded-full border'>
-                  SUBSCRIPTION
+                  Subscription
                 </button>
               </div>
             </div>

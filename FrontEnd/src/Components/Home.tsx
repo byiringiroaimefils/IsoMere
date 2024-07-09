@@ -55,7 +55,7 @@ const Home: FC = () => {
   const button = document.querySelectorAll(".buttons")
   button.forEach((button) => {
     button.addEventListener('click', (e) => {
-      const buttonValue = e.target.value
+      const buttonValue = e.target.value;
       const speech = new SpeechSynthesisUtterance();
       speech.text = buttonValue
       console.log(buttonValue)

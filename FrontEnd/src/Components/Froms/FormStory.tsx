@@ -15,7 +15,7 @@ import { toast } from "react-hot-toast"
 function Component() {
     const navigate = useNavigate()
     const [TofStory, setTofStory] = useState('');
-    const [Image, setImage] = useState();
+    const [Image, setImage] = useState('');
     const [Author, setAuthor] = useState('');
     const [Decription, setDecription] = useState('');
 
@@ -64,7 +64,7 @@ function Component() {
                                 type='text'
                                 className='md:w-[99%] w-[99%] border p-2'
                                 placeholder='Link of your Image'
-                                onChange={(e) => setImage(e.target.value)}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setImage(e.target.value)}
                             />
                         </div>
                     </div>

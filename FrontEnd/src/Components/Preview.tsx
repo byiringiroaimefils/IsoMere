@@ -1,4 +1,4 @@
-import React from 'react'
+
 import NavBar from "./NavBar";
 // import { useUser } from '@clerk/clerk-react';
 import { MdThumbUp, MdThumbDown } from "react-icons/md";
