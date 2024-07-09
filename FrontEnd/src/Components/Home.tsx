@@ -7,77 +7,85 @@ import Load from "./Pages/Loading";
 import { MdThumbUp, MdThumbDown } from "react-icons/md";
 import story from"../assets/Guess_How_Much_I_Love_You.pdf"
 
-
-
 interface Story {
   id: string,
   Title: string,
   image: string,
   Decription: string,
   createdAt: string,
-  Author: string
+  Author: string,
+  likes: number,
+  dislikes: number
+}
+
+interface UserInteraction {
+  [storyId: string]: 'like' | 'dislike' | null;
 }
 
 const Home: FC = () => {
-  const [Story, setStory] = useState<Story[]>([]);
-  const [Loading, setLoading] = useState(true);
-  const [count, setCount] = useState(0);
-  const [counter, setCounter] = useState(0);
-  const increment = () => {
-    setCount(count + 1)
-    if (counter > 0) {
-      setCounter(counter - 1)
-
-    } else {
-      console.log('rejected')
-    }
-
-
-  }
-  const decrement = () => {
-    setCounter(counter + 1)
-    if (count > 0) {
-      setCount(count - 1)
-
-
-    } else {
-      console.log('rejected')
-    }
-
-  }
-
-
-
-
+  const [stories, setStories] = useState<Story[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [userInteractions, setUserInteractions] = useState<UserInteraction>({});
 
   useEffect(() => {
-
-  const button = document.querySelectorAll(".buttons")
-  button.forEach((button) => {
-    button.addEventListener('click', (e) => {
-      const buttonValue = e.target.value;
-      const speech = new SpeechSynthesisUtterance();
-      speech.text = buttonValue
-      console.log(buttonValue)
-      window.speechSynthesis.speak(speech)
+    const buttons = document.querySelectorAll(".buttons button")
+    buttons.forEach((button) => {
+      button.addEventListener('click', (e) => {
+        const buttonValue = (e.target as HTMLButtonElement).value;
+        const speech = new SpeechSynthesisUtterance();
+        speech.text = buttonValue
+        console.log(buttonValue)
+        window.speechSynthesis.speak(speech)
+      })
     })
-  })
   }, [])
 
   useEffect(() => {
     axios.get("https://babystory-server.onrender.com/stories")
-      .then((data) => {
-        setStory(data.data);
-        setLoading(false)
+      .then((response) => {
+        const storiesWithReactions = response.data.map((story: Story) => ({
+          ...story,
+          likes: 0,
+          dislikes: 0
+        }));
+        setStories(storiesWithReactions);
+        setLoading(false);
       })
       .catch((error) => {
-        console.log('error', error)
-        setLoading(false)
+        console.log('error', error);
+        setLoading(false);
+      });
+  }, []);
+
+  const handleReaction = (id: string, reactionType: 'like' | 'dislike') => {
+    setStories(prevStories =>
+      prevStories.map(story => {
+        if (story.id === id) {
+          const currentInteraction = userInteractions[id];
+          let newLikes = story.likes;
+          let newDislikes = story.dislikes;
+
+          if (currentInteraction === reactionType) {
+            if (reactionType === 'like') newLikes--;
+            else newDislikes--;
+            setUserInteractions(prev => ({ ...prev, [id]: null }));
+          } else {
+            if (reactionType === 'like') {
+              newLikes++;
+              if (currentInteraction === 'dislike') newDislikes--;
+            } else {
+              newDislikes++;
+              if (currentInteraction === 'like') newLikes--;
+            }
+            setUserInteractions(prev => ({ ...prev, [id]: reactionType }));
+          }
+
+          return { ...story, likes: newLikes, dislikes: newDislikes };
+        }
+        return story;
       })
-  }, []
-
-  )
-
+    );
+  };
 
   return (
     <>
@@ -86,15 +94,14 @@ const Home: FC = () => {
       </div>
       <div className='my-20'>
         {
-          Loading ? (
+          loading ? (
             <div className='flex justify-center text-center mt-56'>
               <Load />
             </div>
           ) : (
             <div className='Container flex justify-around mt-6 w-screen'>
               <div>
-
-                {Story.map(({ id, Title, Author, image, Decription, createdAt }) => (
+                {stories.map(({ id, Title, Author, image, Decription, createdAt, likes, dislikes }) => (
                   <div key={id} className='story p-8 mr-28 md:w-[650px] md:translate-x-10 ' >
                     <div className='Header '>
                       <h2 className='font-bold  text-base '>{Title}</h2>
@@ -106,8 +113,16 @@ const Home: FC = () => {
                       <p className='text-sm font-thin text-gray-400'>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</p> <br />
                     </div>
                     <div className="icons flex gap-2">
-                      {/* <p>Is this page helpful?</p> */}
-                      <MdThumbUp  onClick={increment} /><span className='translate-y-[-6px]'>{count}</span><MdThumbDown onClick={decrement} /><span className='translate-y-[-6px]'>{counter}</span>
+                      <MdThumbUp 
+                        onClick={() => handleReaction(id, 'like')} 
+                        className={userInteractions[id] === 'like' ? 'text-blue-500' : ''}
+                      />
+                      <span className='translate-y-[-6px]'>{likes}</span>
+                      <MdThumbDown 
+                        onClick={() => handleReaction(id, 'dislike')} 
+                        className={userInteractions[id] === 'dislike' ? 'text-red-500' : ''}
+                      />
+                      <span className='translate-y-[-6px]'>{dislikes}</span>
                     </div>
                   </div>
                 ))}
@@ -165,16 +180,14 @@ const Home: FC = () => {
                     <button value='Y' className='border p-2 font-base hover:text-blue-500'>Yy</button>
                     <button value='Z' className='border p-2 font-base hover:text-blue-500'>Zz</button>
                   </div>
-
                 </div>
               </div>
             </div>
-
           )
         }
       </div>
-    </>)
+    </>
+  )
 }
-
 
 export default Home;
