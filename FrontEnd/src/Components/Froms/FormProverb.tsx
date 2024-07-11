@@ -12,8 +12,8 @@ import { Link } from 'react-router-dom';
 
 function Component() {
     const navigate = useNavigate()
-    const [Tofproverb, setTofproverb] = useState({});
-    const [Proverb, setProverb] = useState({});
+    const [Tofproverb, setTofproverb] = useState<string>('');
+    const [Proverb, setProverb] = useState<string>('');
 
     const HandleFunction = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -57,7 +57,7 @@ function Component() {
                             <CKEditor
                                 editor={ClassicEditor}
                                 data={Proverb}
-                                onChange={(event,editor) => {
+                                onChange={(_event,editor) => {
                                     setProverb(editor.getData());
                                 }}  />
                         </div>

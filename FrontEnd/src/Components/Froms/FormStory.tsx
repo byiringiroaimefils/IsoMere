@@ -90,7 +90,7 @@ function Component() {
                             <CKEditor
                                 editor={ClassicEditor}
                                 data={Decription}
-                                onChange={(event, editor) => {
+                                onChange={(_event, editor) => {
                                     setDecription(editor.getData());
                                 }} />
                         </div>

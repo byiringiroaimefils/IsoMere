@@ -12,10 +12,10 @@ import axios from "axios";
 
 function Component() {
     const navigate = useNavigate()
-    const [TofStory, setTofStory] = useState({});
+    const [TofStory, setTofStory] = useState<string>('');
     const [Image, setImage] = useState<string>('');
     const [Author, setAuthor] = useState({});
-    const [Decription, setDecription] = useState({});
+    const [Decription, setDecription] = useState<string>('');
     const { id } = useParams()
 
     useEffect(() => {
@@ -32,7 +32,7 @@ function Component() {
                 console.log(error)
                 toast.error("This didn't work")
             })
-    }, [])
+    })
 
 
     const HandleFunction = (e: React.FormEvent<HTMLFormElement>) => {
@@ -111,10 +111,10 @@ function Component() {
                         </div>
                         <div>
                             <CKEditor
+                                // value={Decription}
                                 editor={ClassicEditor}
                                 data={Decription}
-                                value={Decription}
-                                onChange={(event, editor) => {
+                                onChange={(_event, editor) => {
                                     setDecription(editor.getData());
                                 }} />
                         </div>

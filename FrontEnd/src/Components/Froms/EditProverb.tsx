@@ -25,7 +25,7 @@ function Component() {
 
             })
 
-    }, [])
+    })
 
     const HandleFunction = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -68,7 +68,7 @@ function Component() {
                             <CKEditor
                                 editor={ClassicEditor}
                                 data={Proverb}
-                                onChange={(event, editor) => {
+                                onChange={(_event, editor) => {
                                     setProverb(editor.getData());
                                 }} />
                         </div>
