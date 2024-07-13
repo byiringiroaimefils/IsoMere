@@ -1,4 +1,4 @@
-// import React from 'react'
+
 import { Button, Label} from "flowbite-react";
 import { useNavigate } from "react-router-dom"
 import { useState } from "react";
@@ -66,7 +66,7 @@ function Component() {
                 </div>
                 <div>
                 </div>
-                <Button color="blue" className= 'md:w-[99%] w-[99%]' type='submit'>Upload</Button>
+                <Button color="blue" className= 'md:w-[99%] w-[99%]' type='submit'>UPLOAD</Button>
             </form>
         </div>
     );

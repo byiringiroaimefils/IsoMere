@@ -98,7 +98,7 @@ function Component() {
                 </div>
                 <div>
                 </div>
-                <Button color="blue" className='md:w-[99%] w-[99%]' type='submit'>Upload</Button>
+                <Button color="blue" className='md:w-[99%] w-[99%]' type='submit'>UPLOAD</Button>
             </form>
         </div>
     );
