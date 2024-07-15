@@ -83,7 +83,7 @@ const Proverb: FC = () => {
                 <Load />
               </div>
             ) : (
-              <div>
+              <div >
                 {
                   proverbs.map(({ id, TitleofProverb, Proverb, createdAt, likes, dislikes }) => (
                     <div key={id} className='ml-10 mr-10'>

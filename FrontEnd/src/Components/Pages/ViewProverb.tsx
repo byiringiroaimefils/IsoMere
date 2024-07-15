@@ -8,20 +8,13 @@ import Load from "./Loading";
 interface Proverb {
   id: string,
   TitleofProverb: string,
-  Proverb: {
-    id:string,
-    TitleofProverb:string,
-    Proverb:string,
-
-  }
-
-
+  Proverb: string
 }
 
 
 const Proverb: FC = () => {
-  const [Proverb, setProverb] = useState<Proverb[]>([]);
-  const [Loading, setLoading] = useState(true);
+  const [Proverb, setProverb] = useState({} as Proverb);
+  const [Loading, setLoading] = useState<boolean>(true);
   const { id } = useParams();
 
   useEffect(() => {
@@ -61,9 +54,6 @@ const Proverb: FC = () => {
                     </div>
                   </div>
                 },
-
-                
-
               </div>
             )
           }
