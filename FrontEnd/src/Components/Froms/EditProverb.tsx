@@ -14,7 +14,7 @@ function Component() {
     const { id } = useParams();
     useEffect(() => {
 
-        axios.get(`http://localhost:8080/proverb/${id}`)
+        axios.get(`hhttps://babystory-server.onrender.com/proverb/${id}`)
             .then((respond) => {
                 setTofproverb(respond.data.TitleofProverb)
                 setProverb(respond.data.Proverb)
@@ -34,7 +34,7 @@ function Component() {
             Proverb
         }
 
-        axios.put(`http://localhost:8080/EditProverb/${id}`, Data)
+        axios.put(`https://babystory-server.onrender.com/EditProverb/${id}`, Data)
             .then((respond) => {
                 console.log(respond.data);
                 toast.success("Successful Proverbs updated")

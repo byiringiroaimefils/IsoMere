@@ -28,7 +28,7 @@ function Component() {
             Image,
             Decription
         }
-        axios.post(`http://localhost:8080/story`, Data)
+        axios.post(`https://babystory-server.onrender.com/story`, Data)
             .then((respond) => {
                 console.log(respond.data);
                 navigate("/Setting");

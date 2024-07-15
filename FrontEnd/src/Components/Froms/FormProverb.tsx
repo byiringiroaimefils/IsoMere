@@ -22,7 +22,7 @@ function Component() {
             Proverb: Proverb
         }
 
-        axios.post(`http://localhost:8080/proverb`, Data)
+        axios.post(`https://babystory-server.onrender.com/proverb`, Data)
             .then((respond) => {
                 console.log(respond.data);
                 toast.success("Successful Proverb Added")

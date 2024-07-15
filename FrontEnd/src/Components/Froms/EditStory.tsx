@@ -19,7 +19,7 @@ function Component() {
     const { id } = useParams()
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/story/${id}`)
+        axios.get(`https://babystory-server.onrender.com/story/${id}`)
             .then((respond) => {
                 setTofStory(respond.data.Title)
                 setImage(respond.data.image)
@@ -43,7 +43,7 @@ function Component() {
             Image,
             Decription
         }
-        axios.put(`http://localhost:8080/EditProverb/${id}`, Data)
+        axios.put(`https://babystory-server.onrender.com/EditProverb/${id}`, Data)
             .then((respond) => {
                 console.log(respond.data);
                 navigate("/Setting");
