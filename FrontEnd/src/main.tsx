@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <ErrorBoundary fallback={
       <div className='flex top-[50%] left-[50%]'>
         <h2>Something Went Wrong !!!</h2>
-        <p>Please reload </p>
+        <p>Please reloads </p>
       </div>
     }>
       <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
