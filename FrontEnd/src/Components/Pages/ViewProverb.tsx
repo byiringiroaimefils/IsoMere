@@ -27,7 +27,7 @@ const Proverb: FC = () => {
         console.log('error', error)
         setLoading(false)
       })
-  }, [])
+  }, []);
   return (
     <>
       <NavBar />
