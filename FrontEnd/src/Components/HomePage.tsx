@@ -40,7 +40,7 @@ export default function Homepge() {
           </div>
           <div className='account w-fit flex gap-3' >
             <button className='Login bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-4 rounded-full'>
-              <SignInButton mode='modal' redirectUrl='/Homepge' />
+              <SignInButton mode='modal'/>
             </button>
             <button className=' started  sm:flex-none md:flex-none font-bold py-1 px-5 rounded-full border'>
               Join us
