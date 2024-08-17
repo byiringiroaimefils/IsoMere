@@ -4,7 +4,7 @@ import { MdDeleteForever, MdEditSquare } from "react-icons/md";
 import { FaEye, FaMagnifyingGlass } from "react-icons/fa6";
 import { IoAddCircle } from "react-icons/io5";
 
-import { Button } from "flowbite-react";
+// import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
 import axios from 'axios'
 import Load from "./Loading";
@@ -64,7 +64,7 @@ const Story: FC = () => {
               </div>
               <div className="mr-4 translate-y-4">
                 <Link to={'/FormStory'}>
-                <Button color="blue" className="border-none font-extrabold pr-2 md:h-[43px] translate-y-[-2px] gap-2 md:w-24" onClick={() => setShowForm(!showForm)}> <span className=" text-3xl translate-x-1"> <IoAddCircle /> </span></Button>
+                <button  className="border-none font-extrabold pr-2 md:h-[43px] translate-y-[-2px] gap-2 md:w-24" onClick={() => setShowForm(!showForm)}> <span className=" text-3xl translate-x-1"> <IoAddCircle /> </span></button>
                 </Link>
               </div>
             </div>

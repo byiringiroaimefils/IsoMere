@@ -1,121 +1,80 @@
+
 import { FC } from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import NavBar from "./NavBar";
 import Load from "./Pages/Loading";
-import { MdThumbUp, MdThumbDown } from "react-icons/md";
+import TopProverb from "./Top/TopProverbComponent"
+import Footer from './Footer'
 
 interface Proverb {
   id: string,
   TitleofProverb: string,
   Proverb: string,
   createdAt: string,
-  likes: number,
-  dislikes: number
-}
-
-interface UserInteraction {
-  [proverbId: string]: 'like' | 'dislike' | null;
 }
 
 const Proverb: FC = () => {
-  const [proverbs, setProverbs] = useState<Proverb[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [userInteractions, setUserInteractions] = useState<UserInteraction>({});
-
+  const [Proverb, setProverb] = useState<Proverb[]>([]);
+  const [Loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     axios.get("https://babystory-server.onrender.com/proverbs")
-      .then((response) => {
-        const proverbsWithReactions = response.data.map((proverb: Proverb) => ({
-          ...proverb,
-          likes: 0,
-          dislikes: 0
-        }));
-        setProverbs(proverbsWithReactions);
-        setLoading(false);
+      .then((data) => {
+        setProverb(data.data);
+        setLoading(false)
       })
       .catch((error) => {
-        console.log('error', error);
-        setLoading(false);
-      });
-  }, []);
-
-  const handleReaction = (id: string, reactionType: 'like' | 'dislike') => {
-    setProverbs(prevProverbs =>
-      prevProverbs.map(proverb => {
-        if (proverb.id === id) {
-          const currentInteraction = userInteractions[id];
-          let newLikes = proverb.likes;
-          let newDislikes = proverb.dislikes;
-
-          if (currentInteraction === reactionType) {
-            // User is un-reacting
-            if (reactionType === 'like') newLikes--;
-            else newDislikes--;
-            setUserInteractions(prev => ({ ...prev, [id]: null }));
-          } else {
-            // User is changing reaction or reacting for the first time
-            if (reactionType === 'like') {
-              newLikes++;
-              if (currentInteraction === 'dislike') newDislikes--;
-            } else {
-              newDislikes++;
-              if (currentInteraction === 'like') newLikes--;
-            }
-            setUserInteractions(prev => ({ ...prev, [id]: reactionType }));
-          }
-
-          return { ...proverb, likes: newLikes, dislikes: newDislikes };
-        }
-        return proverb;
+        console.log('error', error)
+        setLoading(false)
       })
-    );
-  };
+  }, [])
 
   return (
     <>
       <NavBar />
-      <div className='w-Full mt-5 ' >
+      <div className='w-Full' >
         <div className='my-20'>
           {
-            loading ? (
+            Loading ? (
               <div className='flex justify-center text-center mt-56'>
                 <Load />
               </div>
             ) : (
-              <div >
-                {
-                  proverbs.map(({ id, TitleofProverb, Proverb, createdAt, likes, dislikes }) => (
-                    <div key={id} className='ml-10 mr-10'>
-                      <div className='Header '>
-                        <h2 className='font-bold  text-base '>{TitleofProverb}</h2>
+              <div className='md:flex justify-center translate-y-[-4%] mt-36 ml-14'>
+                <div>
+                  {
+                    Proverb.map(({ id, TitleofProverb, Proverb, createdAt }) => (
+                      <div key={id} className='ml-10 mr-10 ' >
+                        <div className='Header '>
+                          <h2 className='font-bold  text-4xl '>{TitleofProverb}</h2>
+                          <p className='mt-2 text-sky-500'>by BYIRINGIRO</p>
+                        </div>
+                        <div className='Description mt-2 '>
+                          <p dangerouslySetInnerHTML={{ __html: Proverb }} />
+                          <p className='text-sm font-thin text-gray-400'>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</p> <br />
+                        </div>
                       </div>
-                      <div className='Description mt-2 '>
-                        <p dangerouslySetInnerHTML={{ __html:Proverb }}/>
-                        <p className='text-sm font-thin text-gray-400'>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</p> <br />
-                      </div>
-                      <div className="icons flex gap-2 mb-5">
-                        <MdThumbUp 
-                          onClick={() => handleReaction(id, 'like')} 
-                          className={userInteractions[id] === 'like' ? 'text-blue-500' : ''}
-                        />
-                        <span className='translate-y-[-6px]'>{likes}</span>
-                        <MdThumbDown 
-                          onClick={() => handleReaction(id, 'dislike')} 
-                          className={userInteractions[id] === 'dislike' ? 'text-red-500' : ''}
-                        />
-                        <span className='translate-y-[-6px]'>{dislikes}</span>
-                      </div>
-                    </div>
-                  ))
-                }
+                    ))
+                  }
+                  <div className='flex justify-between ml-5'>
+                    <button className='text-white bg-sky-600 rounded-xl w-20 p-1'>Prev</button>
+                    <button className='text-white bg-sky-600 rounded-xl w-20 p-1'>Next</button>
+                  </div>
+                </div>
+                <div className=' w-full'>
+                  <TopProverb />
+                </div>
               </div>
+
+
             )
           }
         </div>
-      </div>
+        <div>
+          <Footer />
+        </div>
+      </div >
     </>
   )
 }
-
 export default Proverb;

@@ -1,31 +1,11 @@
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { SignInButton } from "@clerk/clerk-react";
-// import { SignIn } from "@clerk/clerk-react";
-import { LuMoonStar } from "react-icons/lu";
-import { FaSun } from "react-icons/fa";
-import { FaBarsStaggered } from "react-icons/fa6"
+
 
 
 
 
 export default function Homepge() {
-  // Background theme changing
-  const [bgcolor, Setbgcolor] = useState("Light");
-  useEffect(() => {
-    if (bgcolor === "Dark") {
-      document.body.classList.add("Dark")
-    }
-    else {
-      document.body.classList.remove("Dark")
-    }
-  }, [bgcolor]);
-
-  const ThemeSwitch = () => {
-    Setbgcolor(bgcolor === "Dark" ? "Light" : "Dark")
-  }
-
-
   return (
 
     <>
@@ -40,19 +20,11 @@ export default function Homepge() {
           </div>
           <div className='account w-fit flex gap-3' >
             <button className='Login bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-4 rounded-full'>
-              <SignInButton mode='modal'/>
+              <SignInButton mode='modal' redirectUrl="/Homepge"/>
             </button>
             <button className=' started  sm:flex-none md:flex-none font-bold py-1 px-5 rounded-full border'>
               Join us
             </button>
-            <div className='Moon my-2 px-5' onClick={ThemeSwitch}>
-              {
-                bgcolor === "Dark" ? <FaSun /> : <LuMoonStar />
-              }
-            </div>
-            <div className='md:hidden'>
-              <FaBarsStaggered className=' w-12 translate-y-2 flex-n' />
-            </div>
           </div>
         </div>
       </header>

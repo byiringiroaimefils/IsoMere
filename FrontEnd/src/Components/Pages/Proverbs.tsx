@@ -2,7 +2,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from 
 import { MdDeleteForever, MdEditSquare } from "react-icons/md";
 import { FaEye } from "react-icons/fa6";
 import { useState, useEffect } from 'react'
-import { Button } from "flowbite-react";
+// import { Button } from "flowbite-react";
 import { Link} from "react-router-dom";
 import { FC } from "react"
 import axios from 'axios'
@@ -66,7 +66,7 @@ const Pro: FC = () => {
               </div>
               <div className="mr-4 translate-y-4">
                 <Link to={'/FormProverb'}>
-                <Button color="blue" className="border-none font-extrabold pr-2 md:h-[40px] translate-y-[-2px]  md:w-24" onClick={() => setShowForm(!showForm)}> <span className=" text-3xl translate-x-1"> <IoAddCircle /> </span></Button>
+                <button  className="border-none font-extrabold pr-2 md:h-[40px] translate-y-[-2px]  md:w-24" onClick={() => setShowForm(!showForm)}> <span className=" text-3xl translate-x-1"> <IoAddCircle /> </span></button>
                 </Link>
               </div>
             </div>

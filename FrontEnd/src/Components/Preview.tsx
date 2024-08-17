@@ -1,46 +1,44 @@
 import NavBar from "./NavBar";
-import { MdThumbUp, MdThumbDown } from "react-icons/md";
-import { useState } from 'react';
+import IG from "../assets/Bh.jpeg"
+import Footer from './Footer'
+import TopStory from "./Top/TopStoryComponent"
+import { Link } from 'react-router-dom';
+
 
 export default function Preview() {
-  const [likes, setLikes] = useState(0);
-  const [dislikes, setDislikes] = useState(0);
-
-  const handleLike = () => {
-    setLikes(likes + 1);
-  };
-
-  const handleDislike = () => {
-    setDislikes(dislikes + 1);
-  };
-
   return (
     <>
       <NavBar />
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-4">The Story of the World's Creation</h1>
-        <div className="">
-          <h2 className="text-xl font-semibold mb-2">Day 1</h2>
-          <p className="mb-4">
-            Light was the first thing that God created because before day 1, the earth was completely dark. All throughout the creation saga, God employed this same method. He didn't achieve this by stirring a liquid, making a fancy gesture, or using his hands in any way. Instead, according to the Bible, light was created when God simply spoke. God creates light and darkness. He separates them, putting the light in the sky and the darkness on the earth. He names the light "day" and the darkness "night." He also establishes the cycle of day and night.
-          </p>
-          <div className="flex items-center space-x-4">
-            <button 
-              onClick={handleLike}
-              className="flex items-center space-x hover:text-blue-600"
-            >
-              <MdThumbUp className="text-xl" />
-              <span>{likes}</span>
-            </button>
-            <button 
-              onClick={handleDislike}
-              className="flex items-center space-x-1 hover:text-red-600"
-            >
-              <MdThumbDown className="text-xl" />
-              <span>{dislikes}</span>
-            </button>
+      <div className="container px-10 py-36 translate-y-[-2%] flex justify-center">
+
+        <div className="w-full max-w-4xl flex justify-between ">
+          <Link to={'/StoryView'}>
+            <div className="">
+              <h2 className="text-4xl font-bold">Lorem ipsum dolor sit amet.</h2>
+              <p className="text-gray-300">by BYIRINGIRO</p><br />
+              <img src={IG} alt="" className="w-full" /><br /><br />
+              <h2 className="text-4xl font-bold">Lorem ipsum dolor sit amet.</h2>
+              <p>by BYIRINGIRO</p><br />
+              <img src={IG} alt="" className="w-full" /><br /><br />
+              <h2 className="text-4xl font-bold">Lorem ipsum dolor sit amet.</h2>
+              <p className="text-gray-300">by BYIRINGIRO</p><br />
+              <img src={IG} alt="" className="w-full" /><br /><br />
+              <h2 className="text-4xl font-bold">Lorem ipsum dolor sit amet.</h2>
+              <p className="text-gray-300">by BYIRINGIRO</p><br />
+              <img src={IG} alt="" className="w-full" /><br />
+              <p className="text-gray-400">June 2024</p>
+            </div>
+          </Link>
+
+          <div className="Video w-[70%] translate-x-52">
+            <div className="translate-y-[-14%] gap-20">
+              <TopStory />
+            </div>
           </div>
         </div>
+      </div>
+      <div>
+        <Footer />
       </div>
     </>
   );

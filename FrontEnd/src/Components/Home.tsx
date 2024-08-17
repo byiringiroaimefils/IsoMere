@@ -2,10 +2,13 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import NavBar from "./NavBar";
 import { FC } from "react"
-import ReactPlayer from "react-player"
+import Footer from "./Footer"
+import { Link } from "react-router-dom";
 import Load from "./Pages/Loading";
-import { MdThumbUp, MdThumbDown } from "react-icons/md";
-import story from"../assets/Guess_How_Much_I_Love_You.pdf"
+// import story from "../assets/Guess_How_Much_I_Love_You.pdf"
+// import IG from "../assets/Bh.jpeg"
+import TopStory from "./Top/TopStoryComponent";
+import TopProverb from "./Top/TopProverbComponent";
 
 interface Story {
   id: string,
@@ -14,18 +17,13 @@ interface Story {
   Decription: string,
   createdAt: string,
   Author: string,
-  likes: number,
-  dislikes: number
 }
 
-interface UserInteraction {
-  [storyId: string]: 'like' | 'dislike' | null;
-}
+
 
 const Home: FC = () => {
   const [stories, setStories] = useState<Story[]>([]);
   const [loading, setLoading] = useState(true);
-  const [userInteractions, setUserInteractions] = useState<UserInteraction>({});
 
   useEffect(() => {
     const buttons = document.querySelectorAll(".buttons button")
@@ -56,37 +54,6 @@ const Home: FC = () => {
         setLoading(false);
       });
   }, []);
-
-  const handleReaction = (id: string, reactionType: 'like' | 'dislike') => {
-    setStories(prevStories =>
-      prevStories.map(story => {
-        if (story.id === id) {
-          const currentInteraction = userInteractions[id];
-          let newLikes = story.likes;
-          let newDislikes = story.dislikes;
-
-          if (currentInteraction === reactionType) {
-            if (reactionType === 'like') newLikes--;
-            else newDislikes--;
-            setUserInteractions(prev => ({ ...prev, [id]: null }));
-          } else {
-            if (reactionType === 'like') {
-              newLikes++;
-              if (currentInteraction === 'dislike') newDislikes--;
-            } else {
-              newDislikes++;
-              if (currentInteraction === 'like') newLikes--;
-            }
-            setUserInteractions(prev => ({ ...prev, [id]: reactionType }));
-          }
-
-          return { ...story, likes: newLikes, dislikes: newDislikes };
-        }
-        return story;
-      })
-    );
-  };
-
   return (
     <>
       <div>
@@ -99,60 +66,36 @@ const Home: FC = () => {
               <Load />
             </div>
           ) : (
-            <div className='Container flex justify-around mt-6 w-screen'>
+            <div className='Container flex justify-around translate-y-[-4%] mt-52  w-screen '>
               <div>
-                {stories.map(({ id, Title, Author, image, Decription, createdAt, likes, dislikes }) => (
-                  <div key={id} className='story p-8 mr-28 md:w-[650px] md:translate-x-10 ' >
-                    <div className='Header '>
-                      <h2 className='font-bold  text-base '>{Title}</h2>
-                      <p className='text-sm font-thin text-gray-400'>{Author}</p> <br />
-                      <img src={image} alt="" className='w-full  object-cover' />
-                    </div>
-                    <div className='Description mt-4'>
-                      <p dangerouslySetInnerHTML={{ __html:Decription }}/>
-                      <p className='text-sm font-thin text-gray-400'>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</p> <br />
-                    </div>
-                    <div className="icons flex gap-2">
-                      <MdThumbUp 
-                        onClick={() => handleReaction(id, 'like')} 
-                        className={userInteractions[id] === 'like' ? 'text-blue-500' : ''}
-                      />
-                      <span className='translate-y-[-6px]'>{likes}</span>
-                      <MdThumbDown 
-                        onClick={() => handleReaction(id, 'dislike')} 
-                        className={userInteractions[id] === 'dislike' ? 'text-red-500' : ''}
-                      />
-                      <span className='translate-y-[-6px]'>{dislikes}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className='UpdatedStory mt-5 mr-12 '>
-                <div className="topstory">
-                  <h4 className='font-extrabold'>Top Stories</h4>
-                  <p className='text-sm font-thin text-gray-400'>Here you can download topest Story</p>
+                {stories.map(({ id, Title, Author, image, Decription, createdAt }) => (
 
-                  <ul>
-                    <li className='text-lg cursor-pointer'><span className='text-gray-400 text-xl  '>1.</span> <a href="" download={story}>Guess How Much I Love You?</a> </li>
-                    <li className='text-lg cursor-pointer'><span className='text-gray-400 text-xl'>2.</span><a href="" download={story}>The Tale of Peter Rabbit.</a></li>
-                    <li className='text-lg cursor-pointer'><span className='text-gray-400 text-xl'>3.</span> <a href="" download={story}>Alice's Adventures in Wonderland.</a> </li>
-                  </ul>
+                  <div key={id} className='story p-8 mr-28 md:w-[650px] md:translate-x-24 cursor-pointer' >
+                    <Link to={`/StoryView`}>
+                      <div className='Header '>
+                        <h2 className='font-bold  text-4xl  hover:text-sky-600 hover:cursor-pointer'>{Title}</h2>
+                        <p className='text-sm font-thin text-gray-400'>by BYIRINGIRO</p> <br />
+                        <img src={image} alt="" className='w-[75%]  object-cover' />
+                      </div>
+                      <div className='Description mt-4'>
+                        <p className='text-sm font-thin text-gray-400'>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</p> <br />
+                      </div>
+                    </Link>
+                  </div>
+
+                ))}
+                <div className='flex justify-between ml-5'>
+                  <button className='text-white bg-sky-600 rounded-xl w-20 p-1'>Prev</button>
+                  <button className='text-white bg-sky-600 rounded-xl w-20 p-1'>Next</button>
                 </div>
-                <div className="Video mt-20 ">
-                  <h4 className='font-extrabold'>Video</h4>
-                  <p className='text-sm font-thin text-gray-400'>Open beatful cartoon</p> <br />
-                  <ReactPlayer
-                    className='react-player'
-                    controls
-                    url='https://www.youtube.com/watch?v=bisUxWGk-Nw'
-                    width='120%'
-                    height='200%'
-                  />
-                </div>
+              </div>
+              <div className='UpdatedStory mt-5 ml-20'>
+                <TopProverb />
+                  <TopStory />
                 <div className="Alphabetics mt-20">
-                  <h4 className='font-extrabold '>Alphabetics</h4>
+                  <h4 className='font-extrabold '>ALPHABETICS</h4>
                   <p className='text-sm font-thin text-gray-400'>Click to any Alphabetic then listen how to read!!   </p>
-                  <div className='buttons grid grid-cols-6 gap-2 mt-4 '>
+                  <div className='buttons grid grid-cols-6 gap-2 mt-4 mr-28'>
                     <button value='A' className='border p-2 font-base hover:text-blue-500'>Aa</button>
                     <button value='B' className='border p-2 font-base hover:text-blue-500'>Bb</button>
                     <button value='C' className='border p-2 font-base hover:text-blue-500'>Cc</button>
@@ -185,6 +128,9 @@ const Home: FC = () => {
             </div>
           )
         }
+      </div>
+      <div>
+        <Footer />
       </div>
     </>
   )
