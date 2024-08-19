@@ -40,7 +40,7 @@ const Proverb: FC = () => {
                 <Load />
               </div>
             ) : (
-              <div className='md:flex justify-center translate-y-[-4%] mt-36 ml-14'>
+              <div className='md:flex justify-center  md:ml-14'>
                 <div>
                   {
                     Proverb.map(({ id, TitleofProverb, Proverb, createdAt }) => (
@@ -56,12 +56,13 @@ const Proverb: FC = () => {
                       </div>
                     ))
                   }
-                  <div className='flex justify-between ml-5'>
-                    <button className='text-white bg-sky-600 rounded-xl w-20 p-1'>Prev</button>
-                    <button className='text-white bg-sky-600 rounded-xl w-20 p-1'>Next</button>
+                  <div className='flex justify-between mx-8 mb-10  '>
+                    {/* <button className='text-white bg-sky-600 rounded-xl w-20 p-1'>Prev</button>
+                    <button className='text-white bg-sky-600 rounded-xl w-20 p-1'>Next</button> */}
+                    <button>Read More</button>
                   </div>
                 </div>
-                <div className=' w-full'>
+                <div className=' w-full ml-8'>
                   <TopProverb />
                 </div>
               </div>

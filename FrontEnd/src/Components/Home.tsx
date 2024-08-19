@@ -5,8 +5,6 @@ import { FC } from "react"
 import Footer from "./Footer"
 import { Link } from "react-router-dom";
 import Load from "./Pages/Loading";
-// import story from "../assets/Guess_How_Much_I_Love_You.pdf"
-// import IG from "../assets/Bh.jpeg"
 import TopStory from "./Top/TopStoryComponent";
 import TopProverb from "./Top/TopProverbComponent";
 
@@ -66,9 +64,9 @@ const Home: FC = () => {
               <Load />
             </div>
           ) : (
-            <div className='Container flex justify-around translate-y-[-4%] mt-52  w-screen '>
+            <div className='Container md:flex justify-around translate-y-[-4%] mt-40 gap-20 w-screen '>
               <div>
-                {stories.map(({ id, Title, Author, image, Decription, createdAt }) => (
+                {stories.map(({ id, Title, image, createdAt }) => (
 
                   <div key={id} className='story p-8 mr-28 md:w-[650px] md:translate-x-24 cursor-pointer' >
                     <Link to={`/StoryView`}>
@@ -84,15 +82,14 @@ const Home: FC = () => {
                   </div>
 
                 ))}
-                <div className='flex justify-between ml-5'>
-                  <button className='text-white bg-sky-600 rounded-xl w-20 p-1'>Prev</button>
-                  <button className='text-white bg-sky-600 rounded-xl w-20 p-1'>Next</button>
+                <div className='flex  mb-10 justify-between mx-10'>
+                  <button>Read more</button>
                 </div>
               </div>
-              <div className='UpdatedStory mt-5 ml-20'>
+              <div className='mt-5 mx-10  '>
                 <TopProverb />
-                  <TopStory />
-                <div className="Alphabetics mt-20">
+                <TopStory />
+                <div className="Alphabetics mt-20 hidden">
                   <h4 className='font-extrabold '>ALPHABETICS</h4>
                   <p className='text-sm font-thin text-gray-400'>Click to any Alphabetic then listen how to read!!   </p>
                   <div className='buttons grid grid-cols-6 gap-2 mt-4 mr-28'>

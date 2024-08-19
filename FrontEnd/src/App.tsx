@@ -4,7 +4,6 @@ import Home from "./Components/Home";
 import Proverbs from "./Components/Proverbs";
 import Setting from "./Components/Setting";
 import Preview from "./Components/Preview";
-// import Homepge from "./Components/HomePage";
 import Story from "./Components/Pages/Story";
 import Proverb from "./Components/Pages/Proverbs";
 import FormStory from "./Components/Froms/FormStory";
@@ -51,12 +50,7 @@ export default function App() {
           </Route>
           <Route path="Preview" element={
             <>
-              {/* <SignedIn> */}
               <Preview />
-              {/* </SignedIn> */}
-              {/* <SignedOut>
-                <RedirectToSignIn />
-              </SignedOut> */}
             </>
           } />
           <Route path="FormStory" element={<FormStory />} />
