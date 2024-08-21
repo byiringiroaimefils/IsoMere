@@ -7,7 +7,8 @@ export default function TopProverbComponent() {
     <>
       <div className="TopStory mt-20 ">
         <h4 className='font-extrabold'>MOST POPULAR STORIES</h4>
-        <p className='text-sm font-thin text-gray-400'>Open beatful cartoon</p> <br />
+        <p className='text-sm font-thin bg-black/50 rounded-sm h-0.5 w-32 mb-2 '></p><br /> 
+
         <Link to={'/TopStory'}>
           <div>
             <div className='flex justify-center'>

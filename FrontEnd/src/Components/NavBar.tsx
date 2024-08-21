@@ -26,9 +26,9 @@ const Header = () => {
           <div className='md:flex items-center justify-between  py-4 md:px-10 px-7'>
             <div className='font-bold text-base cursor-pointer flex items-center '>
               <Link to="/" >
-                <img src='BabyStoryLogo.png' alt="" className='h-10 translate-x-[-20px]' />
+                <img src='BabyStoryLogo.png' alt="" className='h-10 translate-x-[-20px] md:translate-y-[-5px] ' />
               </Link>
-              <h2 className='mx-[-39px]'><span>Baby</span>Read</h2>
+              <h2 className='mx-[-39px] text-2xl md:translate-y-[-5px]'>IsoMere</h2>
               <div className='mx-12 '>
                 <ul className={` Nav  md:flex md:items-center md:pb-0 pb-12 absolute md:static  md:z-0  z-50  left-0 w-full md:w-auto  md:pl-0 pl-9 bg-white  transition-all duration-500 ease-in ${open ? 'top-[69px]' : 'top-[-490px]'}`}>
                   {
@@ -36,7 +36,7 @@ const Header = () => {
                       <li key={link.name} className='md:ml-2 md:hover:text-sky-600 font-medium md:text-sm text-gray-500 pt-5 md:translate-y-[-10px]' >
                         <Link to={link.link} className='mr-2 '>{link.name}</Link>
                       </li>))
-                  }
+                  } <br />
                   <li className='md:ml-2 md:translate-x-[650%]  font-medium md:text-sm text-gray-500'>
                     <Link to="/subscribe" className='mr-2 '>
                       <button className='border p-1.5 font-bold rounded-full w-[90%] mx-2'>Subscribe</button>
@@ -65,9 +65,9 @@ const Header = () => {
           <div className='md:flex items-center justify-between  py-4 md:px-10 px-7'>
             <div className='font-bold text-base cursor-pointer flex items-center '>
               <Link to="/Homepge" >
-                <img src='BabyStoryLogo.png' alt="" className='h-10 translate-x-[-20px]' />
+                <img src='BabyStoryLogo.png' alt="" className='h-10 translate-x-[-20px] md:translate-y-[-5px]' />
               </Link>
-              <h2 className='mx-[-39px]'><span>Baby</span>Read</h2>
+              <h2 className='mx-[-39px] md:translate-y-[-5px] text-2xl '>IsoMere</h2>
               <div className='mx-12 '>
                 <ul className={` Nav  md:flex md:items-center md:pb-0 pb-12 absolute md:static  md:z-0  -z-50  left-0 w-full md:w-auto  md:pl-0 pl-9 bg-white  transition-all duration-500 ease-in ${open ? 'top-[69px]' : 'top-[-490px]'}`}>
                   <li className='md:ml-2 md:hover:text-sky-600 font-medium md:text-sm text-gray-500 pt-5 md:translate-y-[-10px]' >
@@ -78,17 +78,22 @@ const Header = () => {
                   </li>
                   <li className='md:ml-2 md:hover:text-sky-600 font-medium md:text-sm text-gray-500 pt-5 md:translate-y-[-10px]' >
                     <Link to='/Preview' className='mr-2 '>Bible's Story </Link>
-                  </li>
-                  <li className='md:ml-2 md:translate-x-[650%]  font-medium md:text-sm text-gray-500'>
+                  </li> <br />
+                  <li className='md:ml-2 md:translate-x-[640%]  font-medium md:text-sm text-gray-500'>
                     <Link to="/subscribe" className='mr-2'>
                       <button className='border p-2 font-bold rounded-full w-[90%] mx-2'>Subscribe</button>
                     </Link>
+                  </li> <br />
+                  <li className='md:ml-2  font-medium md:hidden text-gray-500'>
+                    <SignInButton mode='modal' redirectUrl='/' >
+                      <button className='border p-2 font-bold rounded-full w-[90%] mx-2 bg-blue-500 hover:bg-blue-700 text-white'>Log in</button>
+                    </SignInButton>
                   </li>
                 </ul>
               </div>
             </div>
             <div className='flex items-center md:mx-3  gap-6'>
-              <div className='userprofile flex absolute right-20 top-4'>
+              <div className='userprofile md:flex absolute right-20 top-4 hidden'>
                 <SignInButton mode='modal' redirectUrl='/' >
                   <button className='border p-1.5 font-bold rounded-full w-24 bg-blue-500 hover:bg-blue-700 text-white'>Log in</button>
                 </SignInButton>

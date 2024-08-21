@@ -10,7 +10,7 @@ import axios from "axios";
 
 
 
-function Component() {
+function EditBibilical() {
     const navigate = useNavigate()
     const [TofStory, setTofStory] = useState<string>('');
     const [Image, setImage] = useState<string>('');
@@ -62,10 +62,10 @@ function Component() {
 
     return (
         <div className='flex justify-center mt-14'>
-            <form action="" onSubmit={HandleFunction} method="POST" encType="multipart/form-data" className={`flex p-5 bg-white max-w-md flex-col gap-4  w-ful`} >
+            <form action="" onSubmit={HandleFunction} method="POST" className={`flex p-5 bg-white max-w-md flex-col gap-4  w-ful`} >
                 <div className='Logo font-black flex align-middle translate-x-[-25px]'>
                     <img src='BabyStoryLogo.png' alt="" className='w-16 translate-y-[-5px] translate-x-3' />
-                    <Link to="#"> <h2></h2></Link>
+                    <Link to="#"><h2></h2></Link>
                 </div>
                 <h2 className='font-bold'>Upload Story</h2>
                 <div>
@@ -129,5 +129,4 @@ function Component() {
     );
 }
 
-export default Component;
-
+export default EditBibilical;

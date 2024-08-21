@@ -4,11 +4,55 @@ import { MdDeleteForever, MdEditSquare } from "react-icons/md";
 import { FaEye, FaMagnifyingGlass } from "react-icons/fa6";
 import { IoAddCircle } from "react-icons/io5";
 
-// import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
 import axios from 'axios'
 import Load from "./Loading";
-// import FormStory from "../Froms/FormStory";
+// import MUIDataTable from "mui-datatables";
+
+
+
+// const columns = [
+//   {
+//     name: "#",
+//     label: "#",
+//     options: {
+//       filter: true,
+//       sort: true,
+//     }
+//   },
+//   {
+//     name: "Name",
+//     label: "Name",
+//     options: {
+//       filter: true,
+//       sort: false,
+//     }
+//   },
+//   {
+//     name: "Title of Story",
+//     label: "Title of Story",
+//     options: {
+//       filter: true,
+//       sort: false,
+//     }
+//   },
+//   {
+//     name: "Author",
+//     label: "Autho",
+//     options: {
+//       filter: true,
+//       sort: false,
+//     }
+//   },
+//   {
+//     label: "Action",
+//     options: {
+//       filter: true,
+//       sort: false,
+//     }
+//   },
+// ];
+
 
 
 
@@ -42,6 +86,10 @@ const Story: FC = () => {
       })
   }, []);
 
+  // const data = [
+  //   { name: "", company: "Test Corp", city: "Yonkers", state: "NY", Action: '....' },
+  //   { name: "John Walsh", company: "Test Corp", city: "Hartford", state: "CT", Action: '....' },
+  // ]
   return (
     <>
       {
@@ -111,6 +159,9 @@ const Story: FC = () => {
                 </Table>
               </div>
 
+
+
+
               <div className="md:hidden">
                 <div className="flex justify-between items-center flex-col">
                   {story.map(({ _id, Title, Author, createdAt }, index) => (
@@ -133,23 +184,14 @@ const Story: FC = () => {
                         </Link>
                       </div>
                     </div>
-
                   ))}
                 </div>
               </div>
-              {/* <p className="text-sm-gray-400 text-center mt-2 ">@BabyStory</p> */}
             </div>
           </div>
 
         )
       }
-      {/* {
-        showForm && (
-          <div className=" fixed inset-0  bg-gray-900 bg-opacity-50 z-50 flex justify-center items-center ">
-            <FormStory />
-          </div>
-        )
-      } */}
     </>
   )
 }

@@ -1,7 +1,5 @@
-
 import { Link, Outlet } from "react-router-dom";
 import NavBar from "./NavBar";
-import { Button } from "flowbite-react";
 // import { Toaster } from "react-hot-toast";
 // import { useUser } from '@clerk/clerk-react';
 
@@ -12,19 +10,17 @@ export default function Parent() {
   // const { user } = useUser();
   // const isAdim = user?.publicMetadata.User === "Admin";
   return (
-    // isAdim ?
     <>
       <NavBar />
       <div className='flex justify-center items-center  ml-5 gap-5 my-28 '>
         <Link to='Story'>
-          <button  className='border-none'>Upload Your Story</button>
+          <button className=' p-2 font-bold rounded-md w-[90%] mx-2 bg-blue-500 hover:bg-blue-700 text-white'>Story</button>
+        </Link>
+        <Link to='Bibilical'>
+          <button className='border-none border p-2 font-bold rounded-md w-[90%] mx-2 bg-blue-500 hover:bg-blue-700 text-white'>Biblical Story</button>
         </Link>
         <Link to='Proverb'>
-          <button  className='border-none'>Upload Your Proverbs</button>
-
-        </Link>
-        <Link to=''>
-          <button  className='border-none'>Upload Your Biblical Story</button>
+          <button className='border-none border p-2 font-bold rounded-md w-[90%] mx-2 bg-blue-500 hover:bg-blue-700 text-white'>Proverbs</button>
         </Link>
       </div>
       <div className='w-screen'>
@@ -35,14 +31,6 @@ export default function Parent() {
           reverseOrder={true}
         /> */}
     </>
-    // : <>
-    //   <NavBar />
-    //   <div className='flex justify-center  flex-col items-center my-52'>
-    //     <h1 className='text-6xl font-extrabold'>404</h1>
-    //     <h2>Oops !!, You are not Authorized For This Page.</h2>
-    //     <button className='bg-[#2563eb] p-2 my-3 text-white font-semibold'> <Link to='/Homepge'> Go to Homepage</Link></button>
-    //   </div>
-    // </>
 
   )
 }

@@ -6,14 +6,14 @@ export default function About() {
     <>
       <NavBar />
       <div className="container mt-20 mx-auto px-4 max-w-4xl">
-        <h1 className="text-4xl font-bold text-center mb-8 text-sky-600">About StoryVerse</h1>
-        <p className="text-lg mb-8 text-gray-700">Welcome to StoryVerse, your portal to infinite worlds of imagination! We are passionate about bringing the magic of storytelling to life through the power of words and technology.</p>
+        <h1 className="text-4xl font-bold text-center mb-8 text-sky-600">About IsoMere</h1>
+        <p className="text-lg mb-8 text-gray-700">Welcome to IsoMere, your portal to infinite worlds of imagination! We are passionate about bringing the magic of storytelling to life through the power of words and technology.</p>
         
         <h2 className="text-3xl font-semibold mb-4 text-sky-600 border-b-2 border-indigo-200 pb-2">Our Story</h2>
-        <p className="mb-6 text-gray-700">Founded in 2020 by a group of avid readers and tech enthusiasts, StoryVerse was born from a simple idea: to create a digital haven for story lovers of all ages. We believed that in our fast-paced world, the art of storytelling needed a modern platform to thrive and reach new audiences.</p>
+        <p className="mb-6 text-gray-700">Founded in 2020 by a group of avid readers and tech enthusiasts, IsoMere was born from a simple idea: to create a digital haven for story lovers of all ages. We believed that in our fast-paced world, the art of storytelling needed a modern platform to thrive and reach new audiences.</p>
         
         <h2 className="text-3xl font-semibold mb-4 text-sky-600 border-b-2 border-indigo-200 pb-2">Our Mission</h2>
-        <p className="mb-4 text-gray-700">At StoryVerse, our mission is threefold:</p>
+        <p className="mb-4 text-gray-700">At IsoMere, our mission is threefold:</p>
         <ol className="list-decimal pl-6 mb-6 text-gray-700">
           <li className="mb-2">To connect readers with captivating tales from diverse genres and talented authors around the globe.</li>
           <li className="mb-2">To provide a nurturing platform for emerging writers to showcase their work and grow their craft.</li>
@@ -34,9 +34,9 @@ export default function About() {
         {/* ... (continue with the same styling pattern for other sections) ... */}
 
         <h2 className="text-3xl font-semibold mb-4 text-sky-600 border-b-2 border-indigo-200 pb-2">Contact Us</h2>
-        <p className="mb-6 text-gray-700">Have questions, suggestions, or just want to say hello? We'd love to hear from you! Reach out to us at <a href="mailto:contact@storyverse.com" className="text-indigo-600 hover:underline">contact@storyverse.com</a> or through our social media channels.</p>
+        <p className="mb-6 text-gray-700">Have questions, suggestions, or just want to say hello? We'd love to hear from you! Reach out to us at <a href="mailto:contact@IsoMere.com" className="text-indigo-600 hover:underline">contact@IsoMere.com</a> or through our social media channels.</p>
 
-        <p className="text-lg font-semibold text-center text-sky-600">Happy reading, and welcome to the StoryVerse family!</p>
+        <p className="text-lg font-semibold text-center text-sky-600">Happy reading, and welcome to the IsoMere family!</p>
       </div> <br /><br />
       <Footer />
     </>

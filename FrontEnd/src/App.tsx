@@ -3,9 +3,10 @@ import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
 import Home from "./Components/Home";
 import Proverbs from "./Components/Proverbs";
 import Setting from "./Components/Setting";
-import Preview from "./Components/Preview";
+import Preview from "./Components/Bibical";
 import Story from "./Components/Pages/Story";
 import Proverb from "./Components/Pages/Proverbs";
+import Bibilical from "./Components/Pages/Biblical";
 import FormStory from "./Components/Froms/FormStory";
 import FormProverb from "./Components/Froms/FormProverb";
 import ViewStory from "./Components/Pages/ViewStory"
@@ -31,8 +32,6 @@ export default function App() {
     <div>
       <BrowserRouter>
         <Routes>
-
-          {/* <Route path="/" element={<Homepge />} /> */}
           <Route path="/" element={<Home />} />
           <Route path="Proverbs" element={<Proverbs />} />
           <Route path="Setting" element={
@@ -47,6 +46,7 @@ export default function App() {
           }>
             <Route path="Story" element={<Story />} />
             <Route path="Proverb" element={<Proverb />} />
+            <Route path="Bibilical" element={<Bibilical />} />
           </Route>
           <Route path="Preview" element={
             <>
@@ -69,8 +69,27 @@ export default function App() {
           <Route path="TopStory" element={<TopStory />} />
           <Route path="TopProverb" element={<TopProverb />} />
 
-          <Route path="subscribe" element={<Subscribe />} />
-          <Route path="Idea" element={<Idea />} />
+          <Route path="subscribe" element={
+            <>
+              <SignedIn>
+                <Subscribe />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          } />
+          <Route path="Idea" element={
+            <>
+              <SignedIn>
+                <Idea />
+              </SignedIn>
+              <SignedOut mode='modal'>
+                <RedirectToSignIn  />
+              </SignedOut>
+            </>
+
+          } />
 
           <Route path="About" element={<About />} />
           <Route path="Terms" element={<Terms />} />

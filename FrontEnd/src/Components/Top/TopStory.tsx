@@ -1,10 +1,40 @@
 import NavBar from "../NavBar";
 import IG from "./Bh.jpeg"
 import Footer from '../Footer'
-import {Link} from 'react-router-dom';
-// import TopStorys from "../Top/TopStoryComponent"
+import BottomStory from "./BottomStory"
+import axios from 'axios'
+import { useParams} from "react-router-dom";
+import { useState, useEffect } from 'react'
+
+
+
+
+
+interface Story {
+  _id: string,
+  Title: string,
+  image: string,
+  Decription: string
+  createdAt: string
+}
 
 export default function TopStory() {
+  const [story, setStory] = useState<Story>({} as Story);
+  const { id } = useParams();
+
+
+
+  useEffect(() => {
+    axios.get(`https://babystory-server.onrender.com/story/${id}`)
+      .then((data) => {
+        setStory(data.data);
+      })
+      .catch((error) => {
+        console.log('error', error)
+      })
+  }, [id]);
+
+
   return (
     <>
       <NavBar />
@@ -27,29 +57,8 @@ export default function TopStory() {
           </div> */}
         </div>
       </div>
-      <div className="bg-black h-1 ml-10 mr-10"></div>
-      <Link to={'/TopStory'}>
-        <div className="md:flex justify-center">
-          <div className="continer m-20 ">
-            <img src={IG} alt="img" className="" />
-            <h2 className="font-extrabold text-xl">Baby loves Money, Money hate baby</h2>
-            <p className="text-gray-400">June 2024</p>
-
-          </div>
-          <div className="continer m-20 ">
-            <img src={IG} alt="img" className="" />
-            <h2 className="font-extrabold text-xl">Baby loves Money, Money hate baby</h2>
-            <p className="text-gray-400">June 2024</p>
-
-          </div>
-          <div className="continer m-20 ">
-            <img src={IG} alt="img" className="" />
-            <h2 className="font-extrabold text-xl">Baby loves Money, Money hate baby</h2>
-            <p className="text-gray-400">June 2024</p>
-
-          </div>
-        </div>
-      </Link>
+      <div className="bg-black bg-black/50 rounded  h-1 ml-10 mr-10"></div>
+      <BottomStory />
       <div>
         <Footer />
       </div>

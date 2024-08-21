@@ -39,12 +39,7 @@ const Home: FC = () => {
   useEffect(() => {
     axios.get("https://babystory-server.onrender.com/stories")
       .then((response) => {
-        const storiesWithReactions = response.data.map((story: Story) => ({
-          ...story,
-          likes: 0,
-          dislikes: 0
-        }));
-        setStories(storiesWithReactions);
+        setStories(response.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -64,7 +59,7 @@ const Home: FC = () => {
               <Load />
             </div>
           ) : (
-            <div className='Container md:flex justify-around translate-y-[-4%] mt-40 gap-20 w-screen '>
+            <div className='Container  md:flex justify-around translate-y-[-4%] mt-40 gap-20 w-screen '>
               <div>
                 {stories.map(({ id, Title, image, createdAt }) => (
 
@@ -82,8 +77,8 @@ const Home: FC = () => {
                   </div>
 
                 ))}
-                <div className='flex  mb-10 justify-between mx-10'>
-                  <button>Read more</button>
+                <div className='flex  mb-10 justify-center items-center  md:translate-x-72 md:translate-y-20 '>
+                  <button className='bg-sky-500 text-white p-1.5 font-bold rounded-md ' >Read More</button>
                 </div>
               </div>
               <div className='mt-5 mx-10  '>

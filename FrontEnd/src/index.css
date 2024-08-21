@@ -126,3 +126,7 @@ nav ul {
     
     background: #03070c;
 }
+
+html{
+    scroll-behavior: smooth;
+  }

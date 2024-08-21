@@ -57,8 +57,6 @@ const Proverb: FC = () => {
                     ))
                   }
                   <div className='flex justify-between mx-8 mb-10  '>
-                    {/* <button className='text-white bg-sky-600 rounded-xl w-20 p-1'>Prev</button>
-                    <button className='text-white bg-sky-600 rounded-xl w-20 p-1'>Next</button> */}
                     <button>Read More</button>
                   </div>
                 </div>

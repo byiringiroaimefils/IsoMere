@@ -50,7 +50,7 @@ function Component() {
             <form className="flex p-5 max-w-md flex-col gap-4 w-full bg-white" onSubmit={HandleFunction}>
                 <div className='Logo font-black flex align-middle translate-x-[-25px]'>
                     <img src='BabyStoryLogo.png' alt="" className='w-16 translate-y-[-5px] translate-x-3' />
-                    <Link to="#"> <h2>Baby<span className='text-blue-500 font-semibold text-base '>Story</span></h2></Link>
+                    <Link to="#"> <h2></h2></Link>
                 </div>
                 <h2 className='font-bold'>Upload Proverbs</h2>
                 <div>
