@@ -3,7 +3,7 @@ import IG from "./Bh.jpeg"
 import Footer from '../Footer'
 import BottomStory from "./BottomStory"
 import axios from 'axios'
-import { useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react'
 
 
@@ -28,6 +28,7 @@ export default function TopStory() {
     axios.get(`https://babystory-server.onrender.com/story/${id}`)
       .then((data) => {
         setStory(data.data);
+        console.log(data.data)
       })
       .catch((error) => {
         console.log('error', error)
@@ -38,7 +39,7 @@ export default function TopStory() {
   return (
     <>
       <NavBar />
-      <div className="container px-10 py-36 translate-y-[-2%] flex justify-center">
+      <div className="container px-10 py-36 translate-y-[-2%] md:ml-20">
         <div className="w-full max-w-4xl flex justify-between gap-20">
           <div>
             <div className="w-[95%]">
@@ -49,13 +50,11 @@ export default function TopStory() {
             </div>
             <p className="text-gray-400">June 2024</p>
           </div>
-
-          {/* <div className="Video w-[60%] translate-x-36">
-            <div className="translate-y-[-14%]">
-              <TopStorys />
-            </div>
-          </div> */}
-        </div>
+        </div> <br /><br />
+      <div className="flex  gap-[55%]">
+        <button className='border p-3 font-bold rounded-full  text-gray-500 hover:bg-black transition-all duration-500 ease-in'>Prev</button>
+        <button className='border p-3 font-bold rounded-full  text-gray-500 hover:bg-black transition-all duration-500 ease-in'>Next</button>
+      </div>
       </div>
       <div className="bg-black bg-black/50 rounded  h-1 ml-10 mr-10"></div>
       <BottomStory />

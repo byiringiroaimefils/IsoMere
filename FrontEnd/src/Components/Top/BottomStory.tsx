@@ -31,8 +31,8 @@ export default function BottomStory() {
         <div>
             <h2 className="ml-20 mt-5 font-extrabold ">POPULAR STORIES</h2>
             <Link to={'/TopStory'}>
-                <div className="md:flex justify-center">
-                    <div className="continer m-20 ">
+                <div className="md:flex justify-center gap-20">
+                    <div className="continer m-20  ">
                         <img src={IG} alt="img" className="" />
                         <h2 className="font-extrabold text-xl">Baby loves Money, Money hate baby</h2>
                         <p className="text-gray-400">June 2024</p>

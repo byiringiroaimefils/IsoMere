@@ -59,8 +59,8 @@ const Home: FC = () => {
               <Load />
             </div>
           ) : (
-            <div className='Container  md:flex justify-around translate-y-[-4%] mt-40 gap-20 w-screen '>
-              <div>
+            <div className='Container mt-44  md:flex justify-around translate-y-[-4%]  gap-20 w-screen '>
+              <div className=''>
                 {stories.map(({ id, Title, image, createdAt }) => (
 
                   <div key={id} className='story p-8 mr-28 md:w-[650px] md:translate-x-24 cursor-pointer' >
@@ -78,7 +78,7 @@ const Home: FC = () => {
 
                 ))}
                 <div className='flex  mb-10 justify-center items-center  md:translate-x-72 md:translate-y-20 '>
-                  <button className='bg-sky-500 text-white p-1.5 font-bold rounded-md ' >Read More</button>
+                  <button className=' w-32 text-white p-1.5  rounded-full font-bold  bg-blue-500 hover:bg-blue-700 ' >Read More</button>
                 </div>
               </div>
               <div className='mt-5 mx-10  '>

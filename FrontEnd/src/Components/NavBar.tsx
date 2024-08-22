@@ -22,7 +22,7 @@ const Header = () => {
   return (
     isAdim ?
       <>
-        <div className='Header bg-white shadow-sm w-full '>
+        <div className='Header bg-white shadow-xl w-full '>
           <div className='md:flex items-center justify-between  py-4 md:px-10 px-7'>
             <div className='font-bold text-base cursor-pointer flex items-center '>
               <Link to="/" >
@@ -37,9 +37,9 @@ const Header = () => {
                         <Link to={link.link} className='mr-2 '>{link.name}</Link>
                       </li>))
                   } <br />
-                  <li className='md:ml-2 md:translate-x-[650%]  font-medium md:text-sm text-gray-500'>
+                  <li className='md:ml-2 md:translate-x-[530%]  font-medium md:text-sm text-gray-500'>
                     <Link to="/subscribe" className='mr-2 '>
-                      <button className='border p-1.5 font-bold rounded-full w-[90%] mx-2'>Subscribe</button>
+                      <button className='border p-1.5 font-bold rounded-full w-[90%] mx-2 hover:bg-black'>Subscribe</button>
                     </Link>
                   </li>
                 </ul>
@@ -61,7 +61,7 @@ const Header = () => {
         </div>
       </> :
       <>
-        <div className='Header bg-white shadow-sm w-full fixed top-0 right-0  z-50'>
+        <div className='Header bg-white shadow-xl w-full fixed top-0 right-0  z-50'>
           <div className='md:flex items-center justify-between  py-4 md:px-10 px-7'>
             <div className='font-bold text-base cursor-pointer flex items-center '>
               <Link to="/Homepge" >
@@ -79,14 +79,14 @@ const Header = () => {
                   <li className='md:ml-2 md:hover:text-sky-600 font-medium md:text-sm text-gray-500 pt-5 md:translate-y-[-10px]' >
                     <Link to='/Preview' className='mr-2 '>Bible's Story </Link>
                   </li> <br />
-                  <li className='md:ml-2 md:translate-x-[640%]  font-medium md:text-sm text-gray-500'>
+                  <li className='md:ml-2 md:translate-x-[520%]  font-medium md:text-sm text-gray-500'>
                     <Link to="/subscribe" className='mr-2'>
-                      <button className='border p-2 font-bold rounded-full w-[90%] mx-2'>Subscribe</button>
+                      <button className='border p-2 font-bold rounded-full w-[90%] mx-2 hover:bg-black transition-all duration-500 ease-in '>Subscribe</button>
                     </Link>
                   </li> <br />
                   <li className='md:ml-2  font-medium md:hidden text-gray-500'>
                     <SignInButton mode='modal' redirectUrl='/' >
-                      <button className='border p-2 font-bold rounded-full w-[90%] mx-2 bg-blue-500 hover:bg-blue-700 text-white'>Log in</button>
+                      <button className='border p-2 font-bold rounded-full w-[90%] mx-2 bg-blue-500 hover:bg-blue-700 transition-all duration-500 ease-in text-white'>Log in</button>
                     </SignInButton>
                   </li>
                 </ul>
@@ -95,7 +95,7 @@ const Header = () => {
             <div className='flex items-center md:mx-3  gap-6'>
               <div className='userprofile md:flex absolute right-20 top-4 hidden'>
                 <SignInButton mode='modal' redirectUrl='/' >
-                  <button className='border p-1.5 font-bold rounded-full w-24 bg-blue-500 hover:bg-blue-700 text-white'>Log in</button>
+                  <button className='border p-1.5 font-bold rounded-full w-24 bg-blue-500 hover:bg-blue-700 text-white transition-all duration-500 ease-in'>Log in</button>
                 </SignInButton>
               </div>
               <div onClick={() => setOpen(!open)} className='absolute right-5 top-7 cursor-pointer md:hidden w-7 h-7'>

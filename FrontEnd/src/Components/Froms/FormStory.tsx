@@ -46,8 +46,8 @@ function Component() {
         <div className='flex justify-center mt-14'>
             <form action="" onSubmit={HandleFunction} method="POST" className={`flex p-5 bg-white max-w-md flex-col gap-4  w-ful `} >
                 <div className='Logo font-black flex align-middle translate-x-[-25px]'>
-                    <img src='BabyStoryLogo.png' alt="" className='w-16 translate-y-[-5px] translate-x-3' />
-                    <Link to="#"> <h2>Baby<span className='text-blue-500 font-semibold text-base '>Story</span></h2></Link>
+                    <img src='BabyStoryLogo.png' alt="" className='w-36 translate-y-[-25px] translate-x-3' />
+                    <Link to="#"> <h2>IsoMere</h2></Link>
                 </div>
                 <h2 className='font-bold'>Upload Story</h2>
                 <div>
@@ -98,7 +98,7 @@ function Component() {
                 </div>
                 <div>
                 </div>
-                <Button color="blue" className='md:w-[99%] w-[99%]' type='submit'>UPLOAD</Button>
+                <Button  className='md:w-[99%] w-[99%]  bg-blue-500 rounded-full hover:bg-blue-700 transition-all duration-500 ease-in text-white' type='submit'>UPLOAD</Button>
             </form>
         </div>
     );

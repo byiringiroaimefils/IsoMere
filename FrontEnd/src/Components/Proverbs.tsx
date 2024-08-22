@@ -40,24 +40,24 @@ const Proverb: FC = () => {
                 <Load />
               </div>
             ) : (
-              <div className='md:flex justify-center  md:ml-14'>
+              <div className='md:flex justify-center mt-28 md:ml-14'>
                 <div>
                   {
                     Proverb.map(({ id, TitleofProverb, Proverb, createdAt }) => (
                       <div key={id} className='ml-10 mr-10 ' >
                         <div className='Header '>
-                          <h2 className='font-bold  text-4xl '>{TitleofProverb}</h2>
+                          <h2 className='font-bold  text-3xl '>{TitleofProverb}</h2>
                           <p className='mt-2 text-sky-500'>by BYIRINGIRO</p>
                         </div>
-                        <div className='Description mt-2 '>
+                        <div className='Description mt-2 w-[70%] '>
                           <p dangerouslySetInnerHTML={{ __html: Proverb }} />
                           <p className='text-sm font-thin text-gray-400'>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</p> <br />
                         </div>
                       </div>
                     ))
                   }
-                  <div className='flex justify-between mx-8 mb-10  '>
-                    <button>Read More</button>
+                  <div className='flex  mb-10 justify-center items-center  md:translate-x-72 md:translate-y-20 '>
+                    <button className=' w-32 text-white p-1.5  rounded-full font-bold  bg-blue-500 hover:bg-blue-700 ' >Read More</button>
                   </div>
                 </div>
                 <div className=' w-full ml-8'>

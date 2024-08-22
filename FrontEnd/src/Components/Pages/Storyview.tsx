@@ -1,7 +1,8 @@
 import NavBar from "../NavBar";
 import IG from "../Pages/Bh.jpeg"
 import Footer from '../Footer'
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
+import BottomStory from "../Top/BottomStory";
 // import TopStorys from "../Top/TopStoryComponent"
 
 export default function Stoiryview() {
@@ -28,7 +29,8 @@ export default function Stoiryview() {
         </div>
       </div>
       <div className="bg-black h-1 ml-10 mr-10"></div>
-      <Link to={'/TopStory'}>
+      <BottomStory />
+      {/* <Link to={'/TopStory'}>
         <div className="flex justify-center">
           <div className="continer m-20 ">
             <img src={IG} alt="img" className="" />
@@ -43,7 +45,7 @@ export default function Stoiryview() {
             <h2 className="font-extrabold text-xl">Baby loves Money, Money hate baby</h2>
           </div>
         </div>
-      </Link>
+      </Link> */}
       <div>
         <Footer />
       </div>

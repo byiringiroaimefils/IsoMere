@@ -9,7 +9,7 @@ export default function Preview() {
   return (
     <>
       <NavBar />
-      <div className="container px-10 py-36 translate-y-[-2%] flex justify-center">
+      <div className="container mt-10 px-10 py-36 translate-y-[-2%] flex justify-center">
         <div className="w-full max-w-5xl md:flex justify-between ">
           <Link to={'/StoryView'}>
             <div className="">

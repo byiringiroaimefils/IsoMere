@@ -66,7 +66,7 @@ function Component() {
                 </div>
                 <div>
                 </div>
-                <Button color="blue" className= 'md:w-[99%] w-[99%]' type='submit'>UPLOAD</Button>
+                <Button color="blue" className= 'md:w-[99%] w-[99%]  bg-blue-500 rounded-full hover:bg-blue-700 transition-all duration-500 ease-in text-white' type='submit'>UPLOAD</Button>
             </form>
         </div>
     );

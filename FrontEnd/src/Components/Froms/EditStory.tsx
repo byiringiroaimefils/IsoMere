@@ -123,7 +123,7 @@ function Component() {
                 <div>
                 </div>
 
-                <Button  className='md:w-96 w-[99%]' type="submit">Upload</Button>
+                <Button  className='md:w-[99%] w-[99%]  bg-blue-500 rounded-full hover:bg-blue-700 transition-all duration-500 ease-in text-white' type="submit">Upload</Button>
             </form>
         </div>
     );
