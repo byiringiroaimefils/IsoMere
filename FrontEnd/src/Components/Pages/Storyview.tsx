@@ -1,9 +1,8 @@
 import NavBar from "../NavBar";
 import IG from "../Pages/Bh.jpeg"
 import Footer from '../Footer'
-// import {Link} from 'react-router-dom';
 import BottomStory from "../Top/BottomStory";
-// import TopStorys from "../Top/TopStoryComponent"
+
 
 export default function Stoiryview() {
   return (
@@ -20,32 +19,10 @@ export default function Stoiryview() {
             </div>
             <p className="text-gray-400">June 2024</p>
           </div>
-
-          {/* <div className="Video w-[60%] translate-x-36">
-            <div className="translate-y-[-14%]">
-              <TopStorys />
-            </div>
-          </div> */}
         </div>
       </div>
       <div className="bg-black h-1 ml-10 mr-10"></div>
       <BottomStory />
-      {/* <Link to={'/TopStory'}>
-        <div className="flex justify-center">
-          <div className="continer m-20 ">
-            <img src={IG} alt="img" className="" />
-            <h2 className="font-extrabold text-xl">Baby loves Money, Money hate baby</h2>
-          </div>
-          <div className="continer m-20 ">
-            <img src={IG} alt="img" className="" />
-            <h2 className="font-extrabold text-xl">Baby loves Money, Money hate baby</h2>
-          </div>
-          <div className="continer m-20 ">
-            <img src={IG} alt="img" className="" />
-            <h2 className="font-extrabold text-xl">Baby loves Money, Money hate baby</h2>
-          </div>
-        </div>
-      </Link> */}
       <div>
         <Footer />
       </div>

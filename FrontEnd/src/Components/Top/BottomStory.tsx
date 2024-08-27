@@ -8,18 +8,18 @@ import { useState, useEffect } from 'react'
 
 interface Story {
     _id: string,
+    image: string,
     Title: string,
     createdAt: string
 }
 
 export default function BottomStory() {
-
-    const [story, setStory] = useState<Story>({} as Story);
+    const [stories, setStories] = useState<Story[]>([]);
 
     useEffect(() => {
-        axios.get(`https://babystory-server.onrender.com/story/`)
+        axios.get(`https://babystory-server.onrender.com/stories`)
             .then((data) => {
-                setStory(data.data);
+                setStories(data.data);
             })
             .catch((error) => {
                 console.log('error', error)
@@ -31,25 +31,17 @@ export default function BottomStory() {
         <div>
             <h2 className="ml-20 mt-5 font-extrabold ">POPULAR STORIES</h2>
             <Link to={'/TopStory'}>
-                <div className="md:flex justify-center gap-20">
-                    <div className="continer m-20  ">
-                        <img src={IG} alt="img" className="" />
-                        <h2 className="font-extrabold text-xl">Baby loves Money, Money hate baby</h2>
-                        <p className="text-gray-400">June 2024</p>
+                <div className="md:flex justify-center gap-16">
+                    {stories.slice(0, 3).map((Story) => (
 
-                    </div>
-                    <div className="continer m-20 ">
-                        <img src={IG} alt="img" className="" />
-                        <h2 className="font-extrabold text-xl">Baby loves Money, Money hate baby</h2>
-                        <p className="text-gray-400">June 2024</p>
+                        <div key={Story._id} className="continer m-20  ">
+                            <img src={Story.image} alt="img" className="" />
+                            <h2 className="font-extrabold text-xl">{Story.Title}</h2>
+                            <p className="text-gray-400">{Story.createdAt}</p>
 
-                    </div>
-                    <div className="continer m-20 ">
-                        <img src={IG} alt="img" className="" />
-                        <h2 className="font-extrabold text-xl">Baby loves Money, Money hate baby</h2>
-                        <p className="text-gray-400">June 2024</p>
+                        </div>
 
-                    </div>
+                    ))}
                 </div>
             </Link>
         </div>

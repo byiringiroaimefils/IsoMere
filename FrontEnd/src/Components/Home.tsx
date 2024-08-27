@@ -66,7 +66,7 @@ const Home: FC = () => {
                   <div key={id} className='story p-8 mr-28 md:w-[650px] md:translate-x-24 cursor-pointer' >
                     <Link to={`/StoryView`}>
                       <div className='Header '>
-                        <h2 className='font-bold  text-4xl  hover:text-sky-600 hover:cursor-pointer'>{Title}</h2>
+                        <h2 className='font-bold  text-4xl  hover:text-sky-600 hover:cursor-pointer uppercase'>{Title}</h2>
                         <p className='text-sm font-thin text-gray-400'>by BYIRINGIRO</p> <br />
                         <img src={image} alt="" className='w-[75%]  object-cover' />
                       </div>

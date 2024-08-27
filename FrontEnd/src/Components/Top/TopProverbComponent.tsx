@@ -1,19 +1,44 @@
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+
+interface Proverb {
+  _id: string;
+  TitleofProverb: string,
+}
 
 export default function TopStoryComponent() {
-    return (
-        <>
-            <div className="topstory">
-                <h4 className='font-extrabold'>MOST POPULAR PROVIRBS</h4>
-                <p className='text-sm font-thin bg-black/50 rounded-sm h-0.5 w-32 mb-2'></p> <br />
-                <Link to={'/TopProverb'}>
-                    <ul>
-                        <li className='text-lg cursor-pointer'><span className='text-gray-400 text-3xl  '>01.</span>Guess How Much I Love You?</li>
-                        <li className='text-lg cursor-pointer'><span className='text-gray-400 text-3xl'>02.</span>The Tale of Peter Rabbit.</li>
-                        <li className='text-lg cursor-pointer'><span className='text-gray-400 text-3xl'>03.</span>Alice's Adventures in Wonderland.</li>
-                    </ul>
-                </Link>
-            </div>
-        </>
-    )
+  const [Proverbs, setProverbs] = useState<Proverb[]>([]);
+
+  useEffect(() => {
+    axios.get('https://babystory-server.onrender.com/proverbs')
+      .then((response) => {
+        setProverbs(response.data);
+      })
+      .catch((error) => {
+        console.log('error', error);
+      });
+  }, []);
+
+  return (
+    <>
+      <div className="topstory">
+        <h4 className="font-extrabold">MOST POPULAR PROVERBS</h4>
+        <p className="text-sm font-thin bg-black/50 rounded-sm h-0.5 w-32 mb-2"></p>
+        <br />
+        <Link to={'/TopProverb'}>
+          <ul>
+            {Proverbs.slice(0,3).map((proverb, index) => (
+              <li key={proverb._id} className="text-lg  cursor-pointer">
+                <span className="text-gray-400 text-3xl font-extrabold">
+                  {(index + 1).toString().padStart(2, '0')}.
+                </span>
+                {proverb.TitleofProverb}
+              </li>
+            ))}
+          </ul>
+        </Link>
+      </div>
+    </>
+  );
 }
