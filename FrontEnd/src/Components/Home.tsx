@@ -84,7 +84,7 @@ const Home: FC = () => {
               <div className='mt-5 mx-10  '>
                 <TopProverb />
                 <TopStory />
-                <div className="Alphabetics mt-20 hidden">
+                <div className="Alphabetics mt-20 ">
                   <h4 className='font-extrabold '>ALPHABETICS</h4>
                   <p className='text-sm font-thin text-gray-400'>Click to any Alphabetic then listen how to read!!   </p>
                   <div className='buttons grid grid-cols-6 gap-2 mt-4 mr-28'>
