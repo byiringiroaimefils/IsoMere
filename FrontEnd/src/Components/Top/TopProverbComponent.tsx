@@ -26,18 +26,18 @@ export default function TopStoryComponent() {
         <h4 className="font-extrabold">MOST POPULAR PROVERBS</h4>
         <p className="text-sm font-thin bg-black/50 rounded-sm h-0.5 w-32 mb-2"></p>
         <br />
-        <Link to={'/TopProverb'}>
-          <ul>
-            {Proverbs.slice(0,3).map((proverb, index) => (
+        <ul>
+          {Proverbs.slice(0, 3).map((proverb, index) => (
+            <Link to={`/TopProverb/${proverb._id}`}>
               <li key={proverb._id} className="text-lg  cursor-pointer">
                 <span className="text-gray-400 text-3xl font-extrabold">
                   {(index + 1).toString().padStart(2, '0')}.
                 </span>
                 {proverb.TitleofProverb}
               </li>
-            ))}
-          </ul>
-        </Link>
+            </Link>
+          ))}
+        </ul>
       </div>
     </>
   );

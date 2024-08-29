@@ -21,7 +21,7 @@ export default function Footer() {
                 </button>
             </div>
             <div className='w-full bg-gray-100 p-4 sm:p-7'>
-                <nav className='flex flex-wrap justify-center gap-4 mb-6'>
+                <nav className='flex flex-wrap justify-center translate-x-10 gap-4 mb-6'>
                     <Link to={'/About'} className='text-gray-600 hover:underline text-sm sm:text-base'>
                         About us
                     </Link>
@@ -33,9 +33,9 @@ export default function Footer() {
                     </Link>
                 </nav>
                 <div className='flex gap-4 justify-center text-2xl sm:text-3xl mb-6'>
-                    <a href="#" aria-label="Instagram"><IoLogoInstagram /></a>
-                    <a href="#" aria-label="Twitter"><FaXTwitter /></a>
-                    <a href="#" aria-label="Facebook"><FaFacebook /></a>
+                    <a href="#" aria-label="Instagram" className="text-black" ><IoLogoInstagram /></a>
+                    <a href="#" aria-label="Twitter" className="text-black" ><FaXTwitter /></a>
+                    <a href="#" aria-label="Facebook" className="text-black" ><FaFacebook /></a>
                 </div>
                 <div className='text-center'>
                     <p className='text-gray-600 text-xs sm:text-sm'>Copyright &copy; 2024 IsoMere. All rights reserved.</p>

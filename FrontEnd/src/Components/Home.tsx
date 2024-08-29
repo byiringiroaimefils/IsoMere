@@ -63,12 +63,12 @@ const Home: FC = () => {
               <div className=''>
                 {stories.map(({ id, Title, image, createdAt }) => (
 
-                  <div key={id} className='story p-8 mr-28 md:w-[650px] md:translate-x-24 cursor-pointer' >
-                    <Link to={`/StoryView`}>
+                  <div key={id} className='story p-8 mr-28  md:w-[650px] md:translate-x-24 cursor-pointer' >
+                    <Link to={`/StoryView/${id}`}>
                       <div className='Header '>
                         <h2 className='font-bold  text-4xl  hover:text-sky-600 hover:cursor-pointer uppercase'>{Title}</h2>
                         <p className='text-sm font-thin text-gray-400'>by BYIRINGIRO</p> <br />
-                        <img src={image} alt="" className='w-[75%]  object-cover' />
+                        <img src={image} alt="" className='  object-cover' />
                       </div>
                       <div className='Description mt-4'>
                         <p className='text-sm font-thin text-gray-400'>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</p> <br />
@@ -87,7 +87,7 @@ const Home: FC = () => {
                 <div className="Alphabetics mt-20 ">
                   <h4 className='font-extrabold '>ALPHABETICS</h4>
                   <p className='text-sm font-thin text-gray-400'>Click to any Alphabetic then listen how to read!!   </p>
-                  <div className='buttons grid grid-cols-6 gap-2 mt-4 mr-28'>
+                  <div className='buttons grid grid-cols-6 gap-2 mt-4 mr-28 w-full'>
                     <button value='A' className='border p-2 font-base hover:text-blue-500'>Aa</button>
                     <button value='B' className='border p-2 font-base hover:text-blue-500'>Bb</button>
                     <button value='C' className='border p-2 font-base hover:text-blue-500'>Cc</button>

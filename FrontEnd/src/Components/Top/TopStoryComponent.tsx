@@ -30,10 +30,10 @@ export default function TopProverbComponent() {
         <h4 className='font-extrabold'>MOST POPULAR STORIES</h4>
         <p className='text-sm font-thin bg-black/50 rounded-sm h-0.5 w-32 mb-2 '></p><br />
 
-        <Link to={'/TopStory'}>
-          <div>
-            {stories.slice(0,2).map((story) => (
-              <div key={story._id} className='grid grid-cols-2 mb-5'>
+        <div>
+          {stories.slice(0, 2).map((story) => (
+            <Link to={`/TopStory/${story._id}`}>
+              <div key={story._id} className='grid grid-cols-2 gap-5 mb-5'>
                 <div className="img text-lg">
                   <h2 className='font-extrabold text-xl uppercase'>{story.Title}</h2>
                   <p className="text-base text-gray-400 line-clamp-2" dangerouslySetInnerHTML={{ __html: story.Decription }} />
@@ -42,10 +42,10 @@ export default function TopProverbComponent() {
                   <img src={story.image} alt="" className='w-[75%] object-cover' />
                 </div>
               </div>
-            ))}
-            <br />
-          </div>
-        </Link>
+            </Link>
+          ))}
+          <br />
+        </div>
       </div>
     </>
   )

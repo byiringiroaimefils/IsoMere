@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import IG from "./Bh.jpeg"
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 
@@ -30,20 +29,19 @@ export default function BottomStory() {
     return (
         <div>
             <h2 className="ml-20 mt-5 font-extrabold ">POPULAR STORIES</h2>
-            <Link to={'/TopStory'}>
-                <div className="md:flex justify-center gap-16">
-                    {stories.slice(0, 3).map((Story) => (
-
+            <div className="md:flex justify-center ">
+                {stories.slice(0, 3).map((Story) => (
+                    <Link to={`/TopStory/${Story._id}`}>
                         <div key={Story._id} className="continer m-20  ">
-                            <img src={Story.image} alt="img" className="" />
-                            <h2 className="font-extrabold text-xl">{Story.Title}</h2>
+                            <img src={Story.image} alt="img" className="w-96" />
+                            <h2 className="font-extrabold text-xl uppercase">{Story.Title}</h2>
                             <p className="text-gray-400">{Story.createdAt}</p>
 
                         </div>
 
-                    ))}
-                </div>
-            </Link>
+                    </Link>
+                ))}
+            </div>
         </div>
     )
 }
