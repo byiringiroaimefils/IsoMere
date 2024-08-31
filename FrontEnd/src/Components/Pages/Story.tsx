@@ -197,4 +197,4 @@ const Story: FC = () => {
 }
 
 
-export default Story
+export default Story;

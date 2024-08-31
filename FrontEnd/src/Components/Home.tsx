@@ -22,6 +22,11 @@ interface Story {
 const Home: FC = () => {
   const [stories, setStories] = useState<Story[]>([]);
   const [loading, setLoading] = useState(true);
+  const [Limit ,setLimit] = useState(4)
+
+  const add = ()=>{
+    setLimit((Limit) => Limit + 4)
+    }
 
   useEffect(() => {
     const buttons = document.querySelectorAll(".buttons button")
@@ -61,7 +66,7 @@ const Home: FC = () => {
           ) : (
             <div className='Container mt-44  md:flex justify-around translate-y-[-4%]  gap-20 w-screen '>
               <div className=''>
-                {stories.map(({ id, Title, image, createdAt }) => (
+                {stories.slice(0,Limit).map(({ id, Title, image, createdAt }) => (
 
                   <div key={id} className='story p-8 mr-28  md:w-[650px] md:translate-x-24 cursor-pointer' >
                     <Link to={`/StoryView/${id}`}>
@@ -77,8 +82,8 @@ const Home: FC = () => {
                   </div>
 
                 ))}
-                <div className='flex  mb-10 justify-center items-center  md:translate-x-72 md:translate-y-20 '>
-                  <button className=' w-32 text-white p-1.5  rounded-full font-bold  bg-blue-500 hover:bg-blue-700 ' >Read More</button>
+                <div className='flex  mb-10 justify-center items-center  md:translate-x-80 md:translate-y-20 '>
+                  <button className=' w-32 text-white p-1.5  rounded-full font-bold  bg-blue-500 hover:bg-blue-700 ' onClick={add} >Read More</button>
                 </div>
               </div>
               <div className='mt-5 mx-10  '>

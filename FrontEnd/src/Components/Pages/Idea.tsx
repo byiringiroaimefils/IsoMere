@@ -6,15 +6,13 @@ export default function Idea() {
     const [comment, setComment] = useState('');
     const [idea, setIdea] = useState('');
 
-    const handleCommentChange = (e) => setComment(e.target.value);
-    const handleIdeaChange = (e) => setIdea(e.target.value);
+    const handleCommentChange = (e: React.FormEvent<HTMLFormElement>) => setComment(e.target.value);
+    const handleIdeaChange = (e: React.FormEvent<HTMLFormElement>) => setIdea(e.target.value);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Handle form submission
         console.log('Comment:', comment);
         console.log('Idea:', idea);
-        // Reset fields
         setComment('');
         setIdea('');
     };

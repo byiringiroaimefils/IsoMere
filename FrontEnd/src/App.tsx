@@ -7,12 +7,12 @@ import Preview from "./Components/Bibical";
 import Story from "./Components/Pages/Story";
 import Proverb from "./Components/Pages/Proverbs";
 import Bibilical from "./Components/Pages/Biblical";
-import FormStory from "./Components/Froms/FormStory";
-import FormProverb from "./Components/Froms/FormProverb";
+import FormStory from "./Components/Forms/FormStory";
+import FormProverb from "./Components/Forms/FormProverb";
 import ViewStory from "./Components/Pages/ViewStory"
 import ViewProverb from "./Components/Pages/ViewProverb"
-import EditS from "./Components/Froms/EditStory"
-import EditProverb from "./Components/Froms/EditProverb"
+import EditS from "./Components/Forms/EditStory"
+import EditProverb from "./Components/Forms/EditProverb"
 import DeleteProverb from "./Components/Pages/DeletePro"
 import DeleteStory from "./Components/Pages/DeleteStory"
 import About from "./Components/Pages/AboutUs"

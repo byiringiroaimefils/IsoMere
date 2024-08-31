@@ -1,14 +1,10 @@
 import { Link, Outlet } from "react-router-dom";
 import NavBar from "./NavBar";
-// import { Toaster } from "react-hot-toast";
-// import { useUser } from '@clerk/clerk-react';
 
 
 
 
 export default function Parent() {
-  // const { user } = useUser();
-  // const isAdim = user?.publicMetadata.User === "Admin";
   return (
     <>
       <NavBar />
@@ -26,10 +22,6 @@ export default function Parent() {
       <div className='w-screen'>
         <Outlet />
       </div>
-      {/* <Toaster
-          position="bottom-right"
-          reverseOrder={true}
-        /> */}
     </>
 
   )

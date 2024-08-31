@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import axios from 'axios'
+import David from "./David and Goliath.webp"
+
 
 
 interface Story {
@@ -12,7 +14,6 @@ interface Story {
 
 export default function TopProverbComponent() {
   const [stories, setStories] = useState<Story[]>([]);
-  // const [limit, setLimit] = useState(2);
 
   useEffect(() => {
     axios.get(`https://babystory-server.onrender.com/stories`)
@@ -41,6 +42,16 @@ export default function TopProverbComponent() {
                 <div className="text">
                   <img src={story.image} alt="" className='w-[75%] object-cover' />
                 </div>
+                <div className="img text-lg">
+                  <h2 className='font-extrabold text-xl uppercase'>David Killed Goriath</h2>
+                  <p className="text-base text-gray-400 line-clamp-2">Lorem ipsum dolor sit amet consectetur adipisicing </ p>
+                </div>
+                <div className="text">
+                  <img src={David} alt="" className='w-[75%] object-cover' />
+                </div>
+              </div>
+
+              <div className='grid grid-cols-2 gap-5 mb-5'>
               </div>
             </Link>
           ))}
