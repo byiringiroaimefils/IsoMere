@@ -1,5 +1,5 @@
                         BABY STORY WEB APPLICATION
-This Baby Story is here for improve art of   read different stoire, story depend on Bible and proverb and also by sharpening their skills and Knowldge.and where chidren can create account or sigh in with third part like Facebook account and Google Account.
+This IsoMere is here for improve art of   read different stoire, story depend on Bible and proverb and also by sharpening their skills and Knowldge.and where chidren can create account or sigh in with third part like Facebook account and Google Account.
 
                          WEB APPLICATION TECHNOLOGIES 
 
