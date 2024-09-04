@@ -7,8 +7,8 @@ This web application made by MERN Stack develoment (MongoDb,ExpressJs,ReactJs,an
 
                      How to run it in your copmuter with source code 
     --FrontEnd---
- cd FrontEnd
- run npm run dev
+ cd FrontEnds
+ run npm run devs
 
      --BacEknd--
   cd BackEnd
