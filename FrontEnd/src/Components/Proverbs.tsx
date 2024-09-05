@@ -3,9 +3,9 @@ import { FC } from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import NavBar from "./NavBar";
-import Load from "./Pages/Loading";
-import TopProverb from "./Top/TopProverbComponent"
-import Footer from './Footer'
+import Load from "./Service/Loading";
+import TopProverb from "./Top & View/TopProverbComponent"
+import Footer from './Pages/Footer'
 
 interface Proverb {
   id: string,

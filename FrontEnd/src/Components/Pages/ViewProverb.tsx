@@ -3,7 +3,7 @@ import { useParams,Link } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import NavBar from "../NavBar";
-import Load from "./Loading";
+import Load from "../Service/Loading";
 
 interface Proverb {
   id: string,

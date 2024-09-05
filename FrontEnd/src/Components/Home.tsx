@@ -2,11 +2,11 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import NavBar from "./NavBar";
 import { FC } from "react"
-import Footer from "./Footer"
+import Footer from "./Pages/Footer"
 import { Link } from "react-router-dom";
-import Load from "./Pages/Loading";
-import TopStory from "./Top/TopStoryComponent";
-import TopProverb from "./Top/TopProverbComponent";
+import Load from "./Service/Loading";
+import TopStory from "./Top & View/TopStoryComponent";
+import TopProverb from "./Top & View/TopProverbComponent";
 
 interface Story {
   id: string,

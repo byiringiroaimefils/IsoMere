@@ -3,8 +3,8 @@ import Noah from "../assets/Noah.webp"
 import Creation from "../assets/Creation.jpg"
 import David from "../assets/David and Goliath.webp"
 import Read from "../assets/Bh.jpeg"
-import Footer from './Footer'
-import TopStory from "./Top/TopStoryComponent"
+import Footer from './Pages/Footer'
+import TopStory from "./Top & View/TopStoryComponent"
 import { Link } from 'react-router-dom';
 
 

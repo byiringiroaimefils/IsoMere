@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import NavBar from "../NavBar";
 import { FC } from "react"
-import Load from "./Loading";
+import Load from "../Service/Loading";
 
 
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import NavBar from "../NavBar";
-import Footer from '../Footer';
+import Footer from '../Pages/Footer';
 
 export default function Idea() {
     const [comment, setComment] = useState('');

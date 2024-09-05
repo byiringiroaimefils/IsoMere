@@ -23,13 +23,13 @@ App.use(Cors());
 
 
 // --Connection of DataBases--
-Mongoose.connect(process.env.MONGODB_URI)
-  .then(() => {
-    console.log("Db is connected");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+// Mongoose.connect(process.env.MONGODB_URI)
+//   .then(() => {
+//     console.log("Db is connected");
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
 
 
 

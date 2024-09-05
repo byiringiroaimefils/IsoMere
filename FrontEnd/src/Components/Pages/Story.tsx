@@ -6,7 +6,7 @@ import { IoAddCircle } from "react-icons/io5";
 
 import { Link } from "react-router-dom";
 import axios from 'axios'
-import Load from "./Loading";
+import Load from "../Service/Loading";
 // import MUIDataTable from "mui-datatables";
 
 

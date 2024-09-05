@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 import { Link} from "react-router-dom";
 import { FC } from "react"
 import axios from 'axios'
-import Load from "./Loading";
+import Load from "../Service/Loading";
 import { IoAddCircle } from "react-icons/io5";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 // import FormProverb from "../Froms/FormProverb";

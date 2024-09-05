@@ -1,5 +1,5 @@
 import NavBar from "../NavBar";
-import Footer from '../Footer';
+import Footer from '../Pages/Footer';
 
 export default function Service() {
   return (
