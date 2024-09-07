@@ -40,11 +40,11 @@ export default function TopProverbComponent() {
                   <p className="text-base text-gray-400 line-clamp-2" dangerouslySetInnerHTML={{ __html: story.Decription }} />
                 </div>
                 <div className="text">
-                  <img src={story.image} alt="" className='w-[75%] object-cover' />
+                  <img src={story.image} alt="di" className='w-[75%] object-cover' />
                 </div>
                 <div className="img text-lg">
                   <h2 className='font-extrabold text-xl uppercase'>David Killed Goriath</h2>
-                  <p className="text-base text-gray-400 line-clamp-2">Lorem ipsum dolor sit amet consectetur adipisicing </ p>
+                  <p className="text-base text-gray-400 line-clamp-2">Lorem ipsu dolor  amet consectetur adipisicing </ p>
                 </div>
                 <div className="text">
                   <img src={David} alt="" className='w-[75%] object-cover' />
