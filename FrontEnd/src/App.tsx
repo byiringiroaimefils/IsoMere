@@ -18,7 +18,6 @@ import DeleteStory from "./Components/Pages/Deletion/DeleteStory"
 import About from "./Components/Service/AboutUs"
 import Terms from "./Components/Service/Terms"
 import Service from "./Components/Service/service"
-// import ProverbView from "./Components/Pages/ProvView"
 import StoryView from "./Components/Top & View/Storyview"
 
 import Subscribe from "./Components/Service/Subscribe"
@@ -64,8 +63,7 @@ export default function App() {
 
 
           <Route path="StoryView/:id" element={<StoryView />} />
-          {/* <Route path="ProverbView" element={<ProverbView />} /> */}
-
+        
           <Route path="TopStory/:id" element={<TopStory />} />
           <Route path="TopProverb/:id" element={<TopProverb />} />
 
@@ -84,7 +82,7 @@ export default function App() {
               <SignedIn>
                 <Idea />
               </SignedIn>
-              <SignedOut mode='modal'>
+              <SignedOut>
                 <RedirectToSignIn  />
               </SignedOut>
             </>

@@ -16,7 +16,7 @@ export default function Parent() {
           <button className='border-none border p-2 font-bold rounded-md w-[90%] mx-2 bg-blue-500 hover:bg-blue-700 text-white'>Biblical Story</button>
         </Link>
         <Link to='Proverb'>
-          <button className='border-none border p-2 font-bold rounded-md w-[90%] mx-2 bg-blue-500 hover:bg-blue-700 text-white'>Proverbs</button>
+          <button className='border-none border p-2 font-bold rounded-md w-[90%] mx-2 bg-blue-500 hover:bg-blue-700 text-white'>Story Tales</button>
         </Link>
       </div>
       <div className='w-screen'>

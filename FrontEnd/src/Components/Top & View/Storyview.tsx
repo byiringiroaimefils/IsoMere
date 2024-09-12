@@ -9,7 +9,7 @@ interface Story {
   _id: string;
   Title: string;
   image: string;
-  Description: string;
+  Decription: string;
   createdAt: string;
 }
 
@@ -37,9 +37,9 @@ export default function Stoiryview() {
             <div>
               <div className="w-[95%]">
                 <h2 className="text-4xl font-bold">{story.Title}</h2>
-                <p className="text-gray-300">by BYIRINGIRO</p><br />
+                <p className="text-gray-300 text-sm">by BYIRINGIRO</p><br />
                 <img src={story.image} alt="Story Image" className="" /><br /><br />
-                <p>{story.Description}</p>
+                <p>{story.Decription}</p>
               </div>
               <p className="text-gray-400">{new Date(story.createdAt).toLocaleDateString()}</p>
             </div>

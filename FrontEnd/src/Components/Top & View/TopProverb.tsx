@@ -31,7 +31,9 @@ export default function TopProverb() {
 
   return (
     <>
+    <div>
       <NavBar />
+    </div>
       <div className="container px-10 py-36 translate-y-[-2%] md:ml-20">
         {proverb ? (
           <div className="w-full max-w-4xl flex justify-between gap-20">

@@ -10,7 +10,6 @@ const Port = process.env.PORT;
 // --- Schema and Middleware for uploads----
 const DBSchema = require('./Modules/StorySchema');
 const ProverbSchema = require('./Modules/ProverbSchema');
-const upload = require('./Modules/Uploads');
 const Db = require('./DB');
 
 
@@ -182,17 +181,17 @@ App.put("/EditProverb/:id", (req, resp) => {
 
 // //-----SERVER FOR BIBILICAL STORY-----
 
-// const Stories = Mongoose.model("Story", DBSchema, "Story");
-// App.post("/story", (req, resp) => {
-//   const newStory = {
-//     Title: req.body.TofStory,
-//     Author: req.body.Author,
-//     image: req.body.Image,
-//     Decription: req.body.Decription
+// const BStory = Mongoose.model("Bibilical", DBSchema, "Bibilical");
+// App.post("/Bstory", (req, resp) => {
+//   const NewBibilicalStory = {
+//     Title:"",
+//     Author:"",
+//     image: "",
+//     Decription: ""
 //   };
 
 
-//   const Story = Stories.create(newStory)
+//   const Story = BStory.create(NewBibilicalStory)
 //     .then((data) => {
 //       resp.json(data);
 //     })
@@ -206,7 +205,7 @@ App.put("/EditProverb/:id", (req, resp) => {
 
 // App.get("/story/:id", (req, resp) => {
 //   const { id } = req.params;
-//   const selectStory = Stories.findById(id)
+//   const selecBtStory = BStory.findById(id)
 //     .then((data) => {
 //       resp.json(data);
 //     })
@@ -215,8 +214,8 @@ App.put("/EditProverb/:id", (req, resp) => {
 //     });
 // });
 
-// App.get("/Stories", (req, resp) => {
-//   const selectStory = Stories.find()
+// App.get("/BStories", (req, resp) => {
+//   const selectBibilicalStory = BStory.find()
 //     .then((data) => {
 //       resp.json(data);
 //     })
@@ -225,9 +224,9 @@ App.put("/EditProverb/:id", (req, resp) => {
 //     });
 // });
 
-// App.delete("/deleteStory/:id", (req, resp) => {
+// App.delete("/deleteBStory/:id", (req, resp) => {
 //   const { id } = req.params;
-//   const book = Stories.findByIdAndDelete(id)
+//   const bibilicalStory= BStory.findByIdAndDelete(id)
 //     .then((data) => {
 //       resp.json("Deleted");
 //     })
@@ -237,15 +236,15 @@ App.put("/EditProverb/:id", (req, resp) => {
 // });
 
 // App.put("/EditStory/:id", (req, resp) => {
-//   const newStory = {
-//     Title: req.body.TofStory,
-//     Author: req.body.Author,
-//     image: req.body.Image,
-//     Decription: req.body.Decription
+//   const newBibilicalStory = {
+//     Title: ,
+//     Author:,
+//     image: ,
+//     Decription:
 //   };
 
 //   const { id } = req.params;
-//   const Story = Stories.findByIdAndUpdate(id, newStory)
+//   const BibilicalStory = BStory.findByIdAndUpdate(id, newBibilicalStory)
 //     .then((data) => {
 //       resp.json("Updated");
 //     })
