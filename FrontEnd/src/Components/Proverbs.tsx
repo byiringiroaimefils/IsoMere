@@ -70,10 +70,10 @@ const Proverb: FC = () => {
                 </div>
               ))}
               <div className='flex mb-10 justify-center items-center md:translate-x-64 md:translate-y-20'>
-                <button className='w-32 text-white p-1.5 rounded-full font-bold bg-blue-500 hover:bg-blue-700' onClick={addMoreProverbs}>Read More</button>
+                <button className='w-32 text-white p-1.5 rounded-full font-bold text-sm bg-blue-500 hover:bg-blue-700' onClick={addMoreProverbs}>Read More</button>
               </div>
             </div>
-            <div className='w-full md:translate-x-[-15%] translate-x-10'>
+            <div className='w-full md:translate-x-[-15%] translate-x-7 mr-12'>
               <TopProverb />
             </div>
           </div>

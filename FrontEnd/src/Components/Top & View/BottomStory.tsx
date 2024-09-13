@@ -33,9 +33,9 @@ export default function BottomStory() {
                 {stories.slice(0, 3).map((Story) => (
                     <Link to={`/TopStory/${Story._id}`}>
                         <div key={Story._id} className="continer m-20  ">
-                            <img src={Story.image} alt="img" className="w-80" />
-                            <h2 className="font-extrabold text-xl uppercase">{Story.Title}</h2>
-                            <p className="text-gray-400">{new Date(Story.createdAt).toString().replace(/\sGMT.*$/, '')}</p>
+                            <img src={Story.image} alt="img" className="w-80 h-70" />
+                            <h2 className="font-extrabold text-xl uppercase text-center ">{Story.Title}</h2>
+                            <p className="text-gray-400 text-center">{new Date(Story.createdAt).toString().replace(/\sGMT.*$/, '')}</p>
 
                         </div>
 

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-// import { Link } from 'react-router-dom';
 import NavBar from "./NavBar";
 import Footer from './Pages/Footer';
 import TopStory from "./Top & View/TopStoryComponent";
@@ -45,6 +44,9 @@ export default function Preview() {
                 <br />
               </div>
             ))}
+            <div className='flex mb-10 justify-center items-center md:translate-x-64 md:translate-y-20'>
+              <button className='w-32 text-white p-1.5 rounded-full font-bold text-sm bg-blue-500 hover:bg-blue-700' onClick={addMoreProverbs}>Read More</button>
+            </div>
           </div>
 
           <div className="md:w-[65%] md:translate-x-44">

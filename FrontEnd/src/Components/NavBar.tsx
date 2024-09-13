@@ -10,7 +10,7 @@ const Header = () => {
 
   const Links = [
     { name: "Home", link: "/" },
-    { name: "Tales", link: "/Proverbs" },
+    { name: "Proverb", link: "/Proverbs" },
     { name: "Bible's Story", link: "/Preview" },
     { name: "Setting", link: "/Setting" },
   ];
@@ -74,7 +74,7 @@ const Header = () => {
                     <Link to='/' className='mr-2 '>Home</Link>
                   </li>
                   <li className='md:ml-2 md:hover:text-sky-600 font-medium md:text-sm text-gray-500 pt-5 md:translate-y-[-10px]' >
-                    <Link to='/Proverbs' className='mr-2 '>Tales</Link>
+                    <Link to='/Proverbs' className='mr-2 '>Proverb</Link>
                   </li>
                   <li className='md:ml-2 md:hover:text-sky-600 font-medium md:text-sm text-gray-500 pt-5 md:translate-y-[-10px]' >
                     <Link to='/Preview' className='mr-2 '>Bible's Story </Link>

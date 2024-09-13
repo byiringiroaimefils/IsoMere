@@ -22,9 +22,9 @@ export default function TopStoryComponent() {
 
   return (
     <>
-      <div className="topstory">
+      <div className="topstory mr-2">
         <h4 className="font-extrabold">MOST POPULAR PROVERBS</h4>
-        <p className="text-sm font-thin bg-black/50 rounded-sm h-0.5 w-32 mb-2"></p>
+        <p className="text-sm font-thin bg-black/50 rounded-sm h-0.5 w-32 mb-2 "></p>
         <br />
         <ul>
           {Proverbs.slice(0, 3).map((proverb, index) => (
