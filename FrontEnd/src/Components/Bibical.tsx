@@ -45,7 +45,7 @@ export default function Preview() {
               </div>
             ))}
             <div className='flex mb-10 justify-center items-center md:translate-x-64 md:translate-y-20'>
-              <button className='w-32 text-white p-1.5 rounded-full font-bold text-sm bg-blue-500 hover:bg-blue-700' onClick={addMoreProverbs}>Read More</button>
+              <button className='w-32 text-white p-1.5 rounded-full font-bold text-sm bg-blue-500 hover:bg-blue-700' onClick={addMoreProverbs}>Exploe  More</button>
             </div>
           </div>
 

@@ -116,7 +116,7 @@ const Home: FC = () => {
                 className='w-32 text-white p-1.5 rounded-full text-sm font-bold bg-blue-500 hover:bg-blue-700'
                 onClick={addMoreStories}
               >
-                Read More
+                Explore More
               </button>
             </div>
           </div>
