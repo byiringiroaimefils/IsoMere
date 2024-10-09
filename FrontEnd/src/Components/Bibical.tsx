@@ -15,9 +15,19 @@ const stories = [
 ];
 
 export default function Preview() {
-  const [selectedStory, setSelectedStory] = useState(null);
+  const [selectedStory, setSelectedStory] = useState<number | null>(null);
 
-  const handleStoryClick = (id) => {
+  const topics = [
+    "Programming",
+    "Self Improvement",
+    "Data Science",
+    "Writing",
+    "Relationships",
+    "Technology",
+    "Politics"
+  ];
+
+  const handleStoryClick = (id: number) => {
     setSelectedStory(id === selectedStory ? null : id);
   };
 
@@ -39,18 +49,31 @@ export default function Preview() {
                 </h2>
                 <p className="text-gray-300 text-sm">by BYIRINGIRO</p>
                 <br />
-                <img src={story.image} alt="" className="object-cover" /> <br />
+                <img src={story.image} alt={story.title} className="object-cover" /> <br />
                 <p className="text-gray-400">June 2024</p>
                 <br />
               </div>
             ))}
             <div className='flex mb-10 justify-center items-center md:translate-x-64 md:translate-y-20'>
-              <button className='w-32 text-white p-1.5 rounded-full font-bold text-sm bg-blue-500 hover:bg-blue-700' onClick={addMoreProverbs}>Exploe  More</button>
+              <button className='w-32 text-white p-1.5  font-bold text-sm bg-blue-500 hover:bg-blue-700'>Explore More</button>
             </div>
           </div>
 
-          <div className="md:w-[65%] md:translate-x-44">
-            <div className="md:translate-y-[-19%] gap-20">
+          <div className="md:w-[65%] md:translate-x-32 md:translate-y-28">
+            <div className="md:translate-y-[-12%] gap-20">
+              <div className="">
+                <h3 className="text-xl font-semibold mb-4">Recommended topics</h3>
+                <div className="flex flex-wrap gap-3">
+                  {topics.map((topic, index) => (
+                    <div
+                      key={index}
+                      className="px-4 py-2 bg-gray-200 rounded-full text-sm text-gray-700 cursor-pointer hover:bg-gray-300 transition-colors"
+                    >
+                      {topic}
+                    </div>
+                  ))}
+                </div>
+              </div> <br /><br />
               <TopStory />
             </div>
           </div>

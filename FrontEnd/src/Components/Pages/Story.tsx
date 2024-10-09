@@ -86,113 +86,81 @@ const Story: FC = () => {
       })
   }, []);
 
-  // const data = [
-  //   { name: "", company: "Test Corp", city: "Yonkers", state: "NY", Action: '....' },
-  //   { name: "John Walsh", company: "Test Corp", city: "Hartford", state: "CT", Action: '....' },
-  // ]
   return (
-    <>
-      {
-        Loading ? (
-          <div className='flex justify-center text-center mt-56'>
-            <Load />
-          </div>
-        ) : (
+    <div className="container mx-auto px-4 py-8">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold mb-4 sm:mb-0">Stories</h1>
+        <Link to="/FormStory">
+          <button className="w-full sm:w-auto bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-flex items-center justify-center">
+            <IoAddCircle className="mr-2" />
+            <span>Add New</span>
+          </button>
+        </Link>
+      </div>
 
-          <div className='w-full'>
-            <div className='ml-6 mt-4'>
-              <h2 className='text-xl font-bold'>Upload Story</h2>
-              <p className='text-sm font-thin text-gray-400'>Lorem ipsum dolor sit amet consectetur.</p>
+      <div className="mb-4">
+        <div className="relative">
+          <input
+            type="text"
+            className="w-full pl-10 pr-4 py-2 rounded-lg border focus:outline-none focus:border-blue-500"
+            placeholder="Search stories..."
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
+          />
+          <FaMagnifyingGlass className="absolute left-3 top-3 text-gray-400" />
+        </div>
+      </div>
 
-            </div>
-            <div className='flex justify-between px-6 py-6items-center gap-2'>
-              <div className=" ">
-                <FaMagnifyingGlass className=" hidden md:block absolute mt-6 ml-2" />
-                <input type="text" className='Input border hidden md:block outline-none h-7 w-[450px]  md:h20 mt-4 p-4 pl-8 rounded-lg' placeholder='Search.....' onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)} />
-              </div>
-              <div className="mr-4 translate-y-4">
-                <Link to={'/FormStory'}>
-                <button  className="border-none font-extrabold pr-2 md:h-[43px] translate-y-[-2px] gap-2 md:w-24" onClick={() => setShowForm(!showForm)}> <span className=" text-3xl translate-x-1"> <IoAddCircle /> </span></button>
-                </Link>
-              </div>
-            </div>
-            <div>
-              <div className="hidden md:block  static justify-center  items-center mt-10 ml-6  mr-6">
-                <Table>
-                  <TableHead className="Table text-left gap-20  pb-20  text-black font-extrabold ">
-                    <TableHeadCell>#</TableHeadCell>
-                    <TableHeadCell>TITLE OF STORY</TableHeadCell>
-                    <TableHeadCell>AUTHOR</TableHeadCell>
-                    <TableHeadCell>DATE</TableHeadCell>
-                    <TableHeadCell>
-                      ACTION
-                    </TableHeadCell>
-                  </TableHead> <br />
-
-                  <TableBody className="p-1 ">
-                    {story.filter(story => {
-                      if (Search) {
-                        return story.Title.toLowerCase().includes(Search.toLowerCase())
-                      } else {
-                        return story
-                      }
-                    }).map(({ _id, Title, Author, createdAt }, index) => (
-                      <TableRow key={_id} className=" pb-1 cursor-pointer  divide-gray-200  even:bg-gray-200">
-                        <TableCell className=" font-medium text-gray-600 ">{index + 1}</TableCell>
-                        <TableCell className=" font-medium text-gray-600 ">{Title}</TableCell>
-                        <TableCell>{Author}</TableCell>
-                        <TableCell>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</TableCell>
-                        <div className="flex gap-2 cursor-pointer text-lg translate-y-3 translate-x-5">
-                          <Link to={`/deleteStory/${_id}`} >
-                            <MdDeleteForever className="hover:text-red-700" />
-                          </Link>
-                          <Link to={`/editS/${_id}`}>
-                            <MdEditSquare />
-                          </Link>
-                          <Link to={`/story/${_id}`}>
-                            <FaEye className="hover:text-sky-500" />
-                          </Link>
-                        </div>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </div>
-
-
-
-
-              <div className="md:hidden">
-                <div className="flex justify-between items-center flex-col">
-                  {story.map(({ _id, Title, Author, createdAt }, index) => (
-                    <div key={_id} className="border  shadow-md bg-gray-200/20 p-4 rounded-sm w-[90%] m-10   ">
-                      <div>
-                        <h3 className="bg-[#2563eb] mb-2 rounded-full text-center w-6 text-white">{index + 1}</h3>
-                        <h2 className="text-base font-bold">Title: {Title}</h2>
-                        <h2 className="text-base font-bold">Athor: {Author}</h2>
-                        <p>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</p> <br />
-                      </div>
-                      <div className="display flex justify-between items-center">
-                        <Link to={`/deleteStory/${_id}`}>
-                          <MdDeleteForever className="hover:text-red-700 text-lg" />
-                        </Link>
-                        <Link to={`/editS/${_id}`}>
-                          <MdEditSquare className="text-lg" />
-                        </Link>
-                        <Link to={`/story/${_id}`}>
-                          <FaEye className="hover:text-sky-600 text-lg" />
-                        </Link>
-                      </div>
+      {Loading ? (
+        <div className="flex justify-center items-center h-64">
+          <Load />
+        </div>
+      ) : (
+        <div className="overflow-x-auto bg-white shadow-md rounded-lg">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">Author</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">Date</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {story.filter(story => {
+                if (Search) {
+                  return story.Title.toLowerCase().includes(Search.toLowerCase())
+                } else {
+                  return story
+                }
+              }).map(({ _id, Title, Author, createdAt }, index) => (
+                <tr key={_id}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{index + 1}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{Title}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 hidden sm:table-cell">{Author}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 hidden md:table-cell">
+                    {new Date(createdAt).toLocaleDateString()}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <div className="flex space-x-2">
+                      <Link to={`/story/${_id}`} className="text-blue-600 hover:text-blue-900">
+                        <FaEye className="w-5 h-5" />
+                      </Link>
+                      <Link to={`/editS/${_id}`} className="text-green-600 hover:text-green-900">
+                        <MdEditSquare className="w-5 h-5" />
+                      </Link>
+                      <Link to={`/deleteStory/${_id}`} className="text-red-600 hover:text-red-900">
+                        <MdDeleteForever className="w-5 h-5" />
+                      </Link>
                     </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-        )
-      }
-    </>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
   )
 }
 

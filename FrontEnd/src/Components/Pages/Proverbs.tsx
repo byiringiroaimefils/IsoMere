@@ -1,18 +1,11 @@
-import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
+import { FC, useEffect, useState } from "react"
+// import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
 import { MdDeleteForever, MdEditSquare } from "react-icons/md";
-import { FaEye } from "react-icons/fa6";
-import { useState, useEffect } from 'react'
-// import { Button } from "flowbite-react";
-import { Link} from "react-router-dom";
-import { FC } from "react"
+import { FaEye, FaMagnifyingGlass } from "react-icons/fa6";
+import { IoAddCircle } from "react-icons/io5";
+import { Link } from "react-router-dom";
 import axios from 'axios'
 import Load from "../Service/Loading";
-import { IoAddCircle } from "react-icons/io5";
-import { FaMagnifyingGlass } from "react-icons/fa6";
-// import FormProverb from "../Froms/FormProverb";
-
-
-
 
 interface Proverb {
   _id: string,
@@ -21,127 +14,92 @@ interface Proverb {
   createdAt: string,
 }
 
-
-
-
 const Pro: FC = () => {
-  const [Loading, setLoading] = useState(true);
-  const [Proverb, setProverb] = useState<Proverb[]>([]);
-  const [showForm, setShowForm] = useState(false);
-  const [Search, setSearch] = useState<string>('');
-
-
+  const [loading, setLoading] = useState<boolean>(true);
+  const [proverbs, setProverbs] = useState<Proverb[]>([]);
+  const [search, setSearch] = useState<string>('');
 
   useEffect(() => {
     axios.get("https://babystory-server.onrender.com/Proverbs")
       .then((response) => {
-        setProverb(response.data);
+        setProverbs(response.data);
         setLoading(false);
       })
       .catch((error) => {
-        console.log('error', error)
+        console.error('Error fetching proverbs:', error);
         setLoading(false);
       })
-  }, [])
+  }, []);
 
+  const filteredProverbs = proverbs.filter(proverb => 
+    search ? proverb.TitleofProverb.toLowerCase().includes(search.toLowerCase()) : true
+  );
 
   return (
-    <>
-      {
-        Loading ? (
-          <div className='flex justify-center text-center mt-56'>
-            <Load />
-          </div>
-        ) : (
-          <div>
-            <div className='ml-6 mt-4'>
-              <h2 className='text-xl font-bold'>Upload Proverbs</h2>
-              <p className='text-sm font-thin text-gray-400'>Lorem ipsum dolor sit amet consectetur.</p>
+    <div className="container mx-auto px-4 py-8">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold mb-4 sm:mb-0">Proverbs</h1>
+        <Link to="/FormProverb">
+          <button className="w-full sm:w-auto bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-flex items-center justify-center">
+            <IoAddCircle className="mr-2" />
+            <span>Add New</span>
+          </button>
+        </Link>
+      </div>
 
-            </div>
-            <div className='flex justify-between px-6 py-6items-center gap-2'>
-              <div className=" ">
-                <FaMagnifyingGlass className=" hidden md:block absolute mt-6 ml-2" />
-                <input type="text" className='Input border hidden md:block outline-none h-7 w-[450px]  md:h20 mt-4 p-4 pl-8 rounded-lg' placeholder='Search'  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}/>
-              </div>
-              <div className="mr-4 translate-y-4">
-                <Link to={'/FormProverb'}>
-                <button  className="border-none font-extrabold pr-2 md:h-[40px] translate-y-[-2px]  md:w-24" onClick={() => setShowForm(!showForm)}> <span className=" text-3xl translate-x-1"> <IoAddCircle /> </span></button>
-                </Link>
-              </div>
-            </div>
-            <div>
-              {/* <div className="w-full mt-10 p-4"> */}
-              <div className=" hidden md:block  static justify-center  items-center mt-10 ml-6  mr-6">
-                <Table className="">
-                  <TableHead className=" Table text-left gap-20  text-black font-extrabold">
-                    <TableHeadCell>#</TableHeadCell>
-                    <TableHeadCell>TITLE OF PROVERBS</TableHeadCell>
-                    <TableHeadCell>DATE</TableHeadCell>
-                    <TableHeadCell>ACTION</TableHeadCell>
-                  </TableHead> <br />
-                  <TableBody className="p-1">
-                    {Proverb.filter(Element=>{
-                     if(Search){
-                      return Element.TitleofProverb.toLowerCase().includes(Search.toLowerCase())
-                    }else{
-                      return Proverb
-                    }
+      <div className="mb-4">
+        <div className="relative">
+          <input
+            type="text"
+            className="w-full pl-10 pr-4 py-2 rounded-lg border focus:outline-none focus:border-blue-500"
+            placeholder="Search proverbs..."
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
+          />
+          <FaMagnifyingGlass className="absolute left-3 top-3 text-gray-400" />
+        </div>
+      </div>
 
-                    }).map(({ _id, TitleofProverb, createdAt }, index) => (
-                      <TableRow key={_id} className="  cursor-pointer divide-gray-200  even:bg-gray-200">
-                        <TableCell className="font-medium text-gray-600">{index + 1}</TableCell>
-                        <TableCell className="font-medium text-gray-600">{TitleofProverb}</TableCell>
-                        <TableCell className="font-medium text-gray-600">{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</TableCell>
-
-                        <TableCell>
-                          <div className="flex gap-3 cursor-pointer text-lg translate-y-1 translate-x-[-6px] ">
-                            <Link to={`/deleteProveb/${_id}`}>
-                              <MdDeleteForever className="hover:text-red-700" />
-                            </Link>
-                            <Link to={`/editP/${_id}`}>
-                              <MdEditSquare />
-                            </Link>
-                            <Link to={`/proverb/${_id}`}>
-                              <FaEye className="hover:text-sky-600" />
-                            </Link>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </div>
-              <div className="md:hidden">
-                <div className="flex justify-between items-center flex-col">
-                  {Proverb.map(({ _id, TitleofProverb, createdAt }, index) => (
-                    <div key={_id} className="border  shadow-md bg-gray-200/20 p-4 rounded-sm w-[90%] m-16   ">
-                      <div>
-                        <h3 className="bg-[#2563eb] mb-2 rounded-full text-center w-6 text-white">{index + 1}</h3>
-                        <h2 className="text-base font-bold">Title: {TitleofProverb}</h2>
-                        <p>{new Date(createdAt).toString().replace(/\sGMT.*$/, '')}</p> <br />
-                      </div>
-                      <div className="display flex justify-between items-center">
-                        <Link to={`/deleteProveb/${_id}`}>
-                          <MdDeleteForever className="hover:text-red-700 text-lg" />
-                        </Link>
-                        <Link to='/EditProverb'>
-                          <MdEditSquare className="text-lg" />
-                        </Link>
-                        <Link to={`/proverb/${_id}`}>
-                          <FaEye className="hover:text-sky-600 text-lg" />
-                        </Link>
-                      </div>
+      {loading ? (
+        <div className="flex justify-center items-center h-64">
+          <Load />
+        </div>
+      ) : (
+        <div className="overflow-x-auto bg-white shadow-md rounded-lg">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title of Proverb</th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {filteredProverbs.map(({ _id, TitleofProverb, createdAt }, index) => (
+                <tr key={_id}>
+                  <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{TitleofProverb}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{new Date(createdAt).toLocaleDateString()}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="flex space-x-2">
+                      <Link to={`/deleteProverb/${_id}`} className="text-red-600 hover:text-red-900">
+                        <MdDeleteForever className="text-xl" />
+                      </Link>
+                      <Link to={`/editProverb/${_id}`} className="text-blue-600 hover:text-blue-900">
+                        <MdEditSquare className="text-xl" />
+                      </Link>
+                      <Link to={`/proverb/${_id}`} className="text-green-600 hover:text-green-900">
+                        <FaEye className="text-xl" />
+                      </Link>
                     </div>
-
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        )
-      }
-    </>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
   )
 }
 

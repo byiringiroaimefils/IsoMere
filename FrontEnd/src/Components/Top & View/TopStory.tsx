@@ -2,7 +2,7 @@ import NavBar from "../NavBar";
 import Footer from '../Pages/Footer';
 import BottomStory from "./BottomStory";
 import axios from 'axios';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { FaWhatsappSquare } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
@@ -18,18 +18,37 @@ interface Story {
 
 export default function TopStory() {
   const [story, setStory] = useState<Story | null>(null);
+  const [prevId, setPrevId] = useState<string | null>(null);
+  const [nextId, setNextId] = useState<string | null>(null);
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`https://babystory-server.onrender.com/story/${id}`)
-      .then((response) => {
+    const fetchStory = async () => {
+      try {
+        const response = await axios.get(`https://babystory-server.onrender.com/story/${id}`);
         setStory(response.data);
         console.log(response.data);
-      })
-      .catch((error) => {
+
+        // Fetch previous and next story IDs
+        const allStoriesResponse = await axios.get("https://babystory-server.onrender.com/stories");
+        const allStories = allStoriesResponse.data;
+        const currentIndex = allStories.findIndex((s: Story) => s._id === id);
+        setPrevId(currentIndex > 0 ? allStories[currentIndex - 1]._id : null);
+        setNextId(currentIndex < allStories.length - 1 ? allStories[currentIndex + 1]._id : null);
+      } catch (error) {
         console.log('error', error);
-      });
+      }
+    };
+
+    fetchStory();
   }, [id]);
+
+  const handleNavigation = (targetId: string | null) => {
+    if (targetId) {
+      navigate(`/TopStory/${targetId}`);
+    }
+  };
 
   return (
     <>
@@ -55,8 +74,20 @@ export default function TopStory() {
         )}
         <br /><br />
         <div className="flex gap-[55%]">
-          <button className='border p-3 font-bold rounded-full text-gray-500 hover:bg-black transition-all duration-500 ease-in'>Prev</button>
-          <button className='border p-3 font-bold rounded-full text-gray-500 hover:bg-black transition-all duration-500 ease-in'>Next</button>
+          <button 
+            className='border p-3 font-bold rounded-full text-gray-500 hover:bg-black transition-all duration-500 ease-in'
+            onClick={() => handleNavigation(prevId)}
+            disabled={!prevId}
+          >
+            Prev
+          </button>
+          <button 
+            className='border p-3 font-bold rounded-full text-gray-500 hover:bg-black transition-all duration-500 ease-in'
+            onClick={() => handleNavigation(nextId)}
+            disabled={!nextId}
+          >
+            Next
+          </button>
         </div>
       </div>
       <div className="bg-black bg-black/50 rounded h-1 ml-10 mr-10"></div>

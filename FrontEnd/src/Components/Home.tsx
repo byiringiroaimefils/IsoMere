@@ -22,6 +22,16 @@ const Home: FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [limit, setLimit] = useState(4);
   const [selectedStory, setSelectedStory] = useState<string | null>(null);
+  
+  const topics = [
+    "Programming",
+    "Self Improvement",
+    "Data Science",
+    "Writing",
+    "Relationships",
+    "Technology",
+    "Politics"
+  ];
 
   const addMoreStories = () => {
     setLimit((prevLimit) => prevLimit + 4);
@@ -30,27 +40,6 @@ const Home: FC = () => {
   const handleStoryClick = (id: string) => {
     setSelectedStory(prevId => prevId === id ? null : id);
   };
-
-  useEffect(() => {
-    const handleAlphabetClick = (e: Event) => {
-      const target = e.target as HTMLButtonElement;
-      if (target.tagName === 'BUTTON') {
-        const speech = new SpeechSynthesisUtterance(target.value);
-        window.speechSynthesis.speak(speech);
-      }
-    };
-
-    const buttonsContainer = document.querySelector(".buttons");
-    if (buttonsContainer) {
-      buttonsContainer.addEventListener('click', handleAlphabetClick);
-    }
-
-    return () => {
-      if (buttonsContainer) {
-        buttonsContainer.removeEventListener('click', handleAlphabetClick);
-      }
-    };
-  }, []);
 
   useEffect(() => {
     const fetchStories = async () => {
@@ -87,13 +76,13 @@ const Home: FC = () => {
         <div className='Container mt-44 md:flex justify-around translate-y-[-4%] gap-20 w-screen'>
           <div>
             {stories.slice(0, limit).map(({ _id, Title, image, createdAt }) => (
-              <div 
-                key={_id} 
+              <div
+                key={_id}
                 className={`story p-5 sm:pr-8 mr-28 md:w-[650px] md:translate-x-24 cursor-pointer ${selectedStory === _id ? 'border-4 border-indigo-500/75   rounded-lg p-2' : ''}`}
               >
                 <Link to={`/StoryView/${_id}`}>
                   <div className='Header'>
-                    <h2 
+                    <h2
                       className='font-bold text-4xl hover:text-sky-600 hover:cursor-pointer uppercase'
                       onClick={(e) => {
                         e.preventDefault();
@@ -112,36 +101,30 @@ const Home: FC = () => {
               </div>
             ))}
             <div className='flex mb-10 justify-center items-center md:translate-x-80 md:translate-y-20'>
-              <button 
-                className='w-32 text-white p-1.5 rounded-full text-sm font-bold bg-blue-500 hover:bg-blue-700'
+              <button
+                className='w-32 text-white p-1.5  text-sm font-bold bg-blue-500 hover:bg-blue-700'
                 onClick={addMoreStories}
               >
                 Explore More
               </button>
             </div>
           </div>
-          <div className='mt-5 mx-10'>
+          <div className='mt-5 mx-5'>
+            <div className="">
+              <h3 className="text-xl font-semibold mb-4">Recommended topics</h3>
+              <div className="flex flex-wrap gap-3">
+                {topics.map((topic, index) => (
+                  <div
+                    key={index}
+                    className="px-4 py-2 bg-gray-200 rounded-full text-sm text-gray-700 cursor-pointer hover:bg-gray-300 transition-colors"
+                  >
+                    {topic}
+                  </div>
+                ))}
+              </div>
+            </div> <br /><br />
             <TopProverb />
             <TopStory />
-            <div className="Alphabetics mt-20">
-              <h4 className='font-extrabold'>ALPHABETICS</h4>
-              <p className='text-sm font-thin text-gray-400'>Click any letter to hear how it's pronounced!</p>
-              <div className='buttons grid grid-cols-6 gap-2 mt-4 mr-28 w-full'>
-                {[...Array(26)].map((_, i) => {
-                  const letter = String.fromCharCode(65 + i);
-                  return (
-                    <button 
-                      key={letter}
-                      value={letter}
-                      className='border p-2 font-base hover:text-blue-500'
-                      aria-label={`Pronounce letter ${letter}`}
-                    >
-                      {letter}{letter.toLowerCase()}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
           </div>
         </div>
       </div>

@@ -13,7 +13,7 @@ interface Story {
   createdAt: string;
 }
 
-export default function Stoiryview() {
+export default function Storyview() {
   const [story, setStory] = useState<Story | null>(null);
   const { id } = useParams();
 
@@ -31,24 +31,24 @@ export default function Stoiryview() {
   return (
     <>
       <NavBar />
-      <div className="container px-10 py-36 translate-y-[-2%] flex justify-center">
-        <div className="w-full max-w-4xl flex justify-between gap-20">
+      <div className="container px-4 sm:px-6 md:px-10 py-20 sm:py-28 md:py-36 flex justify-center">
+        <div className="w-full max-w-4xl">
           {story ? (
-            <div>
-              <div className="w-[95%]">
-                <h2 className="text-4xl font-bold">{story.Title}</h2>
-                <p className="text-gray-300 text-sm">by BYIRINGIRO</p><br />
-                <img src={story.image} alt="Story Image" className="" /><br /><br />
-                <p>{story.Decription}</p>
+            <div className="space-y-6">
+              <div className="w-full sm:w-[95%]">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">{story.Title}</h2>
+                <p className="text-gray-300 text-xs sm:text-sm mt-2">by BYIRINGIRO</p>
+                <img src={story.image} alt="Story Image" className="w-full h-auto object-cover my-4 sm:my-6" />
+                <p className="text-sm sm:text-base">{story.Decription}</p>
               </div>
-              <p className="text-gray-400">{new Date(story.createdAt).toLocaleDateString()}</p>
+              <p className="text-gray-400 text-xs sm:text-sm">{new Date(story.createdAt).toLocaleDateString()}</p>
             </div>
           ) : (
-            <p>Loading...</p>
+            <p className="text-center">Loading...</p>
           )}
         </div>
       </div>
-      <div className="bg-black h-1 ml-10 mr-10"></div>
+      <div className="bg-black h-px sm:h-1 mx-4 sm:mx-10"></div>
       <BottomStory />
       <Footer />
     </>

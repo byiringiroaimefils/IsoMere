@@ -2,9 +2,6 @@ import { Link } from "react-router-dom";
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 
-
-
-
 interface Story {
     _id: string,
     image: string,
@@ -25,20 +22,18 @@ export default function BottomStory() {
             })
     }, []);
 
-
     return (
-        <div>
-            <h2 className="ml-20 mt-5 font-extrabold ">POPULAR STORIES</h2>
-            <div className="md:flex justify-center ">
+        <div className="container mx-auto px-4 mb-10">
+            <h2 className="text-2xl font-extrabold mt-8 mb-6">POPULAR STORIES</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 {stories.slice(0, 3).map((Story) => (
-                    <Link to={`/TopStory/${Story._id}`}>
-                        <div key={Story._id} className="continer m-20  ">
-                            <img src={Story.image} alt="img" className="w-80 h-70" />
-                            <h2 className="font-extrabold text-xl uppercase text-center ">{Story.Title}</h2>
-                            <p className="text-gray-400 text-center">{new Date(Story.createdAt).toString().replace(/\sGMT.*$/, '')}</p>
-
+                    <Link key={Story._id} to={`/TopStory/${Story._id}`}>
+                        <div className="flex flex-col h-full">
+                            <img src={Story.image} alt={Story.Title} className="w-full h-48 object-cover rounded-lg" />
+                            <h2 className="font-extrabold text-xl uppercase  mt-4">{Story.Title}</h2>
+                            <p className="text-base text-gray-400 line-clamp-2">Lorem ipsu dolor  amet consectetur adipisicing Lorem ipsum dolor sit amet.lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</ p>
+                            {/* <p className="text-gray-400 text-center mt-2">{new Date(Story.createdAt).toLocaleDateString()}</p> */}
                         </div>
-
                     </Link>
                 ))}
             </div>
