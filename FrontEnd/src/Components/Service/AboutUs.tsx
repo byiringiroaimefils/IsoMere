@@ -7,37 +7,39 @@ export default function About() {
       <NavBar />
       <div className="container mt-20 mx-auto px-4 max-w-4xl">
         <h1 className="text-4xl font-bold text-center mb-8 text-sky-600">About IsoMere</h1>
-        <p className="text-lg mb-8 text-gray-700">Welcome to IsoMere, your portal to infinite worlds of imagination! We are passionate about bringing the magic of storytelling to life through the power of words and technology.</p>
+        <p className="text-lg mb-8 text-gray-700">Welcome to IsoMere, your gateway to infinite worlds of AI-generated stories! We are at the forefront of combining cutting-edge AI technology with the timeless art of storytelling.</p>
         
         <h2 className="text-3xl font-semibold mb-4 text-sky-600 border-b-2 border-indigo-200 pb-2">Our Story</h2>
-        <p className="mb-6 text-gray-700">Founded in 2020 by a group of avid readers and tech enthusiasts, IsoMere was born from a simple idea: to create a digital haven for story lovers of all ages. We believed that in our fast-paced world, the art of storytelling needed a modern platform to thrive and reach new audiences.</p>
+        <p className="mb-6 text-gray-700">Founded in 2023 by a team of AI enthusiasts and storytelling aficionados, IsoMere was born from a revolutionary idea: to harness the power of artificial intelligence to create unique, personalized stories for every reader. We believed that in our tech-driven world, storytelling could evolve to offer tailored experiences that resonate with individual readers.</p>
         
         <h2 className="text-3xl font-semibold mb-4 text-sky-600 border-b-2 border-indigo-200 pb-2">Our Mission</h2>
         <p className="mb-4 text-gray-700">At IsoMere, our mission is threefold:</p>
         <ol className="list-decimal pl-6 mb-6 text-gray-700">
-          <li className="mb-2">To connect readers with captivating tales from diverse genres and talented authors around the globe.</li>
-          <li className="mb-2">To provide a nurturing platform for emerging writers to showcase their work and grow their craft.</li>
-          <li className="mb-2">To foster a vibrant community of storytellers and story enthusiasts, promoting the exchange of ideas and the celebration of narrative art.</li>
+          <li className="mb-2">To push the boundaries of AI-generated storytelling, creating immersive and personalized narratives.</li>
+          <li className="mb-2">To provide a platform where readers can explore endless story possibilities tailored to their preferences.</li>
+          <li className="mb-2">To foster a community that embraces the fusion of technology and creativity in storytelling.</li>
         </ol>
 
         <h2 className="text-3xl font-semibold mb-4 text-sky-600 border-b-2 border-indigo-200 pb-2">What We Offer</h2>
         <ul className="list-disc pl-6 mb-6 text-gray-700">
-          <li className="mb-2">A vast collection of short stories, novels, and serialized fiction spanning every genre imaginable</li>
-          <li className="mb-2">Weekly featured stories handpicked by our experienced editorial team</li>
-          <li className="mb-2">Themed reading lists curated for various moods, occasions, and interests</li>
-          <li className="mb-2">An interactive community forum where readers can discuss their favorite stories, characters, and authors</li>
-          <li className="mb-2">Writing prompts and challenges to spark creativity and engage our community</li>
-          <li className="mb-2">Author spotlights and interviews, giving you a glimpse into the minds behind the stories</li>
-          <li className="mb-2">Personalized reading recommendations based on your preferences and reading history</li>
+          <li className="mb-2">AI-generated stories across various genres, each uniquely crafted for individual readers</li>
+          <li className="mb-2">Customizable story parameters, allowing readers to influence plot, characters, and settings</li>
+          <li className="mb-2">A vast library of AI-created worlds and characters to explore</li>
+          <li className="mb-2">Interactive storytelling experiences where readers can make choices that shape the narrative</li>
+          <li className="mb-2">Regular updates to our AI models, constantly improving the quality and diversity of our stories</li>
+          <li className="mb-2">A community forum for discussing AI-generated stories and sharing experiences</li>
+          <li className="mb-2">Insights into the AI technology behind our storytelling process</li>
         </ul>
 
-        {/* ... (continue with the same styling pattern for other sections) ... */}
+        <h2 className="text-3xl font-semibold mb-4 text-sky-600 border-b-2 border-indigo-200 pb-2">Our Technology</h2>
+        <p className="mb-6 text-gray-700">IsoMere utilizes state-of-the-art natural language processing and machine learning algorithms to generate stories. Our AI models are trained on a diverse range of literary works, ensuring rich and varied outputs. We continuously refine our technology to enhance creativity, coherence, and personalization in every story.</p>
 
         <h2 className="text-3xl font-semibold mb-4 text-sky-600 border-b-2 border-indigo-200 pb-2">Contact Us</h2>
-        <p className="mb-6 text-gray-700">Have questions, suggestions, or just want to say hello? We'd love to hear from you! Reach out to us at <a href="mailto:contact@IsoMere.com" className="text-indigo-600 hover:underline">contact@IsoMere.com</a> or through our social media channels.</p>
+        <p className="mb-6 text-gray-700">Have questions about our AI storytelling technology, suggestions for improvements, or just want to share your experience? We'd love to hear from you! Reach out to us at <a href="mailto:contact@IsoMere.com" className="text-indigo-600 hover:underline">contact@IsoMere.com</a> or through our social media channels.</p>
 
-        <p className="text-lg font-semibold text-center text-sky-600">Happy reading, and welcome to the IsoMere family!</p>
-      </div> <br /><br />
+        <p className="text-lg font-semibold text-center text-sky-600">Embark on your personalized storytelling journey with IsoMere!</p>
+      </div>
+      <br /><br />
       <Footer />
     </>
   );
