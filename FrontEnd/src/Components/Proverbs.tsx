@@ -2,7 +2,7 @@ import { FC, useState, useEffect } from 'react';
 import axios from 'axios';
 import NavBar from "./NavBar";
 import Load from "./Service/Loading";
-import TopProverb from "./Top & View/TopProverbComponent";
+import TopStory from "./Top & View/TopStoryComponent";
 import Footer from './Pages/Footer';
 
 interface Proverb {
@@ -19,13 +19,13 @@ const Proverb: FC = () => {
   const [limit, setLimit] = useState(4);
 
   const topics = [
-    "Programming",
-    "Self Improvement",
-    "Data Science",
-    "Writing",
-    "Relationships",
-    "Technology",
-    "Politics"
+    "Bible Stories",
+    "Proverbs",
+    "Moral Lessons",
+    "Character Development",
+    "Faith",
+    "Wisdom",
+    "Life Teachings"
   ];
 
   useEffect(() => {
@@ -83,21 +83,39 @@ const Proverb: FC = () => {
                 <button className='w-32 text-white p-1.5  font-bold text-sm bg-blue-500 hover:bg-blue-700' onClick={addMoreProverbs}>Read More</button>
               </div>
             </div>
-            <div className='mx-auto w-full md:translate-x-[-2%] translate-x-7 mr-12'>
-            <div className="">
-              <h3 className="text-xl font-semibold mb-4">Recommended topics</h3>
-              <div className="flex flex-wrap gap-3">
-                {topics.map((topic, index) => (
-                  <div
-                    key={index}
-                    className="px-4 py-2 bg-gray-200 rounded-full text-sm text-gray-700 cursor-pointer hover:bg-gray-300 transition-colors"
-                  >
-                    {topic}
-                  </div>
-                ))}
-              </div>
-            </div> <br /><br />
+            {/* <div className='mx-auto w-full md:translate-x-[-2%] translate-x-7 mr-12'>
+              <div className="">
+                <h3 className="text-xl font-semibold mb-4">Recommended topics</h3>
+                <div className="flex flex-wrap gap-3">
+                  {topics.map((topic, index) => (
+                    <div
+                      key={index}
+                      className="px-4 py-2 bg-gray-200 rounded-full text-sm text-gray-700 cursor-pointer hover:bg-gray-300 transition-colors"
+                    >
+                      {topic}
+                    </div>
+                  ))}
+                </div>
+              </div> <br /><br />
               <TopProverb />
+            </div> */}
+            <div className="md:w-full  md:translate-y-28">
+              <div className="md:translate-y-[-13%]  ">
+                <div className="">
+                  <h3 className="text-xl font-semibold mb-4">Recommended topics</h3>
+                  <div className="flex flex-wrap gap-3">
+                    {topics.map((topic, index) => (
+                      <div
+                        key={index}
+                        className="px-4 py-2 bg-gray-200 rounded-full text-sm text-gray-700 cursor-pointer hover:bg-gray-300 transition-colors"
+                      >
+                        {topic}
+                      </div>
+                    ))}
+                  </div>
+                </div> <br /><br />
+                <TopStory />
+              </div>
             </div>
           </div>
         </div>

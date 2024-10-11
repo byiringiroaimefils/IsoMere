@@ -24,13 +24,13 @@ const Home: FC = () => {
   const [selectedStory, setSelectedStory] = useState<string | null>(null);
   
   const topics = [
-    "Programming",
-    "Self Improvement",
-    "Data Science",
-    "Writing",
-    "Relationships",
-    "Technology",
-    "Politics"
+    "Bible Stories",
+    "Proverbs",
+    "Moral Lessons",
+    "Character Development",
+    "Faith",
+    "Wisdom",
+    "Life Teachings"
   ];
 
   const addMoreStories = () => {

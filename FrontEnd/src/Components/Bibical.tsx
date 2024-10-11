@@ -18,13 +18,13 @@ export default function Preview() {
   const [selectedStory, setSelectedStory] = useState<number | null>(null);
 
   const topics = [
-    "Programming",
-    "Self Improvement",
-    "Data Science",
-    "Writing",
-    "Relationships",
-    "Technology",
-    "Politics"
+    "Bible Stories",
+    "Proverbs",
+    "Moral Lessons",
+    "Character Development",
+    "Faith",
+    "Wisdom",
+    "Life Teachings"
   ];
 
   const handleStoryClick = (id: number) => {
@@ -59,8 +59,8 @@ export default function Preview() {
             </div>
           </div>
 
-          <div className="md:w-[65%] md:translate-x-32 md:translate-y-28">
-            <div className="md:translate-y-[-12%] gap-20">
+          <div className="md:w-full md:translate-x-32 md:translate-y-28">
+            <div className="md:translate-y-[-13%]  ">
               <div className="">
                 <h3 className="text-xl font-semibold mb-4">Recommended topics</h3>
                 <div className="flex flex-wrap gap-3">
