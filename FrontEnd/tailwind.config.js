@@ -10,6 +10,11 @@ export const content = ["./src/**/*.{ts,tsx}"];
 export const darkMode = "class";
 export const theme = {
   // rest of the code
+  extend: {
+    fontFamily: {
+      sans: ['Roboto', 'sans-serif'],
+    },
+  },
 };
 export const plugins = [
   addVariablesForColors,
