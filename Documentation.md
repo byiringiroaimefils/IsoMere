@@ -84,13 +84,6 @@ The application uses several API endpoints, including:
 
 Contributions to IsoMere are welcome. Please ensure you follow the existing code style and structure when submitting pull requests.
 
-## License
-
-[Include your license information here]
-
-# IsoMere Web Application
-
-[... Previous content remains the same ...]
 
 ## User Documentation
 
@@ -139,5 +132,3 @@ IsoMere is designed to help you explore stories, proverbs, and Bible tales while
 ### Sharing Ideas
 
 - Use the "Idea" feature to share your thoughts or suggestions for new stories or improvements.
-
-### Additional
