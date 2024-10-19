@@ -3,55 +3,10 @@ import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from 
 import { MdDeleteForever, MdEditSquare } from "react-icons/md";
 import { FaEye, FaMagnifyingGlass } from "react-icons/fa6";
 import { IoAddCircle } from "react-icons/io5";
-
 import { Link } from "react-router-dom";
 import axios from 'axios'
 import Load from "../Service/Loading";
-// import MUIDataTable from "mui-datatables";
-
-
-
-// const columns = [
-//   {
-//     name: "#",
-//     label: "#",
-//     options: {
-//       filter: true,
-//       sort: true,
-//     }
-//   },
-//   {
-//     name: "Name",
-//     label: "Name",
-//     options: {
-//       filter: true,
-//       sort: false,
-//     }
-//   },
-//   {
-//     name: "Title of Story",
-//     label: "Title of Story",
-//     options: {
-//       filter: true,
-//       sort: false,
-//     }
-//   },
-//   {
-//     name: "Author",
-//     label: "Autho",
-//     options: {
-//       filter: true,
-//       sort: false,
-//     }
-//   },
-//   {
-//     label: "Action",
-//     options: {
-//       filter: true,
-//       sort: false,
-//     }
-//   },
-// ];
+import Swal from "sweetalert2"; // Import Swal for alerts
 
 
 
@@ -85,6 +40,32 @@ const Story: FC = () => {
         setLoading(false);
       })
   }, []);
+
+  const handleDelete = (id: string) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`https://babystory-server.onrender.com/deleteStory/${id}`)
+          .then(() => {
+            setStory(prevStories => prevStories.filter(story => story._id !== id)); // Update state to remove deleted story
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success"
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    });
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -149,9 +130,9 @@ const Story: FC = () => {
                       <Link to={`/editS/${_id}`} className="text-green-600 hover:text-green-900">
                         <MdEditSquare className="w-5 h-5" />
                       </Link>
-                      <Link to={`/deleteStory/${_id}`} className="text-red-600 hover:text-red-900">
+                      <button onClick={() => handleDelete(_id)} className="text-red-600 hover:text-red-900">
                         <MdDeleteForever className="w-5 h-5" />
-                      </Link>
+                      </button>
                     </div>
                   </td>
                 </tr>

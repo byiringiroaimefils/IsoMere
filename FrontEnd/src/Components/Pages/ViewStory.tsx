@@ -37,9 +37,9 @@ const View: FC = () => {
   return (
     <>
       <NavBar />
-      <div className='mt-20'>
+      <div className='mt-20 px-4 md:px-8 font-serif'>
         <Link to='/Setting/Story'>
-          <button>Back</button>
+          <button className='bg-blue-500 text-white px-4 py-2 rounded'>Back</button>
         </Link>
         <div>
           {
@@ -49,15 +49,15 @@ const View: FC = () => {
               </div>
             ) : (
               <div>
-                <div className='Container flex justify-around  w-full  '>
-                  <div className=''>
-                    <div key={story._id} className='story p-4 w-[650px] md:translate-x-10' >
-                      <div className='Header '>
-                        <h2 className='font-bold  text-base '>{story.Title}</h2>
-                        <p className='text-sm font-thin text-gray-400'>BYIRINGIRO </p> <br />
-                        <img src={story.image} alt="" className='' />
+                <div className='Container flex flex-col md:flex-row justify-around w-full'>
+                  <div className='flex-1'>
+                    <div key={story._id} className='story p-4 w-full max-w-md md:max-w-lg mx-auto'>
+                      <div className='Header'>
+                        <h2 className='font-bold text-lg md:text-xl'>{story.Title}</h2>
+                        <p className='text-sm font-thin text-gray-400'>BYIRINGIRO</p> <br />
+                        <img src={story.image} alt="" className='w-full h-auto rounded-lg' />
                       </div>
-                      <div className='Description mt-4 '>
+                      <div className='Description mt-4'>
                         <p>{story.Decription}</p>
                         <p className='text-sm font-thin text-gray-400'>{new Date(story.createdAt).toString()}</p> <br />
                       </div>

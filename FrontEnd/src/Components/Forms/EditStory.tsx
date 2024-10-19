@@ -1,4 +1,3 @@
-
 import { useNavigate, useParams ,Link} from "react-router-dom"
 import { Button, Label } from "flowbite-react";
 import { useState, useEffect } from "react";
@@ -24,16 +23,14 @@ function Component() {
                 setTofStory(respond.data.Title)
                 setImage(respond.data.image)
                 setAuthor(respond.data.Author)
-                setDecription(respond.data.Decription)
+                setDecription(respond.data.Decription) // Ensure this is set for CKEditor
                 console.log(respond.data);
-
             })
             .catch((error) => {
                 console.log(error)
                 toast.error("This didn't work")
             })
-    })
-
+    }, [id]) // Added dependency array to avoid infinite loop
 
     const HandleFunction = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -61,7 +58,7 @@ function Component() {
 
 
     return (
-        <div className='flex justify-center mt-14'>
+        <div className='flex justify-center mt-14 font-serif'>
             <form action="" onSubmit={HandleFunction} method="POST" encType="multipart/form-data" className={`flex p-5 bg-white max-w-md flex-col gap-4  w-ful`} >
                 <div className='Logo font-black flex align-middle translate-x-[-25px]'>
                     <img src='BabyStoryLogo.png' alt="" className='w-16 translate-y-[-5px] translate-x-3' />
@@ -111,9 +108,8 @@ function Component() {
                         </div>
                         <div>
                             <CKEditor
-                                // value={Decription}
                                 editor={ClassicEditor}
-                                data={Decription}
+                                data={Decription} // Ensure CKEditor is initialized with existing description
                                 onChange={(_event, editor) => {
                                     setDecription(editor.getData());
                                 }} />
@@ -130,4 +126,3 @@ function Component() {
 }
 
 export default Component;
-

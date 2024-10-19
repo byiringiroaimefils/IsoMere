@@ -31,7 +31,7 @@ export default function Storyview() {
   return (
     <>
       <NavBar />
-      <div className="container px-4 sm:px-6 md:px-10 py-20 sm:py-28 md:py-36 flex justify-center">
+      <div className="container px-4 sm:px-6 md:px-10 py-20 sm:py-28 md:py-36 flex justify-center font-serif">
         <div className="w-full max-w-4xl">
           {story ? (
             <div className="space-y-6">

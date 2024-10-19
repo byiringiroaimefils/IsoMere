@@ -5,7 +5,7 @@ export default function Privacy() {
   return (
     <>
       <NavBar />
-      <div className="container mt-20 mx-auto px-4 max-w-4xl">
+      <div className="container mt-20 mx-auto px-4 max-w-4xl font-serif">
         <h1 className="text-4xl font-bold text-center mb-8 text-sky-600">Privacy Policy</h1>
         <p className="text-lg mb-8 text-gray-700">At IsoMere, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you use our book recommendation and reading platform.</p>
 

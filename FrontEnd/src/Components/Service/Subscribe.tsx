@@ -5,7 +5,7 @@ import Footer from '../Pages/Footer';
 export default function Subscribe() {
     const [email, setEmail] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log('Subscription submitted:', { email });
     };
@@ -13,7 +13,7 @@ export default function Subscribe() {
     return (
         <>
             <NavBar />
-            <div className="container mt-20 mx-auto px-4 max-w-4xl">
+            <div className="container mt-20 mx-auto px-4 max-w-4xl font-serif">
                 <h1 className="text-3xl font-bold text-center mb-8">Subscription</h1>
                 <form onSubmit={handleSubmit} className=" px-8 pt-6 pb-8 mb-4">
                     <div className="mb-4">

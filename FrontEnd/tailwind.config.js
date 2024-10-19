@@ -12,7 +12,7 @@ export const theme = {
   // rest of the code
   extend: {
     fontFamily: {
-      sans: ['Roboto', 'sans-serif'],
+      sans: ['',"font-serif"],
     },
   },
 };

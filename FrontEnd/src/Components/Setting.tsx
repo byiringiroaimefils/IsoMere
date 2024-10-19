@@ -8,7 +8,7 @@ export default function Parent() {
   return (
     <>
       <NavBar />
-      <div className='md:flex justify-center items-center   ml-5 gap-5 my-28 '>
+      <div className='md:flex justify-center items-center   ml-5 gap-5 my-28 font-serif'>
         <Link to='Story'>
           <button className=' p-2 font-bold rounded-md mb-5 w-[90%] mx-2 bg-blue-500 hover:bg-blue-700 text-white'>Story</button>
         </Link>

@@ -34,7 +34,7 @@ export default function Preview() {
   return (
     <>
       <NavBar />
-      <div className="container mt-10 px-10 py-36 translate-y-[-2%] flex justify-center">
+      <div className="container mt-10 px-10 py-36 translate-y-[-2%] flex justify-center font-serif">
         <div className="w-full max-w-5xl md:flex justify-between ">
           <div className="card">
             {stories.map((story) => (
@@ -62,7 +62,7 @@ export default function Preview() {
           <div className="md:w-full md:translate-x-32 md:translate-y-28">
             <div className="md:translate-y-[-13%]  ">
               <div className="">
-                <h3 className="text-xl font-semibold mb-4">Recommended topics</h3>
+                <h3 className="text-xl font-semibold mb-4 font-serif">Recommended topics</h3>
                 <div className="flex flex-wrap gap-3">
                   {topics.map((topic, index) => (
                     <div
@@ -73,7 +73,7 @@ export default function Preview() {
                     </div>
                   ))}
                 </div>
-              </div> <br /><br />
+              </div> 
               <TopStory />
             </div>
           </div>

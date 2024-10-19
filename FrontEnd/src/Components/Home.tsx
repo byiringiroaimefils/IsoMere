@@ -72,7 +72,7 @@ const Home: FC = () => {
   return (
     <>
       <NavBar />
-      <div className='my-20'>
+      <div className='my-20 font-serif'>
         <div className='Container mt-44 md:flex justify-around translate-y-[-4%] gap-20 w-screen'>
           <div>
             {stories.slice(0, limit).map(({ _id, Title, image, createdAt }) => (

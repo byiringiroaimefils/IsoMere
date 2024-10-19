@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
 import Home from "./Components/Home";
+import HomePage from "./Components/Homepage";
 import Proverbs from "./Components/Proverbs";
 import Setting from "./Components/Setting";
 import Preview from "./Components/Bibical";
@@ -31,7 +32,8 @@ export default function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="Home" element={<Home />} />
           <Route path="Proverbs" element={<Proverbs />} />
           <Route path="Setting" element={
             <>

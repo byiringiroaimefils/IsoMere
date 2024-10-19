@@ -6,6 +6,7 @@ import { IoAddCircle } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import axios from 'axios'
 import Load from "../Service/Loading";
+import Swal from "sweetalert2";
 
 interface Proverb {
   _id: string,
@@ -34,6 +35,32 @@ const Pro: FC = () => {
   const filteredProverbs = proverbs.filter(proverb => 
     search ? proverb.TitleofProverb.toLowerCase().includes(search.toLowerCase()) : true
   );
+
+  const handleDelete = (id: string) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`https://babystory-server.onrender.com/deleteProverb/${id}`)
+          .then(() => {
+            setProverbs(proverbs.filter(proverb => proverb._id !== id)); // Update state to remove deleted proverb
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success"
+            });
+          })
+          .catch((error) => {
+            console.error('Error deleting proverb:', error);
+          });
+      }
+    });
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -82,9 +109,9 @@ const Pro: FC = () => {
                   <td className="px-6 py-4 whitespace-nowrap">{new Date(createdAt).toLocaleDateString()}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex space-x-2">
-                      <Link to={`/deleteProverb/${_id}`} className="text-red-600 hover:text-red-900">
+                      <button onClick={() => handleDelete(_id)} className="text-red-600 hover:text-red-900">
                         <MdDeleteForever className="text-xl" />
-                      </Link>
+                      </button>
                       <Link to={`/editProverb/${_id}`} className="text-blue-600 hover:text-blue-900">
                         <MdEditSquare className="text-xl" />
                       </Link>

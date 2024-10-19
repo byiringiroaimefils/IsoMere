@@ -11,7 +11,7 @@ export default function Footer() {
     }
 
     return (
-        <footer className="w-full bg-black text-white">
+        <footer className="w-full bg-black text-white font-serif">
             <div className='w-full flex justify-between items-center px-4 py-2'>
                 <Link to={'/Idea'} className="flex-grow text-center">
                     <p className='text-xs sm:text-sm'>Do you have an idea for IsoMere to cover? Submit it here!</p>

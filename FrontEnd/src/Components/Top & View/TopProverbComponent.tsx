@@ -22,7 +22,7 @@ export default function TopStoryComponent() {
 
   return (
     <>
-      <div className="topstory mr-2">
+      <div className="topstory mr-2 font-serif">
         <h3 className="text-xl font-semibold mb-4">Most Popular Proverbs</h3> 
         <br />
         <ul>

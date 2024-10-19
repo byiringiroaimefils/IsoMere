@@ -27,7 +27,7 @@ export default function TopProverbComponent() {
 
   return (
     <>
-      <div className="TopStory mt-20 ">
+      <div className="TopStory mt-20 font-serif">
         {/* <h4 className='font-extrabold'>MOST POPULAR STORIES</h4> */}
         <h3 className="text-xl font-semibold mb-4">Most Popular Stories</h3>
         {/* <p className='text-sm font-thin bg-black/50 rounded-sm h-0.5 w-32 mb-2 '></p><br /> */}

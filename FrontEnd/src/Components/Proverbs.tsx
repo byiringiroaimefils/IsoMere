@@ -14,7 +14,7 @@ interface Proverb {
 
 const Proverb: FC = () => {
   const [proverbs, setProverbs] = useState<Proverb[]>([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [limit, setLimit] = useState(4);
 
@@ -33,11 +33,11 @@ const Proverb: FC = () => {
       try {
         const response = await axios.get("https://babystory-server.onrender.com/proverbs");
         setProverbs(response.data);
-        setLoading(false);
+        // setLoading(false);
       } catch (error) {
         console.error('Error fetching proverbs:', error);
         setError('Failed to load proverbs. Please try again later.');
-        setLoading(false);
+        // setLoading(false);
       }
     };
 
@@ -48,22 +48,22 @@ const Proverb: FC = () => {
     setLimit((prevLimit) => prevLimit + 4);
   };
 
-  if (loading) {
-    return (
-      <div className='flex justify-center text-center mt-56'>
-        <Load />
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className='flex justify-center text-center mt-56'>
+  //       <Load />
+  //     </div>
+  //   );
+  // }
 
-  if (error) {
-    return <div className="text-center text-red-500 mt-10">{error}</div>;
-  }
+  // if (error) {
+  //   return <div className="text-center text-red-500 mt-10">{error}</div>;
+  // }
 
   return (
     <>
       <NavBar />
-      <div className='w-Full'>
+      <div className='w-Full font-serif'>
         <div className='my-20'>
           <div className='md:flex justify-center mt-28'>
             <div>

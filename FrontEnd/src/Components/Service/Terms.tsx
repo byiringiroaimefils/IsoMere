@@ -5,7 +5,7 @@ export default function Terms() {
   return (
     <>
       <NavBar />
-      <div className="container mt-20 mx-auto px-4 max-w-4xl">
+      <div className="container mt-20 mx-auto px-4 max-w-4xl font-serif">
         <h1 className="text-4xl font-bold text-center mb-8 text-sky-600">Terms and Conditions</h1>
         <p className="text-lg mb-8 text-gray-700">Welcome to IsoMere, your personalized book recommendation and reading platform. By using our website and services, you agree to comply with and be bound by the following terms and conditions.</p>
         

@@ -9,7 +9,7 @@ import { UserButton } from "@clerk/clerk-react";
 const Header = () => {
 
   const Links = [
-    { name: "Home", link: "/" },
+    { name: "Home", link: "/Home" },
     { name: "Proverb", link: "/Proverbs" },
     { name: "Bible's Story", link: "/Preview" },
     { name: "Setting", link: "/Setting" },
@@ -22,7 +22,7 @@ const Header = () => {
   return (
     isAdim ?
       <>
-        <div className='Header bg-white shadow-xl w-full '>
+        <div className='Header bg-white shadow-xl w-full font-serif'>
           <div className='md:flex items-center justify-between  py-4 md:px-10 px-7'>
             <div className='font-bold text-base cursor-pointer flex items-center '>
               <Link to="/" >
@@ -34,10 +34,10 @@ const Header = () => {
                   {
                     Links.map((link) => (
                       <li key={link.name} className='md:ml-2 md:hover:text-sky-600 font-medium md:text-sm text-gray-500 pt-5 md:translate-y-[-10px]' >
-                        <Link to={link.link} className='mr-2 '>{link.name}</Link>
+                        <Link to={link.link} className='mr-2 '>{link.name.toUpperCase()}</Link>
                       </li>))
                   } <br />
-                  <li className='md:ml-2 md:translate-x-[530%]  font-medium md:text-sm text-gray-500'>
+                  <li className='md:ml-2 md:translate-x-[500%]  font-medium md:text-sm text-gray-500'>
                     <Link to="/subscribe" className='mr-2 '>
                       <button className='border p-1.5 font-bold rounded-full w-[90%] mx-2 hover:bg-black'>Subscribe</button>
                     </Link>
@@ -48,7 +48,7 @@ const Header = () => {
             <div className='flex items-center md:mx-3  '>
               <div className='flex'>
                 <div className='userprofile  absolute right-20 top-5 flex justify-between gap-6'>
-                  <UserButton afterSignOutUrl='/' />
+                  <UserButton afterSignOutUrl='/Home' />
                 </div>
               </div>
               <div onClick={() => setOpen(!open)} className='absolute right-5 top-7 cursor-pointer md:hidden w-7 h-7'>
@@ -71,16 +71,16 @@ const Header = () => {
               <div className='mx-12 '>
                 <ul className={` Nav  md:flex md:items-center md:pb-0 pb-12 absolute md:static  md:z-0  -z-50  left-0 w-full md:w-auto  md:pl-0 pl-9 bg-white  transition-all duration-500 ease-in ${open ? 'top-[69px]' : 'top-[-490px]'}`}>
                   <li className='md:ml-2 md:hover:text-sky-600 font-medium md:text-sm text-gray-500 pt-5 md:translate-y-[-10px]' >
-                    <Link to='/' className='mr-2 '>Home</Link>
+                    <Link to='/Home' className='mr-2 '>HOME</Link>
                   </li>
                   <li className='md:ml-2 md:hover:text-sky-600 font-medium md:text-sm text-gray-500 pt-5 md:translate-y-[-10px]' >
-                    <Link to='/Proverbs' className='mr-2 '>Proverb</Link>
+                    <Link to='/Proverbs' className='mr-2 '>PROVERB</Link>
                   </li>
                   <li className='md:ml-2 md:hover:text-sky-600 font-medium md:text-sm text-gray-500 pt-5 md:translate-y-[-10px]' >
-                    <Link to='/Preview' className='mr-2 '>Bible's Story </Link>
+                    <Link to='/Preview' className='mr-2 '>BIBLE'S STORY </Link>
                   </li> <br />
                   <li className='md:ml-2 md:translate-x-[520%]  font-medium md:text-sm text-gray-500'>
-                    <Link to="/subscribe" className='mr-2'>
+                    <Link to="/subscribe" className='mr'>
                       <button className='border p-2 font-bold rounded-full w-[90%] mx-2 hover:bg-black transition-all duration-500 ease-in '>Subscribe</button>
                     </Link>
                   </li> <br />
@@ -94,7 +94,7 @@ const Header = () => {
             </div>
             <div className='flex items-center md:mx-3  gap-6'>
               <div className='userprofile md:flex absolute right-20 top-4 hidden'>
-                <SignInButton mode='modal' redirectUrl='/' >
+                <SignInButton mode='modal' redirectUrl='/Home' >
                   <button className='border p-1.5 font-bold rounded-full w-24 bg-blue-500 hover:bg-blue-700 text-white transition-all duration-500 ease-in'>Log in</button>
                 </SignInButton>
               </div>
