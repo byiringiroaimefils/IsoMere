@@ -4,14 +4,14 @@ import Home from "./Components/Home";
 import HomePage from "./Components/Homepage";
 import Proverbs from "./Components/Proverbs";
 import Setting from "./Components/Setting";
-import Preview from "./Components/Bibical";
-import Story from "./Components/Pages/Story";
-import Proverb from "./Components/Pages/Proverbs";
-import Bibilical from "./Components/Pages/Biblical";
+import Biblical from "./Components/Bibical";
+import Story from "./Components/Pages/Story-Table";
+import Proverb from "./Components/Pages/Proverbs-Table";
+import Bibilical from "./Components/Pages/Biblical-Table";
 import FormStory from "./Components/Forms/FormStory";
 import FormProverb from "./Components/Forms/FormProverb";
-import ViewStory from "./Components/Pages/ViewStory"
-import ViewProverb from "./Components/Pages/ViewProverb"
+// import ViewStory from "./Components/Pages/ViewStory"
+// import ViewProverb from "./Components/Pages/ViewProverb"
 import EditS from "./Components/Forms/EditStory"
 import EditProverb from "./Components/Forms/EditProverb"
 import DeleteProverb from "./Components/Pages/Deletion/DeletePro"
@@ -33,9 +33,12 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="Home" element={<Home />} />
-          <Route path="Proverbs" element={<Proverbs />} />
-          <Route path="Setting" element={
+          <Route path="/Home" element={<Home />} />
+          <Route path="/Proverbs" element={<Proverbs />} />
+          <Route path="/Biblical" element={<Biblical />} />
+          
+          {/* Setting routes with proper nesting */}
+          <Route path="/Setting" element={
             <>
               <SignedIn>
                 <Setting />
@@ -47,29 +50,69 @@ export default function App() {
           }>
             <Route path="Story" element={<Story />} />
             <Route path="Proverb" element={<Proverb />} />
-            <Route path="Bibilical" element={<Bibilical />} />
+            <Route path="Biblical" element={<Bibilical />} />
           </Route>
-          <Route path="Preview" element={
+
+          {/* Form routes */}
+          <Route path="/FormStory" element={
             <>
-              <Preview />
+              <SignedIn>
+                <FormStory />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
             </>
           } />
-          <Route path="FormStory" element={<FormStory />} />
-          <Route path="FormProverb" element={<FormProverb />} />
-          <Route path="story/:id" element={<ViewStory />} />
-          <Route path="proverb/:id" element={<ViewProverb />} />
-          <Route path="editS/:id" element={<EditS />} />
-          <Route path="editP/:id" element={<EditProverb />} />
-          <Route path="deleteProveb/:id" element={<DeleteProverb />} />
-          <Route path="deleteStory/:id" element={<DeleteStory />} />
+          <Route path="/FormProverb" element={
+            <>
+              <SignedIn>
+                <FormProverb />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          } />
 
+          {/* Edit routes */}
+          <Route path="/editS/:id" element={
+            <>
+              <SignedIn>
+                <EditS />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          } />
+          <Route path="/editP/:id" element={
+            <>
+              <SignedIn>
+                <EditProverb />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          } />
 
-          <Route path="StoryView/:id" element={<StoryView />} />
-        
-          <Route path="TopStory/:id" element={<TopStory />} />
-          <Route path="TopProverb/:id" element={<TopProverb />} />
+          {/* View routes */}
+          <Route path="/StoryView/:id" element={<StoryView />} />
+          <Route path="/TopStory/:id" element={<TopStory />} />
+          <Route path="/TopProverb/:id" element={<TopProverb />} />
 
-          <Route path="subscribe" element={
+          {/* Delete routes */}
+          <Route path="/deleteProveb/:id" element={<DeleteProverb />} />
+          <Route path="/deleteStory/:id" element={<DeleteStory />} />
+
+          {/* Service routes */}
+          <Route path="/About" element={<About />} />
+          <Route path="/Terms" element={<Terms />} />
+          <Route path="/Service" element={<Service />} />
+
+          {/* Protected routes */}
+          <Route path="/subscribe" element={
             <>
               <SignedIn>
                 <Subscribe />
@@ -79,21 +122,16 @@ export default function App() {
               </SignedOut>
             </>
           } />
-          <Route path="Idea" element={
+          <Route path="/Idea" element={
             <>
               <SignedIn>
                 <Idea />
               </SignedIn>
               <SignedOut>
-                <RedirectToSignIn  />
+                <RedirectToSignIn />
               </SignedOut>
             </>
-
           } />
-
-          <Route path="About" element={<About />} />
-          <Route path="Terms" element={<Terms />} />
-          <Route path="Service" element={<Service />} />
         </Routes>
       </BrowserRouter>
     </div>

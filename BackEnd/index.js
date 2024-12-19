@@ -10,7 +10,9 @@ const Port = process.env.PORT;
 // --- Schema and Middleware for uploads----
 const DBSchema = require('./Modules/StorySchema');
 const ProverbSchema = require('./Modules/ProverbSchema');
-const Db = require('./DB');
+const BiblicalSchema = require('./Modules/BiblicalSschemay');
+// const Db = require('./DB');
+
 
 
 //----MiddleWare confugurations---
@@ -22,17 +24,22 @@ App.use(Cors());
 
 
 // --Connection of DataBases--
-// Mongoose.connect(process.env.MONGODB_URI)
-//   .then(() => {
-//     console.log("Db is connected");
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
+Mongoose.connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log("Db is connected");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+
 
 
 
 //-------SERVER FOR STORY------- 
+
+// Instert Stories API.
+
 const Stories = Mongoose.model("Story", DBSchema, "Story");
 App.post("/story", (req, resp) => {
   const newStory = {
@@ -54,6 +61,7 @@ App.post("/story", (req, resp) => {
 
 });
 
+//get story according to the Id 
 
 App.get("/story/:id", (req, resp) => {
   const { id } = req.params;
@@ -66,6 +74,9 @@ App.get("/story/:id", (req, resp) => {
     });
 });
 
+
+// Get all stories.
+
 App.get("/Stories", (req, resp) => {
   const selectStory = Stories.find()
     .then((data) => {
@@ -76,6 +87,7 @@ App.get("/Stories", (req, resp) => {
     });
 });
 
+// Delete story according to the Id
 App.delete("/deleteStory/:id", (req, resp) => {
   const { id } = req.params;
   const book = Stories.findByIdAndDelete(id)
@@ -87,6 +99,7 @@ App.delete("/deleteStory/:id", (req, resp) => {
     });
 });
 
+// Edit Story accorinf to the Id
 App.put("/EditStory/:id", (req, resp) => {
   const newStory = {
     Title: req.body.TofStory,
@@ -104,19 +117,18 @@ App.put("/EditStory/:id", (req, resp) => {
       console.log("Error", err);
     });
 });
-
+// -------------------------------------------------------- Server For story collection -------------------------------------------------
 
 
 // -----SERVER FOR PROVERBS-----
 const proverbs = Mongoose.model("Proverbs", ProverbSchema, "Proverbs");
 
+// Insert new proverb
 App.post("/proverb", (req, resp) => {
-
   const newProverb = {
     TitleofProverb: req.body.Tofproverb,
     Proverb: req.body.Proverb
   };
-
 
   const Proverb = proverbs.create(newProverb)
     .then((data) => {
@@ -129,6 +141,7 @@ App.post("/proverb", (req, resp) => {
 });
 
 
+// Select proverb according to the Id
 App.get("/proverb/:id", (req, resp) => {
   const { id } = req.params;
   const selectproverb = proverbs.findById(id)
@@ -140,6 +153,7 @@ App.get("/proverb/:id", (req, resp) => {
     });
 });
 
+// Select All proverb(Dispay)
 App.get("/proverbs", (req, resp) => {
   const selectProverb = proverbs.find()
     .then((data) => {
@@ -150,6 +164,7 @@ App.get("/proverbs", (req, resp) => {
     });
 });
 
+// ----- Delete proverb according to the ID ------
 App.delete("/deleteProverb/:id", (req, resp) => {
   const { id } = req.params;
   const book = proverbs.findByIdAndDelete(id)
@@ -161,8 +176,8 @@ App.delete("/deleteProverb/:id", (req, resp) => {
     });
 });
 
+// Edit  proverb according to the ID(Updated)
 App.put("/EditProverb/:id", (req, resp) => {
-
   const newProverb = {
     TitleofProverb: req.body.Tofproverb,
     Proverb: req.body.Proverb
@@ -177,13 +192,16 @@ App.put("/EditProverb/:id", (req, resp) => {
     });
 });
 
+// --------------------------------------  Server of Proverb Collection -----------
 
 
 // //-----SERVER FOR BIBILICAL STORY-----
 
-// const BStory = Mongoose.model("Bibilical", DBSchema, "Bibilical");
+
+// const BStory = Mongoose.model("Biblical", BiblicalSchema, "Biblical");
+
 // App.post("/Bstory", (req, resp) => {
-//   const NewBibilicalStory = {
+//   const NewBiblicalStory = {
 //     Title:"",
 //     Author:"",
 //     image: "",
@@ -191,7 +209,7 @@ App.put("/EditProverb/:id", (req, resp) => {
 //   };
 
 
-//   const Story = BStory.create(NewBibilicalStory)
+//   const Story = BStory.create(NewBiblicalStory)
 //     .then((data) => {
 //       resp.json(data);
 //     })
@@ -203,7 +221,7 @@ App.put("/EditProverb/:id", (req, resp) => {
 // });
 
 
-// App.get("/story/:id", (req, resp) => {
+// App.get("/DstoryId/:id", (req, resp) => {
 //   const { id } = req.params;
 //   const selecBtStory = BStory.findById(id)
 //     .then((data) => {
@@ -215,7 +233,7 @@ App.put("/EditProverb/:id", (req, resp) => {
 // });
 
 // App.get("/BStories", (req, resp) => {
-//   const selectBibilicalStory = BStory.find()
+//   const selectBiblicalStory = BStory.find()
 //     .then((data) => {
 //       resp.json(data);
 //     })
@@ -226,7 +244,7 @@ App.put("/EditProverb/:id", (req, resp) => {
 
 // App.delete("/deleteBStory/:id", (req, resp) => {
 //   const { id } = req.params;
-//   const bibilicalStory= BStory.findByIdAndDelete(id)
+//   const biblicalStory= BStory.findByIdAndDelete(id)
 //     .then((data) => {
 //       resp.json("Deleted");
 //     })
@@ -236,7 +254,7 @@ App.put("/EditProverb/:id", (req, resp) => {
 // });
 
 // App.put("/EditStory/:id", (req, resp) => {
-//   const newBibilicalStory = {
+//   const newBiblicalStory = {
 //     Title: ,
 //     Author:,
 //     image: ,
@@ -244,7 +262,7 @@ App.put("/EditProverb/:id", (req, resp) => {
 //   };
 
 //   const { id } = req.params;
-//   const BibilicalStory = BStory.findByIdAndUpdate(id, newBibilicalStory)
+//   const BiblicalStory = BStory.findByIdAndUpdate(id, newBibilicalStory)
 //     .then((data) => {
 //       resp.json("Updated");
 //     })

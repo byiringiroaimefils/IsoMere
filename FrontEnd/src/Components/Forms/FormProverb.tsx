@@ -1,75 +1,138 @@
-
-import { Button, Label} from "flowbite-react";
-import { useNavigate } from "react-router-dom"
-import { useState } from "react";
+import React, { useState } from 'react';
+import { useNavigate, Link } from "react-router-dom";
+import { Label } from "flowbite-react";
 import axios from "axios";
-import{toast}from"react-hot-toast"
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-// import htmlreactparser from 'html-react-parser'
-import { Link } from 'react-router-dom';
+import { toast } from "react-hot-toast";
+import { FaArrowLeft, FaQuoteLeft } from 'react-icons/fa';
 
+export default function FormProverb() {
+  const navigate = useNavigate();
+  const [TitleofProverb, setTitleofProverb] = useState("");
+  const [Proverb, setProverb] = useState("");
+  const [Author, setAuthor] = useState("");
+  const [loading, setLoading] = useState(false);
 
-function Component() {
-    const navigate = useNavigate()
-    const [Tofproverb, setTofproverb] = useState<string>('');
-    const [Proverb, setProverb] = useState<string>('');
-
-    const HandleFunction = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const Data = {
-            Tofproverb,
-            Proverb: Proverb
-        }
-
-        axios.post(`https://babystory-server.onrender.com/proverb`, Data)
-            .then((respond) => {
-                console.log(respond.data);
-                toast.success("Successful Proverb Added")
-                navigate("/Setting")
-            })
-            .catch((error) => {
-                console.log(error)
-                toast.error("This didn't  work!!!!")
-            })
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!TitleofProverb || !Proverb || !Author) {
+      toast.error("Please fill in all required fields");
+      return;
     }
 
-    return (
-        <div className='flex justify-center mt-8 '>
-            <form onSubmit={HandleFunction} className="flex p-5 max-w-md flex-col gap-4   w-full bg-white">
-            <div className='Logo font-black flex align-middle translate-x-[-25px]'>
-              <img src='BabyStoryLogo.png' alt="" className='w-16 translate-y-[-5px] translate-x-3' />
-              <Link to="#"><h2></h2></Link>
-            </div>
-                <h2 className='font-bold'>Upload Proverbs</h2>
-                <div>
-                    <div className="mb-2 ">
-                        <Label htmlFor="title" value="Title" />
-                        <input type="text" id="title" className='border md:w-[99%] w-[99%] outline-none p-2' placeholder="Title of Story" required onChange={(e) => { setTofproverb(e.target.value) }} />
-                    </div>
-                </div>
-                <div>
-                    <div className="max-w-md">
-                        <div className="mb-2 block">
-                            <Label htmlFor="Proverb" value="Your Proverb" />
-                        </div>
-                        <div>
-                            <CKEditor
-                                editor={ClassicEditor}
-                                data={Proverb}
-                                onChange={(_event,editor) => {
-                                    setProverb(editor.getData());
-                                }}  />
-                        </div>
-                       
-                    </div>
-                </div>
-                <div>
-                </div>
-                <Button color="blue" className= 'md:w-[99%] w-[99%]  bg-blue-500 rounded-full hover:bg-blue-700 transition-all duration-500 ease-in text-white' type='submit'>UPLOAD</Button>
-            </form>
-        </div>
-    );
-}
+    setLoading(true);
+    const data = {
+      TitleofProverb,
+      Proverb,
+      Author
+    };
 
-export default Component;
+    try {
+      await axios.post("https://babystory-server.onrender.com/proverb", data);
+      toast.success("Proverb created successfully!");
+      navigate("/");
+    } catch (error) {
+      console.error("Error creating proverb:", error);
+      toast.error("Failed to create proverb. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto">
+        <div className="mb-8 flex items-center justify-between">
+          <Link 
+            to="/setting"
+            className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            <FaArrowLeft className="mr-2" />
+            Back to Home
+          </Link>
+          <h1 className="text-3xl font-bold text-gray-900">Share Your Proverb</h1>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-sm p-8">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Title Input */}
+            <div>
+              <Label htmlFor="title" className="text-gray-700 font-medium mb-2 block">
+                Proverb Title
+              </Label>
+              <input
+                id="title"
+                type="text"
+                value={TitleofProverb}
+                onChange={(e) => setTitleofProverb(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Enter a meaningful title"
+                required
+              />
+            </div>
+
+            {/* Author Selection */}
+            <div>
+              <Label htmlFor="author" className="text-gray-700 font-medium mb-2 block">
+                Author
+              </Label>
+              <select
+                id="author"
+                value={Author}
+                onChange={(e) => setAuthor(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                required
+              >
+                <option value="">Select author type</option>
+                <option value="Parents">Parents</option>
+                <option value="Others">Others</option>
+              </select>
+            </div>
+
+            {/* Proverb Content */}
+            <div>
+              <Label htmlFor="content" className="text-gray-700 font-medium mb-2 block">
+                Proverb Content
+              </Label>
+              <div className="relative">
+                <FaQuoteLeft className="absolute top-3 left-3 text-gray-300 h-5 w-5" />
+                <div className="prose prose-sm max-w-none pl-10">
+                  <CKEditor
+                    editor={ClassicEditor}
+                    data={Proverb}
+                    onChange={(_event, editor) => {
+                      setProverb(editor.getData());
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <div className="flex justify-end pt-6">
+              <button
+                type="submit"
+                disabled={loading}
+                className={`px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors
+                  ${loading ? 'opacity-75 cursor-not-allowed' : ''}`}
+              >
+                {loading ? (
+                  <span className="flex items-center">
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Publishing...
+                  </span>
+                ) : (
+                  'Publish Proverb'
+                )}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}

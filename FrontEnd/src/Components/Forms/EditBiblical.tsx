@@ -7,7 +7,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { toast } from "react-hot-toast";
 import { FaArrowLeft, FaImage } from 'react-icons/fa';
 
-export default function FormStory() {
+export default function EditBiblical() {
   const navigate = useNavigate();
   const [Title, setTitle] = useState("");
   const [image, setImage] = useState<File | null>(null);
@@ -59,13 +59,13 @@ export default function FormStory() {
       <div className="max-w-3xl mx-auto">
         <div className="mb-8 flex items-center justify-between">
           <Link 
-            to="/"
+            to="/setting"
             className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
           >
             <FaArrowLeft className="mr-2" />
             Back to Home
           </Link>
-          <h1 className="text-3xl font-bold text-gray-900">Share Your Story</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Share Your Biblical Story</h1>
         </div>
 
         <div className="bg-white rounded-2xl shadow-sm p-8">

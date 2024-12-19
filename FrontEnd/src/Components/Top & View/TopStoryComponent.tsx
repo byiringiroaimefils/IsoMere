@@ -1,19 +1,19 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
-import axios from 'axios'
-import David from "./David and Goliath.webp"
-
-
+import axios from 'axios';
 
 interface Story {
-  _id: string,
-  Title: string,
-  image: string,
-  Decription: string
+  _id: string;
+  Title: string;
+  image: string;
+  Description: string;
+  createdAt: string;
+  Author: string;
 }
 
-export default function TopProverbComponent() {
+export default function TopStoryComponent() {
   const [stories, setStories] = useState<Story[]>([]);
+  const [expandedStory, setExpandedStory] = useState<string | null>(null);
 
   useEffect(() => {
     axios.get(`https://babystory-server.onrender.com/stories`)
@@ -25,39 +25,78 @@ export default function TopProverbComponent() {
       })
   }, []);
 
+  const toggleStory = (id: string) => {
+    setExpandedStory(expandedStory === id ? null : id);
+  };
+
   return (
-    <>
-      <div className="TopStory mt-20 font-serif">
-        {/* <h4 className='font-extrabold'>MOST POPULAR STORIES</h4> */}
-        <h3 className="text-xl font-semibold mb-4">Most Popular Stories</h3>
-        {/* <p className='text-sm font-thin bg-black/50 rounded-sm h-0.5 w-32 mb-2 '></p><br /> */}
-        <div> <br />
-          {stories.slice(0, 2).map((story) => (
-            <Link to={`/TopStory/${story._id}`}>
-              <div key={story._id} className='grid grid-cols-2 gap-5 mb-5'>
-                <div className="img text-lg">
-                  <h2 className='font-extrabold text-xl uppercase'>{story.Title}</h2>
-                  <p className="text-base text-gray-400 line-clamp-2" dangerouslySetInnerHTML={{ __html: story.Decription }} />
-                </div>
-                <div className="text">
-                  <img src={story.image} alt="" className='w-[75%] object-cover' />
-                </div>
-                <div className="img text-lg">
-                  <h2 className='font-extrabold text-xl uppercase'>David Killed Goriath</h2>
-                  <p className="text-base text-gray-400 line-clamp-2">Lorem ipsu dolor  amet consectetur adipisicing </ p>
-                </div>
-                <div className="text">
-                  <img src={David} alt="" className='w-[75%] object-cover' />
-                </div>
+    <div className="space-y-6">
+      {stories.slice(0, 3).map((story, index) => (
+        <div 
+          key={story._id}
+          className="group cursor-pointer"
+          onClick={() => toggleStory(story._id)}
+        >
+          <div className="flex items-start space-x-4">
+            {story.image && (
+              <div className="flex-shrink-0">
+                <img 
+                  src={story.image} 
+                  alt={story.Title}
+                  className="w-20 h-20 object-cover rounded-lg shadow-sm group-hover:shadow transition-shadow duration-200"
+                />
+              </div>
+            )}
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center space-x-2">
+                <span className="text-gray-400 text-lg font-bold">
+                  {(index + 1).toString().padStart(2, '0')}
+                </span>
+                <h3 className="text-gray-900 font-semibold line-clamp-1 group-hover:text-blue-600 transition-colors duration-200">
+                  {story.Title}
+                </h3>
+              </div>
+              
+              <div className="mt-1 flex items-center text-sm text-gray-500 space-x-2">
+                <span>{story.Author || 'BYIRINGIRO'}</span>
+                <span>•</span>
+                <span>{new Date(story.createdAt).toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: 'numeric'
+                })}</span>
               </div>
 
-              <div className='grid grid-cols-2 gap-5 mb-5'>
-              </div>
-            </Link>
-          ))}
-          <br />
+              {expandedStory === story._id && (
+                <div className="mt-2">
+                  <p className="text-sm text-gray-600 line-clamp-3">
+                    {story.Description}
+                  </p>
+                  <Link 
+                    to={`/TopStory/${story._id}`}
+                    className="mt-2 inline-flex items-center text-sm text-blue-600 hover:text-blue-700"
+                  >
+                    Read full story
+                    <svg 
+                      className="ml-1 h-4 w-4" 
+                      fill="none" 
+                      viewBox="0 0 24 24" 
+                      stroke="currentColor"
+                    >
+                      <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth={2} 
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </Link>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="mt-3 border-b border-gray-100"></div>
         </div>
-      </div>
-    </>
-  )
+      ))}
+    </div>
+  );
 }

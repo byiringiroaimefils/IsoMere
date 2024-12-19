@@ -1,113 +1,174 @@
-import { useState } from 'react';
-import { FaTimes } from "react-icons/fa";
-import { FaBarsStaggered } from "react-icons/fa6"
-import { Link } from 'react-router-dom';
-import { useUser } from '@clerk/clerk-react';
-import { SignInButton } from "@clerk/clerk-react";
-import { UserButton } from "@clerk/clerk-react";
+import { Link, useLocation } from 'react-router-dom';
+import { SignedIn, SignedOut, UserButton,SignInButton } from "@clerk/clerk-react";
+import { useState, useEffect } from 'react';
+import { FaQuoteRight, FaBible, FaBars, FaTimes, FaHome } from 'react-icons/fa';
 
-const Header = () => {
 
-  const Links = [
-    { name: "Home", link: "/Home" },
-    { name: "Proverb", link: "/Proverbs" },
-    { name: "Bible's Story", link: "/Preview" },
-    { name: "Setting", link: "/Setting" },
+export default function NavBar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+
+  // Close mobile menu when route changes.
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
+
+  const navLinks = [
+    { path: '/Home', label: 'Home', icon: <FaHome /> },
+    // { path: '/Story', label: 'Stories', icon: <FaBook /> },
+    { path: '/Proverbs', label: 'Proverbs', icon: <FaQuoteRight /> },
+    { path: '/Biblical', label: 'Biblical Stories', icon: <FaBible /> },
   ];
-  const [open, setOpen] = useState(false);
 
-  const { user } = useUser();
-  const isAdim = user?.publicMetadata.User === "Admin";
+  // ???????
+  const isActivePath = (path: string) => {
+    if (path === '/' && location.pathname !== '/') return false;
+    return location.pathname.startsWith(path);
+  };
+  // ???????
 
   return (
-    isAdim ?
-      <>
-        <div className='Header bg-white shadow-xl w-full font-serif'>
-          <div className='md:flex items-center justify-between  py-4 md:px-10 px-7'>
-            <div className='font-bold text-base cursor-pointer flex items-center '>
-              <Link to="/" >
-                <img src='BabyStoryLogo.png' alt="" className='h-10 translate-x-[-20px] md:translate-y-[-5px] ' />
-              </Link>
-              <h2 className='mx-[-39px] text-2xl md:translate-y-[-5px]'>IsoMere</h2>
-              <div className='mx-12 '>
-                <ul className={` Nav  md:flex md:items-center md:pb-0 pb-12 absolute md:static  md:z-0  z-50  left-0 w-full md:w-auto  md:pl-0 pl-9 bg-white  transition-all duration-500 ease-in ${open ? 'top-[69px]' : 'top-[-490px]'}`}>
-                  {
-                    Links.map((link) => (
-                      <li key={link.name} className='md:ml-2 md:hover:text-sky-600 font-medium md:text-sm text-gray-500 pt-5 md:translate-y-[-10px]' >
-                        <Link to={link.link} className='mr-2 '>{link.name.toUpperCase()}</Link>
-                      </li>))
-                  } <br />
-                  <li className='md:ml-2 md:translate-x-[500%]  font-medium md:text-sm text-gray-500'>
-                    <Link to="/subscribe" className='mr-2 '>
-                      <button className='border p-1.5 font-bold rounded-full w-[90%] mx-2 hover:bg-black'>Subscribe</button>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className='flex items-center md:mx-3  '>
-              <div className='flex'>
-                <div className='userprofile  absolute right-20 top-5 flex justify-between gap-6'>
-                  <UserButton afterSignOutUrl='/Home' />
-                </div>
-              </div>
-              <div onClick={() => setOpen(!open)} className='absolute right-5 top-7 cursor-pointer md:hidden w-7 h-7'>
-                {
-                  open ? <FaTimes /> : <FaBarsStaggered />
-                }
-              </div>
-            </div>
-          </div>
-        </div>
-      </> :
-      <>
-        <div className='Header bg-white shadow-xl w-full fixed top-0 right-0  z-50'>
-          <div className='md:flex items-center justify-between  py-4 md:px-10 px-7'>
-            <div className='font-bold text-base cursor-pointer flex items-center '>
-              <Link to="/Homepge" >
-                <img src='BabyStoryLogo.png' alt="" className='h-10 translate-x-[-20px] md:translate-y-[-5px]' />
-              </Link>
-              <h2 className='mx-[-39px] md:translate-y-[-5px] text-2xl '>IsoMere</h2>
-              <div className='mx-12 '>
-                <ul className={` Nav  md:flex md:items-center md:pb-0 pb-12 absolute md:static  md:z-0  -z-50  left-0 w-full md:w-auto  md:pl-0 pl-9 bg-white  transition-all duration-500 ease-in ${open ? 'top-[69px]' : 'top-[-490px]'}`}>
-                  <li className='md:ml-2 md:hover:text-sky-600 font-medium md:text-sm text-gray-500 pt-5 md:translate-y-[-10px]' >
-                    <Link to='/Home' className='mr-2 '>HOME</Link>
-                  </li>
-                  <li className='md:ml-2 md:hover:text-sky-600 font-medium md:text-sm text-gray-500 pt-5 md:translate-y-[-10px]' >
-                    <Link to='/Proverbs' className='mr-2 '>PROVERB</Link>
-                  </li>
-                  <li className='md:ml-2 md:hover:text-sky-600 font-medium md:text-sm text-gray-500 pt-5 md:translate-y-[-10px]' >
-                    <Link to='/Preview' className='mr-2 '>BIBLE'S STORY </Link>
-                  </li> <br />
-                  <li className='md:ml-2 md:translate-x-[520%]  font-medium md:text-sm text-gray-500'>
-                    <Link to="/subscribe" className='mr'>
-                      <button className='border p-2 font-bold rounded-full w-[90%] mx-2 hover:bg-black transition-all duration-500 ease-in '>Subscribe</button>
-                    </Link>
-                  </li> <br />
-                  <li className='md:ml-2  font-medium md:hidden text-gray-500'>
-                    <SignInButton mode='modal' redirectUrl='/' >
-                      <button className='border p-2 font-bold rounded-full w-[90%] mx-2 bg-blue-500 hover:bg-blue-700 transition-all duration-500 ease-in text-white'>Log in</button>
-                    </SignInButton>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className='flex items-center md:mx-3  gap-6'>
-              <div className='userprofile md:flex absolute right-20 top-4 hidden'>
-                <SignInButton mode='modal' redirectUrl='/Home' >
-                  <button className='border p-1.5 font-bold rounded-full w-24 bg-blue-500 hover:bg-blue-700 text-white transition-all duration-500 ease-in'>Log in</button>
-                </SignInButton>
-              </div>
-              <div onClick={() => setOpen(!open)} className='absolute right-5 top-7 cursor-pointer md:hidden w-7 h-7'>
-                {
-                  open ? <FaTimes /> : <FaBarsStaggered />
-                }
-              </div>
-            </div>
-          </div>
-        </div>
-      </>
-  );
-};
+    <nav 
+      className={`fixed top-0 w-full left-0 right-0 z-50 transition-all duration-300 bg-white shadow-md`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <Link 
+            to="/" 
+            className="flex items-center space-x-2 group"
+            onClick={() => setIsOpen(false)}
+          >
+            <img 
+              src="/BabyStoryLogo.png" 
+              alt="IsoMere Logo" 
+              className="h-8 w-auto transform group-hover:scale-105 transition-transform" 
+            />
+            <span className="text-xl font-bold text-gray-900 hidden sm:inline">
+              IsoMere
+            </span>
+          </Link>
 
-export default Header;
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-8">
+            {navLinks.map(({ path, label, icon }) => (
+              <Link
+                key={path}
+                to={path}
+                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors ${
+                  isActivePath(path)
+                    ? 'text-blue-600 bg-blue-50'
+                    : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+                }`}
+              >
+                <span className="text-lg">{icon}</span>
+                <span>{label}</span>
+              </Link>
+            ))}
+          </div>
+
+          {/* User Menu */}
+          <div className="flex items-center">
+            <SignedIn>
+              <div className="hidden sm:flex items-center space-x-4 mr-4">
+                <Link
+                  to="/Setting"
+                  className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+                >
+                  All Uplaods
+                </Link>
+              </div>
+              <UserButton 
+                afterSignOutUrl="/"
+                appearance={{
+                  elements: {
+                    avatarBox: "w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-blue-100 hover:border-blue-200 transition-colors"
+                  }
+                }}
+              />
+            </SignedIn>
+
+            <SignedOut>
+            <nav className="flex items-center space-x-2 sm:space-x-4">
+              <SignInButton mode='modal' redirectUrl='/Home'>
+                <button className="px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base text-blue-600 font-medium hover:text-blue-700 transition-colors">
+                  Sign In
+                </button>
+              </SignInButton>
+              <SignInButton mode='modal' redirectUrl='/Home'>
+                <button className="px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">
+                  Create Account
+                </button>
+              </SignInButton>
+            </nav>
+
+            </SignedOut>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden ml-4 p-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Navigation */}
+      <div 
+        className={`lg:hidden transition-all duration-300 ease-in-out ${
+          isOpen 
+            ? 'max-h-[calc(100vh-4rem)] opacity-100 visible'
+            : 'max-h-0 opacity-0 invisible'
+        } overflow-hidden`}
+      >
+        <div className="px-4 py-2 bg-white shadow-lg divide-y divide-gray-100">
+          <div className="py-2 space-y-1">
+            {navLinks.map(({ path, label, icon }) => (
+              <Link
+                key={path}
+                to={path}
+                className={`flex items-center space-x-2 p-3 rounded-lg transition-colors ${
+                  isActivePath(path)
+                    ? 'text-blue-600 bg-blue-50'
+                    : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+                }`}
+              >
+                <span className="text-lg">{icon}</span>
+                <span>{label}</span>
+              </Link>
+            ))}
+          </div>
+
+          <div className="py-2 space-y-1">
+            <SignedIn>
+              <Link
+                to="/FormStory"
+                className="flex items-center space-x-2 p-3 text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-colors"
+              >
+                <span>Share Story</span>
+              </Link>
+            </SignedIn>
+
+            <SignedOut>
+              <Link
+                to=""
+                className="flex items-center space-x-2 p-3 text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors"
+              >
+                <span>Sign In</span>
+              </Link>
+              <Link
+                to=""
+                className="flex items-center space-x-2 p-3 text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-colors"
+              >
+                <span>Get Started</span>
+              </Link>
+            </SignedOut>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+}
