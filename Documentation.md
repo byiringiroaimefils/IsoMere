@@ -53,7 +53,7 @@ The project is divided into two main parts:
 1. Navigate to the Backend directory:
    ```
    cd Backend
-   ```
+   <!-- ```
 
 2. Install dependencies:
    ```
@@ -63,7 +63,7 @@ The project is divided into two main parts:
 3. Start the server:
    ```
    node index.js
-   ```
+   ``` -->
 
 ## Features
 
