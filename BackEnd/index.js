@@ -41,82 +41,89 @@ Mongoose.connect(process.env.MONGODB_URI)
 // Instert Stories API.
 
 const Stories = Mongoose.model("Story", DBSchema, "Story");
-App.post("/story", (req, resp) => {
+
+App.post("/story", async (req, resp) => {
+  // Validate input
+  if (!req.body.Title || !req.body.Author || !req.body.image || !req.body.Decription) {
+    return resp.status(400).json({ error: "All fields are required." });
+  }
+
   const newStory = {
-    Title: req.body.TofStory,
+    Title: req.body.Title,
     Author: req.body.Author,
-    image: req.body.Image,
+    image: req.body.image,
     Decription: req.body.Decription
   };
 
-
-  const Story = Stories.create(newStory)
-    .then((data) => {
-      resp.json(data);
-    })
-    .catch((err) => {
-      console.log("Error", err);
-    });
-
-
+  try {
+    const createdStory = await Stories.create(newStory);
+    resp.status(201).json(createdStory);
+  } catch (err) {
+    console.error("Error", err);
+    resp.status(500).json({ error: "Failed to create story." });
+  }
 });
-
 //get story according to the Id 
-
-App.get("/story/:id", (req, resp) => {
+App.get("/story/:id", async (req, resp) => {
   const { id } = req.params;
-  const selectStory = Stories.findById(id)
-    .then((data) => {
-      resp.json(data);
-    })
-    .catch((err) => {
-      console.log("Error", err);
-    });
+  try {
+    const data = await Stories.findById(id);
+    resp.json(data);
+  } catch (err) {
+    console.log("Error", err);
+    resp.status(500).json({ error: "Failed to fetch story." });
+  }
 });
-
 
 // Get all stories.
 
-App.get("/Stories", (req, resp) => {
-  const selectStory = Stories.find()
-    .then((data) => {
-      resp.json(data);
-    })
-    .catch((err) => {
-      console.log("Error", err);
-    });
+App.get("/Stories", async (req, resp) => {
+  try {
+    const data = await Stories.find();
+    resp.json(data);
+  } catch (err) {
+    console.log("Error", err);
+    resp.status(500).json({ error: "Failed to fetch stories." });
+  }
 });
 
 // Delete story according to the Id
-App.delete("/deleteStory/:id", (req, resp) => {
+App.delete("/deleteStory/:id", async (req, resp) => {
   const { id } = req.params;
-  const book = Stories.findByIdAndDelete(id)
-    .then((data) => {
-      resp.json("Deleted");
-    })
-    .catch((err) => {
-      console.log("Error", err);
-    });
+  try {
+    await Stories.findByIdAndDelete(id);
+    resp.json("Deleted");
+  } catch (err) {
+    console.log("Error", err);
+    resp.status(500).json({ error: "Failed to delete story." });
+  }
 });
 
 // Edit Story accorinf to the Id
-App.put("/EditStory/:id", (req, resp) => {
-  const newStory = {
-    Title: req.body.TofStory,
+App.put("/EditStory/:id", async (req, resp) => {
+  const { id } = req.params;
+
+  // Validate the input
+  if (!req.body.Title || !req.body.Author || !req.body.image || !req.body.Decription) {
+    return resp.status(400).json({ error: "All fields are required." });
+  }
+
+  const updatedStory = {
+    Title: req.body.Title,
     Author: req.body.Author,
-    image: req.body.Image,
-    Decription: req.body.Decription
+    image: req.body.image,
+    Decription: req.body.Decription,
   };
 
-  const { id } = req.params;
-  const Story = Stories.findByIdAndUpdate(id, newStory)
-    .then((data) => {
-      resp.json("Updated");
-    })
-    .catch((err) => {
-      console.log("Error", err);
-    });
+  try {
+    const story = await Stories.findByIdAndUpdate(id, updatedStory);
+    resp.status(200).json({ message: "Story updated successfully.", story });
+  } catch (err) {
+    console.error("Error", err);
+    resp.status(500).json({ error: "Failed to update story." });
+  }
 });
+
 // -------------------------------------------------------- Server For story collection -------------------------------------------------
 
 
@@ -124,72 +131,71 @@ App.put("/EditStory/:id", (req, resp) => {
 const proverbs = Mongoose.model("Proverbs", ProverbSchema, "Proverbs");
 
 // Insert new proverb
-App.post("/proverb", (req, resp) => {
+App.post("/proverb", async (req, resp) => {
   const newProverb = {
-    TitleofProverb: req.body.Tofproverb,
+    TitleofProverb: req.body.TitleofProverb,
     Proverb: req.body.Proverb
   };
 
-  const Proverb = proverbs.create(newProverb)
-    .then((data) => {
-      resp.json(data);
-      console.log(data.data)
-    })
-    .catch((err) => {
-      console.log("Error", err);
-    });
+  try {
+    const data = await proverbs.create(newProverb);
+    resp.json(data);
+    console.log(data.data)
+  } catch (err) {
+    console.log("Error", err);
+    resp.status(500).json({ error: "Failed to create proverb." });
+  }
 });
 
-
 // Select proverb according to the Id
-App.get("/proverb/:id", (req, resp) => {
+App.get("/proverb/:id", async (req, resp) => {
   const { id } = req.params;
-  const selectproverb = proverbs.findById(id)
-    .then((data) => {
-      resp.json(data);
-    })
-    .catch((err) => {
-      console.log("Error", err);
-    });
+  try {
+    const data = await proverbs.findById(id);
+    resp.json(data);
+  } catch (err) {
+    console.log("Error", err);
+    resp.status(500).json({ error: "Failed to fetch proverb." });
+  }
 });
 
 // Select All proverb(Dispay)
-App.get("/proverbs", (req, resp) => {
-  const selectProverb = proverbs.find()
-    .then((data) => {
-      resp.json(data);
-    })
-    .catch((err) => {
-      console.log("Error", err);
-    });
+App.get("/proverbs", async (req, resp) => {
+  try {
+    const data = await proverbs.find();
+    resp.json(data);
+  } catch (err) {
+    console.log("Error", err);
+    resp.status(500).json({ error: "Failed to fetch proverbs." });
+  }
 });
 
 // ----- Delete proverb according to the ID ------
-App.delete("/deleteProverb/:id", (req, resp) => {
+App.delete("/deleteProverb/:id", async (req, resp) => {
   const { id } = req.params;
-  const book = proverbs.findByIdAndDelete(id)
-    .then((data) => {
-      resp.json("Deleted");
-    })
-    .catch((err) => {
-      console.log("Error", err);
-    });
+  try {
+    await proverbs.findByIdAndDelete(id);
+    resp.json("Deleted");
+  } catch (err) {
+    console.log("Error", err);
+    resp.status(500).json({ error: "Failed to delete proverb." });
+  }
 });
 
 // Edit  proverb according to the ID(Updated)
-App.put("/EditProverb/:id", (req, resp) => {
+App.put("/EditProverb/:id", async (req, resp) => {
   const newProverb = {
-    TitleofProverb: req.body.Tofproverb,
+    TitleofProverb: req.body.TitleofProverb,
     Proverb: req.body.Proverb
   };
   const { id } = req.params;
-  const proverb = proverb.findByIdAndUpdate(id, newProverb)
-    .then((data) => {
-      resp.json("Updated");
-    })
-    .catch((err) => {
-      console.log("Error", err);
-    });
+  try {
+    const data = await proverbs.findByIdAndUpdate(id, newProverb);
+    resp.json("Updated");
+  } catch (err) {
+    console.log("Error", err);
+    resp.status(500).json({ error: "Failed to update proverb." });
+  }
 });
 
 // --------------------------------------  Server of Proverb Collection -----------
@@ -198,79 +204,75 @@ App.put("/EditProverb/:id", (req, resp) => {
 // //-----SERVER FOR BIBILICAL STORY-----
 
 
-// const BStory = Mongoose.model("Biblical", BiblicalSchema, "Biblical");
+const BStory = Mongoose.model("Biblical", BiblicalSchema, "Biblical");
 
-// App.post("/Bstory", (req, resp) => {
-//   const NewBiblicalStory = {
-//     Title:"",
-//     Author:"",
-//     image: "",
-//     Decription: ""
-//   };
+App.post("/InsertBiblical", async (req, resp) => {
+  const NewBiblicalStory = {
+    Title:req.body.Title,
+    Author:req.body.Author,
+    image: req.body.image,
+    Decription: req.body.Decription
+  };
 
+  try {
+    const data = await BStory.create(NewBiblicalStory);
+    resp.json(data);
+  } catch (err) {
+    console.log("Error", err);
+    resp.status(500).json({ error: "Failed to create biblical story." });
+  }
+});
 
-//   const Story = BStory.create(NewBiblicalStory)
-//     .then((data) => {
-//       resp.json(data);
-//     })
-//     .catch((err) => {
-//       console.log("Error", err);
-//     });
+App.get("/selectBiblical", async (req, resp) => {
+  try {
+    const data = await BStory.find();
+    resp.json(data);
+  } catch (err) {
+    console.log("Error", err);
+    resp.status(500).json({ error: "Failed to fetch biblical stories." });
+  }
+});
 
+App.get("/selectByIdB/:id", async (req, resp) => {
+  const { id } = req.params;
+  try {
+    const data = await BStory.findById(id);
+    resp.json(data);
+  } catch (err) {
+    console.log("Error", err);
+    resp.status(500).json({ error: "Failed to fetch Biblical ." });
+  }
+});
 
-// });
+App.delete("/deleteBStory/:id", async (req, resp) => {
+  const { id } = req.params;
 
+  try {
+    await BStory.findByIdAndDelete(id);
+    resp.json("Deleted");
+  } catch (err) {
+    console.log("Error", err);
+    resp.status(500).json({ error: "Failed to delete biblical story." });
+  }
+});
 
-// App.get("/DstoryId/:id", (req, resp) => {
-//   const { id } = req.params;
-//   const selecBtStory = BStory.findById(id)
-//     .then((data) => {
-//       resp.json(data);
-//     })
-//     .catch((err) => {
-//       console.log("Error", err);
-//     });
-// });
+App.put("/EditBiblical/:id", async (req, resp) => {
+  const newBiblicalStory = {
+    Title: req.body.Title ,
+    Author:req.body.Author,
+    image: req.body.image,
+    Decription:req.body.Decription
+  };
 
-// App.get("/BStories", (req, resp) => {
-//   const selectBiblicalStory = BStory.find()
-//     .then((data) => {
-//       resp.json(data);
-//     })
-//     .catch((err) => {
-//       console.log("Error", err);
-//     });
-// });
-
-// App.delete("/deleteBStory/:id", (req, resp) => {
-//   const { id } = req.params;
-//   const biblicalStory= BStory.findByIdAndDelete(id)
-//     .then((data) => {
-//       resp.json("Deleted");
-//     })
-//     .catch((err) => {
-//       console.log("Error", err);
-//     });
-// });
-
-// App.put("/EditStory/:id", (req, resp) => {
-//   const newBiblicalStory = {
-//     Title: ,
-//     Author:,
-//     image: ,
-//     Decription:
-//   };
-
-//   const { id } = req.params;
-//   const BiblicalStory = BStory.findByIdAndUpdate(id, newBibilicalStory)
-//     .then((data) => {
-//       resp.json("Updated");
-//     })
-//     .catch((err) => {
-//       console.log("Error", err);
-//     });
-// });
-
+  const { id } = req.params;
+  try {
+    const data = await BStory.findByIdAndUpdate(id, newBiblicalStory);
+    resp.json("Updated");
+  } catch (err) {
+    console.log("Error", err);
+    resp.status(500).json({ error: "Failed to update biblical story." });
+  }
+});
 
 // Listener of Port
 App.listen(Port, () => {
