@@ -1,9 +1,10 @@
 const Mongoose = require("mongoose");
-const DBSchema = new Mongoose.Schema(
+
+const BiblicalSchema = new Mongoose.Schema(
     {
       Title: {
         type: String,
-        required: true,
+        required: true
       },
       Author: {
         type: String,
@@ -11,15 +12,16 @@ const DBSchema = new Mongoose.Schema(
       },
       image: {
         type: String,
-        required: true,
+        required: true
       },
       Decription: {
         type: String,
-        required: true,
+        required: true
       },
     },
     {
       timestamps: true,
     }
   );
-  module.exports=DBSchema;
+
+module.exports = BiblicalSchema; 

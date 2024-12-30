@@ -10,7 +10,7 @@ const Port = process.env.PORT || 3000;
 // --- Schema and Middleware for uploads----
 const DBSchema = require('./Modules/StorySchema');
 const ProverbSchema = require('./Modules/ProverbSchema');
-const BiblicalSchema = require('./Modules/BiblicalSchema');
+const BiblicalSchema = require('./Modules/BiblicalSchema.js');
 
 //----MiddleWare configurations---
 const corsOptions = {
@@ -133,9 +133,9 @@ const proverbs = mongoose.model("Proverbs", ProverbSchema, "Proverbs");
 // Insert new proverb
 App.post("/proverb", async (req, resp) => {
   const newProverb = {
-    Author: req.body.Author,
-    Proverb: req.body.Proverb,
     TitleofProverb: req.body.TitleofProverb,
+    Author: req.body.Author,
+    Proverb: req.body.Proverb
   };
 
   try {
@@ -189,9 +189,9 @@ App.delete("/deleteProverb/:id", async (req, resp) => {
 // Edit  proverb according to the ID(Updated)
 App.put("/EditProverb/:id", async (req, resp) => {
   const newProverb = {
-    Author: req.body.Author,
-    Proverb: req.body.Proverb,
     TitleofProverb: req.body.TitleofProverb,
+    Author: req.body.Author,
+    Proverb: req.body.Proverb
   };
   const { id } = req.params;
   try {
