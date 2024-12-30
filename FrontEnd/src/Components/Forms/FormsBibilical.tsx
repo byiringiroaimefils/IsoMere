@@ -39,7 +39,7 @@ export default function FormsBibilical() {
       await axios.post("https://babystory-server.onrender.com/InsertBiblical", formdata);
       toast.success("");
       alert("Biblical Story created successfully!")
-      navigate("/");
+      navigate("/Setting/Proverb");
     } catch (error) {
       console.error("Error creating story:", error);
       alert("Failed to create story. Please try again.")

@@ -2,10 +2,6 @@ const Mongoose = require("mongoose");
 
 const ProverbSchema = new Mongoose.Schema(
     {
-      TitleofProverb: {
-        type: String,
-        required: true
-      },
       Author: {
         type: String,
         required: true,
@@ -14,6 +10,10 @@ const ProverbSchema = new Mongoose.Schema(
         type: String,
         required: true
       },
+      TitleofProverb: {
+        type: String,
+        required: true
+      }
     },
     {
       timestamps: true,

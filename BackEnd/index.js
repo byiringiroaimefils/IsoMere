@@ -21,6 +21,7 @@ const corsOptions = {
 App.use(express.json());
 App.use(cors(corsOptions));
 
+
 // --Connection of DataBase--
 connectDB()
   .then(() => {
@@ -33,7 +34,9 @@ connectDB()
     process.exit(1);
   });
 
-     //-------SERVER FOR STORY------- 
+
+  
+//-------SERVER FOR STORY------- 
 
 // Instert Stories API.
 
@@ -130,15 +133,14 @@ const proverbs = mongoose.model("Proverbs", ProverbSchema, "Proverbs");
 // Insert new proverb
 App.post("/proverb", async (req, resp) => {
   const newProverb = {
-    TitleofProverb: req.body.TitleofProverb,
     Author: req.body.Author,
-    Proverb: req.body.Proverb
+    Proverb: req.body.Proverb,
+    TitleofProverb: req.body.TitleofProverb,
   };
 
   try {
     const data = await proverbs.create(newProverb);
     resp.json(data);
-    console.log(data.data)
   } catch (err) {
     console.log("Error", err);
     resp.status(500).json({ error: "Failed to create proverb." });
@@ -187,8 +189,9 @@ App.delete("/deleteProverb/:id", async (req, resp) => {
 // Edit  proverb according to the ID(Updated)
 App.put("/EditProverb/:id", async (req, resp) => {
   const newProverb = {
+    Author: req.body.Author,
+    Proverb: req.body.Proverb,
     TitleofProverb: req.body.TitleofProverb,
-    Proverb: req.body.Proverb
   };
   const { id } = req.params;
   try {

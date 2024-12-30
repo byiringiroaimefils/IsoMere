@@ -15,7 +15,7 @@ interface Story {
   Author: string;
 }
 
-export default function TopStory() {
+export default function TopBStory() {
   const [story, setStory] = useState<Story | null>(null);
   const [prevId, setPrevId] = useState<string | null>(null);
   const [nextId, setNextId] = useState<string | null>(null);
@@ -27,10 +27,10 @@ export default function TopStory() {
     const fetchStory = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`https://babystory-server.onrender.com/story/${id}`);
+        const response = await axios.get(`https://babystory-server.onrender.com/selectByIdB/${id}`);
         setStory(response.data);
 
-        const allStoriesResponse = await axios.get("https://babystory-server.onrender.com/stories");
+        const allStoriesResponse = await axios.get("https://babystory-server.onrender.com/selectBiblical");
         const allStories = allStoriesResponse.data;
         const currentIndex = allStories.findIndex((s: Story) => s._id === id);
         setPrevId(currentIndex > 0 ? allStories[currentIndex - 1]._id : null);

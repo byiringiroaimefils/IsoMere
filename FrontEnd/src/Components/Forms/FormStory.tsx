@@ -35,7 +35,7 @@ export default function FormStory() {
       await axios.post("https://babystory-server.onrender.com/story", formdata);
       toast.success("Story created successfully!");
       alert("Story Uploaded")
-      navigate("/");
+      navigate("/Setting/Story");
     } catch (error) {
       console.error("Error creating story:", error);
       alert("Failed to create story. Please try again.")

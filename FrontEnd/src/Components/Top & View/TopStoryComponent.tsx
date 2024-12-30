@@ -168,7 +168,7 @@ export default function TopStoryComponent() {
                         {story.Description}
                       </p>
                       <Link 
-                        to={`/TopStory/${story._id}`}
+                        to={`/TopBStory/${story._id}`}
                         className="mt-2 inline-flex items-center text-sm text-blue-600 hover:text-blue-700"
                       >
                         Read full story

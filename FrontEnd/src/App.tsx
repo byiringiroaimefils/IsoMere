@@ -28,6 +28,7 @@ import Idea from "./Components/Service/Idea"
 
 import TopProverb from "./Components/Top & View/TopProverb"
 import TopStory from "./Components/Top & View/TopStory"
+import TopBStory from "./Components/Top & View/TopBStory"
 
 export default function App() {
   return (
@@ -123,6 +124,7 @@ export default function App() {
           {/* View routes */}
           <Route path="/StoryView/:id" element={<StoryView />} />
           <Route path="/TopStory/:id" element={<TopStory />} />
+          <Route path="/TopBStory/:id" element={<TopBStory />} />
           <Route path="/TopProverb/:id" element={<TopProverb />} />
 
           {/* Delete routes */}

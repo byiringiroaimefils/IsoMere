@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import { Label } from "flowbite-react";
 import axios from "axios";
@@ -21,18 +21,21 @@ export default function FormProverb() {
     }
 
     const authorName = user?.fullName || user?.username || "Anonymous";
-
+    console.log("Sending author name:", authorName);
+    
     const data = {
       TitleofProverb,
       Author: authorName,
       Proverb,
     };
-    console.log(data)
+    
+    console.log("Sending data:", data);
+    
     try {
-      await axios.post("https://babystory-server.onrender.com/proverb", data);
+      const response = await axios.post("https://babystory-server.onrender.com/proverb", data);
+      console.log("Response:", response.data);
       alert("Proverb created successfully!");
       navigate("/Setting/Proverb");
-
     } catch (error: any) {
       console.error("Error creating proverb:", error);
       alert("Failed to create proverb. Please try again.");
@@ -70,6 +73,7 @@ export default function FormProverb() {
                 required
               />
             </div>
+
             {/* Proverb Content */}
             <div>
               <Label htmlFor="content" className="text-gray-700 font-medium mb-2 block">

@@ -7,23 +7,31 @@ import { Link } from "react-router-dom";
 import axios from 'axios'
 import Load from "../Service/Loading";
 import Swal from "sweetalert2";
+import { useUser } from "@clerk/clerk-react";
+
 
 interface Proverb {
   _id: string,
   TitleofProverb: string,
+  Author: string,
   Proverb: string,
   createdAt: string,
 }
 
 const Pro: FC = () => {
+const { user } = useUser(); // Add Clerk user
   const [loading, setLoading] = useState<boolean>(true);
   const [proverbs, setProverbs] = useState<Proverb[]>([]);
   const [search, setSearch] = useState<string>('');
 
   useEffect(() => {
+    const authorName = user?.fullName || user?.username || "Anonymous";
     axios.get("https://babystory-server.onrender.com/Proverbs")
       .then((response) => {
-        setProverbs(response.data);
+        const userproverb=response.data.filter((proverb:Proverb)=>
+          proverb.Author === authorName
+        )
+        setProverbs(userproverb);
         setLoading(false);
       })
       .catch((error) => {
@@ -33,7 +41,11 @@ const Pro: FC = () => {
   }, []);
 
   const filteredProverbs = proverbs.filter(proverb => 
-    search ? proverb.TitleofProverb.toLowerCase().includes(search.toLowerCase()) : true
+    search ? (
+      proverb.TitleofProverb.toLowerCase().includes(search.toLowerCase()) ||
+      proverb.Author.toLowerCase().includes(search.toLowerCase()) ||
+      proverb.Proverb.toLowerCase().includes(search.toLowerCase())
+    ) : true
   );
 
   const handleDelete = (id: string) => {
@@ -99,15 +111,19 @@ const Pro: FC = () => {
                 <tr>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title of Proverb</th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                  {/* <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Proverb</th> */}
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {filteredProverbs.map(({ _id, TitleofProverb, createdAt }, index) => (
+                {filteredProverbs.map(({ _id, TitleofProverb, Author, createdAt }, index) => (
                   <tr key={_id}>
                     <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
                     <td className="px-6 py-4 whitespace-nowrap">{TitleofProverb}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{Author}</td>
+                    {/* <td className="px-6 py-4 whitespace-nowrap max-w-xs truncate">{Proverb}</td> */}
                     <td className="px-6 py-4 whitespace-nowrap">{new Date(createdAt).toLocaleDateString()}</td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex space-x-2">
@@ -127,13 +143,15 @@ const Pro: FC = () => {
 
           {/* Card view for mobile screens */}
           <div className="md:hidden space-y-4">
-            {filteredProverbs.map(({ _id, TitleofProverb, createdAt }, index) => (
+            {filteredProverbs.map(({ _id, TitleofProverb, Author,  createdAt }, index) => (
               <div key={_id} className="bg-white rounded-lg shadow-md p-4">
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-sm font-semibold text-gray-600">#{index + 1}</span>
                   <span className="text-sm text-gray-500">{new Date(createdAt).toLocaleDateString()}</span>
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-4">{TitleofProverb}</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">{TitleofProverb}</h3>
+                <p className="text-sm text-gray-600 mb-2">By: {Author}</p>
+                {/* <p className="text-sm text-gray-700 mb-4 line-clamp-2">{Proverb}</p> */}
                 <div className="flex justify-end space-x-3">
                   <button 
                     onClick={() => handleDelete(_id)} 
