@@ -50,7 +50,7 @@ App.post("/story", async (req, resp) => {
 
   const newStory = {
     Title: req.body.Title,
-    Author: "aimeCode Aime Fils",
+    Author: req.body.Author,
     image: req.body.image,
     Decription: req.body.Decription
   };
@@ -136,7 +136,7 @@ App.post("/proverb", async (req, resp) => {
   
   const newProverb = {
     TitleofProverb: req.body.TitleofProverb,
-    Author: req.body.Author,
+    Author: "aimeCode Aime Fils",
     Proverb: req.body.Proverb
   };
 
@@ -194,7 +194,7 @@ App.delete("/deleteProverb/:id", async (req, resp) => {
 App.put("/EditProverb/:id", async (req, resp) => {
   const newProverb = {
     TitleofProverb: req.body.TitleofProverb,
-    Author: req.body.Author,
+    Author: "aimeCode Aime Fils",
     Proverb: req.body.Proverb
   };
   const { id } = req.params;
