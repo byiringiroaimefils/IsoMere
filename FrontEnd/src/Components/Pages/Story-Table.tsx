@@ -1,12 +1,13 @@
 import { FC, useEffect, useState } from "react"
-import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
+// import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
 import { MdDeleteForever, MdEditSquare } from "react-icons/md";
-import { FaEye, FaMagnifyingGlass } from "react-icons/fa6";
+import {  FaMagnifyingGlass } from "react-icons/fa6";
 import { IoAddCircle } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import axios from 'axios'
 import Load from "../Service/Loading";
 import Swal from "sweetalert2"; // Import Swal for alerts
+import { useUser } from "@clerk/clerk-react";
 
 
 
@@ -27,19 +28,26 @@ const Story: FC = () => {
   const [story, setStory] = useState<Story[]>([]);
   // const [showForm, setShowForm] = useState<boolean>(false);
   const [Search, setSearch] = useState<string>('');
+  const { user } = useUser(); // Add Clerk user
 
 
   useEffect(() => {
-    axios.get("https://babystory-server.onrender.com/Stories")
+    const authorName = user?.fullName || user?.username || "Anonymous";
+    
+    axios.get(`https://babystory-server.onrender.com/Stories`)
       .then((response) => {
-        setStory(response.data);
+        // Filter stories by author name
+        const userStories = response.data.filter((story: Story) => 
+          story.Author === authorName
+        );
+        setStory(userStories);
         setLoading(false);
       })
       .catch((error) => {
         console.log('error', error)
         setLoading(false);
       })
-  }, []);
+  }, [user]); // Add user to dependency array
 
   const handleDelete = (id: string) => {
     Swal.fire({

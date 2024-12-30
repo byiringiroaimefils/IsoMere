@@ -4,40 +4,38 @@ import { Label } from "flowbite-react";
 import axios from "axios";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { toast } from "react-hot-toast";
 import { FaArrowLeft, FaQuoteLeft } from 'react-icons/fa';
+import { useUser } from "@clerk/clerk-react";
 
 export default function FormProverb() {
   const navigate = useNavigate();
+  const { user } = useUser();
   const [TitleofProverb, setTitleofProverb] = useState("");
   const [Proverb, setProverb] = useState("");
-  const [Author, setAuthor] = useState("");
-  // const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!TitleofProverb || !Proverb || !Author) {
-      toast.error("Please fill in all required fields");
+    if (!TitleofProverb || !Proverb) {
+      alert("Please fill in all required fields");
       return;
     }
 
-    // setLoading(true);
+    const authorName = user?.fullName || user?.username || "Anonymous";
+
     const data = {
       TitleofProverb,
+      Author: authorName,
       Proverb,
-      Author
     };
     console.log(data)
     try {
-      await axios.post("http://localhost:8080/proverb", data);
-      toast.success("Proverb created successfully!");
+      await axios.post("https://babystory-server.onrender.com/proverb", data);
+      alert("Proverb created successfully!");
       navigate("/Setting/Proverb");
-      console.log("Work")
 
     } catch (error: any) {
-      console.log("Not Work")
       console.error("Error creating proverb:", error);
-      toast.error(error.response?.data?.message || "Failed to create proverb. Please try again.");
+      alert("Failed to create proverb. Please try again.");
     }
   };
 
@@ -46,7 +44,7 @@ export default function FormProverb() {
       <div className="max-w-3xl mx-auto">
         <div className="mb-8 flex items-center justify-between">
           <Link
-            to="/Setting/Proverb"
+            to="/Setting"
             className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
           >
             <FaArrowLeft className="mr-2" />
@@ -72,25 +70,6 @@ export default function FormProverb() {
                 required
               />
             </div>
-
-            {/* Author Selection */}
-            <div>
-              <Label htmlFor="author" className="text-gray-700 font-medium mb-2 block">
-                Author
-              </Label>
-              <select
-                id="author"
-                value={Author}
-                onChange={(e) => setAuthor(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                required
-              >
-                <option value="">Select author type</option>
-                <option value="Parents">Parents</option>
-                <option value="Others">Others</option>
-              </select>
-            </div>
-
             {/* Proverb Content */}
             <div>
               <Label htmlFor="content" className="text-gray-700 font-medium mb-2 block">

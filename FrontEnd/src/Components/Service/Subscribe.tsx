@@ -7,7 +7,10 @@ export default function Subscribe() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('Subscription submitted:', { email });
+        if(!email){
+            alert("Please fill all field")
+        }
+        alert(`Subscription submitted: ${ email }`);
     };
 
     return (

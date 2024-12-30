@@ -10,7 +10,7 @@ interface Story {
   _id: string;
   Title: string;
   image: string;
-  Description: string;
+  Decription: string;
   createdAt: string;
   Author: string;
 }
@@ -96,18 +96,6 @@ export default function TopStory() {
                       </p>
                     </div>
                   </div>
-                  
-                  <div className="flex items-center space-x-4">
-                    <button className="text-green-600 hover:text-green-700 transition-colors">
-                      <FaWhatsappSquare size={24} />
-                    </button>
-                    <button className="text-blue-600 hover:text-blue-700 transition-colors">
-                      <FaFacebook size={24} />
-                    </button>
-                    <button className="text-pink-600 hover:text-pink-700 transition-colors">
-                      <FaInstagramSquare size={24} />
-                    </button>
-                  </div>
                 </div>
 
                 {story.image && (
@@ -121,7 +109,7 @@ export default function TopStory() {
                 )}
 
                 <div className="prose prose-lg max-w-none">
-                  <div dangerouslySetInnerHTML={{ __html: story.Description }} />
+                  <div dangerouslySetInnerHTML={{ __html: story.Decription }} /> 
                 </div>
               </div>
             </div>

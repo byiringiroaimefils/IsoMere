@@ -114,7 +114,7 @@ const Pro: FC = () => {
                         <button onClick={() => handleDelete(_id)} className="text-red-600 hover:text-red-900">
                           <MdDeleteForever className="text-xl" />
                         </button>
-                        <Link to={`/editProverb/${_id}`} className="text-blue-600 hover:text-blue-900">
+                        <Link to={`/editP/${_id}`} className="text-blue-600 hover:text-blue-900">
                           <MdEditSquare className="text-xl" />
                         </Link>
                       </div>
@@ -142,7 +142,7 @@ const Pro: FC = () => {
                     <MdDeleteForever className="text-xl" />
                   </button>
                   <Link 
-                    to={`/editProverb/${_id}`} 
+                    to={`/editP/${_id}`} 
                     className="p-2 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100"
                   >
                     <MdEditSquare className="text-xl" />

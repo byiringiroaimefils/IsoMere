@@ -58,8 +58,9 @@ export default function TopProverbComponent() {
 
               {expandedProverb === proverb._id && (
                 <div className="mt-2">
-                  <p className="text-sm text-gray-600 line-clamp-3">
-                    {proverb.Proverb}
+                  <p className="text-sm text-gray-600 line-clamp-3"
+                     dangerouslySetInnerHTML={{ __html: proverb.Proverb }}
+                  >
                   </p>
                   <Link 
                     to={`/TopProverb/${proverb._id}`}

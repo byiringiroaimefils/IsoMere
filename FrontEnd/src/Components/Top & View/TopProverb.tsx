@@ -78,25 +78,15 @@ export default function TopProverb() {
                       </p>
                     </div>
                   </div>
-
-                  <div className="flex items-center space-x-4">
-                    <button className="text-green-600 hover:text-green-700 transition-colors">
-                      <FaWhatsappSquare size={24} />
-                    </button>
-                    <button className="text-blue-600 hover:text-blue-700 transition-colors">
-                      <FaFacebook size={24} />
-                    </button>
-                    <button className="text-pink-600 hover:text-pink-700 transition-colors">
-                      <FaInstagramSquare size={24} />
-                    </button>
-                  </div>
                 </div>
 
                 <div className="relative py-8">
                   <FaQuoteLeft className="absolute top-0 left-0 text-blue-100 h-8 w-8" />
                   <div className="prose prose-lg max-w-none px-10">
-                    <p className="text-gray-700 text-xl leading-relaxed">
-                      {proverb.Proverb}
+                    <p className="text-gray-700 text-xl leading-relaxed"
+                     dangerouslySetInnerHTML={{ __html: proverb.Proverb }}
+                    >
+                      {/* {proverb.Proverb} */}
                     </p>
                   </div>
                   <FaQuoteRight className="absolute bottom-0 right-0 text-blue-100 h-8 w-8" />
@@ -118,7 +108,6 @@ export default function TopProverb() {
       </main>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h2 className="text-2xl font-bold text-gray-900 mb-8">More Proverbs</h2>
         <BottomStory />
       </div>
 

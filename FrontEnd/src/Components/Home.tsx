@@ -18,12 +18,12 @@ interface Story {
 
 const Home: FC = () => {
   const [stories, setStories] = useState<Story[]>([]);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState<string | null>(null);
   const [limit, setLimit] = useState(4);
   const [selectedStory, setSelectedStory] = useState<string | null>(null);
   const [expandedStory, setExpandedStory] = useState<string | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState<string | null>(null);
   
   const topics = [
     "Featured Stories",
@@ -40,11 +40,9 @@ const Home: FC = () => {
       try {
         const response = await axios.get("https://babystory-server.onrender.com/stories");
         setStories(response.data);
-        // setLoading(false);
       } catch (error) {
         console.error('Error fetching stories:', error);
         // setError('Failed to load stories. Please try again later.');
-        // setLoading(false);
       }
     };
 
@@ -146,12 +144,14 @@ const Home: FC = () => {
                         className={`text-gray-700 leading-relaxed relative
                           ${expandedStory === _id ? 'line-clamp-none' : 'line-clamp-3'}
                           ${isAnimating ? 'opacity-90' : 'opacity-100'}`}
+                          dangerouslySetInnerHTML={{ __html: Decription }}
                       >
-                        {Decription}
+                        {/* {Decription} */}
                       </div>
                       {expandedStory !== _id && Decription && (
-                        <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white to-transparent" />
-                      )}
+                        // <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white to-transparent" />
+                        <div></div>
+)}
                     </div>
                     
                     <div className={`flex justify-between items-center transition-all duration-300
@@ -254,6 +254,9 @@ const Home: FC = () => {
               <h3 className="text-xl font-semibold text-gray-900 mb-4">
                 Quick Links
               </h3>
+
+          {/* Add some authorisation  */}
+
               <div className="space-y-3">
                 <Link 
                   to="/FormStory"

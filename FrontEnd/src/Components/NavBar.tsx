@@ -89,7 +89,7 @@ export default function NavBar() {
             </SignedIn>
 
             <SignedOut>
-            <nav className="flex items-center space-x-2 sm:space-x-4">
+            <nav className="md:flex items-center space-x-2 sm:space-x-4 hidden">
               <SignInButton mode='modal' redirectUrl='/Home'>
                 <button className="px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base text-blue-600 font-medium hover:text-blue-700 transition-colors">
                   Sign In
@@ -153,18 +153,18 @@ export default function NavBar() {
             </SignedIn>
 
             <SignedOut>
-              <Link
-                to=""
-                className="flex items-center space-x-2 p-3 text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors"
-              >
-                <span>Sign In</span>
-              </Link>
-              <Link
-                to=""
-                className="flex items-center space-x-2 p-3 text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-colors"
-              >
-                <span>Get Started</span>
-              </Link>
+            <nav className="flex flex-col space-x-2 sm:space-x-4 w-full">
+              <SignInButton mode='modal' redirectUrl='/Home'>
+                <button className="px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base text-blue-600 font-medium hover:text-blue-700 transition-colors">
+                  Sign In
+                </button>
+              </SignInButton>
+              <SignInButton mode='modal' redirectUrl='/Home'>
+                <button className=" w-full px-3  py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">
+                  Create Account
+                </button>
+              </SignInButton>
+            </nav>
             </SignedOut>
           </div>
         </div>

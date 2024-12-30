@@ -6,6 +6,10 @@ const ProverbSchema = new Mongoose.Schema(
         type: String,
         required: true
       },
+      Author: {
+        type: String,
+        required: true,
+      },
       Proverb: {
         type: String,
         required: true

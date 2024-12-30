@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios'
 import Load from "../Service/Loading";
 import Swal from "sweetalert2"; // Import Swal for alerts
+import { useUser } from "@clerk/clerk-react";
 
 
 
@@ -27,19 +28,26 @@ const Biblical: FC = () => {
   const [story, setStory] = useState<Story[]>([]);
   // const [showForm, setShowForm] = useState<boolean>(false);
   const [Search, setSearch] = useState<string>('');
+  const { user } = useUser(); // Add Clerk user
 
 
   useEffect(() => {
-    axios.get("https://babystory-server.onrender.com/Stories")
+    const authorName = user?.fullName || user?.username || "Anonymous";
+    
+    axios.get("https://babystory-server.onrender.com/selectBiblical")
       .then((response) => {
-        setStory(response.data);
+        // Filter biblical stories by author name
+        const userStories = response.data.filter((story: Story) => 
+          story.Author === authorName
+        );
+        setStory(userStories);
         setLoading(false);
       })
       .catch((error) => {
         console.log('error', error)
         setLoading(false);
       })
-  }, []);
+  }, [user]); // Add user to dependency array
 
   const handleDelete = (id: string) => {
     Swal.fire({
@@ -51,12 +59,12 @@ const Biblical: FC = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`https://babystory-server.onrender.com/deleteStory/${id}`)
+        axios.delete(`https://babystory-server.onrender.com/deleteBStory/${id}`)
           .then(() => {
             setStory(prevStories => prevStories.filter(story => story._id !== id)); // Update state to remove deleted story
             Swal.fire({
               title: "Deleted!",
-              text: "Your file has been deleted.",
+              text: "Your Image has been deleted.",
               icon: "success"
             });
           })
@@ -70,8 +78,8 @@ const Biblical: FC = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold mb-4 sm:mb-0">Stories</h1>
-        <Link to="/FormStory">
+        <h1 className="text-2xl font-bold mb-4 sm:mb-0">Biblical  Stories</h1>
+        <Link to="/FormBiblical">
           <button className="w-full sm:w-auto bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-flex items-center justify-center">
             <IoAddCircle className="mr-2" />
             <span>Add New</span>
@@ -117,6 +125,7 @@ const Biblical: FC = () => {
                     return story
                   }
                 }).map(({ _id, Title, Author, createdAt }, index) => (
+      
                   <tr key={_id}>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{index + 1}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{Title}</td>
@@ -126,7 +135,7 @@ const Biblical: FC = () => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <div className="flex space-x-2">
-                        <Link to={`/editS/${_id}`} className="text-green-600 hover:text-green-900">
+                        <Link to={`/editB/${_id}`} className="text-green-600 hover:text-green-900">
                           <MdEditSquare className="w-5 h-5" />
                         </Link>
                         <button onClick={() => handleDelete(_id)} className="text-red-600 hover:text-red-900">
@@ -158,7 +167,7 @@ const Biblical: FC = () => {
                 <p className="text-sm text-gray-600 mb-4">{Author}</p>
                 <div className="flex justify-end space-x-3">
                   <Link 
-                    to={`/editS/${_id}`} 
+                    to={`/editB/${_id}`} 
                     className="p-2 rounded-full bg-green-50 text-green-600 hover:bg-green-100"
                   >
                     <MdEditSquare className="w-5 h-5" />

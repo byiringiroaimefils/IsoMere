@@ -1,22 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import NavBar from "./NavBar";
+import NavBar from './NavBar';
 import Footer from './Pages/Footer';
-import TopStory from "./Top & View/TopStoryComponent";
-import Noah from "../assets/Noah.webp";
-import Creation from "../assets/Creation.jpg";
-import David from "../assets/David and Goliath.webp";
-import Read from "../assets/Bh.jpeg";
+import TopStory from './Top & View/TopStoryComponent';
+import axios from 'axios';
 
-const stories = [
-  { id: 1, title: "Noah and the Ark", image: Noah, description: "The story of faith, obedience, and God's promise through the great flood." },
-  { id: 2, title: "The 7 Days of Creation", image: Creation, description: "How God created the heavens and the earth in seven days." },
-  { id: 3, title: "David killed Goliath!", image: David, description: "A young shepherd's courage and faith defeats a mighty warrior." },
-  { id: 4, title: "Lorem ipsum dolor sit amet", image: Read, description: "Discover more inspiring biblical stories and their teachings." }
-];
+// Assuming Story type structure
+type Story = {
+  _id: string;
+  Title: string;
+  image?: string;
+  Decription: string;
+  createdAt: string;
+  Author?: string;
+};
 
 export default function Preview() {
-  const [selectedStory, setSelectedStory] = useState<number | null>(null);
+  const [selectedStory, setSelectedStory] = useState<string | null>(null);
+  const [stories, setStories] = useState<Story[]>([]);
+  const [limit, setLimit] = useState(4);
+  const [expandedStory, setExpandedStory] = useState<string | null>(null);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const topics = [
     "Old Testament",
@@ -28,108 +32,158 @@ export default function Preview() {
     "Biblical Heroes"
   ];
 
-  const handleStoryClick = (id: number) => {
+  useEffect(() => {
+    const fetchStories = async () => {
+      try {
+        const response = await axios.get("https://babystory-server.onrender.com/selectBiblical");
+        setStories(response.data);
+      } catch (error) {
+        console.error('Error fetching stories:', error);
+      }
+    };
+
+    fetchStories();
+  }, []);
+
+  const addMoreStories = () => {
+    setLimit((prevLimit) => prevLimit + 4);
+  };
+
+  const handleStoryClick = (id: string) => {
     setSelectedStory(id === selectedStory ? null : id);
+  };
+
+  const toggleExpandStory = (id: string) => {
+    setIsAnimating(true);
+    setExpandedStory(expandedStory === id ? null : id);
+    setTimeout(() => setIsAnimating(false), 300);
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
       <NavBar />
-      
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12">
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Main Content - Biblical Stories */}
           <div className="lg:col-span-2 space-y-8">
             <div className="flex justify-between items-center mb-8">
               <h1 className="text-3xl font-bold text-gray-900">Featured Biblical Stories</h1>
-              
-              {/* <Link 
-                to="/biblical"
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors"
-              >
-                View All Stories
-              </Link> */}
-
             </div>
-            
+
             <div className="grid gap-8">
-              {stories.map((story) => (
+              {stories.slice(0, limit).map(({ _id, Title, image, Decription, createdAt, Author }) => (
                 <div
-                  key={story.id}
+                  key={_id}
                   className={`bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md
-                    ${selectedStory === story.id ? 'ring-2 ring-blue-500' : ''}`}
+                    ${selectedStory === _id ? 'ring-2 ring-blue-500' : ''}
+                    ${expandedStory === _id ? 'shadow-lg' : ''}`}
                 >
-                  <div className="aspect-w-16 aspect-h-9">
-                    <img 
-                      src={story.image} 
-                      alt={story.title} 
-                      className="w-full h-64 object-cover"
-                    />
-                  </div>
-                  
                   <div className="p-6">
                     <div className="mb-4">
                       <h2
                         className="text-2xl font-bold text-gray-900 hover:text-blue-600 mb-2 cursor-pointer"
-                        onClick={() => handleStoryClick(story.id)}
+                        onClick={() => handleStoryClick(_id)}
                       >
-                        {story.title}
+                        {Title}
                       </h2>
                       <div className="flex items-center space-x-4">
-                        <p className="text-sm text-blue-600">by BYIRINGIRO</p>
+                        <p className="text-sm text-blue-600">by {Author || 'BYIRINGIRO'}</p>
                         <span className="text-gray-300">•</span>
-                        <p className="text-sm text-gray-500">June 2024</p>
+                        <p className="text-sm text-gray-500">
+                          {new Date(createdAt).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                          })}
+                        </p>
                       </div>
                     </div>
-                    
-                    <p className="text-gray-600 mb-4 line-clamp-2">
-                      {story.description}
-                    </p>
-                    
-                    <div className="mt-4 flex justify-between items-center">
+
+                    {image && (
+                      <div className={`aspect-w-16 aspect-h-9 mb-4 transition-all duration-300
+                        ${expandedStory === _id ? 'h-96' : 'h-64'}`}>
+                        <img 
+                          src={image} 
+                          alt={Title} 
+                          className="w-full h-full object-cover rounded-lg"
+                        />
+                      </div>
+                    )}
+
+                    <div className={`prose prose-lg max-w-none transition-all duration-300 ease-in-out
+                      ${expandedStory === _id ? 'mt-6' : 'mt-4'}`}>
+                      <div 
+                        className={`text-gray-700 leading-relaxed relative
+                          ${expandedStory === _id ? 'line-clamp-none' : 'line-clamp-3'}
+                          ${isAnimating ? 'opacity-90' : 'opacity-100'}`}
+                        dangerouslySetInnerHTML={{ __html: Decription }} 
+                      >
+                        
+                        {/* {Decription} */}
+                      </div>
+                      {expandedStory !== _id && Decription && (
+                        // <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white to-transparent" />
+                        <div></div>
+                      )}
+                    </div>
+
+                    <div className={`flex justify-between items-center transition-all duration-300
+                      ${expandedStory === _id ? 'mt-8 pt-6 border-t border-gray-100' : 'mt-6'}`}>
                       <div className="flex space-x-2">
                         <span className="px-3 py-1 bg-blue-50 text-blue-600 text-sm rounded-full">
-                          Faith
+                          Featured
                         </span>
                         <span className="px-3 py-1 bg-blue-50 text-blue-600 text-sm rounded-full">
-                          History
+                          Popular
                         </span>
                       </div>
-                      <Link 
-                        to={`/biblical/${story.id}`}
+                      <button 
+                        onClick={() => toggleExpandStory(_id)}
                         className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium text-sm group"
                       >
-                        Read Story
+                        {expandedStory === _id ? 'Show Less' : 'Read Full Story'}
                         <svg 
-                          className="ml-2 h-4 w-4 transform transition-transform group-hover:translate-x-1" 
+                          className={`ml-2 h-4 w-4 transform transition-transform duration-300
+                            ${expandedStory === _id ? 'rotate-180' : ''}
+                            ${!expandedStory && 'group-hover:translate-y-0.5'}`}
                           fill="none" 
                           viewBox="0 0 24 24" 
                           stroke="currentColor"
                         >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          <path 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round" 
+                            strokeWidth={2} 
+                            d={expandedStory === _id 
+                              ? "M5 15l7-7 7 7"  // Up arrow
+                              : "M19 9l-7 7-7-7"  // Down arrow
+                            } 
+                          />
                         </svg>
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </div>
               ))}
-            </div>
 
-            <div className="flex justify-center mt-8">
-              <Link
-                to="/biblical"
-                className="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-300 flex items-center space-x-2"
-              >
-                <span>Explore More Stories</span>
-                <svg 
-                  className="h-4 w-4" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </Link>
+              {stories.length > limit && (
+                <div className="flex justify-center mt-8">
+                  <button
+                    onClick={addMoreStories}
+                    className="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-300 flex items-center space-x-2"
+                  >
+                    <span>Load More Biblical  Stories</span>
+                    <svg 
+                      className="h-4 w-4" 
+                      fill="none" 
+                      viewBox="0 0 24 24" 
+                      stroke="currentColor"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                </div>
+              )}
             </div>
           </div>
 
@@ -165,6 +219,7 @@ export default function Preview() {
               <h3 className="text-xl font-semibold text-gray-900 mb-4">
                 Quick Links
               </h3>
+          {/* Add some authorisation  */}
               <div className="space-y-3">
                 <Link 
                   to="/biblical"
@@ -189,7 +244,6 @@ export default function Preview() {
           </div>
         </div>
       </main>
-      
       <Footer />
     </div>
   );

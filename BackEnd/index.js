@@ -1,46 +1,43 @@
 //--Dependencies--
 const express = require("express");
 const App = express();
-const Mongoose = require("mongoose");
-const Cors = require("cors");
+const mongoose = require("mongoose");
+const cors = require("cors");
 require("dotenv").config();
-const Port = process.env.PORT;
-
+const connectDB = require('./DB');
+const Port = process.env.PORT || 3000;
 
 // --- Schema and Middleware for uploads----
 const DBSchema = require('./Modules/StorySchema');
 const ProverbSchema = require('./Modules/ProverbSchema');
-const BiblicalSchema = require('./Modules/BiblicalSschemay');
-// const Db = require('./DB');
+const BiblicalSchema = require('./Modules/BiblicalSchema');
 
-
-
-//----MiddleWare confugurations---
+//----MiddleWare configurations---
 const corsOptions = {
-  origin: "http://localhost:8000"
+  origin: process.env.FRONTEND_URL || "http://localhost:8000",
+  credentials: true,
+  optionsSuccessStatus: 200
 }
 App.use(express.json());
-App.use(Cors());
+App.use(cors(corsOptions));
 
-
-// --Connection of DataBases--
-Mongoose.connect(process.env.MONGODB_URI)
+// --Connection of DataBase--
+connectDB()
   .then(() => {
-    console.log("Db is connected");
+    App.listen(Port, () => {
+      console.log(`Server running on port ${Port}`);
+    });
   })
   .catch((err) => {
-    console.log(err);
+    console.error("Failed to start server:", err);
+    process.exit(1);
   });
 
-
-
-
-
-//-------SERVER FOR STORY------- 
+     //-------SERVER FOR STORY------- 
 
 // Instert Stories API.
 
-const Stories = Mongoose.model("Story", DBSchema, "Story");
+const Stories = mongoose.model("Story", DBSchema, "Story");
 
 App.post("/story", async (req, resp) => {
   // Validate input
@@ -63,6 +60,8 @@ App.post("/story", async (req, resp) => {
     resp.status(500).json({ error: "Failed to create story." });
   }
 });
+
+
 //get story according to the Id 
 App.get("/story/:id", async (req, resp) => {
   const { id } = req.params;
@@ -76,7 +75,6 @@ App.get("/story/:id", async (req, resp) => {
 });
 
 // Get all stories.
-
 App.get("/Stories", async (req, resp) => {
   try {
     const data = await Stories.find();
@@ -86,6 +84,7 @@ App.get("/Stories", async (req, resp) => {
     resp.status(500).json({ error: "Failed to fetch stories." });
   }
 });
+
 
 // Delete story according to the Id
 App.delete("/deleteStory/:id", async (req, resp) => {
@@ -99,14 +98,12 @@ App.delete("/deleteStory/:id", async (req, resp) => {
   }
 });
 
+
 // Edit Story accorinf to the Id
 App.put("/EditStory/:id", async (req, resp) => {
   const { id } = req.params;
 
-  // Validate the input
-  if (!req.body.Title || !req.body.Author || !req.body.image || !req.body.Decription) {
-    return resp.status(400).json({ error: "All fields are required." });
-  }
+ 
 
   const updatedStory = {
     Title: req.body.Title,
@@ -128,12 +125,13 @@ App.put("/EditStory/:id", async (req, resp) => {
 
 
 // -----SERVER FOR PROVERBS-----
-const proverbs = Mongoose.model("Proverbs", ProverbSchema, "Proverbs");
+const proverbs = mongoose.model("Proverbs", ProverbSchema, "Proverbs");
 
 // Insert new proverb
 App.post("/proverb", async (req, resp) => {
   const newProverb = {
     TitleofProverb: req.body.TitleofProverb,
+    Author: req.body.Author,
     Proverb: req.body.Proverb
   };
 
@@ -147,6 +145,8 @@ App.post("/proverb", async (req, resp) => {
   }
 });
 
+
+
 // Select proverb according to the Id
 App.get("/proverb/:id", async (req, resp) => {
   const { id } = req.params;
@@ -159,6 +159,7 @@ App.get("/proverb/:id", async (req, resp) => {
   }
 });
 
+
 // Select All proverb(Dispay)
 App.get("/proverbs", async (req, resp) => {
   try {
@@ -170,7 +171,7 @@ App.get("/proverbs", async (req, resp) => {
   }
 });
 
-// ----- Delete proverb according to the ID ------
+//Delete proverb according to the ID
 App.delete("/deleteProverb/:id", async (req, resp) => {
   const { id } = req.params;
   try {
@@ -181,6 +182,7 @@ App.delete("/deleteProverb/:id", async (req, resp) => {
     resp.status(500).json({ error: "Failed to delete proverb." });
   }
 });
+
 
 // Edit  proverb according to the ID(Updated)
 App.put("/EditProverb/:id", async (req, resp) => {
@@ -203,9 +205,9 @@ App.put("/EditProverb/:id", async (req, resp) => {
 
 // //-----SERVER FOR BIBILICAL STORY-----
 
+const BStory = mongoose.model("Biblical", BiblicalSchema, "Biblical");
 
-const BStory = Mongoose.model("Biblical", BiblicalSchema, "Biblical");
-
+// Insert Biblical story
 App.post("/InsertBiblical", async (req, resp) => {
   const NewBiblicalStory = {
     Title:req.body.Title,
@@ -223,6 +225,7 @@ App.post("/InsertBiblical", async (req, resp) => {
   }
 });
 
+// Select all biblicat stories
 App.get("/selectBiblical", async (req, resp) => {
   try {
     const data = await BStory.find();
@@ -233,6 +236,7 @@ App.get("/selectBiblical", async (req, resp) => {
   }
 });
 
+// Select  biblica stories by id
 App.get("/selectByIdB/:id", async (req, resp) => {
   const { id } = req.params;
   try {
@@ -244,6 +248,8 @@ App.get("/selectByIdB/:id", async (req, resp) => {
   }
 });
 
+
+// delete biblical by the id
 App.delete("/deleteBStory/:id", async (req, resp) => {
   const { id } = req.params;
 
@@ -256,6 +262,7 @@ App.delete("/deleteBStory/:id", async (req, resp) => {
   }
 });
 
+// update according to the id
 App.put("/EditBiblical/:id", async (req, resp) => {
   const newBiblicalStory = {
     Title: req.body.Title ,
@@ -274,7 +281,7 @@ App.put("/EditBiblical/:id", async (req, resp) => {
   }
 });
 
-// Listener of Port
+// Listener of Port of server.
 App.listen(Port, () => {
   console.log(`This app is running on ${Port}`);
 });

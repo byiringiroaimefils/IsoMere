@@ -2,7 +2,7 @@ import { FC, useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import NavBar from "./NavBar";
-import Load from "./Service/Loading";
+// import Load from "./Service/Loading";
 import TopStory from "./Top & View/TopStoryComponent";
 import Footer from './Pages/Footer';
 
@@ -15,8 +15,8 @@ interface Proverb {
 
 const Proverb: FC = () => {
   const [proverbs, setProverbs] = useState<Proverb[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState<string | null>(null);
   const [limit, setLimit] = useState(4);
   const [selectedProverb, setSelectedProverb] = useState<string | null>(null);
   const [expandedProverb, setExpandedProverb] = useState<string | null>(null);
@@ -223,6 +223,8 @@ const Proverb: FC = () => {
               <h3 className="text-xl font-semibold text-gray-900 mb-4">
                 Quick Links
               </h3>
+          {/* Add some authorisation  */}
+
               <div className="space-y-3">
                 <Link 
                   to="/FormProverb"

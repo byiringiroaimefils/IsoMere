@@ -34,9 +34,9 @@ export default function Homepage() {
                 alt="IsoMere Logo" 
                 className="h-8 w-auto sm:h-10" 
               />
-              <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-                IsoMere
-              </span>
+            <span className="text-xl font-bold text-gray-900 hidden sm:inline">
+              IsoMere
+            </span>
             </div>
             <nav className="flex items-center space-x-2 sm:space-x-4">
               <SignInButton mode='modal' redirectUrl='/Home'>
