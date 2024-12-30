@@ -50,7 +50,7 @@ App.post("/story", async (req, resp) => {
 
   const newStory = {
     Title: req.body.Title,
-    Author: req.body.Author,
+    Author: "aimeCode Aime Fils",
     image: req.body.image,
     Decription: req.body.Decription
   };
