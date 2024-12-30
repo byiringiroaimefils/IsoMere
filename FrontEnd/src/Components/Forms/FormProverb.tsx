@@ -24,9 +24,9 @@ export default function FormProverb() {
     console.log("Sending author name:", authorName);
     
     const data = {
-      TitleofProverb,
+      TitleofProverb: TitleofProverb,
       Author: authorName,
-      Proverb,
+      Proverb: Proverb
     };
     
     console.log("Sending data:", data);

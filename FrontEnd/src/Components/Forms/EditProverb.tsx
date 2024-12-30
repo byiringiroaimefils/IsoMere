@@ -44,20 +44,18 @@ export default function EditProverb() {
     const authorName = user?.fullName || user?.username || "Anonymous";
 
     const data = {
-      TitleofProverb,
+      TitleofProverb: TitleofProverb,
       Author: authorName,
-      Proverb,
+      Proverb: Proverb
     };
-    console.log(data)
+
     try {
       await axios.put(`https://babystory-server.onrender.com/EditProverb/${id}`, data);
-      alert("Proverb created successfully!");
+      alert("Proverb updated successfully!");
       navigate("/Setting/Proverb");
-
-
     } catch (error: any) {
-      console.error("Error update proverb:", error);
-      alert( "Failed to create proverb. Please try again.");
+      console.error("Error updating proverb:", error);
+      alert("Failed to update proverb. Please try again.");
     }
   };
 

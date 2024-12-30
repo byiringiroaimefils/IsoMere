@@ -9,6 +9,7 @@ import Footer from './Pages/Footer';
 interface Proverb {
   id: string;
   TitleofProverb: string;
+  Author: string;
   Proverb: string;
   createdAt: string;
 }
@@ -93,7 +94,7 @@ const Proverb: FC = () => {
             </div>
             
             <div className="grid gap-8">
-              {proverbs.slice(0, limit).map(({ id, TitleofProverb, Proverb, createdAt }) => (
+              {proverbs.slice(0, limit).map(({ id, TitleofProverb, Author, Proverb, createdAt }) => (
                 <div
                   key={id}
                   className={`bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md
@@ -109,7 +110,7 @@ const Proverb: FC = () => {
                         {TitleofProverb}
                       </h2>
                       <div className="flex items-center space-x-4">
-                        <p className="text-sm text-blue-600">by BYIRINGIRO</p>
+                        <p className="text-sm text-blue-600">by {Author}</p>
                         <span className="text-gray-300">•</span>
                         <p className="text-sm text-gray-500">
                           {new Date(createdAt).toLocaleDateString('en-US', {

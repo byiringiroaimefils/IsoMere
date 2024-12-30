@@ -132,11 +132,15 @@ const proverbs = mongoose.model("Proverbs", ProverbSchema, "Proverbs");
 
 // Insert new proverb
 App.post("/proverb", async (req, resp) => {
+  console.log("Received proverb data:", req.body);
+  
   const newProverb = {
     TitleofProverb: req.body.TitleofProverb,
     Author: req.body.Author,
     Proverb: req.body.Proverb
   };
+
+  console.log("Creating proverb with:", newProverb);
 
   try {
     const data = await proverbs.create(newProverb);
