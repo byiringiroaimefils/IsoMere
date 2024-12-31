@@ -105,7 +105,7 @@ export default function Preview() {
                         <img 
                           src={image} 
                           alt={Title} 
-                          className="w-full h-full object-cover rounded-lg"
+                          className="w-full h-full object-contain object-fill rounded-lg"
                         />
                       </div>
                     )}

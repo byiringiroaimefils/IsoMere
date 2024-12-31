@@ -136,7 +136,7 @@ App.post("/proverb", async (req, resp) => {
   
   const newProverb = {
     TitleofProverb: req.body.TitleofProverb,
-    Author: "aimeCode Aime Fils",
+    Author: req.body.Author,
     Proverb: req.body.Proverb
   };
 
@@ -194,7 +194,7 @@ App.delete("/deleteProverb/:id", async (req, resp) => {
 App.put("/EditProverb/:id", async (req, resp) => {
   const newProverb = {
     TitleofProverb: req.body.TitleofProverb,
-    Author: "aimeCode Aime Fils",
+    Author: req.body.Author,
     Proverb: req.body.Proverb
   };
   const { id } = req.params;

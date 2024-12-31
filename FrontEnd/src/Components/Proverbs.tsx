@@ -2,7 +2,6 @@ import { FC, useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import NavBar from "./NavBar";
-// import Load from "./Service/Loading";
 import TopStory from "./Top & View/TopStoryComponent";
 import Footer from './Pages/Footer';
 
@@ -16,13 +15,11 @@ interface Proverb {
 
 const Proverb: FC = () => {
   const [proverbs, setProverbs] = useState<Proverb[]>([]);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState<string | null>(null);
   const [limit, setLimit] = useState(4);
   const [selectedProverb, setSelectedProverb] = useState<string | null>(null);
   const [expandedProverb, setExpandedProverb] = useState<string | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
-  
+
   const topics = [
     "Wisdom",
     "Life Lessons",
@@ -38,11 +35,8 @@ const Proverb: FC = () => {
       try {
         const response = await axios.get("https://babystory-server.onrender.com/proverbs");
         setProverbs(response.data);
-        // setLoading(false);
       } catch (error) {
         console.error('Error fetching proverbs:', error);
-        // setError('Failed to load proverbs. Please try again later.');
-        // setLoading(false);
       }
     };
 
@@ -54,32 +48,16 @@ const Proverb: FC = () => {
   };
 
   const handleProverbClick = (id: string) => {
+    // Select the proverb (highlight it)
     setSelectedProverb(id === selectedProverb ? null : id);
   };
 
   const toggleExpandProverb = (id: string) => {
+    // Toggle the expansion for the clicked proverb
     setIsAnimating(true);
     setExpandedProverb(expandedProverb === id ? null : id);
-    setTimeout(() => setIsAnimating(false), 300);
+    setTimeout(() => setIsAnimating(false), 300); // Handle animation delay
   };
-
-  // if (loading) {
-  //   return (
-  //     <div className='flex justify-center items-center min-h-screen'>
-  //       <Load />
-  //     </div>
-  //   );
-  // }
-
-  // if (error) {
-  //   return (
-  //     <div className="flex justify-center items-center min-h-screen">
-  //       <div className="text-red-500 text-center p-4 bg-red-50 rounded-lg shadow-sm">
-  //         {error}
-  //       </div>
-  //     </div>
-  //   );
-  // }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -98,8 +76,7 @@ const Proverb: FC = () => {
                 <div
                   key={id}
                   className={`bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md
-                    ${selectedProverb === id ? 'ring-2 ring-blue-500' : ''}
-                    ${expandedProverb === id ? 'shadow-lg' : ''}`}
+                    ${selectedProverb === id ? 'ring-2 ring-blue-500' : ''}`}
                 >
                   <div className="p-6">
                     <div className="mb-4">
@@ -110,7 +87,7 @@ const Proverb: FC = () => {
                         {TitleofProverb}
                       </h2>
                       <div className="flex items-center space-x-4">
-                        <p className="text-sm text-blue-600">by {Author}</p>
+                        <p className="text-sm text-blue-600">by {Author} || Admin </p>
                         <span className="text-gray-300">•</span>
                         <p className="text-sm text-gray-500">
                           {new Date(createdAt).toLocaleDateString('en-US', {
@@ -121,7 +98,7 @@ const Proverb: FC = () => {
                         </p>
                       </div>
                     </div>
-                    
+
                     <div className={`prose prose-lg max-w-none transition-all duration-300 ease-in-out
                       ${expandedProverb === id ? 'mt-6' : 'mt-4'}`}>
                       <div 
@@ -131,7 +108,6 @@ const Proverb: FC = () => {
                         dangerouslySetInnerHTML={{ __html: Proverb }} 
                       />
                       {expandedProverb !== id && (
-                        // <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white to-transparent" />
                         <div></div>
                       )}
                     </div>
@@ -153,8 +129,7 @@ const Proverb: FC = () => {
                         {expandedProverb === id ? 'Show Less' : 'Read Full Proverb'}
                         <svg 
                           className={`ml-2 h-4 w-4 transform transition-transform duration-300
-                            ${expandedProverb === id ? 'rotate-180' : ''}
-                            ${!expandedProverb && 'group-hover:translate-y-0.5'}`}
+                            ${expandedProverb === id ? 'rotate-180' : ''}`}
                           fill="none" 
                           viewBox="0 0 24 24" 
                           stroke="currentColor"
@@ -225,7 +200,6 @@ const Proverb: FC = () => {
               <h3 className="text-xl font-semibold text-gray-900 mb-4">
                 Quick Links
               </h3>
-          {/* Add some authorisation  */}
 
               <div className="space-y-3">
                 <Link 

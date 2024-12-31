@@ -21,12 +21,11 @@ export default function EditProverb() {
     const fetchProverbbyId = async () => {
       try {
         const response = await axios.get(`https://babystory-server.onrender.com/proverb/${id}`);
-        const proverb=response.data
-        setTitleofProverb(proverb.Title)
-        setProverb(proverb.Decription)
-  
+        const proverb = response.data;
+        setTitleofProverb(proverb.TitleofProverb);
+        setProverb(proverb.Proverb);
       } catch (error) {
-        console.error('Error fetching stories:', error);
+        console.error('Error fetching proverb:', error);
       }
     };
 
