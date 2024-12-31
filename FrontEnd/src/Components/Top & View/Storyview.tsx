@@ -2,7 +2,7 @@ import NavBar from "../NavBar";
 import Footer from '../Pages/Footer';
 import BottomStory from "./BottomStory";
 import axios from 'axios';
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
 interface Story {

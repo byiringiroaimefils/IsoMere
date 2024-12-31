@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import BottomStory from "./BottomStory";
-import { FaWhatsappSquare, FaFacebook, FaInstagramSquare, FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
+import {  FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 
 interface Proverb {
   _id: string;

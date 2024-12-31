@@ -38,7 +38,7 @@ export default function Homepage() {
               IsoMere
             </span>
             </div>
-            <nav className="flex items-center space-x-2 sm:space-x-4">
+            <nav className="flex items-center space-x-2 sm:space-x-10 translate-x-16">
               <SignInButton mode='modal' redirectUrl='/Home'>
                 <button className="px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base text-blue-600 font-medium hover:text-blue-700 transition-colors">
                   Sign In

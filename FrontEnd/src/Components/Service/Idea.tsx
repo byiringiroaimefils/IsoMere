@@ -9,10 +9,10 @@ export default function Idea() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (!email, !comment,!idea) {
-            alert("Please fill all fields")
-            return;
-        }
+        // if (!email, !comment,!idea) {
+        //     alert("Please fill all fields")
+        //     return;
+        // }
 
         console.log('Comment:', email);
         console.log('Comment:', comment);

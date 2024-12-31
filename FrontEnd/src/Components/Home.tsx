@@ -133,7 +133,7 @@ const Home: FC = () => {
                         <img 
                           src={image} 
                           alt={Title} 
-                          className="w-full h-full  rounded-lg object-contain object-cover"
+                          className="w-full h-full  rounded-lg  object-cover"
                         />
                       </div>
                     )}
