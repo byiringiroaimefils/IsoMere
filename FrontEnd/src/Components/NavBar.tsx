@@ -2,9 +2,11 @@ import { Link, useLocation } from 'react-router-dom';
 import { SignedIn, SignedOut, UserButton,SignInButton } from "@clerk/clerk-react";
 import { useState, useEffect } from 'react';
 import { FaQuoteRight, FaBible, FaBars, FaTimes, FaHome } from 'react-icons/fa';
+import { useUser } from '@clerk/clerk-react';
 
 
 export default function NavBar() {
+  const { user } = useUser();
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
@@ -26,6 +28,7 @@ export default function NavBar() {
     return location.pathname.startsWith(path);
   };
   // ???????
+  const isAdmin = user?.publicMetadata?.User === 'Admin';
 
   return (
     <nav 
@@ -71,12 +74,15 @@ export default function NavBar() {
           <div className="flex items-center">
             <SignedIn>
               <div className="hidden sm:flex items-center space-x-4 mr-4">
+                {/* condition about the me */}
+                {isAdmin && (
                 <Link
                   to="/Setting"
                   className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
                 >
-                  All Uplaods
+                   Uplaod
                 </Link>
+     )}
               </div>
               <UserButton 
                 afterSignOutUrl="/"

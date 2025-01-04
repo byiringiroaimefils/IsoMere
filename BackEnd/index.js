@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 const connectDB = require('./DB');
-const Port = process.env.PORT || 3000;
+const Port = process.env.PORT || 3001;
 
 // --- Schema and Middleware for uploads----
 const DBSchema = require('./Modules/StorySchema');
@@ -216,18 +216,23 @@ const BStory = mongoose.model("Biblical", BiblicalSchema, "Biblical");
 
 // Insert Biblical story
 App.post("/InsertBiblical", async (req, resp) => {
+  // Validate required fields
+  if (!req.body.Title || !req.body.Author || !req.body.image || !req.body.Decription) {
+    return resp.status(400).json({ error: "All fields are required" });
+  }
+
   const NewBiblicalStory = {
-    Title:req.body.Title,
-    Author:req.body.Author,
+    Title: req.body.Title,
+    Author: req.body.Author,
     image: req.body.image,
     Decription: req.body.Decription
   };
 
   try {
     const data = await BStory.create(NewBiblicalStory);
-    resp.json(data);
+    resp.status(201).json(data);
   } catch (err) {
-    console.log("Error", err);
+    console.error("Error:", err);
     resp.status(500).json({ error: "Failed to create biblical story." });
   }
 });
@@ -286,9 +291,4 @@ App.put("/EditBiblical/:id", async (req, resp) => {
     console.log("Error", err);
     resp.status(500).json({ error: "Failed to update biblical story." });
   }
-});
-
-// Listener of Port of server.
-App.listen(Port, () => {
-  console.log(`This app is running on ${Port}`);
 });
