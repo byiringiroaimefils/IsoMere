@@ -37,9 +37,9 @@ const Story: FC = () => {
     axios.get(`https://babystory-server.onrender.com/Stories`)
       .then((response) => {
         // Filter stories by author name
-        const userStories = response.data.filter((story: Story) => 
-          story.Author === authorName
-        );
+        const isAdmin= user?.publicMetadata?.User === 'Admin';
+        const userStories = isAdmin? response.data:response.data.filter((story: Story) => story.Author === authorName);
+
         setStory(userStories);
         setLoading(false);
       })

@@ -28,7 +28,7 @@ export default function NavBar() {
     return location.pathname.startsWith(path);
   };
   // ???????
-  const isAdmin = user?.publicMetadata?.User === 'Admin';
+  const isAdmin = user?.publicMetadata?.User === 'Admin'|| user?.publicMetadata?.User === 'Parent';
 
   return (
     <nav 

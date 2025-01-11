@@ -28,9 +28,9 @@ const { user } = useUser(); // Add Clerk user
     const authorName = user?.fullName || user?.username || "Anonymous";
     axios.get("https://babystory-server.onrender.com/Proverbs")
       .then((response) => {
-        const userproverb=response.data.filter((proverb:Proverb)=>
-          proverb.Author === authorName
-        )
+ 
+const isAdmin = user?.publicMetadata?.User === 'Admin';
+        const userproverb = isAdmin? response.data: response.data.filter((proverb: Proverb) => proverb.Author === authorName);
         setProverbs(userproverb);
         setLoading(false);
       })
@@ -127,12 +127,13 @@ const { user } = useUser(); // Add Clerk user
                     <td className="px-6 py-4 whitespace-nowrap">{new Date(createdAt).toLocaleDateString()}</td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex space-x-2">
+                      
+                        <Link to={`/editP/${_id}`} className="text-green-600 hover:text-blue-900">
+                          <MdEditSquare className="text-xl" />
+                        </Link>
                         <button onClick={() => handleDelete(_id)} className="text-red-600 hover:text-red-900">
                           <MdDeleteForever className="text-xl" />
                         </button>
-                        <Link to={`/editP/${_id}`} className="text-blue-600 hover:text-blue-900">
-                          <MdEditSquare className="text-xl" />
-                        </Link>
                       </div>
                     </td>
                   </tr>
@@ -153,18 +154,20 @@ const { user } = useUser(); // Add Clerk user
                 <p className="text-sm text-gray-600 mb-2">By: {Author}</p>
                 {/* <p className="text-sm text-gray-700 mb-4 line-clamp-2">{Proverb}</p> */}
                 <div className="flex justify-end space-x-3">
+                
+                  <Link 
+                    to={`/editP/${_id}`} 
+                    className="p-2 rounded-full bg-blue-50 text-green-600 hover:bg-blue-100"
+                  >
+                    <MdEditSquare className="text-xl" />
+                  </Link>
+
                   <button 
                     onClick={() => handleDelete(_id)} 
                     className="p-2 rounded-full bg-red-50 text-red-600 hover:bg-red-100"
                   >
                     <MdDeleteForever className="text-xl" />
                   </button>
-                  <Link 
-                    to={`/editP/${_id}`} 
-                    className="p-2 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100"
-                  >
-                    <MdEditSquare className="text-xl" />
-                  </Link>
                 </div>
               </div>
             ))}

@@ -36,12 +36,13 @@ const Biblical: FC = () => {
     
     axios.get("https://babystory-server.onrender.com/selectBiblical")
       .then((response) => {
-        // Filter biblical stories by author name
-        const userStories = response.data.filter((story: Story) => 
-          story.Author === authorName
-        );
+        // Filter biblical stories based on user role and author name
+        const isAdmin = user?.publicMetadata?.User === 'Admin';;
+        const userStories = isAdmin ? response.data:response.data.filter((story: Story) => story.Author === authorName); 
+        
         setStory(userStories);
         setLoading(false);
+        
       })
       .catch((error) => {
         console.log('error', error)
