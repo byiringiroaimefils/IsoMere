@@ -209,9 +209,9 @@ FRONTEND_URL=http://localhost:8000
 
 ### Support
 For technical support:
-- Email: support@isomere.com
+- Email: aimefils173@gmail.com
 - Documentation: docs.isomere.com
-- GitHub Issues: [repository-url]/issues
+
 
 ## Updates and Maintenance
 
