@@ -1,5 +1,6 @@
 import Footer from "./Pages/Footer";
 import { SignInButton } from "@clerk/clerk-react";
+import { SignUpButton } from "@clerk/clerk-react";
 import { Link } from 'react-router-dom';
 import { FaBookReader, FaQuoteRight, FaBible, FaArrowRight, FaChevronDown } from 'react-icons/fa';
 
@@ -45,11 +46,11 @@ export default function Homepage() {
                   Sign In
                 </button>
               </SignInButton>
-              <SignInButton mode='modal' redirectUrl='/Home'>
+              <SignUpButton mode='modal' redirectUrl='/Home'>
                 <button className="px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">
                   Create Account
                 </button>
-              </SignInButton>
+              </SignUpButton>
             </nav>
           </div>
         </div>
@@ -187,7 +188,9 @@ export default function Homepage() {
                 </li>
               </ul>
               <button className="mt-8 w-full bg-blue-600 text-white rounded-lg py-2.5 hover:bg-blue-700 transition-colors font-medium">
-                Subscribe Now
+                <Link to="/payForm">
+                  Subscribe Now
+                </Link>
               </button>
             </div>
 
@@ -216,7 +219,9 @@ export default function Homepage() {
                 </li>
               </ul>
               <button className="mt-8 w-full bg-blue-600 text-white rounded-lg py-2.5 hover:bg-blue-700 transition-colors font-medium">
+                <Link to="/payForm">
                 Subscribe Now
+                </Link>
               </button>
             </div>
           </div>

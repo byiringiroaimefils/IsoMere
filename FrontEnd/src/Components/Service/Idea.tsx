@@ -9,18 +9,18 @@ export default function Idea() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // if (!email, !comment,!idea) {
-        //     alert("Please fill all fields")
-        //     return;
-        // }
+        if (!email || !comment || !idea) {
+            alert("Please fill all fields")
+            return;
+        }
 
         console.log('Comment:', email);
         console.log('Comment:', comment);
         console.log('Idea:', idea);
 
-        // setemail('');
-        // setComment('');
-        // setIdea('');
+        setemail('');
+        setComment('');
+        setIdea('');
     };
 
     return (
@@ -71,7 +71,7 @@ export default function Idea() {
                     <div className="text-center">
                         <button 
                             type="submit" 
-                            className=" w-full rounded-full px-6 py-5 text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-50 transition duration-300"
+                            className=" w-full rounded-lg px-6 py-5 text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-50 transition duration-300"
                         >
                             Submit Your Idea
                         </button>

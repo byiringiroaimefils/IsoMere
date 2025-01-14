@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { useUser } from "@clerk/clerk-react";
+import defaultAvatar from "../default-avatar-removebg-preview.png";
 
 interface Proverb {
   _id: string;
@@ -11,6 +13,7 @@ interface Proverb {
 }
 
 export default function TopProverbComponent() {
+  const { user } = useUser();
   const [proverbs, setProverbs] = useState<Proverb[]>([]);
   const [expandedProverb, setExpandedProverb] = useState<string | null>(null);
 
@@ -48,6 +51,13 @@ export default function TopProverbComponent() {
               </h3>
               
               <div className="mt-1 flex items-center text-sm text-gray-500 space-x-2">
+                {proverb.Author && (
+                  <img
+                    src={user?.imageUrl || defaultAvatar} 
+                    alt={`${proverb.Author}'s avatar`}
+                    className="h-6 w-6 rounded-full object-cover mr-2"
+                  />
+                )}
                 <span>{proverb.Author || 'BYIRINGIRO'}</span>
                 <span>•</span>
                 <span>{new Date(proverb.createdAt).toLocaleDateString('en-US', {

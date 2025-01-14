@@ -59,7 +59,7 @@ export default function Storyview() {
                         {story.Title}
                       </h2>
                       <div className="flex items-center space-x-4 text-sm">
-                        <span className="text-blue-600">by {story.Author || 'BYIRINGIRO'}</span>
+                        {/* <span className="text-blue-600">by {story.Author || 'BYIRINGIRO'}</span> */}
                         <span className="text-gray-300">•</span>
                         <span className="text-gray-500">
                           {new Date(story.createdAt).toLocaleDateString('en-US', {

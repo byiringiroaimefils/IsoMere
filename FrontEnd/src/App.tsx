@@ -25,6 +25,7 @@ import StoryView from "./Components/Top & View/Storyview"
 
 import Subscribe from "./Components/Service/Subscribe"
 import Idea from "./Components/Service/Idea"
+import Payment from "./Components/Payment"
 
 import TopProverb from "./Components/Top & View/TopProverb"
 import TopStory from "./Components/Top & View/TopStory"
@@ -135,6 +136,7 @@ export default function App() {
           <Route path="/About" element={<About />} />
           <Route path="/Terms" element={<Terms />} />
           <Route path="/Service" element={<Service />} />
+          <Route path="/payForm" element={<Payment />}  />
 
           {/* Protected routes */}
           <Route path="/subscribe" element={

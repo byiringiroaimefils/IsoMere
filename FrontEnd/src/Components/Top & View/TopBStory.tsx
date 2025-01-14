@@ -5,6 +5,8 @@ import axios from 'axios';
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import {  FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { useUser } from "@clerk/clerk-react";
+import defaultAvatar from "../default-avatar-removebg-preview.png";
 
 interface Story {
   _id: string;
@@ -16,6 +18,7 @@ interface Story {
 }
 
 export default function TopBStory() {
+  const { user } = useUser();
   const [story, setStory] = useState<Story | null>(null);
   const [prevId, setPrevId] = useState<string | null>(null);
   const [nextId, setNextId] = useState<string | null>(null);
@@ -80,11 +83,13 @@ export default function TopBStory() {
                 
                 <div className="flex items-center justify-between mb-8">
                   <div className="flex items-center space-x-4">
-                    <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
-                      <span className="text-blue-600 font-medium">
-                        {(story.Author || 'BYIRINGIRO').charAt(0)}
-                      </span>
-                    </div>
+                    {story.Author && (
+                      <img
+                        src={user?.imageUrl || defaultAvatar} 
+                        alt={`${story.Author}'s avatar`}
+                        className="h-10 w-10 rounded-full object-cover"
+                      />
+                    )}
                     <div>
                       <p className="text-gray-900 font-medium">{story.Author || 'BYIRINGIRO'}</p>
                       <p className="text-sm text-gray-500">

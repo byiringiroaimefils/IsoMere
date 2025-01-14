@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { SignedIn, SignedOut, UserButton,SignInButton } from "@clerk/clerk-react";
+import { SignUpButton } from "@clerk/clerk-react";
 import { useState, useEffect } from 'react';
 import { FaQuoteRight, FaBible, FaBars, FaTimes, FaHome } from 'react-icons/fa';
 import { useUser } from '@clerk/clerk-react';
@@ -165,11 +166,11 @@ export default function NavBar() {
                   Sign In
                 </button>
               </SignInButton>
-              <SignInButton mode='modal' redirectUrl='/Home'>
+              <SignUpButton mode='modal' redirectUrl='/Home'>
                 <button className=" w-full px-3  py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">
                   Create Account
                 </button>
-              </SignInButton>
+              </SignUpButton>
             </nav>
             </SignedOut>
           </div>

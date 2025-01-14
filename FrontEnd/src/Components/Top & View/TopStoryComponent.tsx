@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import axios from 'axios';
+import { useUser } from "@clerk/clerk-react";
+import defaultAvatar from "../default-avatar-removebg-preview.png";
 
 interface Story {
   _id: string;
@@ -12,6 +14,7 @@ interface Story {
 }
 
 export default function TopStoryComponent() {
+  const { user } = useUser();
   // this for stories
   const [stories, setStories] = useState<Story[]>([]);
   const [expandedStory, setExpandedStory] = useState<string | null>(null);
@@ -81,12 +84,19 @@ export default function TopStoryComponent() {
                   </div>
                   
                   <div className="mt-1 flex items-center text-sm text-gray-500 space-x-2">
+                    {story.Author && (
+                      <img
+                        src={user?.imageUrl || defaultAvatar} 
+                        alt={`${story.Author}'s avatar`}
+                        className="h-6 w-6 rounded-full object-cover mr-2"
+                      />
+                    )}
                     <span>{story.Author || 'BYIRINGIRO'}</span>
-                    <span>•</span>
+                    {/* <span>•</span>
                     <span>{new Date(story.createdAt).toLocaleDateString('en-US', {
                       month: 'short',
                       day: 'numeric'
-                    })}</span>
+                    })}</span> */}
                   </div>
 
                   {expandedStory === story._id && (
@@ -154,12 +164,19 @@ export default function TopStoryComponent() {
                   </div>
                   
                   <div className="mt-1 flex items-center text-sm text-gray-500 space-x-2">
+                    {story.Author && (
+                      <img
+                        src={user?.imageUrl || defaultAvatar} 
+                        alt={`${story.Author}'s avatar`}
+                        className="h-6 w-6 rounded-full object-cover mr-2"
+                      />
+                    )}
                     <span>{story.Author || 'BYIRINGIRO'}</span>
-                    <span>•</span>
-                    <span>{new Date(story.createdAt).toLocaleDateString('en-US', {
+                    {/* <span>•</span> */}
+                    {/* <span>{new Date(story.createdAt).toLocaleDateString('en-US', {
                       month: 'short',
                       day: 'numeric'
-                    })}</span>
+                    })}</span> */}
                   </div>
 
                   {BexpandedStory === story._id && (
