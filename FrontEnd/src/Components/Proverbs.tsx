@@ -4,19 +4,20 @@ import { Link } from 'react-router-dom';
 import NavBar from "./NavBar";
 import TopStory from "./Top & View/TopStoryComponent";
 import Footer from './Pages/Footer';
-import { useUser } from "@clerk/clerk-react";
-import defaultAvatar from "./default-avatar-removebg-preview.png";
+// import { useUser } from "@clerk/clerk-react";
+// import defaultAvatar from "./default-avatar-removebg-preview.png";
 
 interface Proverb {
   id: string;
   TitleofProverb: string;
+  Author_Image:string,
   Author: string;
   Proverb: string;
   createdAt: string;
 }
 
 const Proverb: FC = () => {
-  const { user } = useUser();
+  // const { user } = useUser();
   const [proverbs, setProverbs] = useState<Proverb[]>([]);
   const [limit, setLimit] = useState(4);
   const [selectedProverb, setSelectedProverb] = useState<string | null>(null);
@@ -75,7 +76,7 @@ const Proverb: FC = () => {
             </div>
             
             <div className="grid gap-8">
-              {proverbs.slice(0, limit).map(({ id, TitleofProverb, Author, Proverb, createdAt }) => (
+              {proverbs.slice(0, limit).map(({ id, TitleofProverb,Author_Image, Author, Proverb, createdAt }) => (
                 <div
                   key={id}
                   className={`bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md
@@ -92,7 +93,7 @@ const Proverb: FC = () => {
                       <div className="flex items-center space-x-4">
                         {Author && (
                           <img
-                            src={user?.imageUrl || defaultAvatar} 
+                            src={Author_Image} 
                             alt={`${Author}'s avatar`}
                             className="h-8 w-8 rounded-full object-cover"
                           />

@@ -50,6 +50,7 @@ App.post("/story", async (req, resp) => {
 
   const newStory = {
     Title: req.body.Title,
+    Author_Image:req.body.Author_Image,
     Author: req.body.Author,
     image: req.body.image,
     Decription: req.body.Decription
@@ -110,6 +111,7 @@ App.put("/EditStory/:id", async (req, resp) => {
 
   const updatedStory = {
     Title: req.body.Title,
+    Author_Image:req.body.Author_Image,
     Author: req.body.Author,
     image: req.body.image,
     Decription: req.body.Decription,
@@ -136,6 +138,7 @@ App.post("/proverb", async (req, resp) => {
   
   const newProverb = {
     TitleofProverb: req.body.TitleofProverb,
+    Author_Image:req.body.Author_Image,
     Author: req.body.Author,
     Proverb: req.body.Proverb
   };
@@ -194,6 +197,7 @@ App.delete("/deleteProverb/:id", async (req, resp) => {
 App.put("/EditProverb/:id", async (req, resp) => {
   const newProverb = {
     TitleofProverb: req.body.TitleofProverb,
+    Author_Image:req.body.Author_Image,
     Author: req.body.Author,
     Proverb: req.body.Proverb
   };
@@ -223,6 +227,7 @@ App.post("/InsertBiblical", async (req, resp) => {
 
   const NewBiblicalStory = {
     Title: req.body.Title,
+    Author_Image:req.body.Author_Image,
     Author: req.body.Author,
     image: req.body.image,
     Decription: req.body.Decription
@@ -278,6 +283,7 @@ App.delete("/deleteBStory/:id", async (req, resp) => {
 App.put("/EditBiblical/:id", async (req, resp) => {
   const newBiblicalStory = {
     Title: req.body.Title ,
+    Author_Image:req.body.Author_Image,
     Author:req.body.Author,
     image: req.body.image,
     Decription:req.body.Decription

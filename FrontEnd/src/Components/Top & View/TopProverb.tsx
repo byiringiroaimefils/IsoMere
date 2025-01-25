@@ -5,19 +5,20 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import BottomStory from "./BottomStory";
 import {  FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
-import { useUser } from "@clerk/clerk-react";
-import defaultAvatar from "../default-avatar-removebg-preview.png";
+// import { useUser } from "@clerk/clerk-react";
+// import defaultAvatar from "../default-avatar-removebg-preview.png";
 
 interface Proverb {
   _id: string;
   TitleofProverb: string;
+  Author_Image:string,
   Proverb: string;
   createdAt: string;
   Author?: string;
 }
 
 export default function TopProverb() {
-  const { user } = useUser();
+  // const { user } = useUser();
   const [proverb, setProverb] = useState<Proverb | null>(null);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
@@ -67,7 +68,7 @@ export default function TopProverb() {
                   <div className="flex items-center space-x-4">
                     {proverb.Author && (
                       <img
-                        src={user?.imageUrl || defaultAvatar} 
+                        src={proverb.Author_Image} 
                         alt={`${proverb.Author}'s avatar`}
                         className="h-10 w-10 rounded-full object-cover"
                       />

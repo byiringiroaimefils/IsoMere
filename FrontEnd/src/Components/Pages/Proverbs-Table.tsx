@@ -12,6 +12,7 @@ import { useUser } from "@clerk/clerk-react";
 
 interface Proverb {
   _id: string,
+  Author_Image: string,
   TitleofProverb: string,
   Author: string,
   Proverb: string,
@@ -19,18 +20,18 @@ interface Proverb {
 }
 
 const Pro: FC = () => {
-const { user } = useUser(); // Add Clerk user
+  const { user } = useUser(); // Add Clerk user
   const [loading, setLoading] = useState<boolean>(true);
   const [proverbs, setProverbs] = useState<Proverb[]>([]);
   const [search, setSearch] = useState<string>('');
 
   useEffect(() => {
     const authorName = user?.fullName || user?.username || "Anonymous";
-    axios.get("https://babystory-server.onrender.com/Proverbs")
+    axios.get("http://localhost:3001/Proverbs")
       .then((response) => {
- 
-const isAdmin = user?.publicMetadata?.User === 'Admin';
-        const userproverb = isAdmin? response.data: response.data.filter((proverb: Proverb) => proverb.Author === authorName);
+
+        const isAdmin = user?.publicMetadata?.User === 'Admin';
+        const userproverb = isAdmin ? response.data : response.data.filter((proverb: Proverb) => proverb.Author === authorName);
         setProverbs(userproverb);
         setLoading(false);
       })
@@ -40,7 +41,7 @@ const isAdmin = user?.publicMetadata?.User === 'Admin';
       })
   }, []);
 
-  const filteredProverbs = proverbs.filter(proverb => 
+  const filteredProverbs = proverbs.filter(proverb =>
     search ? (
       proverb.TitleofProverb.toLowerCase().includes(search.toLowerCase()) ||
       proverb.Author.toLowerCase().includes(search.toLowerCase()) ||
@@ -58,7 +59,7 @@ const isAdmin = user?.publicMetadata?.User === 'Admin';
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`https://babystory-server.onrender.com/deleteProverb/${id}`)
+        axios.delete(`http://localhost:3001/deleteProverb/${id}`)
           .then(() => {
             setProverbs(proverbs.filter(proverb => proverb._id !== id)); // Update state to remove deleted proverb
             Swal.fire({
@@ -110,29 +111,41 @@ const isAdmin = user?.publicMetadata?.User === 'Admin';
               <thead className="bg-gray-50">
                 <tr>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author Profile</th>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title of Proverb</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                  {/* <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th> */}
                   {/* <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Proverb</th> */}
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {filteredProverbs.map(({ _id, TitleofProverb, Author, createdAt }, index) => (
+                {filteredProverbs.map(({ _id, Author_Image, TitleofProverb, Author, createdAt }, index) => (
                   <tr key={_id}>
                     <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{TitleofProverb}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{Author}</td>
+                    <td className="px-6 py-4 whitespace-nowrap flex gap-2">
+                      <img
+                        src={Author_Image}
+                        alt={`${Author}'s avatar`}
+                        className="h-8 w-8 rounded-full object-cover"
+                      />
+                      <div>
+                        {Author}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{TitleofProverb}</td>
+                    {/* <td className="px-6 py-4 whitespace-nowrap"></td> */}
                     {/* <td className="px-6 py-4 whitespace-nowrap max-w-xs truncate">{Proverb}</td> */}
-                    <td className="px-6 py-4 whitespace-nowrap">{new Date(createdAt).toLocaleDateString()}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 hidden md:table-cell">
+                    {new Date(createdAt).toLocaleDateString('en-US', { month: 'long',day: 'numeric',  year: 'numeric' })}
+                      </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex space-x-2">
-                      
-                        <Link to={`/editP/${_id}`} className="text-green-600 hover:text-blue-900">
-                          <MdEditSquare className="text-xl" />
+                        <Link to={`/editP/${_id}`} className="text-green-600 hover:text-green-900">
+                          <MdEditSquare className="w-5 h-5" />
                         </Link>
                         <button onClick={() => handleDelete(_id)} className="text-red-600 hover:text-red-900">
-                          <MdDeleteForever className="text-xl" />
+                          <MdDeleteForever className="w-5 h-5" />
                         </button>
                       </div>
                     </td>
@@ -144,29 +157,41 @@ const isAdmin = user?.publicMetadata?.User === 'Admin';
 
           {/* Card view for mobile screens */}
           <div className="md:hidden space-y-4">
-            {filteredProverbs.map(({ _id, TitleofProverb, Author,  createdAt }, index) => (
+            {filteredProverbs.map(({ _id, TitleofProverb, Author, Author_Image, createdAt }, index) => (
               <div key={_id} className="bg-white rounded-lg shadow-md p-4">
-                <div className="flex justify-between items-center mb-2">
+                <div className="flex justify-between items-center mb-4">
                   <span className="text-sm font-semibold text-gray-600">#{index + 1}</span>
-                  <span className="text-sm text-gray-500">{new Date(createdAt).toLocaleDateString()}</span>
+                  <span className="text-sm text-gray-500">
+                    {new Date(createdAt).toLocaleDateString('en-US', { 
+                      month: 'long',
+                      day: 'numeric',
+                      year: 'numeric' 
+                    })}
+                  </span>
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">{TitleofProverb}</h3>
-                <p className="text-sm text-gray-600 mb-2">By: {Author}</p>
-                {/* <p className="text-sm text-gray-700 mb-4 line-clamp-2">{Proverb}</p> */}
+                <div className="flex items-center space-x-3 mb-3">
+                  <img
+                    src={Author_Image}
+                    alt={`${Author}'s avatar`}
+                    className="h-10 w-10 rounded-full object-cover"
+                  />
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">{Author}</p>
+                  </div>
+                </div>
+                <h3 className="text-lg font-medium text-gray-900 mb-4">{TitleofProverb}</h3>
                 <div className="flex justify-end space-x-3">
-                
-                  <Link 
-                    to={`/editP/${_id}`} 
-                    className="p-2 rounded-full bg-blue-50 text-green-600 hover:bg-blue-100"
+                  <Link
+                    to={`/editP/${_id}`}
+                    className="p-2 rounded-full bg-green-50 text-green-600 hover:bg-green-100"
                   >
-                    <MdEditSquare className="text-xl" />
+                    <MdEditSquare className="w-5 h-5" />
                   </Link>
-
-                  <button 
-                    onClick={() => handleDelete(_id)} 
+                  <button
+                    onClick={() => handleDelete(_id)}
                     className="p-2 rounded-full bg-red-50 text-red-600 hover:bg-red-100"
                   >
-                    <MdDeleteForever className="text-xl" />
+                    <MdDeleteForever className="w-5 h-5" />
                   </button>
                 </div>
               </div>

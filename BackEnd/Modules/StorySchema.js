@@ -5,6 +5,10 @@ const DBSchema = new Mongoose.Schema(
         type: String,
         required: true,
       },
+      Author_Image: {
+        type: String,
+        required: true,
+      },
       Author: {
         type: String,
         required: true,

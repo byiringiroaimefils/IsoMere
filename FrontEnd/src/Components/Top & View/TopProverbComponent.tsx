@@ -1,19 +1,20 @@
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { useUser } from "@clerk/clerk-react";
-import defaultAvatar from "../default-avatar-removebg-preview.png";
+// import { useUser } from "@clerk/clerk-react";
+// import defaultAvatar from "../default-avatar-removebg-preview.png";
 
 interface Proverb {
   _id: string;
   TitleofProverb: string;
+  Author_Image:string,
   Proverb: string;
   createdAt: string;
   Author?: string;
 }
 
 export default function TopProverbComponent() {
-  const { user } = useUser();
+  // const { user } = useUser();
   const [proverbs, setProverbs] = useState<Proverb[]>([]);
   const [expandedProverb, setExpandedProverb] = useState<string | null>(null);
 
@@ -53,7 +54,7 @@ export default function TopProverbComponent() {
               <div className="mt-1 flex items-center text-sm text-gray-500 space-x-2">
                 {proverb.Author && (
                   <img
-                    src={user?.imageUrl || defaultAvatar} 
+                    src={proverb.Author_Image} 
                     alt={`${proverb.Author}'s avatar`}
                     className="h-6 w-6 rounded-full object-cover mr-2"
                   />

@@ -1,17 +1,19 @@
-import React, { useState ,useEffect} from 'react';
-import { useNavigate, Link,useParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useNavigate, Link, useParams } from "react-router-dom";
 import { Label } from "flowbite-react";
 import axios from "axios";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useUser } from "@clerk/clerk-react";
+// import defaultAvatar from "./default-avatar-removebg-preview.png";
+
 
 export default function EditBiblical() {
-  
+
   const navigate = useNavigate();
   const { user } = useUser();
-  const {id}=useParams()
+  const { id } = useParams()
   const [Title, setTitle] = useState<string>("");
   const [image, setimage] = useState<string>("");
   const [Decription, setDecription] = useState("");
@@ -20,12 +22,12 @@ export default function EditBiblical() {
   useEffect(() => {
     const fetchStoriesbyId = async () => {
       try {
-        const response = await axios.get(`https://babystory-server.onrender.com/selectByIdB/${id}`);
-        const story=response.data
+        const response = await axios.get(`http://localhost:3001/selectByIdB/${id}`);
+        const story = response.data
         setTitle(story.Title)
         setimage(story.image)
         setDecription(story.Decription)
-  
+
       } catch (error) {
         console.error('Error fetching stories:', error);
       }
@@ -44,9 +46,12 @@ export default function EditBiblical() {
     }
 
     const authorName = user?.fullName || user?.username || "Anonymous";
+    const user_profile = user?.imageUrl;
+
 
     const formdata = {
       Title,
+      Author_Image: user_profile,
       Author: authorName,
       image,
       Decription,
@@ -54,7 +59,7 @@ export default function EditBiblical() {
 
 
     try {
-      await axios.put(`https://babystory-server.onrender.com/EditBiblical/${id}`, formdata);
+      await axios.put(`http://localhost:3001/EditBiblical/${id}`, formdata);
       alert("Biblical Story updated successfully.")
       navigate("/Setting/Biblical");
     } catch (error) {
@@ -118,6 +123,34 @@ export default function EditBiblical() {
               <div className="prose prose-sm max-w-none">
                 <CKEditor
                   editor={ClassicEditor}
+
+                  config={{
+                    toolbar: {
+                      items: [
+                        'heading',
+                        '|',
+                        'bold',
+                        'italic',
+                        'fontSize',
+                        'fontFamily',
+                        'fontColor',
+                        '|',
+                        'link',
+                        'bulletedList',
+                        'numberedList',
+                        'blockQuote'
+                      ]
+                    },
+                    heading: {
+                      options: [
+                        { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                        { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                        { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+                      ]
+                    },
+                  }}
+
+
                   data={Decription}
                   onChange={(_event, editor) => {
                     setDecription(editor.getData());

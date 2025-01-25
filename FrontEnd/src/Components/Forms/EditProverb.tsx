@@ -1,26 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link, useParams} from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 import { Label } from "flowbite-react";
 import axios from "axios";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { FaArrowLeft, FaQuoteLeft } from 'react-icons/fa';
 import { useUser } from "@clerk/clerk-react";
+// import defaultAvatar from "./default-avatar-removebg-preview.png";
+
 
 export default function EditProverb() {
   const navigate = useNavigate();
   const { user } = useUser();
-  const {id} = useParams();
+  const { id } = useParams();
   const [TitleofProverb, setTitleofProverb] = useState("");
   const [Proverb, setProverb] = useState("");
-  
+
 
 
 
   useEffect(() => {
     const fetchProverbbyId = async () => {
       try {
-        const response = await axios.get(`https://babystory-server.onrender.com/proverb/${id}`);
+        const response = await axios.get(`http://localhost:3001/proverb/${id}`);
         const proverb = response.data;
         setTitleofProverb(proverb.TitleofProverb);
         setProverb(proverb.Proverb);
@@ -41,15 +43,18 @@ export default function EditProverb() {
     }
 
     const authorName = user?.fullName || user?.username || "Anonymous";
+    const user_profile = user?.imageUrl;
+
 
     const data = {
       TitleofProverb: TitleofProverb,
+      Author_Image: user_profile,
       Author: authorName,
       Proverb: Proverb
     };
 
     try {
-      await axios.put(`https://babystory-server.onrender.com/EditProverb/${id}`, data);
+      await axios.put(`http://localhost:3001/EditProverb/${id}`, data);
       alert("Proverb updated successfully!");
       navigate("/Setting/Proverb");
     } catch (error: any) {
@@ -99,6 +104,34 @@ export default function EditProverb() {
                 <div className="prose prose-sm max-w-none pl-10">
                   <CKEditor
                     editor={ClassicEditor}
+
+                    config={{
+                      toolbar: {
+                        items: [
+                          'heading',
+                          '|',
+                          'bold',
+                          'italic',
+                          'fontSize',
+                          'fontFamily',
+                          'fontColor',
+                          '|',
+                          'link',
+                          'bulletedList',
+                          'numberedList',
+                          'blockQuote'
+                        ]
+                      },
+                      heading: {
+                        options: [
+                          { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                          { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                          { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+                        ]
+                      },
+                    }}
+
+
                     data={Proverb}
                     onChange={(_event, editor) => {
                       setProverb(editor.getData());

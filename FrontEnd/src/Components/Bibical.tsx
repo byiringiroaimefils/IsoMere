@@ -4,13 +4,14 @@ import NavBar from './NavBar';
 import Footer from './Pages/Footer';
 import TopStory from './Top & View/TopStoryComponent';
 import axios from 'axios';
-import { useUser } from "@clerk/clerk-react";
-import defaultAvatar from "./default-avatar-removebg-preview.png";
+// import { useUser } from "@clerk/clerk-react";
+// import defaultAvatar from "./default-avatar-removebg-preview.png";
 
 // Assuming Story type structure
 type Story = {
   _id: string;
   Title: string;
+  Author_Image:string,
   image?: string;
   Decription: string;
   createdAt: string;
@@ -18,7 +19,7 @@ type Story = {
 };
 
 const Biblical: FC = () => {
-  const { user } = useUser();
+  // const { user } = useUser();
   const [selectedStory, setSelectedStory] = useState<string | null>(null);
   const [stories, setStories] = useState<Story[]>([]);
   const [limit, setLimit] = useState(4);
@@ -74,7 +75,7 @@ const Biblical: FC = () => {
             </div>
 
             <div className="grid gap-8">
-              {stories.slice(0, limit).map(({ _id, Title, image, Decription, createdAt, Author }) => (
+              {stories.slice(0, limit).map(({ _id, Title,Author_Image, image, Decription, createdAt, Author }) => (
                 <div
                   key={_id}
                   className={`bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md
@@ -92,7 +93,7 @@ const Biblical: FC = () => {
                       <div className="flex items-center space-x-4">
                         {Author && (
                           <img
-                            src={user?.imageUrl || defaultAvatar} 
+                            src={Author_Image} 
                             alt={`${Author}'s avatar`}
                             className="h-8 w-8 rounded-full object-cover"
                           />

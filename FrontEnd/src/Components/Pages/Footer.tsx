@@ -2,7 +2,7 @@ import { IoLogoInstagram } from "react-icons/io5";
 import { FaFacebook } from "react-icons/fa6";
 import { FaXTwitter } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
-import { IoIosArrowDropdown } from "react-icons/io";
+import { IoIosArrowDropup } from "react-icons/io";
 
 export default function Footer() {
     const topButton = () => {
@@ -11,13 +11,13 @@ export default function Footer() {
     }
 
     return (
-        <footer className="w-full bg-gray-900 text-white font-serif">
+        <footer className="w-full bg-gray-900 text-white font-serif mt-40">
             <div className='w-full flex justify-between items-center px-4 py-2'>
                 <Link to={'/Idea'} className="flex-grow text-center">
                     <p className='text-xs sm:text-sm'>Do you have an idea for IsoMere to cover? Submit it here!</p>
                 </Link>
                 <button onClick={topButton} className="cursor-pointer p-2" aria-label="Scroll to top">
-                    <IoIosArrowDropdown className="text-white text-xl" />
+                    <IoIosArrowDropup className="text-white text-xl" />
                 </button>
             </div>
             <div className='w-full bg-gray-100 p-4 sm:p-7'>

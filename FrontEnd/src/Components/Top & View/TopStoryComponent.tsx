@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import axios from 'axios';
-import { useUser } from "@clerk/clerk-react";
-import defaultAvatar from "../default-avatar-removebg-preview.png";
+// import { useUser } from "@clerk/clerk-react";
+// import defaultAvatar from "../default-avatar-removebg-preview.png";
 
 interface Story {
   _id: string;
   Title: string;
+  Author_Image:string,
   image: string;
   Description: string;
   createdAt: string;
@@ -14,7 +15,7 @@ interface Story {
 }
 
 export default function TopStoryComponent() {
-  const { user } = useUser();
+  // const { user } = useUser();
   // this for stories
   const [stories, setStories] = useState<Story[]>([]);
   const [expandedStory, setExpandedStory] = useState<string | null>(null);
@@ -25,7 +26,7 @@ export default function TopStoryComponent() {
 
   useEffect(() => {
     // Fetch 2 regular stories
-    axios.get(`https://babystory-server.onrender.com/stories?limit=2`)
+    axios.get(`http://localhost:3001/stories?limit=2`)
       .then((response) => {
         // If the backend doesn't handle the limit, slice the results here
         const limitedStories = response.data.slice(0, 2);
@@ -36,7 +37,7 @@ export default function TopStoryComponent() {
       });
 
     // Fetch 2 biblical stories
-    axios.get(`https://babystory-server.onrender.com/selectBiblical?limit=2`)
+    axios.get(`http://localhost:3001/selectBiblical?limit=2`)
       .then((response) => {
         // If the backend doesn't handle the limit, slice the results here
         const limitedBStories = response.data.slice(0, 2);
@@ -86,7 +87,7 @@ export default function TopStoryComponent() {
                   <div className="mt-1 flex items-center text-sm text-gray-500 space-x-2">
                     {story.Author && (
                       <img
-                        src={user?.imageUrl || defaultAvatar} 
+                        src={story.Author_Image} 
                         alt={`${story.Author}'s avatar`}
                         className="h-6 w-6 rounded-full object-cover mr-2"
                       />
@@ -166,7 +167,7 @@ export default function TopStoryComponent() {
                   <div className="mt-1 flex items-center text-sm text-gray-500 space-x-2">
                     {story.Author && (
                       <img
-                        src={user?.imageUrl || defaultAvatar} 
+                        src={story.Author_Image} 
                         alt={`${story.Author}'s avatar`}
                         className="h-6 w-6 rounded-full object-cover mr-2"
                       />

@@ -5,13 +5,14 @@ import NavBar from "./NavBar";
 import Footer from './Pages/Footer';
 import TopStory from "./Top & View/TopStoryComponent";
 import TopProverb from "./Top & View/TopProverbComponent";
-import { useUser } from "@clerk/clerk-react";
-import defaultAvatar from "./default-avatar-removebg-preview.png";
+// import { useUser } from "@clerk/clerk-react";
+// import defaultAvatar from "./default-avatar-removebg-preview.png";
 // import Load from "./Service/Loading";
 
 interface Story {
   _id: string;
   Title: string;
+  Author_Image:string,
   image: string;
   Decription: string;
   createdAt: string;
@@ -19,14 +20,13 @@ interface Story {
 }
 
 const Home: FC = () => {
-  const { user } = useUser();
+  // const { user } = useUser();
   const [stories, setStories] = useState<Story[]>([]);
   const [limit, setLimit] = useState(4);
   const [selectedStory, setSelectedStory] = useState<string | null>(null);
   const [expandedStory, setExpandedStory] = useState<string | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState<string | null>(null);
+
   
   const topics = [
     "Featured Stories",
@@ -45,7 +45,6 @@ const Home: FC = () => {
         setStories(response.data);
       } catch (error) {
         console.error('Error fetching stories:', error);
-        // setError('Failed to load stories. Please try again later.');
       }
     };
 
@@ -82,7 +81,7 @@ const Home: FC = () => {
             </div>
             
             <div className="grid gap-8">
-              {stories.slice(0, limit).map(({ _id, Title, image, Decription, createdAt, Author }) => (
+              {stories.slice(0, limit).map(({ _id, Title,Author_Image, image, Decription, createdAt, Author }) => (
                 <div
                   key={_id}
                   className={`bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md
@@ -100,7 +99,7 @@ const Home: FC = () => {
                       <div className="flex items-center space-x-4">
                         {Author && (
                           <img
-                            src={user?.imageUrl || defaultAvatar} 
+                            src={Author_Image} 
                             alt={`${Author}'s avatar`}
                             className="h-8 w-8 rounded-full object-cover"
                           />

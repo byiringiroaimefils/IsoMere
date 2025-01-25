@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import { Label } from "flowbite-react";
 import axios from "axios";
@@ -6,33 +6,40 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { FaArrowLeft, FaQuoteLeft } from 'react-icons/fa';
 import { useUser } from "@clerk/clerk-react";
+// import defaultAvatar from "./default-avatar-removebg-preview.png";
+
 
 export default function FormProverb() {
   const navigate = useNavigate();
   const { user } = useUser();
-  const [TitleofProverb, setTitleofProverb] = useState("");
-  const [Proverb, setProverb] = useState("");
+  const [formdata, setFormdata] = useState({
+    TitleofProverb: "",
+    Author: "",
+    Author_Image: "",
+    Proverb: ""
+  });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  useEffect(() => {
+    if (user) {
+      setFormdata(prev => ({
+        ...prev,
+        Author: user.fullName || user.username || "Anonymous",
+        Author_Image: user.imageUrl || "/default-avatar.png"
+      }));
+    }
+  }, [user]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!TitleofProverb || !Proverb) {
+    if (!formdata.TitleofProverb || !formdata.Proverb) {
       alert("Please fill in all required fields");
       return;
     }
 
-    const authorName = user?.fullName || user?.username || "Anonymous";
-    console.log("Sending author name:", authorName);
-    
-    const data = {
-      TitleofProverb: TitleofProverb,
-      Author: authorName,
-      Proverb: Proverb
-    };
-    
-    console.log("Sending data:", data);
+    console.log("Sending data:", formdata);
     
     try {
-      const response = await axios.post("https://babystory-server.onrender.com/proverb", data);
+      const response = await axios.post("http://localhost:3001/proverb", formdata);
       console.log("Response:", response.data);
       alert("Proverb created successfully!");
       navigate("/Setting/Proverb");
@@ -66,8 +73,8 @@ export default function FormProverb() {
               <input
                 id="title"
                 type="text"
-                value={TitleofProverb}
-                onChange={(e) => setTitleofProverb(e.target.value)}
+                value={formdata.TitleofProverb}
+                onChange={(e) => setFormdata(prev => ({ ...prev, TitleofProverb: e.target.value }))}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="Enter a meaningful title"
                 required
@@ -84,9 +91,36 @@ export default function FormProverb() {
                 <div className="prose prose-sm max-w-none pl-10">
                   <CKEditor
                     editor={ClassicEditor}
-                    data={Proverb}
+
+                    config={{
+                      toolbar: {
+                        items: [
+                          'heading',
+                          '|',
+                          'bold', 
+                          'italic',
+                          'fontSize',
+                          'fontFamily',
+                          'fontColor',
+                          '|',
+                          'link',
+                          'bulletedList',
+                          'numberedList',
+                          'blockQuote'
+                        ]
+                      },
+                      heading: {
+                        options: [
+                          { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                          { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                          { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+                        ]
+                      },
+                    }}
+  
+                    data={formdata.Proverb}
                     onChange={(_event, editor) => {
-                      setProverb(editor.getData());
+                      setFormdata(prev => ({ ...prev, Proverb: editor.getData() }));
                     }}
                   />
                 </div>

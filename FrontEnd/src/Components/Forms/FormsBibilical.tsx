@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import { Label } from "flowbite-react";
 import axios from "axios";
@@ -7,6 +7,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { toast } from "react-hot-toast";
 import { FaArrowLeft } from 'react-icons/fa';
 import { useUser } from "@clerk/clerk-react";
+// import defaultAvatar from "./default-avatar-removebg-preview.png";
 
 export default function FormsBibilical() {
   const navigate = useNavigate();
@@ -14,29 +15,33 @@ export default function FormsBibilical() {
   const [Title, setTitle] = useState<string>("");
   const [image, setImage] = useState<string>("");
   const [Decription, setDecription] = useState("");
-  
+  const [formdata, setFormdata] = useState({
+    Title: "",
+    Author: "",
+    Author_Image: "",
+    image: "",
+    Decription: ""
+  });
 
+  useEffect(() => {
+    if (user) {
+      setFormdata(prev => ({
+        ...prev,
+        Author: user.fullName || user.username || "Anonymous",
+        Author_Image: user.imageUrl || "/default-avatar.png"
+      }));
+    }
+  }, [user]);
 
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!Title || !Decription || !image) {
       alert("Please fill in all required fields");
       return;
     }
   
-
-    const authorName = user?.fullName || user?.username || "Anonymous";
-
-    const formdata = {
-      Title,
-      Author: authorName,
-      image,
-      Decription,
-    }
-    
     try {
-      await axios.post("https://babystory-server.onrender.com/InsertBiblical", formdata);
+      await axios.post("http://localhost:3001/InsertBiblical", formdata);
       toast.success("");
       alert("Biblical Story created successfully!")
       navigate("/Setting/Proverb");
@@ -120,6 +125,34 @@ export default function FormsBibilical() {
               <div className="prose prose-sm max-w-none">
                 <CKEditor
                   editor={ClassicEditor}
+                  config={{
+                    toolbar: {
+                      items: [
+                        'heading',
+                        '|',
+                        'bold', 
+                        'italic',
+                        'fontSize',
+                        'fontFamily',
+                        'fontColor',
+                        '|',
+                        'link',
+                        'bulletedList',
+                        'numberedList',
+                        'blockQuote'
+                      ]
+                    },
+                    heading: {
+                      options: [
+                        { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                        { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                        { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+                      ]
+                    },
+                  }}
+
+
+
                   data={Decription}
                   onChange={(_event, editor) => {
                     setDecription(editor.getData());

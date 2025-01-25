@@ -5,12 +5,13 @@ import axios from 'axios';
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import {  FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { useUser } from "@clerk/clerk-react";
-import defaultAvatar from "../default-avatar-removebg-preview.png";
+// import { useUser } from "@clerk/clerk-react";
+// import defaultAvatar from "../default-avatar-removebg-preview.png";
 
 interface Story {
   _id: string;
   Title: string;
+  Author_Image:string,
   image: string;
   Decription: string;
   createdAt: string;
@@ -18,7 +19,7 @@ interface Story {
 }
 
 export default function TopStory() {
-  const { user } = useUser();
+  // const { user } = useUser();
   const [story, setStory] = useState<Story | null>(null);
   const [prevId, setPrevId] = useState<string | null>(null);
   const [nextId, setNextId] = useState<string | null>(null);
@@ -30,10 +31,10 @@ export default function TopStory() {
     const fetchStory = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`https://babystory-server.onrender.com/story/${id}`);
+        const response = await axios.get(`http://localhost:3001/story/${id}`);
         setStory(response.data);
 
-        const allStoriesResponse = await axios.get("https://babystory-server.onrender.com/stories");
+        const allStoriesResponse = await axios.get("http://localhost:3001/stories");
         const allStories = allStoriesResponse.data;
         const currentIndex = allStories.findIndex((s: Story) => s._id === id);
         setPrevId(currentIndex > 0 ? allStories[currentIndex - 1]._id : null);
@@ -85,7 +86,7 @@ export default function TopStory() {
                   <div className="flex items-center space-x-4">
                     {story.Author && (
                       <img
-                        src={user?.imageUrl || defaultAvatar} 
+                        src={story.Author_Image} 
                         alt={`${story.Author}'s avatar`}
                         className="h-10 w-10 rounded-full object-cover"
                       />

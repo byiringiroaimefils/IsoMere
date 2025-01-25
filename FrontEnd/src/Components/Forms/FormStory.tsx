@@ -1,38 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import { Label } from "flowbite-react";
 import axios from "axios";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
+// import { ClassicEditor } from 'ckeditor5';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { toast } from "react-hot-toast";
 import { FaArrowLeft } from 'react-icons/fa';
 import { useUser } from "@clerk/clerk-react";
+// import defaultAvatar from "./default-avatar-removebg-preview.png";
+
 
 export default function FormStory() {
   const navigate = useNavigate();
   const { user } = useUser();
-  const [Title, setTitle] = useState<string>("");
-  const [image, setImage] = useState<string>("");
-  const [Decription, setDecription] = useState("");
+  const [formdata, setFormdata] = useState({
+    Title: "",
+    Author: "",
+    Author_Image: "",
+    image: "",
+    Decription: ""
+  });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  useEffect(() => {
+    if (user) {
+      setFormdata(prev => ({
+        ...prev,
+        Author: user.fullName || user.username || "Anonymous",
+        Author_Image: user.imageUrl || "/default-avatar.png"
+      }));
+    }
+  }, [user]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!Title || !Decription || !image) {
+    if (!formdata.Title || !formdata.Decription || !formdata.image) {
       alert("Please fill in all required fields");
       return;
     }
 
-    const authorName = user?.fullName || user?.username || "Anonymous";
-
-    const formdata = {
-      Title,
-      Author: authorName,
-      image,
-      Decription,
-    }
-    
     try {
-      await axios.post("https://babystory-server.onrender.com/story", formdata);
+      await axios.post("http://localhost:3001/story", formdata);
       toast.success("Story created successfully!");
       alert("Story Uploaded")
       navigate("/Setting/Story");
@@ -66,8 +74,8 @@ export default function FormStory() {
               <input
                 id="title"
                 type="text"
-                value={Title}
-                onChange={(e) => setTitle(e.target.value)}
+                value={formdata.Title}
+                onChange={(e) => setFormdata(prev => ({ ...prev, Title: e.target.value }))}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="Enter a captivating title"
                 required
@@ -82,7 +90,8 @@ export default function FormStory() {
               <input
                 id="image-url"
                 type="text"
-                onChange={(e) => setImage(e.target.value)}
+                value={formdata.image}
+                onChange={(e) => setFormdata(prev => ({ ...prev, image: e.target.value }))}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="Enter image URL"
               />
@@ -96,9 +105,36 @@ export default function FormStory() {
               <div className="prose prose-sm max-w-none">
                 <CKEditor
                   editor={ClassicEditor}
-                  data={Decription}
+                  config={{
+                    toolbar: {
+                      items: [
+                        'heading',
+                        '|',
+                        'bold', 
+                        'italic',
+                        'fontSize',
+                        'fontFamily',
+                        'fontColor',
+                        '|',
+                        'link',
+                        'bulletedList',
+                        'numberedList',
+                        'blockQuote'
+                      ]
+                    },
+                    heading: {
+                      options: [
+                        { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                        { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                        { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+                      ]
+                    },
+                  }}
+
+
+                  data={formdata.Decription}
                   onChange={(_event, editor) => {
-                    setDecription(editor.getData());
+                    setFormdata(prev => ({ ...prev, Decription: editor.getData() }));
                   }}
                 />
               </div>
