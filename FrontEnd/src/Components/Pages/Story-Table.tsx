@@ -35,7 +35,7 @@ const Story: FC = () => {
   useEffect(() => {
     const authorName = user?.fullName || user?.username || "Anonymous";
 
-    axios.get(`http://localhost:3001/Stories`)
+    axios.get(`https://babystory-server.onrender.com/Stories`)
       .then((response) => {
         // Filter stories by author name
         const isAdmin = user?.publicMetadata?.User === 'Admin';
@@ -60,7 +60,7 @@ const Story: FC = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:3001/deleteStory/${id}`)
+        axios.delete(`https://babystory-server.onrender.com/deleteStory/${id}`)
           .then(() => {
             setStory(prevStories => prevStories.filter(story => story._id !== id)); // Update state to remove deleted story
             Swal.fire({

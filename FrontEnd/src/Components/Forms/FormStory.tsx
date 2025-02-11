@@ -40,7 +40,7 @@ export default function FormStory() {
     }
 
     try {
-      await axios.post("http://localhost:3001/story", formdata);
+      await axios.post("https://babystory-server.onrender.com/story", formdata);
       toast.success("Story created successfully!");
       alert("Story Uploaded")
       navigate("/Setting/Story");

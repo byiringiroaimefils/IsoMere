@@ -35,7 +35,7 @@ const Biblical: FC = () => {
   useEffect(() => {
     const authorName = user?.fullName || user?.username || "Anonymous";
 
-    axios.get("http://localhost:3001/selectBiblical")
+    axios.get("https://babystory-server.onrender.com/selectBiblical")
       .then((response) => {
         // Filter biblical stories based on user role and author name
         const isAdmin = user?.publicMetadata?.User === 'Admin';;
@@ -61,7 +61,7 @@ const Biblical: FC = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:3001/deleteBStory/${id}`)
+        axios.delete(`https://babystory-server.onrender.com/deleteBStory/${id}`)
           .then(() => {
             setStory(prevStories => prevStories.filter(story => story._id !== id)); // Update state to remove deleted story
             Swal.fire({

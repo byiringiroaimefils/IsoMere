@@ -27,7 +27,7 @@ const Pro: FC = () => {
 
   useEffect(() => {
     const authorName = user?.fullName || user?.username || "Anonymous";
-    axios.get("http://localhost:3001/Proverbs")
+    axios.get("https://babystory-server.onrender.com/Proverbs")
       .then((response) => {
 
         const isAdmin = user?.publicMetadata?.User === 'Admin';
@@ -59,7 +59,7 @@ const Pro: FC = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:3001/deleteProverb/${id}`)
+        axios.delete(`https://babystory-server.onrender.com/deleteProverb/${id}`)
           .then(() => {
             setProverbs(proverbs.filter(proverb => proverb._id !== id)); // Update state to remove deleted proverb
             Swal.fire({

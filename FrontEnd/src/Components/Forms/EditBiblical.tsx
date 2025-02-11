@@ -22,7 +22,7 @@ export default function EditBiblical() {
   useEffect(() => {
     const fetchStoriesbyId = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/selectByIdB/${id}`);
+        const response = await axios.get(`https://babystory-server.onrender.com/selectByIdB/${id}`);
         const story = response.data
         setTitle(story.Title)
         setimage(story.image)
@@ -59,7 +59,7 @@ export default function EditBiblical() {
 
 
     try {
-      await axios.put(`http://localhost:3001/EditBiblical/${id}`, formdata);
+      await axios.put(`https://babystory-server.onrender.com/EditBiblical/${id}`, formdata);
       alert("Biblical Story updated successfully.")
       navigate("/Setting/Biblical");
     } catch (error) {

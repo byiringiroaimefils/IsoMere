@@ -41,7 +41,7 @@ const Home: FC = () => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/stories");
+        const response = await axios.get("https://babystory-server.onrender.com/stories");
         setStories(response.data);
       } catch (error) {
         console.error('Error fetching stories:', error);

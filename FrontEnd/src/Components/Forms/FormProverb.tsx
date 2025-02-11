@@ -39,7 +39,7 @@ export default function FormProverb() {
     console.log("Sending data:", formdata);
     
     try {
-      const response = await axios.post("http://localhost:3001/proverb", formdata);
+      const response = await axios.post("https://babystory-server.onrender.com/proverb", formdata);
       console.log("Response:", response.data);
       alert("Proverb created successfully!");
       navigate("/Setting/Proverb");

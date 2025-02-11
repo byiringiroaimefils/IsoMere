@@ -22,7 +22,7 @@ export default function FormStory() {
   useEffect(() => {
     const fetchStoriesbyId = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/story/${id}`);
+        const response = await axios.get(`https://babystory-server.onrender.com/story/${id}`);
         const story = response.data
         setTitle(story.Title)
         setimage(story.image)
@@ -60,7 +60,7 @@ export default function FormStory() {
 
 
     try {
-      await axios.put(`http://localhost:3001/EditStory/${id}`, formdata);
+      await axios.put(`https://babystory-server.onrender.com/EditStory/${id}`, formdata);
       alert("Story updated successfully.")
       navigate("/Setting/Story");
     } catch (error) {

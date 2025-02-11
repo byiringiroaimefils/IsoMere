@@ -37,7 +37,7 @@ const Proverb: FC = () => {
   useEffect(() => {
     const fetchProverbs = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/proverbs");
+        const response = await axios.get("https://babystory-server.onrender.com/proverbs");
         setProverbs(response.data);
       } catch (error) {
         console.error('Error fetching proverbs:', error);

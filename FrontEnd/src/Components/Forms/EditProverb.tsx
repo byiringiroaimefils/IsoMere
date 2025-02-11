@@ -22,7 +22,7 @@ export default function EditProverb() {
   useEffect(() => {
     const fetchProverbbyId = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/proverb/${id}`);
+        const response = await axios.get(`https://babystory-server.onrender.com/proverb/${id}`);
         const proverb = response.data;
         setTitleofProverb(proverb.TitleofProverb);
         setProverb(proverb.Proverb);
@@ -54,7 +54,7 @@ export default function EditProverb() {
     };
 
     try {
-      await axios.put(`http://localhost:3001/EditProverb/${id}`, data);
+      await axios.put(`https://babystory-server.onrender.com/EditProverb/${id}`, data);
       alert("Proverb updated successfully!");
       navigate("/Setting/Proverb");
     } catch (error: any) {
